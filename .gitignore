@@ -1,0 +1,11 @@
+/target/
+/.settings/
+.DS_Store
+target
+app/.sass-cache
+.settings
+.classpath
+.project
+.DS_Store
+nb-configuration.xml
+nbactions.xml
