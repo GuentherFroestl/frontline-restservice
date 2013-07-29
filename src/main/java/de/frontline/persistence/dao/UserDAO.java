@@ -17,9 +17,9 @@ import org.apache.log4j.Logger;
 import com.tom.service.dto.AddressDTO;
 import com.tom.service.dto.LandDTO;
 
-import de.frontline.backend.persistence.entities.userdb.FlUser;
-import de.frontline.backend.persistence.entities.userdb.Uservar;
-import de.frontline.backend.persistence.entities.userdb.UservarPK;
+import de.frontline.persistence.entities.FlUser;
+import de.frontline.persistence.entities.Uservar;
+import de.frontline.persistence.entities.UservarPK;
 
 /**
  * Session Bean implementation class UserDAO

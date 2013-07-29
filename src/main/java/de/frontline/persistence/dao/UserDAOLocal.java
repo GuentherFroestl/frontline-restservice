@@ -6,7 +6,7 @@ import javax.ejb.Local;
 
 import com.tom.service.dto.AddressDTO;
 
-import de.frontline.backend.persistence.entities.userdb.FlUser;
+import de.frontline.persistence.entities.FlUser;
 
 /**
  * @author gfr UserDAO handelt den Zugriff auf Userobjekte

@@ -10,7 +10,7 @@ import javax.ejb.Stateless;
 
 import com.tom.service.dto.AddressDTO;
 
-import de.frontline.backend.persistence.entities.userdb.FlUser;
+import de.frontline.persistence.entities.FlUser;
 import de.frontline.persistence.dao.DbException;
 import de.frontline.persistence.dao.UserDAOLocal;
 import de.frontline.rest.restservice.IllegalRestClientArgumentException;

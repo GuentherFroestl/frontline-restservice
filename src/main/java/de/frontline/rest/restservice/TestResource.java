@@ -17,7 +17,7 @@ import javax.ws.rs.core.MediaType;
 import com.tom.service.dto.AddressDTO;
 
 import de.frontline.backend.bl.HelloTestLocal;
-import de.frontline.backend.persistence.entities.userdb.FlUser;
+import de.frontline.persistence.entities.FlUser;
 import de.frontline.persistence.dao.DbException;
 import de.frontline.persistence.dao.UserDAOLocal;
 

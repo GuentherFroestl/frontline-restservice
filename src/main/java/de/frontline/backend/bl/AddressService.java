@@ -24,7 +24,7 @@ import com.tom.service.dto.RegisterAddressRequest;
 import com.tom.service.facade.TomException;
 import com.tom.service.util.EmailAddressValidator;
 
-import de.frontline.backend.persistence.entities.userdb.FlUser;
+import de.frontline.persistence.entities.FlUser;
 import de.frontline.persistence.dao.DbException;
 import de.frontline.persistence.dao.UserDAOLocal;
 import de.frontline.rest.restservice.IllegalRestClientArgumentException;

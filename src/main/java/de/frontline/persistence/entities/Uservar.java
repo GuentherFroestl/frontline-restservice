@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.frontline.backend.persistence.entities.userdb;
+package de.frontline.persistence.entities;
 
 import java.io.Serializable;
 
