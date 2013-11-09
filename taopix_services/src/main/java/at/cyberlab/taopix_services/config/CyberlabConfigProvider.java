@@ -3,8 +3,6 @@
  */
 package at.cyberlab.taopix_services.config;
 
-import at.cyberlab.taopix_services.imports.TaopixConfig;
-
 
 /**
  * @author gfr

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export>
+	<order>
+		<header>
+			<id>5273</id>
+			<datecreated>2013-11-03 20:12:58</datecreated>
+			<datelastmodified>2013-11-03 20:33:53</datelastmodified>
+			<ownercode>CYLBDGTLE</ownercode>
+			<groupcode>DEMO</groupcode>
+			<shoppingcarttype>0</shoppingcarttype>
+			<userid>2531</userid>
+			<orderdate>2013-11-03 20:12:58</orderdate>
+			<ordernumber>0005273</ordernumber>
+			<origorderid>0</origorderid>
+			<origordernumber/>
+			<temporderid>0</temporderid>
+			<webbrandcode/>
+			<languagecode>de_de</languagecode>
+			<billingcustomeraccountcode/>
+			<billingcustomername/>
+			<billingcustomeraddress1>Grafenberg 127</billingcustomeraddress1>
+			<billingcustomeraddress2/>
+			<billingcustomeraddress3/>
+			<billingcustomeraddress4/>
+			<billingcustomercity>Grafenberg</billingcustomercity>
+			<billingcustomercounty/>
+			<billingcustomerstate/>
+			<billingcustomerregioncode/>
+			<billingcustomerregion>STATE</billingcustomerregion>
+			<billingcustomerpostcode>3730</billingcustomerpostcode>
+			<billingcustomercountrycode>AT</billingcustomercountrycode>
+			<billingcustomercountryname>Austria</billingcustomercountryname>
+			<billingcustomertelephonenumber>06641046734</billingcustomertelephonenumber>
+			<billingcustomeremailaddress>werner4010@hotmail.com</billingcustomeremailaddress>
+			<billingcontactfirstname>Werner</billingcontactfirstname>
+			<billingcontactlastname>Prokop</billingcontactlastname>
+			<useremaildestination>0</useremaildestination>
+			<currencycode>EUR</currencycode>
+			<currencyname>Euro</currencyname>
+			<currencyisonumber>978</currencyisonumber>
+			<currencysymbol>€</currencysymbol>
+			<currencysymbolatfront>1</currencysymbolatfront>
+			<currencydecimalplaces>2</currencydecimalplaces>
+			<currencyexchangerate>1.0000</currencyexchangerate>
+			<basecurrencycode>EUR</basecurrencycode>
+			<voucherpromotioncode/>
+			<voucherpromotionname/>
+			<vouchercode/>
+			<vouchername/>
+			<voucherdiscountsection/>
+			<voucherdiscounttype/>
+			<voucherdiscountvalue>0.00</voucherdiscountvalue>
+			<itemtotalcost>0.00</itemtotalcost>
+			<itemtotalsell>83.52</itemtotalsell>
+			<itemtotaltax>13.92</itemtotaltax>
+			<shippingtotalcost>0.00</shippingtotalcost>
+			<shippingtotalsell>0.00</shippingtotalsell>
+			<shippingtotaltax>0.00</shippingtotaltax>
+			<shippingtotalweight>0.0000</shippingtotalweight>
+			<totalcost>0.00</totalcost>
+			<totalsellbeforediscount>69.60</totalsellbeforediscount>
+			<totaltaxbeforediscount>13.92</totaltaxbeforediscount>
+			<totalbeforediscount>69.60</totalbeforediscount>
+			<totaldiscount>0.00</totaldiscount>
+			<totalsell>83.52</totalsell>
+			<totaltax>13.92</totaltax>
+			<total>83.52</total>
+			<paymentmethodcode>COD</paymentmethodcode>
+			<paymentmethodname>Payment upon collection</paymentmethodname>
+			<paymentgatewaycode/>
+			<pricesincludetax>1</pricesincludetax>
+			<requiresdelivery>0</requiresdelivery>
+			<ccilogid>0</ccilogid>
+			<metadatacodelist/>
+			<paymentreceived>0</paymentreceived>
+			<paymentreceivedtimestamp>0000-00-00 00:00:00</paymentreceivedtimestamp>
+			<paymentreceiveddate>0000-00-00 00:00:00</paymentreceiveddate>
+			<paymentreceiveduserid>0</paymentreceiveduserid>
+			<canreorder>1</canreorder>
+			<archived>0</archived>
+			<archivedate>0000-00-00 00:00:00</archivedate>
+			<status>40</status>
+			<statustimestamp>2013-11-03 20:33:53</statustimestamp>
+			<statususerid>0</statususerid>
+			<statusdescription/>
+			<orderid>5273</orderid>
+			<uploadref>DEMO031120132010000517</uploadref>
+			<origorderitemid>0</origorderitemid>
+			<origuploadref/>
+			<projectname>AundA</projectname>
+			<productcode>KF_A3Q_W</productcode>
+			<productname>de Kalender Fotopapier A3 quer weiß</productname>
+			<producttype>0</producttype>
+			<productpageformat>0</productpageformat>
+			<productspreadpageformat>0</productspreadpageformat>
+			<productcover1format>0</productcover1format>
+			<productcover2format>0</productcover2format>
+			<productoutputformat>0</productoutputformat>
+			<productheight>12.165354</productheight>
+			<productwidth>16.692913</productwidth>
+			<productdefaultcovercode/>
+			<productdefaultpapercode>FBDEL_FPG</productdefaultpapercode>
+			<productdefaultpagecount>0</productdefaultpagecount>
+			<covercount>0</covercount>
+			<covercode/>
+			<covername/>
+			<papercount>2</papercount>
+			<papercode>FBDEL_FPM</papercode>
+			<papername>de Fotopapier matt</papername>
+			<pagecountpurchased>13</pagecountpurchased>
+			<pagecount>13</pagecount>
+			<productunitcost>0.00</productunitcost>
+			<productunitsell>23.20</productunitsell>
+			<coverunitcost>0.00</coverunitcost>
+			<coverunitsell>0.00</coverunitsell>
+			<paperunitcost>0.00</paperunitcost>
+			<paperunitsell>0.00</paperunitsell>
+			<taxcode>AUTVAT</taxcode>
+			<taxname>en Austrian VAT&lt;p&gt;de USt.</taxname>
+			<taxrate>20.0000</taxrate>
+			<productunitweight>0.0000</productunitweight>
+			<producttotalweight>0.0000</producttotalweight>
+			<coverunitweight>0.0000</coverunitweight>
+			<covertotalweight>0.0000</covertotalweight>
+			<paperunitweight>0.0000</paperunitweight>
+			<papertotalweight>0.0000</papertotalweight>
+			<qty>3</qty>
+			<producttotalcost>0.00</producttotalcost>
+			<producttotalsell>83.52</producttotalsell>
+			<producttotaltax>13.92</producttotaltax>
+			<covertotalcost>0.00</covertotalcost>
+			<covertotalsell>0.00</covertotalsell>
+			<covertotaltax>0.00</covertotaltax>
+			<papertotalcost>0.00</papertotalcost>
+			<papertotalsell>0.00</papertotalsell>
+			<papertotaltax>0.00</papertotaltax>
+			<subtotal>83.52</subtotal>
+			<discountvalue>0.00</discountvalue>
+			<totalshippingweight>0.0000</totalshippingweight>
+			<uploaddatatype>0</uploaddatatype>
+			<uploadmethod>0</uploadmethod>
+			<uploadappversion>2.5.8</uploadappversion>
+			<uploadappplatform>Win32</uploadappplatform>
+			<uploadappcputype>Intel</uploadappcputype>
+			<uploadapposversion> (Build 9200)</uploadapposversion>
+			<filesreceivedtimestamp>2013-11-03 20:31:45</filesreceivedtimestamp>
+			<filesreceiveduserid>0</filesreceiveduserid>
+			<decrypttimestamp>2013-11-03 20:33:50</decrypttimestamp>
+			<decryptuserid>3</decryptuserid>
+			<converttimestamp>2013-11-03 20:33:53</converttimestamp>
+			<convertuserid>3</convertuserid>
+			<convertoutputformatcode/>
+			<jobticketoutputfilename/>
+			<pagesoutputfilename/>
+			<cover1outputfilename/>
+			<cover2outputfilename/>
+			<outputtimestamp>0000-00-00 00:00:00</outputtimestamp>
+			<outputuserid>0</outputuserid>
+			<jobticketoutputdevicecode/>
+			<pagesoutputdevicecode/>
+			<cover1outputdevicecode/>
+			<cover2outputdevicecode/>
+			<finishtimestamp>0000-00-00 00:00:00</finishtimestamp>
+			<finishdate>0000-00-00 00:00:00</finishdate>
+			<finishuserid>0</finishuserid>
+			<shippedtimestamp>0000-00-00 00:00:00</shippedtimestamp>
+			<shippeddate>0000-00-00 00:00:00</shippeddate>
+			<shippeduserid>0</shippeduserid>
+			<shippingtrackingreference/>
+			<invoicedtimestamp>0000-00-00 00:00:00</invoicedtimestamp>
+			<invoiceddate>0000-00-00 00:00:00</invoiceddate>
+			<invoiceduserid>0</invoiceduserid>
+			<onhold>0</onhold>
+			<onholdtimestamp>0000-00-00 00:00:00</onholdtimestamp>
+			<onholduserid>0</onholduserid>
+			<onholdreason/>
+			<previewsonline>1</previewsonline>
+			<canupload>0</canupload>
+			<canuploadpagecountoverride>0</canuploadpagecountoverride>
+		</header>
+		<item>
+			<id>5273</id>
+			<datecreated>2013-11-03 20:12:58</datecreated>
+			<datelastmodified>2013-11-03 20:33:53</datelastmodified>
+			<orderid>5273</orderid>
+			<userid>2531</userid>
+			<uploadref>DEMO031120132010000517</uploadref>
+			<origorderid>0</origorderid>
+			<origorderitemid>0</origorderitemid>
+			<origuploadref/>
+			<projectname>AundA</projectname>
+			<productcode>KF_A3Q_W</productcode>
+			<productname>Kalender Fotopapier A3 quer weiß</productname>
+			<producttype>0</producttype>
+			<productpageformat>0</productpageformat>
+			<productspreadpageformat>0</productspreadpageformat>
+			<productcover1format>0</productcover1format>
+			<productcover2format>0</productcover2format>
+			<productoutputformat>0</productoutputformat>
+			<productheight>12.165354</productheight>
+			<productwidth>16.692913</productwidth>
+			<productdefaultcovercode/>
+			<productdefaultpapercode>FBDEL_FPG</productdefaultpapercode>
+			<productdefaultpagecount>0</productdefaultpagecount>
+			<covercount>0</covercount>
+			<covercode/>
+			<covername/>
+			<papercount>2</papercount>
+			<papercode>FBDEL_FPM</papercode>
+			<papername>Fotopapier matt</papername>
+			<pagecountpurchased>13</pagecountpurchased>
+			<pagecount>13</pagecount>
+			<productunitcost>0.00</productunitcost>
+			<productunitsell>23.20</productunitsell>
+			<coverunitcost>0.00</coverunitcost>
+			<coverunitsell>0.00</coverunitsell>
+			<paperunitcost>0.00</paperunitcost>
+			<paperunitsell>0.00</paperunitsell>
+			<taxcode>AUTVAT</taxcode>
+			<taxname>Austrian VAT</taxname>
+			<taxrate>20.0000</taxrate>
+			<productunitweight>0.0000</productunitweight>
+			<producttotalweight>0.0000</producttotalweight>
+			<coverunitweight>0.0000</coverunitweight>
+			<covertotalweight>0.0000</covertotalweight>
+			<paperunitweight>0.0000</paperunitweight>
+			<papertotalweight>0.0000</papertotalweight>
+			<qty>3</qty>
+			<producttotalcost>0.00</producttotalcost>
+			<producttotalsell>83.52</producttotalsell>
+			<producttotaltax>13.92</producttotaltax>
+			<covertotalcost>0.00</covertotalcost>
+			<covertotalsell>0.00</covertotalsell>
+			<covertotaltax>0.00</covertotaltax>
+			<papertotalcost>0.00</papertotalcost>
+			<papertotalsell>0.00</papertotalsell>
+			<papertotaltax>0.00</papertotaltax>
+			<subtotal>83.52</subtotal>
+			<discountvalue>0.00</discountvalue>
+			<totalcost>0.00</totalcost>
+			<totalsell>83.52</totalsell>
+			<totaltax>13.92</totaltax>
+			<totalshippingweight>0.0000</totalshippingweight>
+			<uploaddatatype>0</uploaddatatype>
+			<uploadmethod>0</uploadmethod>
+			<uploadappversion>2.5.8</uploadappversion>
+			<uploadappplatform>Win32</uploadappplatform>
+			<uploadappcputype>Intel</uploadappcputype>
+			<uploadapposversion> (Build 9200)</uploadapposversion>
+			<filesreceivedtimestamp>2013-11-03 20:31:45</filesreceivedtimestamp>
+			<filesreceiveduserid>0</filesreceiveduserid>
+			<decrypttimestamp>2013-11-03 20:33:50</decrypttimestamp>
+			<decryptuserid>3</decryptuserid>
+			<converttimestamp>2013-11-03 20:33:53</converttimestamp>
+			<convertuserid>3</convertuserid>
+			<convertoutputformatcode/>
+			<jobticketoutputfilename/>
+			<pagesoutputfilename/>
+			<cover1outputfilename/>
+			<cover2outputfilename/>
+			<outputtimestamp>0000-00-00 00:00:00</outputtimestamp>
+			<outputuserid>0</outputuserid>
+			<jobticketoutputdevicecode/>
+			<pagesoutputdevicecode/>
+			<cover1outputdevicecode/>
+			<cover2outputdevicecode/>
+			<finishtimestamp>0000-00-00 00:00:00</finishtimestamp>
+			<finishdate>0000-00-00 00:00:00</finishdate>
+			<finishuserid>0</finishuserid>
+			<shippedtimestamp>0000-00-00 00:00:00</shippedtimestamp>
+			<shippeddate>0000-00-00 00:00:00</shippeddate>
+			<shippeduserid>0</shippeduserid>
+			<shippingtrackingreference/>
+			<invoicedtimestamp>0000-00-00 00:00:00</invoicedtimestamp>
+			<invoiceddate>0000-00-00 00:00:00</invoiceddate>
+			<invoiceduserid>0</invoiceduserid>
+			<onhold>0</onhold>
+			<onholdtimestamp>0000-00-00 00:00:00</onholdtimestamp>
+			<onholduserid>0</onholduserid>
+			<onholdreason/>
+			<previewsonline>1</previewsonline>
+			<canupload>0</canupload>
+			<canuploadpagecountoverride>0</canuploadpagecountoverride>
+			<canreorder>1</canreorder>
+			<status>40</status>
+			<statusdescription/>
+			<statustimestamp>2013-11-03 20:33:53</statustimestamp>
+		</item>
+		<shipping>
+			<id>5273</id>
+			<datecreated>2013-11-03 20:12:58</datecreated>
+			<datelastmodified>2013-11-03 20:12:58</datelastmodified>
+			<orderid>5273</orderid>
+			<orderitemid>5273</orderitemid>
+			<userid>2531</userid>
+			<shippingcustomername/>
+			<shippingcustomeraddress1>Grafenberg 127</shippingcustomeraddress1>
+			<shippingcustomeraddress2/>
+			<shippingcustomeraddress3/>
+			<shippingcustomeraddress4/>
+			<shippingcustomercity>Grafenberg</shippingcustomercity>
+			<shippingcustomercounty/>
+			<shippingcustomerstate/>
+			<shippingcustomerregioncode/>
+			<shippingcustomerregion>STATE</shippingcustomerregion>
+			<shippingcustomerpostcode>3730</shippingcustomerpostcode>
+			<shippingcustomercountrycode>AT</shippingcustomercountrycode>
+			<shippingcustomercountryname>Austria</shippingcustomercountryname>
+			<shippingcustomertelephonenumber>06641046734</shippingcustomertelephonenumber>
+			<shippingcustomeremailaddress>werner4010@hotmail.com</shippingcustomeremailaddress>
+			<shippingcontactfirstname>Werner</shippingcontactfirstname>
+			<shippingcontactlastname>Prokop</shippingcontactlastname>
+			<shippingmethodcode>COLLECTION</shippingmethodcode>
+			<shippingmethodname>Collect from Shop</shippingmethodname>
+			<shippingratecode>COLLECTION</shippingratecode>
+			<shippingrateinfo>en Schottenfeldgasse 51&lt;p&gt;de Schottenfeldgasse 51</shippingrateinfo>
+			<shippingratecost>0.00</shippingratecost>
+			<shippingratesell>0.00</shippingratesell>
+			<shippingdiscountvalue>0.00</shippingdiscountvalue>
+			<shippingtotalsell>0.00</shippingtotalsell>
+			<shippingratetaxcode>AUTVAT</shippingratetaxcode>
+			<shippingratetaxname>Austrian VAT</shippingratetaxname>
+			<shippingratetaxrate>20.0000</shippingratetaxrate>
+			<shippingratecalctax>0</shippingratecalctax>
+			<shippingratetaxtotal>0.00</shippingratetaxtotal>
+			<qty>3</qty>
+		</shipping>
+		<ccilog>
+			<id/>
+			<datecreated/>
+			<sessionid/>
+			<orderid/>
+			<userid/>
+			<parentlogid/>
+			<type/>
+			<mode/>
+			<amount/>
+			<charges/>
+			<authorised/>
+			<transactionid/>
+			<responsecode/>
+			<responsedescription/>
+			<authorisationid/>
+			<bankresponsecode/>
+			<cardnumber/>
+			<cvvflag/>
+			<cvvresponsecode/>
+			<paymentcertificate/>
+			<paymentdate/>
+			<paymenttime/>
+			<paymentmeans/>
+			<addressstatus/>
+			<postcodestatus/>
+			<payeremail/>
+			<payerid/>
+			<payerstatus/>
+			<business/>
+			<receiveremail/>
+			<receiverid/>
+			<pendingreason/>
+			<transactiontype/>
+			<settleamount/>
+			<threedsecurestatus/>
+			<cavvresponsecode/>
+			<charityflag/>
+			<currencycode/>
+			<webbrandcode/>
+			<formattedpaymentdate/>
+			<formattedtransactionid/>
+			<formattedauthorisationid/>
+			<formattedcardnumber/>
+			<formattedamount/>
+			<formattedcharges/>
+		</ccilog>
+	</order>
+</export>

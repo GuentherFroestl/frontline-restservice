@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<at.cyberlab.taopix__services.config.TaopixConfigImpl>
+  <taopixKatalogName>Taopix Fotob?cher</taopixKatalogName>
+  <standardSteuerBezeichnung>Standard</standardSteuerBezeichnung>
+  <standardSteuerBetrag>20.00</standardSteuerBetrag>
+  <reduzierteSteuerBezeichnung>Reduziert</reduzierteSteuerBezeichnung>
+  <reduzierteSteuerBetrag>10.00</reduzierteSteuerBetrag>
+  <land>
+    <id>0</id>
+    <version>0</version>
+    <userIdCreator>0</userIdCreator>
+    <userIdModificator>0</userIdModificator>
+    <createdTimestamp>2013-11-09 21:50:21.621 CET</createdTimestamp>
+    <eigenNamen>?sterreich</eigenNamen>
+    <iso3166__2__Code>AT</iso3166__2__Code>
+    <iso3166__3__Code>AUT</iso3166__3__Code>
+    <name>AUSTRIA</name>
+    <nummernCode>40</nummernCode>
+  </land>
+  <artAbholung class="de.gammadata.business.modelle.AbholungDO">
+    <id>0</id>
+    <version>0</version>
+    <userIdCreator>0</userIdCreator>
+    <userIdModificator>0</userIdModificator>
+    <createdTimestamp>2013-11-09 21:50:21.621 CET</createdTimestamp>
+    <beschreibung>Abholung</beschreibung>
+    <bezeichnung>abholung</bezeichnung>
+  </artAbholung>
+  <artVersand class="de.gammadata.business.modelle.VersandDO">
+    <id>0</id>
+    <version>0</version>
+    <userIdCreator>0</userIdCreator>
+    <userIdModificator>0</userIdModificator>
+    <createdTimestamp>2013-11-09 21:50:21.621 CET</createdTimestamp>
+    <beschreibung>Standardversand mit Paketdienst</beschreibung>
+    <bezeichnung>versand</bezeichnung>
+    <lieferZeitInTagen>2</lieferZeitInTagen>
+  </artVersand>
+  <artExpress class="de.gammadata.business.modelle.VersandDO">
+    <id>0</id>
+    <version>0</version>
+    <userIdCreator>0</userIdCreator>
+    <userIdModificator>0</userIdModificator>
+    <createdTimestamp>2013-11-09 21:50:21.621 CET</createdTimestamp>
+    <beschreibung>Expressversand mit Paketdienst</beschreibung>
+    <bezeichnung>express</bezeichnung>
+    <lieferZeitInTagen>1</lieferZeitInTagen>
+  </artExpress>
+  <barzahlung class="de.gammadata.business.modelle.BarzahlungDO">
+    <id>0</id>
+    <version>0</version>
+    <userIdCreator>0</userIdCreator>
+    <userIdModificator>0</userIdModificator>
+    <createdTimestamp>2013-11-09 21:50:21.621 CET</createdTimestamp>
+    <beschreibung>Barzahlung</beschreibung>
+    <bezeichnung>bar</bezeichnung>
+  </barzahlung>
+  <payPalzahlung class="de.gammadata.business.modelle.PaymentServiceZahlungsArtDO">
+    <id>0</id>
+    <version>0</version>
+    <userIdCreator>0</userIdCreator>
+    <userIdModificator>0</userIdModificator>
+    <createdTimestamp>2013-11-09 21:50:21.621 CET</createdTimestamp>
+    <beschreibung>Zahlung ?ber PayPal</beschreibung>
+    <bezeichnung>paypal</bezeichnung>
+    <zahlungsZielInTagen>1</zahlungsZielInTagen>
+  </payPalzahlung>
+  <nettozahlung class="de.gammadata.business.modelle.NettoZahlungsBedingungDO">
+    <id>0</id>
+    <version>0</version>
+    <userIdCreator>0</userIdCreator>
+    <userIdModificator>0</userIdModificator>
+    <createdTimestamp>2013-11-09 21:50:21.621 CET</createdTimestamp>
+    <beschreibung>Zahlung rein netto in 7 Tagen</beschreibung>
+    <bezeichnung>netto</bezeichnung>
+    <zahlungsZielInTagen>7</zahlungsZielInTagen>
+  </nettozahlung>
+  <abholungBezeichnung>COLLECTION</abholungBezeichnung>
+  <barzahlungsBezeichnung>COD</barzahlungsBezeichnung>
+  <taopixExpressVersandBezeichnung>EXPRESS</taopixExpressVersandBezeichnung>
+  <taopixVersandBezeichnung>STANDARDPOST</taopixVersandBezeichnung>
+  <taopixPayPalzahlungsBezeichnung>PAYPAL</taopixPayPalzahlungsBezeichnung>
+  <versandKatalogName>Versand</versandKatalogName>
+  <versandArtikel>
+    <id>0</id>
+    <version>0</version>
+    <userIdCreator>0</userIdCreator>
+    <userIdModificator>0</userIdModificator>
+    <createdTimestamp>2013-11-09 21:50:21.623 CET</createdTimestamp>
+    <bezeichnung>Versand Standard Steuer</bezeichnung>
+    <beschreibung>Versandkosten zum standard Steuersatz</beschreibung>
+    <artikelCode>Versand-Std-Steuer</artikelCode>
+    <einheit>STK</einheit>
+  </versandArtikel>
+  <versandArtikelReduzierteSteuer>
+    <id>0</id>
+    <version>0</version>
+    <userIdCreator>0</userIdCreator>
+    <userIdModificator>0</userIdModificator>
+    <createdTimestamp>2013-11-09 21:50:21.623 CET</createdTimestamp>
+    <bezeichnung>Versand Reduzierte Steuer</bezeichnung>
+    <beschreibung>Versandkosten zum reduzierten Steuersatz</beschreibung>
+    <artikelCode>Versand-Reduzierte-Steuer</artikelCode>
+    <einheit>STK</einheit>
+  </versandArtikelReduzierteSteuer>
+  <scanIntervall>300000</scanIntervall>
+  <taopixFtpServerConfig class="at.cyberlab.taopix_services.config.FtpServerConfigImpl">
+    <ftpPassword>vacr2+2T</ftpPassword>
+    <ftpServerName>fotobuch.cyberlab.at</ftpServerName>
+    <ftpUserName>xml</ftpUserName>
+  </taopixFtpServerConfig>
+  <startAuftragsNummer>112500000</startAuftragsNummer>
+</at.cyberlab.taopix__services.config.TaopixConfigImpl>

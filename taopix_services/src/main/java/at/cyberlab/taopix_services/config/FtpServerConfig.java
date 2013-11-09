@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tomagency.cyberlab.server.config;
+package at.cyberlab.taopix_services.config;
 
 /**
  * @author gfr

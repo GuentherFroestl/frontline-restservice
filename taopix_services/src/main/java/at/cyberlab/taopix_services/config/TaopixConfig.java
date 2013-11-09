@@ -1,11 +1,11 @@
 /**
  * 
  */
-package at.cyberlab.taopix_services.imports;
+package at.cyberlab.taopix_services.config;
 
+import at.cyberlab.taopix_services.config.FtpServerConfig;
 import java.math.BigDecimal;
 
-import com.tomagency.cyberlab.server.config.FtpServerConfig;
 import de.gammadata.basics.modelle.LandDO;
 import de.gammadata.business.modelle.ProduktDO;
 import de.gammadata.business.modelle.VersandArtDO;
