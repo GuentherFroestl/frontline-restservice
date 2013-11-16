@@ -298,7 +298,7 @@
 			<shippingcustomeraddress2/>
 			<shippingcustomeraddress3/>
 			<shippingcustomeraddress4/>
-			<shippingcustomercity>Grafenberg</shippingcustomercity>
+			<shippingcustomercity>Grafenberg should not match</shippingcustomercity>
 			<shippingcustomercounty/>
 			<shippingcustomerstate/>
 			<shippingcustomerregioncode/>

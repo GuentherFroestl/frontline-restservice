@@ -4,11 +4,17 @@
  */
 package at.cyberlab.taopix_services.imports;
 
+import at.cyberlab.taopix_services.imports.mapper.TaopixAddressMapper;
+import at.cyberlab.taopix_services.imports.mapper.TaopixOrderMapper;
+import at.cyberlab.taopix_services.inputobjects.TaopixOrder;
 import com.tom.service.dto.AddressDTO;
-import com.tom.service.dto.BelegDTO;
+import com.tom.service.dto.BelegPositionDTO;
+import com.tom.service.dto.WrgDTO;
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.SAXParser;
@@ -27,7 +33,6 @@ public class TaopixToTomXmlParser {
   private SAXParserFactory factory;
   private SAXParser saxParser;
   private DefaultHandler handler;
-  private ITaopixToTomObjectMapper tomObjectMapper;
   private HashMap<String, String> userProperties;
   private HashMap<String, String> orderProperties;
   private HashMap<String, String> itemProperties;
@@ -43,15 +48,16 @@ public class TaopixToTomXmlParser {
   private boolean isInCcilog = false;
   private AddressDTO orderAddress;
   private AddressDTO shippingAddress;
-  private BelegDTO beleg;
+  private TaopixOrder order;
+  private BelegPositionDTO position;
+  private WrgDTO wrg;
 
   /**
    * Constructor with injection.
    *
    * @param tomObjectMapper ITaopixToTomObjectMapper
    */
-  public TaopixToTomXmlParser(ITaopixToTomObjectMapper tomObjectMapper) {
-    this.tomObjectMapper = tomObjectMapper;
+  public TaopixToTomXmlParser() {
     factory = SAXParserFactory.newInstance();
     try {
       saxParser = factory.newSAXParser();
@@ -70,8 +76,24 @@ public class TaopixToTomXmlParser {
     return shippingAddress;
   }
 
-  public BelegDTO getBeleg() {
-    return beleg;
+  public TaopixOrder getOrder() {
+    return order;
+  }
+
+  public String getOrderId() {
+    return orderId;
+  }
+
+  public void setOrderId(String orderId) {
+    this.orderId = orderId;
+  }
+
+  public BelegPositionDTO getPosition() {
+    return position;
+  }
+
+  public void setPosition(BelegPositionDTO position) {
+    this.position = position;
   }
 
   /**
@@ -93,7 +115,7 @@ public class TaopixToTomXmlParser {
     isInCcilog = false;
     orderAddress = null;
     shippingAddress = null;
-    beleg = null;
+    order = null;
   }
 
   /**
@@ -149,6 +171,14 @@ public class TaopixToTomXmlParser {
 
     @Override
     public void endDocument() {
+      order = new TaopixOrder();
+      TaopixOrderMapper.mapOrderProperties(order, orderProperties);
+      order.setFullOrderAddress(orderAddress);
+      order.setFullShippingAddress(shippingAddress);
+      List<BelegPositionDTO> posListe = new ArrayList<BelegPositionDTO>();
+      order.setPositionsListe(posListe);
+      posListe.add(position);
+      order.setPreis(position.getGesamtPreis());
     }
 
     @Override
@@ -164,7 +194,7 @@ public class TaopixToTomXmlParser {
         currentUserId = null;
         billingUserId = null;
         shippingUserId = null;
-        beleg = null;
+        order = null;
         //TODO
 //				 importedOrder.setWrg(getStandardWrg());
       }
@@ -243,17 +273,20 @@ public class TaopixToTomXmlParser {
        */ else if (qName.equalsIgnoreCase("header")) {
 
         if (currentUserId != null) {
-          orderAddress = tomObjectMapper.mapAdrFromProperties(userProperties);
+          orderAddress = TaopixAddressMapper.map(userProperties);
+          orderAddress.setId(Integer.parseInt(currentUserId));
         }
 
       } else if (qName.equalsIgnoreCase("shipping")) {
 
         if (currentUserId != null) {
-          shippingAddress = tomObjectMapper.mapAdrFromProperties(userProperties);
+          shippingAddress = TaopixAddressMapper.map(userProperties);
+          shippingAddress.setId(Integer.parseInt(currentUserId));
         }
 
       } else if (qName.equalsIgnoreCase("order")) {
-        beleg = tomObjectMapper.mapBelegFromProperties(orderId, orderProperties, itemProperties, shippingProperties);
+
+        position = TaopixOrderMapper.mapPosition(itemProperties);
       }
     }
 
