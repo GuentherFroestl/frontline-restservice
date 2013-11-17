@@ -30,6 +30,9 @@ import org.xml.sax.helpers.DefaultHandler;
 public class TaopixToTomXmlParser {
 
   static final Logger logger = Logger.getLogger(TaopixToTomXmlParser.class.getSimpleName());
+  private int orderPosNumber = 0;
+  private int shippingPosNumber;
+  private int discountPosNumber;
   private SAXParserFactory factory;
   private SAXParser saxParser;
   private DefaultHandler handler;
@@ -50,6 +53,8 @@ public class TaopixToTomXmlParser {
   private AddressDTO shippingAddress;
   private TaopixOrder order;
   private BelegPositionDTO position;
+  private BelegPositionDTO transport;
+  private BelegPositionDTO discount;
   private WrgDTO wrg;
 
   /**
@@ -68,33 +73,7 @@ public class TaopixToTomXmlParser {
     }
   }
 
-  public AddressDTO getOrderAddress() {
-    return orderAddress;
-  }
 
-  public AddressDTO getShippingAddress() {
-    return shippingAddress;
-  }
-
-  public TaopixOrder getOrder() {
-    return order;
-  }
-
-  public String getOrderId() {
-    return orderId;
-  }
-
-  public void setOrderId(String orderId) {
-    this.orderId = orderId;
-  }
-
-  public BelegPositionDTO getPosition() {
-    return position;
-  }
-
-  public void setPosition(BelegPositionDTO position) {
-    this.position = position;
-  }
 
   /**
    * clearing of all properties
@@ -171,14 +150,32 @@ public class TaopixToTomXmlParser {
 
     @Override
     public void endDocument() {
+      int posNumber = 0;
       order = new TaopixOrder();
       TaopixOrderMapper.mapOrderProperties(order, orderProperties);
+      //Addresses
       order.setFullOrderAddress(orderAddress);
       order.setFullShippingAddress(shippingAddress);
+      order.setFullBillingAddress(orderAddress);
+      //Posliste
       List<BelegPositionDTO> posListe = new ArrayList<BelegPositionDTO>();
       order.setPositionsListe(posListe);
       posListe.add(position);
-      order.setPreis(position.getGesamtPreis());
+      orderPosNumber = posNumber;
+      posNumber++;
+      //Transport
+      if (transport != null) {
+        posListe.add(transport);
+        shippingPosNumber = posNumber;
+        posNumber++;
+      }
+      if (discount != null) {
+        posListe.add(discount);
+        discountPosNumber = posNumber;
+        posNumber++;
+      }
+      //TODO set Gesamtpreis
+      TaopixOrderMapper.calculateTotals(order);
     }
 
     @Override
@@ -282,11 +279,14 @@ public class TaopixToTomXmlParser {
         if (currentUserId != null) {
           shippingAddress = TaopixAddressMapper.map(userProperties);
           shippingAddress.setId(Integer.parseInt(currentUserId));
+          transport = TaopixOrderMapper.mapShippingPosition(shippingProperties);
+
         }
 
       } else if (qName.equalsIgnoreCase("order")) {
 
         position = TaopixOrderMapper.mapPosition(itemProperties);
+        discount = TaopixOrderMapper.mapDiscountPosition(orderProperties, itemProperties);
       }
     }
 
@@ -296,5 +296,44 @@ public class TaopixToTomXmlParser {
       charSeq.append(str);
 
     }
+  }
+    public AddressDTO getOrderAddress() {
+    return orderAddress;
+  }
+
+  public AddressDTO getShippingAddress() {
+    return shippingAddress;
+  }
+
+  public TaopixOrder getOrder() {
+    return order;
+  }
+
+  public String getOrderId() {
+    return orderId;
+  }
+
+  public BelegPositionDTO getPosition() {
+    return position;
+  }
+
+  public BelegPositionDTO getTransport() {
+    return transport;
+  }
+
+  public BelegPositionDTO getDiscount() {
+    return discount;
+  }
+
+  public int getOrderPosNumber() {
+    return orderPosNumber;
+  }
+
+  public int getShippingPosNumber() {
+    return shippingPosNumber;
+  }
+
+  public int getDiscountPosNumber() {
+    return discountPosNumber;
   }
 }

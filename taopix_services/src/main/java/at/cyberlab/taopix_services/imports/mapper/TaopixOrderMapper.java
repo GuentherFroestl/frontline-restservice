@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package at.cyberlab.taopix_services.imports.mapper;
 
 import at.cyberlab.taopix_services.inputobjects.TaopixOrder;
+import com.tom.service.dto.BelegDTO;
 import com.tom.service.dto.BelegPositionDTO;
 import com.tom.service.dto.PreisDTO;
 import com.tom.service.dto.ProduktKopfDTO;
@@ -20,6 +17,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,6 +30,12 @@ public class TaopixOrderMapper {
 
   private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.GERMAN);
 
+  /**
+   * creates the order position with the product.
+   *
+   * @param itemProperties HashMap of String, String
+   * @return BelegPositionDTO
+   */
   public static BelegPositionDTO mapPosition(HashMap<String, String> itemProperties) {
 
     BelegPositionDTO pos = new BelegPositionDTO();
@@ -60,12 +64,180 @@ public class TaopixOrderMapper {
               itemProperties.get("covercode"),
               itemProperties.get("covername")));
     }
-
+    //Pricing
     BigDecimal qty = new BigDecimal(itemProperties.get("qty"));
-    pos.setMenge(qty);
-    //Gesamtpreis
     BigDecimal gesamtBrutto = new BigDecimal(itemProperties.get("totalsell"));
     BigDecimal steuerGesamt = new BigDecimal(itemProperties.get("totaltax"));
+    BigDecimal steuersatz = new BigDecimal(itemProperties.get("taxrate")).setScale(2, RoundingMode.HALF_UP);
+    setPreis(pos, qty, gesamtBrutto, steuerGesamt, steuersatz);
+
+    return pos;
+
+  }
+
+  /**
+   * Creates a BelegPositionDTO for the shipping costs.
+   *
+   * @param shippingProperties HashMap of String, String
+   * @return BelegPositionDTO or null, if there is no shipping
+   */
+  public static BelegPositionDTO mapShippingPosition(HashMap<String, String> shipingProperties) {
+
+    BelegPositionDTO pos = new BelegPositionDTO();
+
+    ProduktKopfDTO produkt = new ProduktKopfDTO();
+    pos.setProdukt(produkt);
+    produkt.setProduktCode(shipingProperties.get("shippingmethodcode"));
+    pos.setBezeichnung(shipingProperties.get("shippingmethodcode"));
+    pos.setBeschreibung(String.format(
+            "Lieferung: %1$s"
+            + "\n%2$s",
+            shipingProperties.get("shippingmethodname"),
+            shipingProperties.get("shippingrateinfo")));
+    //Pricing
+    BigDecimal qty = BigDecimal.ONE;
+    BigDecimal gesamtBrutto = new BigDecimal(shipingProperties.get("shippingtotalsell"));
+    BigDecimal steuerGesamt = new BigDecimal(shipingProperties.get("shippingratetaxtotal"));
+    BigDecimal steuersatz = new BigDecimal(shipingProperties.get("shippingratetaxrate")).setScale(2, RoundingMode.HALF_UP);
+    setPreis(pos, qty, gesamtBrutto, steuerGesamt, steuersatz);
+
+    return pos;
+  }
+
+  /**
+   * Handles discounts and returns a BelegPositionDTO, if a discount is given.
+   *
+   * @param orderProperties HashMap of String, String
+   * @param itemProperties HashMap of String, String , needed for taxation
+   * @return BelegPositionDTO or null
+   */
+  public static BelegPositionDTO mapDiscountPosition(HashMap<String, String> orderProperties, HashMap<String, String> itemProperties) {
+    BigDecimal discount = null;
+    if (orderProperties.get("totaldiscount") != null) {
+      discount = new BigDecimal(orderProperties.get("totaldiscount"));
+    }
+    if (discount == null || discount.compareTo(BigDecimal.ZERO) == 0) {
+      return null; // No discount
+    }
+    BelegPositionDTO pos = new BelegPositionDTO();
+
+    ProduktKopfDTO produkt = new ProduktKopfDTO();
+    pos.setProdukt(produkt);
+    produkt.setProduktCode("Aktionsrabatt");
+    pos.setBezeichnung(orderProperties.get("vouchercode"));
+    pos.setBeschreibung(String.format(
+            "vouchercode: %1$s"
+            + "\nvoucherdiscountsection: %2$s"
+            + "\nvoucherdiscounttype: %3$s",
+            orderProperties.get("vouchercode"),
+            orderProperties.get("voucherdiscountsection"),
+            orderProperties.get("voucherdiscounttype")));
+    //Pricing
+    BigDecimal qty = BigDecimal.ONE;
+    BigDecimal gesamtBrutto = new BigDecimal(orderProperties.get("totaldiscount"));
+    //Use taxrate of product to calculate discount
+    BigDecimal steuersatz = new BigDecimal(itemProperties.get("taxrate")).setScale(2, RoundingMode.HALF_UP);
+    BigDecimal taxDivisor = new BigDecimal("100.00").add(steuersatz);
+    BigDecimal gesamtNetto = gesamtBrutto.multiply(new BigDecimal("100.00")).divide(taxDivisor);
+    BigDecimal steuerGesamt = gesamtBrutto.subtract(gesamtNetto);
+    //Discount has to be negative
+    setPreis(pos, qty, BigDecimal.ZERO.subtract(gesamtBrutto), BigDecimal.ZERO.subtract(steuerGesamt), steuersatz);
+
+    return pos;
+
+  }
+
+  /**
+   * maps the Wrg.
+   *
+   * @param orderProperties HashMap of String, String
+   * @return WrgDTO
+   */
+  public static WrgDTO mapWrg(HashMap<String, String> orderProperties) {
+
+    WrgDTO res = new WrgDTO(orderProperties.get("currencycode"), orderProperties.get("currencysymbol"), new BigDecimal(orderProperties.get("currencyexchangerate")));
+
+    return res;
+
+  }
+
+  /**
+   * Sets a bunch of additional properties into the order.
+   *
+   * @param order
+   */
+  public static void mapOrderProperties(TaopixOrder order, HashMap<String, String> orderProperties) {
+    order.setNummer(Integer.parseInt(orderProperties.get("orderid")));
+    order.setUuid("TAOPIX_" + orderProperties.get("orderid"));
+
+    order.setWrg(mapWrg(orderProperties));
+    try {
+      order.setDatum(dateFormat.parse(orderProperties.get("datelastmodified")));
+    } catch (ParseException ex) {
+      Logger.getLogger(TaopixOrderMapper.class.getName()).log(Level.SEVERE, "Error parsing date=" + orderProperties.get("datelastmodified"), ex);
+      order.setDatum(new Date());
+    }
+
+    if (orderProperties.get("vouchercode") != null && orderProperties.get("vouchercode").length() > 0) {
+      order.setVermerk2("Aktionscode: " + orderProperties.get("vouchercode"));
+    }
+  }
+
+  /**
+   * sum up postions and build totals
+   *
+   * @param beleg BelegDTO
+   */
+  public static void calculateTotals(BelegDTO beleg) {
+
+    BigDecimal netTotal = BigDecimal.ZERO;
+    BigDecimal grossTotal = BigDecimal.ZERO;
+    BigDecimal taxTotal = BigDecimal.ZERO;
+    List<SteuerDTO> gTaxList = null;
+    Map<String, SteuerDTO> taxMap = new HashMap<String, SteuerDTO>();
+
+    if (beleg.getPositionsListe() != null && !beleg.getPositionsListe().isEmpty()) {
+
+      for (BelegPositionDTO pos : beleg.getPositionsListe()) {
+        grossTotal = grossTotal.add(pos.getGesamtPreis().getBruttoPreis());
+        netTotal = netTotal.add(pos.getGesamtPreis().getNettoPreis());
+        taxTotal = taxTotal.add(pos.getGesamtPreis().getSteuerBetrag());
+        //Taxes
+        if (pos.getGesamtPreis().getSteuern() != null) {
+          for (SteuerDTO steuer : pos.getGesamtPreis().getSteuern()) {
+            if (!taxMap.containsKey(steuer.getSteuerArt().getBezeichnung())) {
+              SteuerDTO posSteuer = new SteuerDTO(steuer);
+              taxMap.put(steuer.getSteuerArt().getBezeichnung(), posSteuer);
+            } else {
+              SteuerDTO steuerArtSumme = taxMap.get(steuer.getSteuerArt().getBezeichnung());
+              steuerArtSumme.setBetrag(steuerArtSumme.getBetrag().add(steuer.getBetrag()));
+            }
+          }
+        }
+      }
+    }
+    gTaxList = new ArrayList<SteuerDTO>(taxMap.values());
+    PreisDTO gPreis = new PreisDTO();
+    beleg.setPreis(gPreis);
+    gPreis.setBruttoPreis(grossTotal);
+    gPreis.setNettoPreis(netTotal);
+    gPreis.setSteuerBetrag(taxTotal);
+    gPreis.setSteuern(gTaxList);
+
+  }
+
+  /**
+   * Convienence methode for setting pricing.
+   *
+   * @param pos BelegPositionDTO to set price to
+   * @param qty int quantity
+   * @param gesamtBrutto BigDecimal
+   * @param steuerGesamt BigDecimal
+   * @param steuerSatz BigDecimal
+   */
+  private static void setPreis(BelegPositionDTO pos, BigDecimal qty, BigDecimal gesamtBrutto, BigDecimal steuerGesamt, BigDecimal steuerSatz) {
+    pos.setMenge(qty);
+    //Gesamtpreis
     BigDecimal gesamtNetto = gesamtBrutto.subtract(steuerGesamt);
     PreisDTO gesamtPreis = new PreisDTO();
     pos.setGesamtPreis(gesamtPreis);
@@ -79,15 +251,11 @@ public class TaopixOrderMapper {
     stList.add(steuer);
     gesamtPreis.setSteuern(stList);
     steuer.setBetrag(steuerGesamt);
-    BigDecimal steuersatz = new BigDecimal(itemProperties.get("taxrate")).setScale(2, RoundingMode.HALF_UP);
     SteuerArtDTO stArt = new SteuerArtDTO();
-    stArt.setSteuersatz(steuersatz);
+    stArt.setSteuersatz(steuerSatz);
     steuer.setSteuerArt(stArt);
-
+    //Einzelpreis
     pos.setEinzelPreis(calculateEinzelPreis(gesamtPreis, qty));
-
-    return pos;
-
   }
 
   /**
@@ -105,19 +273,6 @@ public class TaopixOrderMapper {
     PreisDTO res;
     if (menge.compareTo(BigDecimal.ONE) == 0) {
       res = new PreisDTO(gesamtPreis);
-//      //einzelpreis = gesamt
-//      res.setBruttoPreis(gesamtPreis.getBruttoPreis().multiply(BigDecimal.ONE));
-//      res.setNettoPreis(gesamtPreis.getNettoPreis().multiply(BigDecimal.ONE));
-//      res.setSteuerBetrag(gesamtPreis.getSteuerBetrag().multiply(BigDecimal.ONE));
-//
-//      List<SteuerDTO> stList = new ArrayList<SteuerDTO>();
-//      res.setSteuern(stList);
-//      for (SteuerDTO gsteuer : gesamtPreis.getSteuern()) {
-//        SteuerDTO steuer = new SteuerDTO();
-//        steuer.setBetrag(gsteuer.getBetrag().multiply(BigDecimal.ONE));
-//        steuer.setSteuerArt(gsteuer.getSteuerArt());
-//        stList.add(steuer);
-//      }
     } else {
       res = new PreisDTO();
       //einzelpreis = gesamt/qty
@@ -137,43 +292,5 @@ public class TaopixOrderMapper {
 
     }
     return res;
-
-  }
-
-  /**
-   * maps the Wrg.
-   *
-   * @param orderProperties
-   * @return WrgDTO
-   */
-  public static WrgDTO mapWrg(HashMap<String, String> orderProperties) {
-
-    WrgDTO res = new WrgDTO(orderProperties.get("currencycode"), orderProperties.get("currencysymbol"), new BigDecimal(orderProperties.get("currencyexchangerate")));
-
-    return res;
-
-  }
-
-  /**
-   * Sets a bunch of additional properties into the order
-   *
-   * @param order
-   */
-  public static void mapOrderProperties(TaopixOrder order, HashMap<String, String> orderProperties) {
-    order.setNummer(Integer.parseInt(orderProperties.get("orderid")));
-    order.setUuid("TAOPIX_" + orderProperties.get("orderid"));
-
-    order.setWrg(mapWrg(orderProperties));
-    try {
-      order.setDatum(dateFormat.parse(orderProperties.get("datelastmodified")));
-    } catch (ParseException ex) {
-      Logger.getLogger(TaopixOrderMapper.class.getName()).log(Level.SEVERE, "Error parsing date=" + orderProperties.get("datelastmodified"), ex);
-      order.setDatum(new Date());
-    }
-
-    if (orderProperties.get("vouchercode") != null && orderProperties.get("vouchercode").length() > 0) {
-      order.setVermerk2("Aktionscode: " + orderProperties.get("vouchercode"));
-    }
-
   }
 }

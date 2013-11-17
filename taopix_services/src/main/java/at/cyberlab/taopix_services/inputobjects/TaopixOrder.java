@@ -18,6 +18,7 @@ public class TaopixOrder extends BelegDTO {
 
   private AddressDTO fullOrderAddress;
   private AddressDTO fullShippingAddress;
+  private AddressDTO fullBillingAddress;
 
   public AddressDTO getFullOrderAddress() {
     return fullOrderAddress;
@@ -34,14 +35,22 @@ public class TaopixOrder extends BelegDTO {
   public void setFullShippingAddress(AddressDTO fullShippingAddress) {
     this.fullShippingAddress = fullShippingAddress;
   }
-  
-    /*
+
+  public AddressDTO getFullBillingAddress() {
+    return fullBillingAddress;
+  }
+
+  public void setFullBillingAddress(AddressDTO fullBillingAddress) {
+    this.fullBillingAddress = fullBillingAddress;
+  }
+
+  /*
    * (non-Javadoc)
    * 
    * @see java.lang.Object#toString()
    */
   @Override
   public String toString() {
-    return ReflectionToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE)+" "+super.toString();
+    return ReflectionToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE) + " " + super.toString();
   }
 }

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export>
+	<order>
+		<header>
+			<id>5343</id>
+			<datecreated>2013-11-13 21:34:47</datecreated>
+			<datelastmodified>2013-11-13 23:08:45</datelastmodified>
+			<ownercode>CYLBDGTLE</ownercode>
+			<groupcode>DEMO</groupcode>
+			<shoppingcarttype>0</shoppingcarttype>
+			<userid>1978</userid>
+			<orderdate>2013-11-13 21:34:47</orderdate>
+			<ordernumber>0005343</ordernumber>
+			<origorderid>0</origorderid>
+			<origordernumber/>
+			<temporderid>0</temporderid>
+			<webbrandcode/>
+			<languagecode>de_de</languagecode>
+			<billingcustomeraccountcode/>
+			<billingcustomername/>
+			<billingcustomeraddress1>Mautgasse 8</billingcustomeraddress1>
+			<billingcustomeraddress2/>
+			<billingcustomeraddress3/>
+			<billingcustomeraddress4/>
+			<billingcustomercity>Langenzersdorf</billingcustomercity>
+			<billingcustomercounty/>
+			<billingcustomerstate/>
+			<billingcustomerregioncode/>
+			<billingcustomerregion>STATE</billingcustomerregion>
+			<billingcustomerpostcode>2103</billingcustomerpostcode>
+			<billingcustomercountrycode>AT</billingcustomercountrycode>
+			<billingcustomercountryname>Austria</billingcustomercountryname>
+			<billingcustomertelephonenumber>06649667249</billingcustomertelephonenumber>
+			<billingcustomeremailaddress>helmreich@gmx.at</billingcustomeremailaddress>
+			<billingcontactfirstname>Markus</billingcontactfirstname>
+			<billingcontactlastname>Helmreich</billingcontactlastname>
+			<useremaildestination>0</useremaildestination>
+			<currencycode>EUR</currencycode>
+			<currencyname>Euro</currencyname>
+			<currencyisonumber>978</currencyisonumber>
+			<currencysymbol>€</currencysymbol>
+			<currencysymbolatfront>1</currencysymbolatfront>
+			<currencydecimalplaces>2</currencydecimalplaces>
+			<currencyexchangerate>1.0000</currencyexchangerate>
+			<basecurrencycode>EUR</basecurrencycode>
+			<voucherpromotioncode>CYBERINTERN</voucherpromotioncode>
+			<voucherpromotionname>Cyberinter</voucherpromotionname>
+			<vouchercode>CYBERINTERN</vouchercode>
+			<vouchername>Cyberintern</vouchername>
+			<voucherdiscountsection>TOTAL</voucherdiscountsection>
+			<voucherdiscounttype>FOC</voucherdiscounttype>
+			<voucherdiscountvalue>0.00</voucherdiscountvalue>
+			<itemtotalcost>0.00</itemtotalcost>
+			<itemtotalsell>117.60</itemtotalsell>
+			<itemtotaltax>19.60</itemtotaltax>
+			<shippingtotalcost>3.25</shippingtotalcost>
+			<shippingtotalsell>3.25</shippingtotalsell>
+			<shippingtotaltax>0.65</shippingtotaltax>
+			<shippingtotalweight>0.0000</shippingtotalweight>
+			<totalcost>0.00</totalcost>
+			<totalsellbeforediscount>101.25</totalsellbeforediscount>
+			<totaltaxbeforediscount>20.25</totaltaxbeforediscount>
+			<totalbeforediscount>121.50</totalbeforediscount>
+			<totaldiscount>121.50</totaldiscount>
+			<totalsell>117.60</totalsell>
+			<totaltax>19.60</totaltax>
+			<total>0.00</total>
+			<paymentmethodcode>NONE</paymentmethodcode>
+			<paymentmethodname>Keine</paymentmethodname>
+			<paymentgatewaycode/>
+			<pricesincludetax>1</pricesincludetax>
+			<requiresdelivery>1</requiresdelivery>
+			<ccilogid>0</ccilogid>
+			<metadatacodelist/>
+			<paymentreceived>1</paymentreceived>
+			<paymentreceivedtimestamp>2013-11-13 21:34:47</paymentreceivedtimestamp>
+			<paymentreceiveddate>2013-11-13 21:34:47</paymentreceiveddate>
+			<paymentreceiveduserid>-1</paymentreceiveduserid>
+			<canreorder>1</canreorder>
+			<archived>0</archived>
+			<archivedate>0000-00-00 00:00:00</archivedate>
+			<status>40</status>
+			<statustimestamp>2013-11-13 23:08:45</statustimestamp>
+			<statususerid>0</statususerid>
+			<statusdescription/>
+			<orderid>5343</orderid>
+			<uploadref>DEMO131120132133000634</uploadref>
+			<origorderitemid>0</origorderitemid>
+			<origuploadref/>
+			<projectname>Africa überarbeitet   2004-2013 IIa</projectname>
+			<productcode>FB_30X30</productcode>
+			<productname>de Fotobuch 30x29,4cm</productname>
+			<producttype>0</producttype>
+			<productpageformat>1</productpageformat>
+			<productspreadpageformat>1</productspreadpageformat>
+			<productcover1format>2</productcover1format>
+			<productcover2format>1</productcover2format>
+			<productoutputformat>0</productoutputformat>
+			<productheight>11.811023</productheight>
+			<productwidth>12.047244</productwidth>
+			<productdefaultcovercode/>
+			<productdefaultpapercode>FBDD_KDPM</productdefaultpapercode>
+			<productdefaultpagecount>24</productdefaultpagecount>
+			<covercount>0</covercount>
+			<covercode/>
+			<covername/>
+			<papercount>1</papercount>
+			<papercode>FBDD_KDPM</papercode>
+			<papername>de Kunstdruckpapier matt</papername>
+			<pagecountpurchased>110</pagecountpurchased>
+			<pagecount>110</pagecount>
+			<productunitcost>0.00</productunitcost>
+			<productunitsell>40.50</productunitsell>
+			<coverunitcost>0.00</coverunitcost>
+			<coverunitsell>0.00</coverunitsell>
+			<paperunitcost>0.00</paperunitcost>
+			<paperunitsell>57.50</paperunitsell>
+			<taxcode>AUTVAT</taxcode>
+			<taxname>en Austrian VAT&lt;p&gt;de USt.</taxname>
+			<taxrate>20.0000</taxrate>
+			<productunitweight>0.0000</productunitweight>
+			<producttotalweight>0.0000</producttotalweight>
+			<coverunitweight>0.0000</coverunitweight>
+			<covertotalweight>0.0000</covertotalweight>
+			<paperunitweight>0.0000</paperunitweight>
+			<papertotalweight>0.0000</papertotalweight>
+			<qty>1</qty>
+			<producttotalcost>0.00</producttotalcost>
+			<producttotalsell>48.60</producttotalsell>
+			<producttotaltax>8.10</producttotaltax>
+			<covertotalcost>0.00</covertotalcost>
+			<covertotalsell>0.00</covertotalsell>
+			<covertotaltax>0.00</covertotaltax>
+			<papertotalcost>0.00</papertotalcost>
+			<papertotalsell>69.00</papertotalsell>
+			<papertotaltax>11.50</papertotaltax>
+			<subtotal>117.60</subtotal>
+			<discountvalue>117.60</discountvalue>
+			<totalshippingweight>0.0000</totalshippingweight>
+			<uploaddatatype>0</uploaddatatype>
+			<uploadmethod>0</uploadmethod>
+			<uploadappversion>2.5.8</uploadappversion>
+			<uploadappplatform>Win32</uploadappplatform>
+			<uploadappcputype>Intel</uploadappcputype>
+			<uploadapposversion>Windows XP Service Pack 2 (Build 2600)</uploadapposversion>
+			<filesreceivedtimestamp>2013-11-13 22:53:59</filesreceivedtimestamp>
+			<filesreceiveduserid>0</filesreceiveduserid>
+			<decrypttimestamp>2013-11-13 23:08:01</decrypttimestamp>
+			<decryptuserid>3</decryptuserid>
+			<converttimestamp>2013-11-13 23:08:45</converttimestamp>
+			<convertuserid>3</convertuserid>
+			<convertoutputformatcode>DEMOOUTPUT</convertoutputformatcode>
+			<jobticketoutputfilename>JOBTICKET-0005343-qty1-page000.pdf</jobticketoutputfilename>
+			<pagesoutputfilename>PAGES-0005343-qty1-page1.pdf</pagesoutputfilename>
+			<cover1outputfilename>COVER-0005343-qty1-pagec.pdf</cover1outputfilename>
+			<cover2outputfilename/>
+			<outputtimestamp>0000-00-00 00:00:00</outputtimestamp>
+			<outputuserid>0</outputuserid>
+			<jobticketoutputdevicecode>TESTAUSGABE</jobticketoutputdevicecode>
+			<pagesoutputdevicecode>TESTAUSGABE</pagesoutputdevicecode>
+			<cover1outputdevicecode>TESTAUSGABE</cover1outputdevicecode>
+			<cover2outputdevicecode/>
+			<finishtimestamp>0000-00-00 00:00:00</finishtimestamp>
+			<finishdate>0000-00-00 00:00:00</finishdate>
+			<finishuserid>0</finishuserid>
+			<shippedtimestamp>0000-00-00 00:00:00</shippedtimestamp>
+			<shippeddate>0000-00-00 00:00:00</shippeddate>
+			<shippeduserid>0</shippeduserid>
+			<shippingtrackingreference/>
+			<invoicedtimestamp>0000-00-00 00:00:00</invoicedtimestamp>
+			<invoiceddate>0000-00-00 00:00:00</invoiceddate>
+			<invoiceduserid>0</invoiceduserid>
+			<onhold>0</onhold>
+			<onholdtimestamp>0000-00-00 00:00:00</onholdtimestamp>
+			<onholduserid>0</onholduserid>
+			<onholdreason/>
+			<previewsonline>1</previewsonline>
+			<canupload>0</canupload>
+			<canuploadpagecountoverride>0</canuploadpagecountoverride>
+		</header>
+		<item>
+			<id>5343</id>
+			<datecreated>2013-11-13 21:34:47</datecreated>
+			<datelastmodified>2013-11-13 23:08:45</datelastmodified>
+			<orderid>5343</orderid>
+			<userid>1978</userid>
+			<uploadref>DEMO131120132133000634</uploadref>
+			<origorderid>0</origorderid>
+			<origorderitemid>0</origorderitemid>
+			<origuploadref/>
+			<projectname>Africa überarbeitet   2004-2013 IIa</projectname>
+			<productcode>FB_30X30</productcode>
+			<productname>Fotobuch 30x29,4cm</productname>
+			<producttype>0</producttype>
+			<productpageformat>1</productpageformat>
+			<productspreadpageformat>1</productspreadpageformat>
+			<productcover1format>2</productcover1format>
+			<productcover2format>1</productcover2format>
+			<productoutputformat>0</productoutputformat>
+			<productheight>11.811023</productheight>
+			<productwidth>12.047244</productwidth>
+			<productdefaultcovercode/>
+			<productdefaultpapercode>FBDD_KDPM</productdefaultpapercode>
+			<productdefaultpagecount>24</productdefaultpagecount>
+			<covercount>0</covercount>
+			<covercode/>
+			<covername/>
+			<papercount>1</papercount>
+			<papercode>FBDD_KDPM</papercode>
+			<papername>Kunstdruckpapier matt</papername>
+			<pagecountpurchased>110</pagecountpurchased>
+			<pagecount>110</pagecount>
+			<productunitcost>0.00</productunitcost>
+			<productunitsell>40.50</productunitsell>
+			<coverunitcost>0.00</coverunitcost>
+			<coverunitsell>0.00</coverunitsell>
+			<paperunitcost>0.00</paperunitcost>
+			<paperunitsell>57.50</paperunitsell>
+			<taxcode>AUTVAT</taxcode>
+			<taxname>Austrian VAT</taxname>
+			<taxrate>20.0000</taxrate>
+			<productunitweight>0.0000</productunitweight>
+			<producttotalweight>0.0000</producttotalweight>
+			<coverunitweight>0.0000</coverunitweight>
+			<covertotalweight>0.0000</covertotalweight>
+			<paperunitweight>0.0000</paperunitweight>
+			<papertotalweight>0.0000</papertotalweight>
+			<qty>1</qty>
+			<producttotalcost>0.00</producttotalcost>
+			<producttotalsell>48.60</producttotalsell>
+			<producttotaltax>8.10</producttotaltax>
+			<covertotalcost>0.00</covertotalcost>
+			<covertotalsell>0.00</covertotalsell>
+			<covertotaltax>0.00</covertotaltax>
+			<papertotalcost>0.00</papertotalcost>
+			<papertotalsell>69.00</papertotalsell>
+			<papertotaltax>11.50</papertotaltax>
+			<subtotal>117.60</subtotal>
+			<discountvalue>117.60</discountvalue>
+			<totalcost>0.00</totalcost>
+			<totalsell>117.60</totalsell>
+			<totaltax>19.60</totaltax>
+			<totalshippingweight>0.0000</totalshippingweight>
+			<uploaddatatype>0</uploaddatatype>
+			<uploadmethod>0</uploadmethod>
+			<uploadappversion>2.5.8</uploadappversion>
+			<uploadappplatform>Win32</uploadappplatform>
+			<uploadappcputype>Intel</uploadappcputype>
+			<uploadapposversion>Windows XP Service Pack 2 (Build 2600)</uploadapposversion>
+			<filesreceivedtimestamp>2013-11-13 22:53:59</filesreceivedtimestamp>
+			<filesreceiveduserid>0</filesreceiveduserid>
+			<decrypttimestamp>2013-11-13 23:08:01</decrypttimestamp>
+			<decryptuserid>3</decryptuserid>
+			<converttimestamp>2013-11-13 23:08:45</converttimestamp>
+			<convertuserid>3</convertuserid>
+			<convertoutputformatcode>DEMOOUTPUT</convertoutputformatcode>
+			<jobticketoutputfilename>JOBTICKET-0005343-qty1-page000.pdf</jobticketoutputfilename>
+			<pagesoutputfilename>PAGES-0005343-qty1-page1.pdf</pagesoutputfilename>
+			<cover1outputfilename>COVER-0005343-qty1-pagec.pdf</cover1outputfilename>
+			<cover2outputfilename/>
+			<outputtimestamp>0000-00-00 00:00:00</outputtimestamp>
+			<outputuserid>0</outputuserid>
+			<jobticketoutputdevicecode>TESTAUSGABE</jobticketoutputdevicecode>
+			<pagesoutputdevicecode>TESTAUSGABE</pagesoutputdevicecode>
+			<cover1outputdevicecode>TESTAUSGABE</cover1outputdevicecode>
+			<cover2outputdevicecode/>
+			<finishtimestamp>0000-00-00 00:00:00</finishtimestamp>
+			<finishdate>0000-00-00 00:00:00</finishdate>
+			<finishuserid>0</finishuserid>
+			<shippedtimestamp>0000-00-00 00:00:00</shippedtimestamp>
+			<shippeddate>0000-00-00 00:00:00</shippeddate>
+			<shippeduserid>0</shippeduserid>
+			<shippingtrackingreference/>
+			<invoicedtimestamp>0000-00-00 00:00:00</invoicedtimestamp>
+			<invoiceddate>0000-00-00 00:00:00</invoiceddate>
+			<invoiceduserid>0</invoiceduserid>
+			<onhold>0</onhold>
+			<onholdtimestamp>0000-00-00 00:00:00</onholdtimestamp>
+			<onholduserid>0</onholduserid>
+			<onholdreason/>
+			<previewsonline>1</previewsonline>
+			<canupload>0</canupload>
+			<canuploadpagecountoverride>0</canuploadpagecountoverride>
+			<canreorder>1</canreorder>
+			<status>40</status>
+			<statusdescription/>
+			<statustimestamp>2013-11-13 23:08:45</statustimestamp>
+		</item>
+		<shipping>
+			<id>5343</id>
+			<datecreated>2013-11-13 21:34:47</datecreated>
+			<datelastmodified>2013-11-13 21:34:47</datelastmodified>
+			<orderid>5343</orderid>
+			<orderitemid>5343</orderitemid>
+			<userid>1978</userid>
+			<shippingcustomername/>
+			<shippingcustomeraddress1>Mautgasse 8</shippingcustomeraddress1>
+			<shippingcustomeraddress2/>
+			<shippingcustomeraddress3/>
+			<shippingcustomeraddress4/>
+			<shippingcustomercity>Langenzersdorf</shippingcustomercity>
+			<shippingcustomercounty/>
+			<shippingcustomerstate/>
+			<shippingcustomerregioncode/>
+			<shippingcustomerregion>STATE</shippingcustomerregion>
+			<shippingcustomerpostcode>2103</shippingcustomerpostcode>
+			<shippingcustomercountrycode>AT</shippingcustomercountrycode>
+			<shippingcustomercountryname>Austria</shippingcustomercountryname>
+			<shippingcustomertelephonenumber>06649667249</shippingcustomertelephonenumber>
+			<shippingcustomeremailaddress>helmreich@gmx.at</shippingcustomeremailaddress>
+			<shippingcontactfirstname>Markus</shippingcontactfirstname>
+			<shippingcontactlastname>Helmreich</shippingcontactlastname>
+			<shippingmethodcode>EXPRESS</shippingmethodcode>
+			<shippingmethodname>Ship with Courier (GLS)</shippingmethodname>
+			<shippingratecode>COURIER</shippingratecode>
+			<shippingrateinfo>en Ships as soon as possible&lt;p&gt;de Regellaufzeit 1 Werktag in Österreich</shippingrateinfo>
+			<shippingratecost>3.25</shippingratecost>
+			<shippingratesell>3.90</shippingratesell>
+			<shippingdiscountvalue>0.00</shippingdiscountvalue>
+			<shippingtotalsell>3.90</shippingtotalsell>
+			<shippingratetaxcode>AUTVAT</shippingratetaxcode>
+			<shippingratetaxname>Austrian VAT</shippingratetaxname>
+			<shippingratetaxrate>20.0000</shippingratetaxrate>
+			<shippingratecalctax>0</shippingratecalctax>
+			<shippingratetaxtotal>0.65</shippingratetaxtotal>
+			<qty>1</qty>
+		</shipping>
+		<ccilog>
+			<id/>
+			<datecreated/>
+			<sessionid/>
+			<orderid/>
+			<userid/>
+			<parentlogid/>
+			<type/>
+			<mode/>
+			<amount/>
+			<charges/>
+			<authorised/>
+			<transactionid/>
+			<responsecode/>
+			<responsedescription/>
+			<authorisationid/>
+			<bankresponsecode/>
+			<cardnumber/>
+			<cvvflag/>
+			<cvvresponsecode/>
+			<paymentcertificate/>
+			<paymentdate/>
+			<paymenttime/>
+			<paymentmeans/>
+			<addressstatus/>
+			<postcodestatus/>
+			<payeremail/>
+			<payerid/>
+			<payerstatus/>
+			<business/>
+			<receiveremail/>
+			<receiverid/>
+			<pendingreason/>
+			<transactiontype/>
+			<settleamount/>
+			<threedsecurestatus/>
+			<cavvresponsecode/>
+			<charityflag/>
+			<currencycode/>
+			<webbrandcode/>
+			<formattedpaymentdate/>
+			<formattedtransactionid/>
+			<formattedauthorisationid/>
+			<formattedcardnumber/>
+			<formattedamount/>
+			<formattedcharges/>
+		</ccilog>
+	</order>
+</export>
