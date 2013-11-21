@@ -5,7 +5,7 @@
   <groupId>at.cyberlab.taopix_services</groupId>
   <artifactId>taopix_services</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>ejb</packaging>
+  <packaging>jar</packaging>
 
   <name>taopix_services</name>
 
@@ -72,6 +72,7 @@
           </compilerArguments>
         </configuration>
       </plugin>
+      <!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-ejb-plugin</artifactId>
@@ -80,6 +81,7 @@
           <ejbVersion>3.1</ejbVersion>
         </configuration>
       </plugin>
+      -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
