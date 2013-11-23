@@ -243,28 +243,21 @@ public class AddressService extends Abstract4DService implements AddressFacade {
     if (land.getLandName() != null && land.getLandName().length() > 0) {
       SearchByStringRequest req = new SearchByStringRequest();
       req.setSearchString(land.getLandName());
-      req.setMandantenId(land.getId());
+      req.setMandantenId(land.getMandant());
+      laender = laenderDao.searchLaenderByName(req);
 
-      if (land.getId() != null && land.getId() > 0) {
-        laender = laenderDao.searchLaenderByName(req);
-
-      }
     } else if (land.getiSO3166Code_2() != null && land.getiSO3166Code_2().length() > 0) {
       SearchByStringRequest req = new SearchByStringRequest();
       req.setSearchString(land.getiSO3166Code_2());
-      req.setMandantenId(land.getId());
+      req.setMandantenId(land.getMandant());
+      laender = laenderDao.searchLaenderByIso2Code(req);
 
-      if (land.getId() != null && land.getId() > 0) {
-        laender = laenderDao.searchLaenderByIso2Code(req);
-      }
     } else if (land.getiSO3166Code_3() != null && land.getiSO3166Code_3().length() > 0) {
       SearchByStringRequest req = new SearchByStringRequest();
       req.setSearchString(land.getiSO3166Code_3());
-      req.setMandantenId(land.getId());
+      req.setMandantenId(land.getMandant());
+      laender = laenderDao.searchLaenderByIso3Code(req);
 
-      if (land.getId() != null && land.getId() > 0) {
-        laender = laenderDao.searchLaenderByIso3Code(req);
-      }
     }
 
     if (laender != null && laender.getSelection() != null && !laender.getSelection().isEmpty()) {
@@ -278,8 +271,6 @@ public class AddressService extends Abstract4DService implements AddressFacade {
     newLand = laenderDao.storeXmpBean(newLand);
     LandDTO res = landMapper.map(newLand);
     return res;
-
-
 
   }
 

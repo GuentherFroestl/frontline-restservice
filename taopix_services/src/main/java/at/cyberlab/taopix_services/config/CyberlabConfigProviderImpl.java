@@ -13,6 +13,8 @@ import de.gammadata.business.modelle.ProduktDO;
 import de.gammadata.business.modelle.ProduktDO.Einheit;
 import de.gammadata.business.modelle.VersandDO;
 import de.gammadata.business.modelle.ZahlungsBedingung;
+import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
+import de.gammadata.tom.four_d_access.util.Tom4DSpec;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -29,7 +31,10 @@ import org.apache.commons.io.IOUtils;
  */
 public class CyberlabConfigProviderImpl implements CyberlabConfigProvider {
 
-  public static final String TAOPIX_CONFIG_FILE = "taopix.xml";
+  private static final Logger LOG = Logger.getLogger(CyberlabConfigProviderImpl.class.getSimpleName());
+  public static final String TAOPIX_CONFIG_FILE = "taopix/taopix.xml";
+  public static final String DBSPEC_CONFIG_FILE = "cyberlab/tomdbspec.xml";
+  public static final String CHAR_ENCODING = "UTF-8";
   public static final String TAOPIX_DEFAULT_FTP_SERVER = "fotobuch.cyberlab.at";
   public static final String TAOPIX_USER = "xml";
   public static final String TAOPIX_PW = "vacr2+2T";
@@ -44,7 +49,7 @@ public class CyberlabConfigProviderImpl implements CyberlabConfigProvider {
   public static final Long BUBU_JOB_ID = 382000000000L;
   private FileSystemConfig filesystemConfig;
   private TaopixConfig taopixConfig = null;
-  private static final Logger LOG = Logger.getLogger(CyberlabConfigProviderImpl.class.getSimpleName());
+  private DataBaseSpec dbSpec;
 
   /**
    * @see com.tomagency.cyberlab.server.config.CyberlabConfigProvider#getTaopixConfig()
@@ -61,8 +66,11 @@ public class CyberlabConfigProviderImpl implements CyberlabConfigProvider {
       XStream xstream = new XStream();
 
       try {
-        InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/taopix.xml");
-        xml = IOUtils.toString(stream, "UTF-8");
+
+        InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(TAOPIX_CONFIG_FILE);
+        if (stream != null) {
+          xml = IOUtils.toString(stream, CHAR_ENCODING);
+        }
       } catch (IOException ex) {
         LOG.log(Level.SEVERE, null, ex);
       }
@@ -70,7 +78,7 @@ public class CyberlabConfigProviderImpl implements CyberlabConfigProvider {
       if (xml != null) {
         try {
           taopixConfig = (TaopixConfigImpl) xstream.fromXML(xml);
-          LOG.log(Level.INFO, "taopixConfig geladen: "+taopixConfig);
+          LOG.log(Level.INFO, "taopixConfig geladen: " + taopixConfig);
         } catch (Exception e) {
           LOG.log(Level.SEVERE, "Fehler beim deserialisieren xml=" + xml, e);
         }
@@ -86,13 +94,7 @@ public class CyberlabConfigProviderImpl implements CyberlabConfigProvider {
 
         xml = xstream.toXML(taopixConfig);
         LOG.info("new Taopix Configuration\n" + xml);
-//				boolean ok=ServletHelper.saveXmlUTF8Body(filesystemConfig.getConfigDirPath()+TAOPIX_CONFIG_FILE, xml);
-//				if (ok)
-//					LOG.log(Level.SEVERE,"getTaopixConfig(): TaopixConfig neu erzeugt und gespeichert Path= "+
-//						filesystemConfig.getConfigDirPath()+TAOPIX_CONFIG_FILE);
-//				else
-//					LOG.log(Level.SEVERE,"getTaopixConfig(): Fehler beim Speichern TaopixConfig Path= "+
-//							filesystemConfig.getConfigDirPath()+TAOPIX_CONFIG_FILE);
+
       }
     }
     return taopixConfig;
@@ -197,5 +199,47 @@ public class CyberlabConfigProviderImpl implements CyberlabConfigProvider {
 
 
     return tc;
+  }
+
+  @Override
+  public DataBaseSpec getDataBaseSpec() {
+    if (dbSpec == null) {
+
+      String xml = null;
+      XStream xstream = new XStream();
+
+      try {
+        InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream(DBSPEC_CONFIG_FILE);
+        if (stream != null) {
+          xml = IOUtils.toString(stream, CHAR_ENCODING);
+        }
+      } catch (IOException ex) {
+        LOG.log(Level.SEVERE, null, ex);
+      }
+
+      if (xml != null) {
+        try {
+          dbSpec = (DataBaseSpec) xstream.fromXML(xml);
+          LOG.log(Level.INFO, "dbSpec geladen: " + dbSpec);
+        } catch (Exception e) {
+          LOG.log(Level.SEVERE, "Fehler beim deserialisieren xml=" + xml, e);
+        }
+      }
+
+      if (dbSpec == null) {
+        dbSpec = new Tom4DSpec().getDataBaseSpec();
+
+        xml = xstream.toXML(dbSpec);
+        LOG.info("new DataBaseSpec\n" + xml);
+
+      }
+    }
+
+    return dbSpec;
+  }
+
+  @Override
+  public void setDataBaseSpec(DataBaseSpec dbSpec) {
+    this.dbSpec = dbSpec;
   }
 }

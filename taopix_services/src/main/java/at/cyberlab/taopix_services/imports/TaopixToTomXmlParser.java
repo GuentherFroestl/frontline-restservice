@@ -270,15 +270,13 @@ public class TaopixToTomXmlParser {
        */ else if (qName.equalsIgnoreCase("header")) {
 
         if (currentUserId != null) {
-          orderAddress = TaopixAddressMapper.map(userProperties);
-          orderAddress.setId(Integer.parseInt(currentUserId));
+          orderAddress = TaopixAddressMapper.map(userProperties,currentUserId);
         }
 
       } else if (qName.equalsIgnoreCase("shipping")) {
 
         if (currentUserId != null) {
-          shippingAddress = TaopixAddressMapper.map(userProperties);
-          shippingAddress.setId(Integer.parseInt(currentUserId));
+          shippingAddress = TaopixAddressMapper.map(userProperties,currentUserId);
           transport = TaopixOrderMapper.mapShippingPosition(shippingProperties);
 
         }

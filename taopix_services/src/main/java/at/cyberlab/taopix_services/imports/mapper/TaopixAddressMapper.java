@@ -15,6 +15,8 @@ import java.util.HashMap;
  */
 public class TaopixAddressMapper {
 
+  public static final String TAOPIX_UUID_STUB = "TAOPIX_";
+
   /**
    * mapping address properties to a AddressDTO.
    *
@@ -22,9 +24,11 @@ public class TaopixAddressMapper {
    * @param defaultLand LandDTO
    * @return AddressDTO
    */
-  public static AddressDTO map(HashMap<String, String> propertyListe) {
+  public static AddressDTO map(HashMap<String, String> propertyListe, String userId) {
 
     AddressDTO adr = new AddressDTO();
+
+    adr.setUuid(TAOPIX_UUID_STUB + userId);
     //Namen
     adr.setVorname(propertyListe.get("contactfirstname"));
     adr.setName(propertyListe.get("contactlastname"));
@@ -37,7 +41,7 @@ public class TaopixAddressMapper {
     adr.setStadt(propertyListe.get("customercity"));
 
     adr.setStrasse(propertyListe.get("customeraddress1"));
-    if (propertyListe.containsKey("customeraddress2") && propertyListe.get("customeraddress2").length()>0) {
+    if (propertyListe.containsKey("customeraddress2") && propertyListe.get("customeraddress2").length() > 0) {
       adr.setStrasse(propertyListe.get("customeraddress1") + ", " + propertyListe.get("customeraddress2"));
     }
 

@@ -5,6 +5,7 @@
 package de.gammadata.tom.four_d_access.service;
 
 import com.tom.service.dto.AddressDTO;
+import com.tom.service.dto.LandDTO;
 import com.tom.service.dto.SearchByStringRequest;
 import com.tom.service.dto.SearchType;
 import com.tom.service.facade.TomException;
@@ -101,6 +102,13 @@ public class AddressServiceTest {
     testAdr.setStrasse("Testring 24");
     testAdr.setTelefon("0123456789");
     testAdr.setUuid(TEST_UUID);
+    LandDTO land = new LandDTO();
+    land.setLandName("Austria");
+    land.setiSO3166Code_2("AT");
+    land.setiSO3166Code_3("AUT");
+    land.setMandant(new Integer(2));
+    testAdr.setLand(land);
+    
 
     return testAdr;
   }

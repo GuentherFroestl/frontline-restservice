@@ -4,6 +4,7 @@
  */
 package at.cyberlab.taopix_services.imports;
 
+import at.cyberlab.taopix_services.imports.mapper.TaopixAddressMapper;
 import com.tom.service.dto.AddressDTO;
 import com.tom.service.dto.BelegPositionDTO;
 import com.tom.service.dto.PreisDTO;
@@ -58,6 +59,7 @@ public class TaopixToTomXmlParserTest {
     AddressDTO address = instance.getOrderAddress();
     System.out.println("Orderaddress= " + address);
     Assert.assertNotNull("orderAdr == null", address.toString());
+    Assert.assertEquals("UUID does not match " + TaopixAddressMapper.TAOPIX_UUID_STUB + "1042", TaopixAddressMapper.TAOPIX_UUID_STUB + "1042", address.getUuid());
     Assert.assertEquals("name does not match 'Ott'", "Ott", address.getName());
     Assert.assertEquals("vorname does not match 'Katrin'", "Katrin", address.getVorname());
     Assert.assertEquals("email does not match 'katrin.ott@hotmail.com'", "katrin.ott@hotmail.com", address.getEmail());
@@ -118,7 +120,7 @@ public class TaopixToTomXmlParserTest {
    * Test of parse method, of class TaopixToTomXmlParser. Test if shipping position ist correct.
    */
   @Test
-  public void testTaopixShippingParse() throws Exception {
+  public void testTaopixShippingPositionParse() throws Exception {
 
     //Test shipping
     InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005343.xml");
@@ -198,8 +200,8 @@ public class TaopixToTomXmlParserTest {
     Assert.assertTrue("tax betrag doesn't match 13.92", preis.getSteuern().get(0).getBetrag().compareTo(new BigDecimal("13.92")) == 0);
     Assert.assertTrue("tax bezeichnung doesn't match MwSt.", preis.getSteuern().get(0).getSteuerArt().getBezeichnung().equalsIgnoreCase("MwSt."));
   }
-  
-    /**
+
+  /**
    * Test of parse method, of class TaopixToTomXmlParser. Test if shipping position ist correct.
    */
   @Test

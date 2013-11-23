@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<de.gammadata.tom.four__d__access.dataBase.DataBaseSpec>
+  <serverAddress>192.168.9.84</serverAddress>
+  <serverPort>8888</serverPort>
+  <serverProtokoll>TCP</serverProtokoll>
+  <dataBaseType>4D</dataBaseType>
+  <dataBaseMajorVersion>6</dataBaseMajorVersion>
+  <dataBaseMinorVersion>8</dataBaseMinorVersion>
+  <dataBaseName>Tom</dataBaseName>
+  <dataBaseHandlerClass>com.tom.dataBase.DB4D68Handler</dataBaseHandlerClass>
+  <userName>tom</userName>
+  <pw>dbase</pw>
+</de.gammadata.tom.four__d__access.dataBase.DataBaseSpec>

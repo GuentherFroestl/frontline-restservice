@@ -4,6 +4,7 @@
  */
 package at.cyberlab.taopix_services.config;
 
+import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -60,6 +61,18 @@ public class CyberlabConfigProviderImplTest {
     instance.setTaopixConfig(taopixConfig);
     TaopixConfig result = instance.getTaopixConfig();
     assertEquals(taopixConfig, result);
+  }
+  
+  /**
+   * Test of getDataBaseSpec method, of class CyberlabConfigProviderImpl.
+   */
+  @org.junit.Test
+  public void testGetDataBaseSpec() {
+    System.out.println("getTaopixConfig");
+    CyberlabConfigProviderImpl instance = new CyberlabConfigProviderImpl();
+    DataBaseSpec result = instance.getDataBaseSpec();
+    assertNotNull("Result == null ",result);
+
   }
 
   /**
