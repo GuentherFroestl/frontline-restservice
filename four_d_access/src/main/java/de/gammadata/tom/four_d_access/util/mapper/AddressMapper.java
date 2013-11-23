@@ -8,6 +8,10 @@ import com.tom.service.dto.AddressDTO;
 import com.tom.service.dto.AddressKopfDTO;
 import com.tom.service.dto.KundenKopfDTO;
 import com.tom.service.dto.LandDTO;
+import de.gammadata.tom.four_d_access.xml.Xmp;
+import de.gammadata.tom.four_d_access.xml.XmpSelection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Mapped Tom/4D Objekte und DTOs
@@ -23,8 +27,27 @@ public class AddressMapper extends BaseMapper {
     res.setMandant(adr.getDMandant());
     res.setId(adr.getDID());
     res.setUuid(adr.getUuid());
-    res.setVollerName(buildName(" ", adr.getM_026_014_Anrede_Adr(),adr.getVorname(), adr.getNachname(),adr.getFirmenname()));
+    res.setVollerName(buildName(" ", adr.getM_026_014_Anrede_Adr(), adr.getVorname(), adr.getNachname(), adr.getFirmenname()));
     return res;
+  }
+
+  /**
+   * Maps a selection of Adressen
+   *
+   * @param adrSelection XmpSelection of Adressen
+   * @return List of AddressDTO
+   */
+  public static List<AddressDTO> mapSelection(XmpSelection adrSelection) {
+
+    List<AddressDTO> adrLi = new ArrayList<AddressDTO>();
+    if (adrSelection != null && adrSelection.getListSize() > 0) {
+      for (Xmp obj : adrSelection.getSelection()) {
+        Adressen adr = (Adressen) obj;
+        adrLi.add(map(adr));
+      }
+    }
+    return adrLi;
+
   }
 
   /**
@@ -55,7 +78,7 @@ public class AddressMapper extends BaseMapper {
     res.setUuid(adr.getUuid());
     res.setInaktiv(adr.getInaktiv());
     //Land
-        if (adr.get_040_001_Länder_DID() > 0) {
+    if (adr.get_040_001_Länder_DID() > 0) {
       LandDTO land = new LandDTO();
       land.setId(adr.get_040_001_Länder_DID());
       land.setPostCode(adr.getM_040_012_Länder_PostCode());
@@ -88,13 +111,16 @@ public class AddressMapper extends BaseMapper {
     } else {
       res.setDID(0);
     }
-
-    res.setDMandant(adr.getMandant());
+    if (adr.getMandant() != null) {
+      res.setDMandant(adr.getMandant());
+    }
     res.setAbteilung(adr.getAbteilung());
     res.setEMail(adr.getEmail());
     res.setFirmenname(adr.getFirma());
     if (adr.getLand() != null) {
-      res.set_040_001_Länder_DID(adr.getLand().getId());
+      if (adr.getLand().getId() != null) {
+        res.set_040_001_Länder_DID(adr.getLand().getId());
+      }
       res.setM_040_012_Länder_PostCode(adr.getLand().getPostCode());
     }
     res.setHandy(adr.getMobilTelefon());
