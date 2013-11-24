@@ -79,6 +79,15 @@ public class BestellungDAO extends AbstractBelegDAO<Bestellungen> implements
   }
 
   @Override
+  protected void buildNumberQuery(Integer id, DataBaseHandler dbHandler, Xmp searchObj) {
+
+    getDbHandler().openQuery();
+    dbHandler.addQueryPart(new QueryPart(new QueryOperant(searchObj,
+            Bestellungen.bestellnummer_Fn), QueryPart.equal,
+            new QueryOperant(id)));
+  }
+
+  @Override
   protected void buildCustomerQuery(Integer refId, DataBaseHandler dbHandler, Xmp searchObj) {
     getDbHandler().openQuery();
     dbHandler.addQueryPart(new QueryPart(new QueryOperant(searchObj,
@@ -133,53 +142,53 @@ public class BestellungDAO extends AbstractBelegDAO<Bestellungen> implements
   }
 
   @Override
-  public List<BelegDTO> loadPositionenByProjektId(Integer pId,Status status) throws TomDbException {
+  public List<BelegDTO> loadPositionenByProjektId(Integer pId, Status status) throws TomDbException {
     Xmp searchObj = new BestellPos();
     DataBaseHandler dbHandler = getDbHandler();
     dbHandler.openQuery();
     dbHandler.addQueryPart(new QueryPart(new QueryOperant(searchObj,
             BestellPos._022_001_Vorgänge_DID_Fn), QueryPart.equal,
             new QueryOperant(pId)));
-    if (Status.INARBEIT.equals(status)||Status.ZUTUN.equals(status)){
-      dbHandler.addQueryPart(new QueryPart(QueryPart.booleanAnd,new QueryOperant(searchObj,
-            BestellPos.restmenge_Fn), QueryPart.greater,
-            new QueryOperant(0)));
+    if (Status.INARBEIT.equals(status) || Status.ZUTUN.equals(status)) {
+      dbHandler.addQueryPart(new QueryPart(QueryPart.booleanAnd, new QueryOperant(searchObj,
+              BestellPos.restmenge_Fn), QueryPart.greater,
+              new QueryOperant(0)));
     }
     searchObj.setAllLoaded(false);
     searchObj.setAllFields();
-    getDbHandler().setResultObject(searchObj);   
+    getDbHandler().setResultObject(searchObj);
     XmpSelection sel = getDbHandler().executeQuery();
-    
+
     List<BelegDTO> bList = new ArrayList<BelegDTO>();
-     if (sel != null && sel.getSelection()!=null&&!sel.getSelection().isEmpty()) {
-       Map<Integer, BelegDTO> bMap = new HashMap<Integer, BelegDTO>();
-       for (Xmp obj: sel.getSelection()){
-         BestellPos b = (BestellPos) obj;       
-         Integer bestId=b.get_059_001__Bestellungen_DID();
-         BelegDTO best;
-         if (!bMap.containsKey(bestId)){
-           best = new BelegDTO();
-           best.setPositionsListe(new ArrayList<BelegPositionDTO>());
-           best.setBelegTyp(BelegTyp.BESTELLUNG);
-           best.setId(bestId);
-           best.setMandant(b.getDMandant());
-           best.setNummer(b.getM_059_028_BestellNr());
-           AddressKopfDTO adr = new AddressKopfDTO();
-           adr.setVollerName(b.getM_059_032_LieferantenName());
-           best.setAdresse(adr);
-           bMap.put(bestId, best);
-         }else{
-           best = bMap.get(bestId);
-         }
-         BelegPositionDTO bPos = BelegMapper.map(b);
-         best.getPositionsListe().add(bPos);
-       }
-       
-       for (Entry<Integer, BelegDTO> e : bMap.entrySet()){
-         bList.add(e.getValue());
-       }
-       
-     }
+    if (sel != null && sel.getSelection() != null && !sel.getSelection().isEmpty()) {
+      Map<Integer, BelegDTO> bMap = new HashMap<Integer, BelegDTO>();
+      for (Xmp obj : sel.getSelection()) {
+        BestellPos b = (BestellPos) obj;
+        Integer bestId = b.get_059_001__Bestellungen_DID();
+        BelegDTO best;
+        if (!bMap.containsKey(bestId)) {
+          best = new BelegDTO();
+          best.setPositionsListe(new ArrayList<BelegPositionDTO>());
+          best.setBelegTyp(BelegTyp.BESTELLUNG);
+          best.setId(bestId);
+          best.setMandant(b.getDMandant());
+          best.setNummer(b.getM_059_028_BestellNr());
+          AddressKopfDTO adr = new AddressKopfDTO();
+          adr.setVollerName(b.getM_059_032_LieferantenName());
+          best.setAdresse(adr);
+          bMap.put(bestId, best);
+        } else {
+          best = bMap.get(bestId);
+        }
+        BelegPositionDTO bPos = BelegMapper.map(b);
+        best.getPositionsListe().add(bPos);
+      }
+
+      for (Entry<Integer, BelegDTO> e : bMap.entrySet()) {
+        bList.add(e.getValue());
+      }
+
+    }
     return bList;
   }
 
@@ -244,4 +253,15 @@ public class BestellungDAO extends AbstractBelegDAO<Bestellungen> implements
   public Bestellungen getXmpInstance() {
     return new Bestellungen();
   }
+
+  @Override
+  public BelegDTO storeBelegToTom(BelegDTO beleg) throws TomDbException {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public void deleteBelegInTom(BelegDTO beleg) throws TomDbException {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+  
 }

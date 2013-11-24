@@ -46,7 +46,17 @@ public abstract class AbstractBelegDAO<T extends BasicBean> extends AbstractDAO<
    */
   protected abstract void buildProjectQuery(Integer id,
           DataBaseHandler dbHandler, Xmp searchObj);
-  
+
+  /**
+   * baut eine Abfrage nach einer Belegnummer.
+   *
+   * @param id zu der die Belege gesucht werden
+   * @param dbHandler DataBaseHandler
+   * @param searchObj Zieltabelleninfo
+   */
+  protected abstract void buildNumberQuery(Integer id,
+          DataBaseHandler dbHandler, Xmp searchObj);
+
   /**
    * Baut die belegspezifische Abfrage nach Customer ID
    *
@@ -76,6 +86,23 @@ public abstract class AbstractBelegDAO<T extends BasicBean> extends AbstractDAO<
    */
   protected abstract void buildOrdering(BasicSearchRequest searchReq,
           DataBaseHandler handler, Xmp obj) throws TomDbException;
+
+  /**
+   * to be overridden by a implementation for each BelegType.
+   *
+   * @param beleg BelegDTO
+   * @return BelegDTO
+   * @throws TomDbException
+   */
+  public abstract BelegDTO storeBelegToTom(BelegDTO beleg) throws TomDbException;
+
+  /**
+   * A Beleg is deleted, regardless of it's relations.
+   *
+   * @param beleg BelegDTO
+   * @throws TomDbException
+   */
+  public abstract void deleteBelegInTom(BelegDTO beleg) throws TomDbException;
 
   /**
    * Liefer die belegspezifischen felder für den BelegKopfDTO
@@ -120,7 +147,7 @@ public abstract class AbstractBelegDAO<T extends BasicBean> extends AbstractDAO<
   @Override
   public BelegDTO loadBelegById(Integer id) throws TomDbException {
 
-    BelegDTO result = null;
+    BelegDTO result;
     if (id == null || id.equals(Integer.valueOf(0))) {
       throw new TomDbException("malformed parameters");
     }
@@ -131,6 +158,50 @@ public abstract class AbstractBelegDAO<T extends BasicBean> extends AbstractDAO<
     result = BelegMapper.map(obj);
     result.setPositionsListe(loadPositionsListe(result));
     return result;
+  }
+
+  @Override
+  public BelegDTO loadBelegByNumber(Integer belegNumber) throws TomDbException {
+    BelegDTO result;
+    if (belegNumber == null || belegNumber.equals(Integer.valueOf(0))) {
+      throw new TomDbException("malformed parameters");
+    }
+
+    Xmp searchObj = getXmpInstance();
+    DataBaseHandler dbHandler = getDbHandler();
+    buildNumberQuery(belegNumber, dbHandler, searchObj);
+    searchObj.setAllLoaded(false);
+    searchObj.setFieldList(searchObj.getFieldList());
+    getDbHandler().setResultObject(searchObj);
+
+    XmpSelection sel = getDbHandler().executeQuery();
+    if (sel == null || sel.getSelection() == null || sel.getSelection().isEmpty()) {
+      throw new TomDbException("Beleg not found with number=" + belegNumber);
+    }
+    result = BelegMapper.map(sel.getSelection().get(0));
+    result.setPositionsListe(loadPositionsListe(result));
+    return result;
+  }
+
+  @Override
+  public boolean checkBelegByNumber(Integer belegNumber) throws TomDbException {
+    if (belegNumber == null || belegNumber.equals(Integer.valueOf(0))) {
+      throw new TomDbException("malformed parameters");
+    }
+
+    Xmp searchObj = getXmpInstance();
+    DataBaseHandler dbHandler = getDbHandler();
+    buildNumberQuery(belegNumber, dbHandler, searchObj);
+    searchObj.setAllLoaded(false);
+    searchObj.setFieldList(searchObj.getFieldList());
+    getDbHandler().setResultObject(searchObj);
+
+    XmpSelection sel = getDbHandler().executeQuery();
+    if (sel == null || sel.getSelection() == null || sel.getSelection().isEmpty()) {
+      return false;
+    }
+    return true;
+
   }
 
   @Override
@@ -147,5 +218,19 @@ public abstract class AbstractBelegDAO<T extends BasicBean> extends AbstractDAO<
     result.setPositionsListe(loadPositionsListe(result));
     return result;
 
+  }
+
+  @Override
+  public BelegDTO storeBeleg(BelegDTO beleg) throws TomDbException {
+
+    return storeBelegToTom(beleg);
+  }
+
+  @Override
+  public void deleteBeleg(BelegDTO beleg) throws TomDbException {
+    if (beleg == null || beleg.getId() == null || beleg.getId() == 0) {
+      throw new TomDbException("Beleg == null or beleg.getId()==0");
+    }
+    deleteBelegInTom(beleg);
   }
 }

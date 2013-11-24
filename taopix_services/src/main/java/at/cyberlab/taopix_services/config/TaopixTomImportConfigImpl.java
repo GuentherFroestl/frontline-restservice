@@ -12,6 +12,8 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
 
   private Integer orderNumberOffset = 12500000;
   private Integer mandatorId = 2;
+  private String userUuidPrefix = "TAOPIX_USER_";
+  private String orderUuidPrefix = "TAOPIX_ORDER_";
 
   @Override
   public Integer getOrderNumberOffset() {
@@ -29,5 +31,23 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
 
   public void setMandatorId(Integer mandatorId) {
     this.mandatorId = mandatorId;
+  }
+
+  @Override
+  public String getUserUuidPrefix() {
+    return userUuidPrefix;
+  }
+
+  public void setUserUuidPrefix(String userUuidPrefix) {
+    this.userUuidPrefix = userUuidPrefix;
+  }
+
+  @Override
+  public String getOrderUuidPrefix() {
+    return orderUuidPrefix;
+  }
+
+  public void setOrderUuidPrefix(String orderUuidPrefix) {
+    this.orderUuidPrefix = orderUuidPrefix;
   }
 }

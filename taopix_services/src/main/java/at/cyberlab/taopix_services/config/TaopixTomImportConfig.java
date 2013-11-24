@@ -24,4 +24,16 @@ public interface TaopixTomImportConfig {
    * @return Integer MandatorId
    */
   public Integer getMandatorId();
+
+  /**
+   *
+   * @return Prefix for the User UUID
+   */
+  public String getUserUuidPrefix();
+
+  /**
+   *
+   * @return Prefix for the Order UUID
+   */
+  public String getOrderUuidPrefix();
 }

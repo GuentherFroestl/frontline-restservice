@@ -21,6 +21,7 @@ import com.tom.service.dto.BelegTyp;
 import com.tom.service.dto.Direction;
 import com.tom.service.dto.OrderSpecification;
 import com.tom.service.dto.Status;
+import de.gammadata.tom.four_d_access.util.mapper.AuftraegeMapper;
 import de.gammadata.tom.four_d_access.util.mapper.BelegMapper;
 import de.gammadata.tom.four_d_access.xml.Xmp;
 import de.gammadata.tom.four_d_access.xml.XmpSelection;
@@ -38,15 +39,22 @@ public class AuftragDAO extends AbstractBelegDAO<Auftraege> implements
 
   @Override
   protected int[] getCompactFieldList() {
-    int[] li = {Auftraege.lfd_Nr_Fn, Auftraege.eingangsdatum_Fn,
-      Auftraege.betrag_Brutto_Fn, Auftraege.betrag_MwSt_Fn,
+    int[] li = {
+      Auftraege.dMandant_Fn,
+      Auftraege.lfd_Nr_Fn,
+      Auftraege.uuid_Fn,
+      Auftraege.eingangsdatum_Fn,
+      Auftraege.betrag_Brutto_Fn,
+      Auftraege.betrag_MwSt_Fn,
       Auftraege.betrag_Netto_Fn,
       Auftraege.m_009_011_Adressen_Firmenname_Fn,
       Auftraege.m_009_014_Adressen_Nachname_Fn,
       Auftraege._009_001_Adressen_DID_AB_Fn,
-      Auftraege.abgeschlossen_Fn, Auftraege.storno_Fn,
+      Auftraege.abgeschlossen_Fn,
+      Auftraege.storno_Fn,
       Auftraege.ang_AuftragTyp_Fn,
-      Auftraege.m_005_011__022_WährZeichen_Fn, Auftraege.betreff_Fn,
+      Auftraege.m_005_011__022_WährZeichen_Fn,
+      Auftraege.betreff_Fn,
       Auftraege._022_001_Vorgang_DID_Fn,
       Auftraege.m_022_031_VorgangNr_Fn};
 
@@ -185,6 +193,15 @@ public class AuftragDAO extends AbstractBelegDAO<Auftraege> implements
   }
 
   @Override
+  protected void buildNumberQuery(Integer id, DataBaseHandler dbHandler, Xmp searchObj) {
+
+    getDbHandler().openQuery();
+    dbHandler.addQueryPart(new QueryPart(new QueryOperant(searchObj,
+            Auftraege.lfd_Nr_Fn), QueryPart.equal,
+            new QueryOperant(id)));
+  }
+
+  @Override
   protected void buildCustomerQuery(Integer id, DataBaseHandler dbHandler, Xmp searchObj) {
     getDbHandler().openQuery();
     dbHandler.addQueryPart(new QueryPart(new QueryOperant(searchObj,
@@ -212,7 +229,22 @@ public class AuftragDAO extends AbstractBelegDAO<Auftraege> implements
   }
 
   @Override
-  public List<BelegDTO> loadPositionenByProjektId(Integer pId,Status status) throws TomDbException {
+  public BelegDTO storeBelegToTom(BelegDTO beleg) throws TomDbException {
+
+    Auftraege auftrag = AuftraegeMapper.map(beleg);
+    Auftraege savedAuftrag = storeXmpBean(auftrag);
+    beleg.setId(savedAuftrag.getDID());
+    return beleg;
+  }
+
+  @Override
+  public List<BelegDTO> loadPositionenByProjektId(Integer pId, Status status) throws TomDbException {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public void deleteBelegInTom(BelegDTO beleg) throws TomDbException {
+    Auftraege auftrag = AuftraegeMapper.map(beleg);
+    int res = deleteObjectFromDB(auftrag);
   }
 }

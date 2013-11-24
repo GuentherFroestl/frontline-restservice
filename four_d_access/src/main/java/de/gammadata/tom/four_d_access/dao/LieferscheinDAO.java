@@ -165,6 +165,15 @@ public class LieferscheinDAO extends AbstractBelegDAO<Lieferscheine> implements
   }
 
   @Override
+  protected void buildNumberQuery(Integer id, DataBaseHandler dbHandler, Xmp searchObj) {
+
+    getDbHandler().openQuery();
+    dbHandler.addQueryPart(new QueryPart(new QueryOperant(searchObj,
+            Lieferscheine.lfdNr_Fn), QueryPart.equal,
+            new QueryOperant(id)));
+  }
+
+  @Override
   protected void buildCustomerQuery(Integer id, DataBaseHandler dbHandler, Xmp searchObj) {
     getDbHandler().openQuery();
     dbHandler.addQueryPart(new QueryPart(new QueryOperant(searchObj,
@@ -192,7 +201,18 @@ public class LieferscheinDAO extends AbstractBelegDAO<Lieferscheine> implements
   }
 
   @Override
-  public List<BelegDTO> loadPositionenByProjektId(Integer pId,Status status) throws TomDbException {
+  public List<BelegDTO> loadPositionenByProjektId(Integer pId, Status status) throws TomDbException {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
+
+  @Override
+  public BelegDTO storeBelegToTom(BelegDTO beleg) throws TomDbException {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public void deleteBelegInTom(BelegDTO beleg) throws TomDbException {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+  
 }
