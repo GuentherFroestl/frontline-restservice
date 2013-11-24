@@ -1,6 +1,5 @@
 package at.cyberlab.taopix_services.config;
 
-import at.cyberlab.taopix_services.config.FtpServerConfig;
 import java.math.BigDecimal;
 
 import de.gammadata.basics.modelle.LandDO;

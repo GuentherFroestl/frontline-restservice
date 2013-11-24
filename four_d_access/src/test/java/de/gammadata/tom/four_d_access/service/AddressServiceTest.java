@@ -87,10 +87,11 @@ public class AddressServiceTest {
   }
 
   /**
+   * creates a test object with test properties set.
    *
    * @return AddressDTO
    */
-  private static AddressDTO createTestAdr() {
+  public static AddressDTO createTestAdr() {
     AddressDTO testAdr = new AddressDTO();
     testAdr.setMandant(new Integer(2));
     testAdr.setName("Tester_1");
@@ -102,13 +103,8 @@ public class AddressServiceTest {
     testAdr.setStrasse("Testring 24");
     testAdr.setTelefon("0123456789");
     testAdr.setUuid(TEST_UUID);
-    LandDTO land = new LandDTO();
-    land.setLandName("Austria");
-    land.setiSO3166Code_2("AT");
-    land.setiSO3166Code_3("AUT");
-    land.setMandant(new Integer(2));
-    testAdr.setLand(land);
-    
+    testAdr.setLand(LandServiceTest.createLand());
+
 
     return testAdr;
   }
@@ -125,12 +121,14 @@ public class AddressServiceTest {
     //Create
     AddressDTO result = instance.createAddress(adr);
     compareAddresses(result, expResult);
+    LandServiceTest.compareLand(result.getLand(), expResult.getLand());
 
     //Update
     result.setName("Updated name");
     result.setVorname("Updated vorname");
     AddressDTO updateResult = instance.updateAddress(result);
     compareAddresses(updateResult, result);
+    LandServiceTest.compareLand(updateResult.getLand(), result.getLand());
 
     //Delete
     String uuid = result.getUuid();
@@ -141,6 +139,7 @@ public class AddressServiceTest {
         fail("Addresse nicht gelöscht " + checkAdr);
       }
     } catch (TomException tomException) {
+      //EMPTY
       //Adresse nicht gefunden ist ok
     }
   }
@@ -199,18 +198,18 @@ public class AddressServiceTest {
     AddressDTO expResult = createTestAdrInDB();
     AddressDTO resBySync = instance.syncAddress(expResult);
     compareAddresses(resBySync, expResult);
-    assertEquals("ID stimmt nicht "+resBySync.getId(), expResult.getId(),resBySync.getId());
+    assertEquals("ID stimmt nicht " + resBySync.getId(), expResult.getId(), resBySync.getId());
 
   }
 
   /**
-   * Convienence methode.
+   * Convienence methode for comparing AddressDTO with asserts.
    *
    * @param result AddressDTO
    * @param expResult AddressDTO
    * @throws Exception if fail
    */
-  private void compareAddresses(AddressDTO result, AddressDTO expResult) throws Exception {
+  public static void compareAddresses(AddressDTO result, AddressDTO expResult) throws Exception {
     assertEquals("UUID stimmt nicht " + result.getUuid(), expResult.getUuid(), result.getUuid());
     assertEquals("Name stimmt nicht " + result.getName(), expResult.getName(), result.getName());
     assertEquals("Vorname stimmt nicht " + result.getVorname(), expResult.getVorname(), result.getVorname());

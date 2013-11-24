@@ -4,6 +4,7 @@
  */
 package at.cyberlab.taopix_services.imports.mapper;
 
+import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
 import com.tom.service.dto.AddressDTO;
 import com.tom.service.dto.LandDTO;
 import java.util.HashMap;
@@ -24,9 +25,10 @@ public class TaopixAddressMapper {
    * @param defaultLand LandDTO
    * @return AddressDTO
    */
-  public static AddressDTO map(HashMap<String, String> propertyListe, String userId) {
+  public static AddressDTO map(HashMap<String, String> propertyListe, String userId,TaopixTomImportConfig tomImportConfig) {
 
     AddressDTO adr = new AddressDTO();
+    adr.setMandant(tomImportConfig.getMandatorId());
 
     adr.setUuid(TAOPIX_UUID_STUB + userId);
     //Namen
@@ -47,6 +49,7 @@ public class TaopixAddressMapper {
 
     //Land
     LandDTO land = new LandDTO();
+    land.setMandant(tomImportConfig.getMandatorId());
     land.setiSO3166Code_2(propertyListe.get("customercountrycode"));
     land.setLandName(propertyListe.get("customercountryname"));
     adr.setLand(land);

@@ -112,25 +112,7 @@ public class AddressService extends Abstract4DService implements AddressFacade {
       throw new TomException(
               "Fehler AddressDTO.id !=null, kein neues Objekt");
     }
-    // TODO Validierung des AdressDTO ??
-
-    if (adr.getUuid() == null || adr.getUuid().length() == 0) {
-      adr.setUuid(createUuid());
-    }
-
-    //Land sync
-    LandDTO land = syncLand(adr.getLand());
-    adr.setLand(land);
-
-    Adressen tAdr = AddressMapper.map(adr);
-    Adressen radr;
-    try {
-      radr = adressenDao.storeXmpBean(tAdr);
-    } catch (TomDbException e) {
-      logger.error(e.getMessage(), e);
-      throw new TomException(e);
-    }
-    return AddressMapper.map(radr);
+    return storeAddress(adr);
   }
 
   /*
@@ -149,21 +131,38 @@ public class AddressService extends Abstract4DService implements AddressFacade {
             && (adr.getUuid() == null || adr.getUuid().length() == 0)) {
       throw new TomException("Fehler id oder uuid fehlt");
     }
-    // TODO Validierung des AdressDTO ??
+    return storeAddress(adr);
+  }
 
+  /**
+   * internal storing of a address.
+   *
+   * @param adr AddressDTO
+   * @return AddressDTO
+   * @throws TomException
+   */
+  private AddressDTO storeAddress(AddressDTO adr) throws TomException {
+    if (adr == null) {
+      throw new TomException("Fehler AddressDTO ==null");
+    }
     if (adr.getUuid() == null || adr.getUuid().length() == 0) {
       adr.setUuid(createUuid());
     }
+    //Land sync
+    LandDTO land = syncLand(adr.getLand());
+    adr.setLand(land);
+
     Adressen tAdr = AddressMapper.map(adr);
     Adressen radr;
     try {
       radr = adressenDao.storeXmpBean(tAdr);
-      return AddressMapper.map(radr);
     } catch (TomDbException e) {
       logger.error(e.getMessage(), e);
       throw new TomException(e);
     }
-
+    AddressDTO res = AddressMapper.map(radr);
+    res.setLand(land);
+    return res;
   }
 
   /**
@@ -219,13 +218,21 @@ public class AddressService extends Abstract4DService implements AddressFacade {
       if ((existingAdr.getUuid() != null && existingAdr.getUuid().length() > 0)) {
         adr.setUuid(existingAdr.getUuid()); // take UUID of the existing adr
       }
-      updateSimpleAdressObjects(existingAdr, adr);
+      updateSimpleAddressObjects(existingAdr, adr);
+      updateLandWithinAddressObject(existingAdr, adr);
       syncResult = updateAddress(existingAdr);
     }
 
     return syncResult;
   }
 
+  /**
+   * Makes sure, that the given land exists in the database. A new entry will created, if not existing so far.
+   *
+   * @param land LandDTO
+   * @return LandDTO with ID's
+   * @throws TomException
+   */
   public LandDTO syncLand(LandDTO land) throws TomException {
 
     if (land == null) {
@@ -235,7 +242,8 @@ public class AddressService extends Abstract4DService implements AddressFacade {
     if (land.getId() != null && land.getId() > 0) {
       Laender ld = laenderDao.loadXmpBean(land.getId());
       if (ld != null) {
-        return land;
+        LandDTO res = landMapper.map(ld);
+        return res;
       }
     }
     XmpSelection laender = null;
@@ -274,7 +282,31 @@ public class AddressService extends Abstract4DService implements AddressFacade {
 
   }
 
-  private AddressDTO updateSimpleAdressObjects(AddressDTO existing, AddressDTO adr) {
+  /**
+   * COmpares the two properties and sets the new on, if there are differences.
+   *
+   * @param existing AddressDTO
+   * @param adr AddressDTO
+   */
+  private void updateLandWithinAddressObject(AddressDTO existing, AddressDTO adr) {
+
+    if (existing.getLand() == null) {
+      existing.setLand(adr.getLand());
+    } else {
+      if (!existing.getLand().equals(adr.getLand())) {
+        existing.setLand(adr.getLand());
+      }
+    }
+  }
+
+  /**
+   * Update of the native member properties.
+   *
+   * @param existing AddressDTO update to
+   * @param adr AddressDTO update from
+   * @return AddressDTO result
+   */
+  private AddressDTO updateSimpleAddressObjects(AddressDTO existing, AddressDTO adr) {
 
     if (existing.getUuid() == null || existing.getUuid().length() == 0) {
       existing.setUuid(adr.getUuid());

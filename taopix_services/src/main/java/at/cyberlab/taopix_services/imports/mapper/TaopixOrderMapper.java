@@ -1,5 +1,6 @@
 package at.cyberlab.taopix_services.imports.mapper;
 
+import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
 import at.cyberlab.taopix_services.inputobjects.TaopixOrder;
 import com.tom.service.dto.BelegDTO;
 import com.tom.service.dto.BelegPositionDTO;
@@ -36,11 +37,13 @@ public class TaopixOrderMapper {
    * @param itemProperties HashMap of String, String
    * @return BelegPositionDTO
    */
-  public static BelegPositionDTO mapPosition(HashMap<String, String> itemProperties) {
+  public static BelegPositionDTO mapPosition(HashMap<String, String> itemProperties, TaopixTomImportConfig tomImportConfig) {
 
     BelegPositionDTO pos = new BelegPositionDTO();
+    pos.setMandant(tomImportConfig.getMandatorId());
 
     ProduktKopfDTO produkt = new ProduktKopfDTO();
+    produkt.setMandant(tomImportConfig.getMandatorId());
     pos.setProdukt(produkt);
     produkt.setProduktCode(itemProperties.get("productcode"));
     pos.setBezeichnung(itemProperties.get("productname"));
@@ -81,11 +84,13 @@ public class TaopixOrderMapper {
    * @param shippingProperties HashMap of String, String
    * @return BelegPositionDTO or null, if there is no shipping
    */
-  public static BelegPositionDTO mapShippingPosition(HashMap<String, String> shipingProperties) {
+  public static BelegPositionDTO mapShippingPosition(HashMap<String, String> shipingProperties, TaopixTomImportConfig tomImportConfig) {
 
     BelegPositionDTO pos = new BelegPositionDTO();
+    pos.setMandant(tomImportConfig.getMandatorId());
 
     ProduktKopfDTO produkt = new ProduktKopfDTO();
+    produkt.setMandant(tomImportConfig.getMandatorId());
     pos.setProdukt(produkt);
     produkt.setProduktCode(shipingProperties.get("shippingmethodcode"));
     pos.setBezeichnung(shipingProperties.get("shippingmethodcode"));
@@ -111,7 +116,7 @@ public class TaopixOrderMapper {
    * @param itemProperties HashMap of String, String , needed for taxation
    * @return BelegPositionDTO or null
    */
-  public static BelegPositionDTO mapDiscountPosition(HashMap<String, String> orderProperties, HashMap<String, String> itemProperties) {
+  public static BelegPositionDTO mapDiscountPosition(HashMap<String, String> orderProperties, HashMap<String, String> itemProperties, TaopixTomImportConfig tomImportConfig) {
     BigDecimal discount = null;
     if (orderProperties.get("totaldiscount") != null) {
       discount = new BigDecimal(orderProperties.get("totaldiscount"));
@@ -120,8 +125,10 @@ public class TaopixOrderMapper {
       return null; // No discount
     }
     BelegPositionDTO pos = new BelegPositionDTO();
+    pos.setMandant(tomImportConfig.getMandatorId());
 
     ProduktKopfDTO produkt = new ProduktKopfDTO();
+    produkt.setMandant(tomImportConfig.getMandatorId());
     pos.setProdukt(produkt);
     produkt.setProduktCode("Aktionsrabatt");
     pos.setBezeichnung(orderProperties.get("vouchercode"));
@@ -153,10 +160,10 @@ public class TaopixOrderMapper {
    * @param orderProperties HashMap of String, String
    * @return WrgDTO
    */
-  public static WrgDTO mapWrg(HashMap<String, String> orderProperties) {
+  public static WrgDTO mapWrg(HashMap<String, String> orderProperties, TaopixTomImportConfig tomImportConfig) {
 
     WrgDTO res = new WrgDTO(orderProperties.get("currencycode"), orderProperties.get("currencysymbol"), new BigDecimal(orderProperties.get("currencyexchangerate")));
-
+    res.setMandant(tomImportConfig.getMandatorId());
     return res;
 
   }
@@ -166,11 +173,12 @@ public class TaopixOrderMapper {
    *
    * @param order
    */
-  public static void mapOrderProperties(TaopixOrder order, HashMap<String, String> orderProperties) {
-    order.setNummer(Integer.parseInt(orderProperties.get("orderid")));
+  public static void mapOrderProperties(TaopixOrder order, HashMap<String, String> orderProperties, TaopixTomImportConfig tomImportConfig) {
+    order.setNummer(tomImportConfig.getOrderNumberOffset() + Integer.parseInt(orderProperties.get("orderid")));
     order.setUuid("TAOPIX_" + orderProperties.get("orderid"));
+    order.setMandant(tomImportConfig.getMandatorId());
 
-    order.setWrg(mapWrg(orderProperties));
+    order.setWrg(mapWrg(orderProperties, tomImportConfig));
     try {
       order.setDatum(dateFormat.parse(orderProperties.get("datelastmodified")));
     } catch (ParseException ex) {

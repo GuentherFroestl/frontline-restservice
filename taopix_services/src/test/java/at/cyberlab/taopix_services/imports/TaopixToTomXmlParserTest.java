@@ -4,6 +4,7 @@
  */
 package at.cyberlab.taopix_services.imports;
 
+import at.cyberlab.taopix_services.config.TaopixTomImportConfigImpl;
 import at.cyberlab.taopix_services.imports.mapper.TaopixAddressMapper;
 import com.tom.service.dto.AddressDTO;
 import com.tom.service.dto.BelegPositionDTO;
@@ -52,7 +53,7 @@ public class TaopixToTomXmlParserTest {
     InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005272.xml");
 
 
-    TaopixToTomXmlParser instance = new TaopixToTomXmlParser();
+    TaopixToTomXmlParser instance = new TaopixToTomXmlParser(new TaopixTomImportConfigImpl());
     instance.parse(xmlStream);
     xmlStream.close();
 
@@ -88,10 +89,15 @@ public class TaopixToTomXmlParserTest {
     Assert.assertTrue("Order and shipping addresse don't match", address.equals(shipaddress));
 
     BelegPositionDTO pos = instance.getPosition();
-    System.out.println("BelegPosition=" + pos);
+    System.out.println("Product=" + pos);
+    
+    BelegPositionDTO transport = instance.getTransport();
+    System.out.println("transport=" + transport);
+    
+    BelegPositionDTO discount = instance.getDiscount();
+    System.out.println("Discount=" + discount);
 
-    Assert.assertNotNull("TaopixOrder == null", instance.getOrder());
-    System.out.println("TaopixOrder=" + instance.getOrder());
+
 
 
 
@@ -106,7 +112,7 @@ public class TaopixToTomXmlParserTest {
   public void testTaopixShippingAddressParse() throws Exception {
 
     InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005273.xml");
-    TaopixToTomXmlParser instance = new TaopixToTomXmlParser();
+    TaopixToTomXmlParser instance = new TaopixToTomXmlParser(new TaopixTomImportConfigImpl());
     instance.parse(xmlStream);
     xmlStream.close();
 
@@ -124,7 +130,7 @@ public class TaopixToTomXmlParserTest {
 
     //Test shipping
     InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005343.xml");
-    TaopixToTomXmlParser instance = new TaopixToTomXmlParser();
+    TaopixToTomXmlParser instance = new TaopixToTomXmlParser(new TaopixTomImportConfigImpl());
     instance.parse(xmlStream);
     xmlStream.close();
 
@@ -154,7 +160,7 @@ public class TaopixToTomXmlParserTest {
 
     //Test shipping
     InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005343.xml");
-    TaopixToTomXmlParser instance = new TaopixToTomXmlParser();
+    TaopixToTomXmlParser instance = new TaopixToTomXmlParser(new TaopixTomImportConfigImpl());
     instance.parse(xmlStream);
     xmlStream.close();
 
@@ -182,7 +188,7 @@ public class TaopixToTomXmlParserTest {
 
     //Test total
     InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005273.xml");
-    TaopixToTomXmlParser instance = new TaopixToTomXmlParser();
+    TaopixToTomXmlParser instance = new TaopixToTomXmlParser(new TaopixTomImportConfigImpl());
     instance.parse(xmlStream);
     xmlStream.close();
 
@@ -209,7 +215,7 @@ public class TaopixToTomXmlParserTest {
 
     //Test total
     InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005343.xml");
-    TaopixToTomXmlParser instance = new TaopixToTomXmlParser();
+    TaopixToTomXmlParser instance = new TaopixToTomXmlParser(new TaopixTomImportConfigImpl());
     instance.parse(xmlStream);
     xmlStream.close();
 

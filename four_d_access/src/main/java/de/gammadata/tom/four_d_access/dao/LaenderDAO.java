@@ -221,7 +221,7 @@ public class LaenderDAO extends AbstractDAO<Laender> {
     if (land == null) {
       throw new TomDbException("Versuch ein Null-Objekt zu speichern");
     }
-    land.setFieldList(getCompactFieldSpecs());
+    land.setAllFields();
     return super.storeXmpBean(land);
 
   }

@@ -4,6 +4,7 @@
  */
 package at.cyberlab.taopix_services.imports;
 
+import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
 import at.cyberlab.taopix_services.imports.mapper.TaopixAddressMapper;
 import at.cyberlab.taopix_services.imports.mapper.TaopixOrderMapper;
 import at.cyberlab.taopix_services.inputobjects.TaopixOrder;
@@ -52,17 +53,20 @@ public class TaopixToTomXmlParser {
   private AddressDTO orderAddress;
   private AddressDTO shippingAddress;
   private TaopixOrder order;
-  private BelegPositionDTO position;
-  private BelegPositionDTO transport;
-  private BelegPositionDTO discount;
+  private BelegPositionDTO productPostion;
+  private BelegPositionDTO transportPosition;
+  private BelegPositionDTO discountPosition;
   private WrgDTO wrg;
+  private TaopixTomImportConfig tomImportConfig;
 
   /**
    * Constructor with injection.
    *
    * @param tomObjectMapper ITaopixToTomObjectMapper
    */
-  public TaopixToTomXmlParser() {
+  public TaopixToTomXmlParser(TaopixTomImportConfig tomImportConfig) {
+
+    this.tomImportConfig = tomImportConfig;
     factory = SAXParserFactory.newInstance();
     try {
       saxParser = factory.newSAXParser();
@@ -72,8 +76,6 @@ public class TaopixToTomXmlParser {
       throw new RuntimeException("Fehler beim Erzeugen des SaxParsers", ex);
     }
   }
-
-
 
   /**
    * clearing of all properties
@@ -152,7 +154,7 @@ public class TaopixToTomXmlParser {
     public void endDocument() {
       int posNumber = 0;
       order = new TaopixOrder();
-      TaopixOrderMapper.mapOrderProperties(order, orderProperties);
+      TaopixOrderMapper.mapOrderProperties(order, orderProperties, tomImportConfig);
       //Addresses
       order.setFullOrderAddress(orderAddress);
       order.setFullShippingAddress(shippingAddress);
@@ -160,18 +162,23 @@ public class TaopixToTomXmlParser {
       //Posliste
       List<BelegPositionDTO> posListe = new ArrayList<BelegPositionDTO>();
       order.setPositionsListe(posListe);
-      posListe.add(position);
+      productPostion.setPosNummer(posNumber + 1);
+      posListe.add(productPostion);
       orderPosNumber = posNumber;
+      productPostion.setPosNummer(posNumber + 1);
       posNumber++;
       //Transport
-      if (transport != null) {
-        posListe.add(transport);
+      if (transportPosition != null) {
+        posListe.add(transportPosition);
         shippingPosNumber = posNumber;
+        transportPosition.setPosNummer(posNumber + 1);
         posNumber++;
+
       }
-      if (discount != null) {
-        posListe.add(discount);
+      if (discountPosition != null) {
+        posListe.add(discountPosition);
         discountPosNumber = posNumber;
+        discountPosition.setPosNummer(posNumber + 1);
         posNumber++;
       }
       //TODO set Gesamtpreis
@@ -270,21 +277,21 @@ public class TaopixToTomXmlParser {
        */ else if (qName.equalsIgnoreCase("header")) {
 
         if (currentUserId != null) {
-          orderAddress = TaopixAddressMapper.map(userProperties,currentUserId);
+          orderAddress = TaopixAddressMapper.map(userProperties, currentUserId, tomImportConfig);
         }
 
       } else if (qName.equalsIgnoreCase("shipping")) {
 
         if (currentUserId != null) {
-          shippingAddress = TaopixAddressMapper.map(userProperties,currentUserId);
-          transport = TaopixOrderMapper.mapShippingPosition(shippingProperties);
+          shippingAddress = TaopixAddressMapper.map(userProperties, currentUserId, tomImportConfig);
+          transportPosition = TaopixOrderMapper.mapShippingPosition(shippingProperties, tomImportConfig);
 
         }
 
       } else if (qName.equalsIgnoreCase("order")) {
 
-        position = TaopixOrderMapper.mapPosition(itemProperties);
-        discount = TaopixOrderMapper.mapDiscountPosition(orderProperties, itemProperties);
+        productPostion = TaopixOrderMapper.mapPosition(itemProperties, tomImportConfig);
+        discountPosition = TaopixOrderMapper.mapDiscountPosition(orderProperties, itemProperties, tomImportConfig);
       }
     }
 
@@ -295,7 +302,8 @@ public class TaopixToTomXmlParser {
 
     }
   }
-    public AddressDTO getOrderAddress() {
+
+  public AddressDTO getOrderAddress() {
     return orderAddress;
   }
 
@@ -312,15 +320,15 @@ public class TaopixToTomXmlParser {
   }
 
   public BelegPositionDTO getPosition() {
-    return position;
+    return productPostion;
   }
 
   public BelegPositionDTO getTransport() {
-    return transport;
+    return transportPosition;
   }
 
   public BelegPositionDTO getDiscount() {
-    return discount;
+    return discountPosition;
   }
 
   public int getOrderPosNumber() {
