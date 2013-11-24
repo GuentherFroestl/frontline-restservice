@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export>
+	<order>
+		<header>
+			<id>5476</id>
+			<datecreated>2013-11-24 17:06:02</datecreated>
+			<datelastmodified>2013-11-24 17:15:16</datelastmodified>
+			<ownercode>CYLBDGTLE</ownercode>
+			<groupcode>DEMO</groupcode>
+			<shoppingcarttype>0</shoppingcarttype>
+			<userid>2600</userid>
+			<orderdate>2013-11-24 17:06:02</orderdate>
+			<ordernumber>0005476</ordernumber>
+			<origorderid>0</origorderid>
+			<origordernumber/>
+			<temporderid>0</temporderid>
+			<webbrandcode/>
+			<languagecode>de_at</languagecode>
+			<billingcustomeraccountcode/>
+			<billingcustomername/>
+			<billingcustomeraddress1>KGA Simm.Haide 607</billingcustomeraddress1>
+			<billingcustomeraddress2/>
+			<billingcustomeraddress3/>
+			<billingcustomeraddress4/>
+			<billingcustomercity>Wien</billingcustomercity>
+			<billingcustomercounty/>
+			<billingcustomerstate>Österreich</billingcustomerstate>
+			<billingcustomerregioncode/>
+			<billingcustomerregion>STATE</billingcustomerregion>
+			<billingcustomerpostcode>1110</billingcustomerpostcode>
+			<billingcustomercountrycode>AT</billingcustomercountrycode>
+			<billingcustomercountryname>Austria</billingcustomercountryname>
+			<billingcustomertelephonenumber>0699/10101462</billingcustomertelephonenumber>
+			<billingcustomeremailaddress>ch.urban@aon.at</billingcustomeremailaddress>
+			<billingcontactfirstname>Christian</billingcontactfirstname>
+			<billingcontactlastname>Urban</billingcontactlastname>
+			<useremaildestination>0</useremaildestination>
+			<currencycode>EUR</currencycode>
+			<currencyname>Euro</currencyname>
+			<currencyisonumber>978</currencyisonumber>
+			<currencysymbol>€</currencysymbol>
+			<currencysymbolatfront>1</currencysymbolatfront>
+			<currencydecimalplaces>2</currencydecimalplaces>
+			<currencyexchangerate>1.0000</currencyexchangerate>
+			<basecurrencycode>EUR</basecurrencycode>
+			<voucherpromotioncode/>
+			<voucherpromotionname/>
+			<vouchercode/>
+			<vouchername/>
+			<voucherdiscountsection/>
+			<voucherdiscounttype/>
+			<voucherdiscountvalue>0.00</voucherdiscountvalue>
+			<itemtotalcost>0.00</itemtotalcost>
+			<itemtotalsell>156.60</itemtotalsell>
+			<itemtotaltax>26.10</itemtotaltax>
+			<shippingtotalcost>1.00</shippingtotalcost>
+			<shippingtotalsell>3.25</shippingtotalsell>
+			<shippingtotaltax>0.65</shippingtotaltax>
+			<shippingtotalweight>0.0000</shippingtotalweight>
+			<totalcost>0.00</totalcost>
+			<totalsellbeforediscount>133.75</totalsellbeforediscount>
+			<totaltaxbeforediscount>26.75</totaltaxbeforediscount>
+			<totalbeforediscount>133.75</totalbeforediscount>
+			<totaldiscount>0.00</totaldiscount>
+			<totalsell>156.60</totalsell>
+			<totaltax>26.10</totaltax>
+			<total>160.50</total>
+			<paymentmethodcode>PAYPAL</paymentmethodcode>
+			<paymentmethodname>PayPal (inc. Credit Card Payments)</paymentmethodname>
+			<paymentgatewaycode/>
+			<pricesincludetax>1</pricesincludetax>
+			<requiresdelivery>1</requiresdelivery>
+			<ccilogid>931</ccilogid>
+			<metadatacodelist/>
+			<paymentreceived>1</paymentreceived>
+			<paymentreceivedtimestamp>2013-11-24 17:05:47</paymentreceivedtimestamp>
+			<paymentreceiveddate>2013-11-24 17:06:02</paymentreceiveddate>
+			<paymentreceiveduserid>-1</paymentreceiveduserid>
+			<canreorder>1</canreorder>
+			<archived>0</archived>
+			<archivedate>0000-00-00 00:00:00</archivedate>
+			<status>40</status>
+			<statustimestamp>2013-11-24 17:15:16</statustimestamp>
+			<statususerid>0</statususerid>
+			<statusdescription/>
+			<orderid>5476</orderid>
+			<uploadref>DEMO241120131648000832</uploadref>
+			<origorderitemid>0</origorderitemid>
+			<origuploadref/>
+			<projectname>Namibia 2014</projectname>
+			<productcode>KF_A3Q_W</productcode>
+			<productname>de Kalender Fotopapier A3 quer weiß</productname>
+			<producttype>0</producttype>
+			<productpageformat>0</productpageformat>
+			<productspreadpageformat>0</productspreadpageformat>
+			<productcover1format>0</productcover1format>
+			<productcover2format>0</productcover2format>
+			<productoutputformat>0</productoutputformat>
+			<productheight>12.165354</productheight>
+			<productwidth>16.692913</productwidth>
+			<productdefaultcovercode/>
+			<productdefaultpapercode>FBDEL_FPG</productdefaultpapercode>
+			<productdefaultpagecount>0</productdefaultpagecount>
+			<covercount>0</covercount>
+			<covercode/>
+			<covername/>
+			<papercount>2</papercount>
+			<papercode>FBDEL_FPG</papercode>
+			<papername>de Fotopapier glanz</papername>
+			<pagecountpurchased>13</pagecountpurchased>
+			<pagecount>13</pagecount>
+			<productunitcost>0.00</productunitcost>
+			<productunitsell>26.10</productunitsell>
+			<coverunitcost>0.00</coverunitcost>
+			<coverunitsell>0.00</coverunitsell>
+			<paperunitcost>0.00</paperunitcost>
+			<paperunitsell>0.00</paperunitsell>
+			<taxcode>AUTVAT</taxcode>
+			<taxname>en Austrian VAT&lt;p&gt;de USt.</taxname>
+			<taxrate>20.0000</taxrate>
+			<productunitweight>0.0000</productunitweight>
+			<producttotalweight>0.0000</producttotalweight>
+			<coverunitweight>0.0000</coverunitweight>
+			<covertotalweight>0.0000</covertotalweight>
+			<paperunitweight>0.0000</paperunitweight>
+			<papertotalweight>0.0000</papertotalweight>
+			<qty>5</qty>
+			<producttotalcost>0.00</producttotalcost>
+			<producttotalsell>156.60</producttotalsell>
+			<producttotaltax>26.10</producttotaltax>
+			<covertotalcost>0.00</covertotalcost>
+			<covertotalsell>0.00</covertotalsell>
+			<covertotaltax>0.00</covertotaltax>
+			<papertotalcost>0.00</papertotalcost>
+			<papertotalsell>0.00</papertotalsell>
+			<papertotaltax>0.00</papertotaltax>
+			<subtotal>156.60</subtotal>
+			<discountvalue>0.00</discountvalue>
+			<totalshippingweight>0.0000</totalshippingweight>
+			<uploaddatatype>0</uploaddatatype>
+			<uploadmethod>0</uploadmethod>
+			<uploadappversion>2.5.8</uploadappversion>
+			<uploadappplatform>Win32</uploadappplatform>
+			<uploadappcputype>Intel</uploadappcputype>
+			<uploadapposversion>Windows 7 Service Pack 1 (Build 7601)</uploadapposversion>
+			<filesreceivedtimestamp>2013-11-24 17:13:14</filesreceivedtimestamp>
+			<filesreceiveduserid>0</filesreceiveduserid>
+			<decrypttimestamp>2013-11-24 17:15:12</decrypttimestamp>
+			<decryptuserid>3</decryptuserid>
+			<converttimestamp>2013-11-24 17:15:16</converttimestamp>
+			<convertuserid>3</convertuserid>
+			<convertoutputformatcode/>
+			<jobticketoutputfilename/>
+			<pagesoutputfilename/>
+			<cover1outputfilename/>
+			<cover2outputfilename/>
+			<outputtimestamp>0000-00-00 00:00:00</outputtimestamp>
+			<outputuserid>0</outputuserid>
+			<jobticketoutputdevicecode/>
+			<pagesoutputdevicecode/>
+			<cover1outputdevicecode/>
+			<cover2outputdevicecode/>
+			<finishtimestamp>0000-00-00 00:00:00</finishtimestamp>
+			<finishdate>0000-00-00 00:00:00</finishdate>
+			<finishuserid>0</finishuserid>
+			<shippedtimestamp>0000-00-00 00:00:00</shippedtimestamp>
+			<shippeddate>0000-00-00 00:00:00</shippeddate>
+			<shippeduserid>0</shippeduserid>
+			<shippingtrackingreference/>
+			<invoicedtimestamp>0000-00-00 00:00:00</invoicedtimestamp>
+			<invoiceddate>0000-00-00 00:00:00</invoiceddate>
+			<invoiceduserid>0</invoiceduserid>
+			<onhold>0</onhold>
+			<onholdtimestamp>0000-00-00 00:00:00</onholdtimestamp>
+			<onholduserid>0</onholduserid>
+			<onholdreason/>
+			<previewsonline>1</previewsonline>
+			<canupload>0</canupload>
+			<canuploadpagecountoverride>0</canuploadpagecountoverride>
+		</header>
+		<item>
+			<id>5476</id>
+			<datecreated>2013-11-24 17:06:02</datecreated>
+			<datelastmodified>2013-11-24 17:15:16</datelastmodified>
+			<orderid>5476</orderid>
+			<userid>2600</userid>
+			<uploadref>DEMO241120131648000832</uploadref>
+			<origorderid>0</origorderid>
+			<origorderitemid>0</origorderitemid>
+			<origuploadref/>
+			<projectname>Namibia 2014</projectname>
+			<productcode>KF_A3Q_W</productcode>
+			<productname>Kalender Fotopapier A3 quer weiß</productname>
+			<producttype>0</producttype>
+			<productpageformat>0</productpageformat>
+			<productspreadpageformat>0</productspreadpageformat>
+			<productcover1format>0</productcover1format>
+			<productcover2format>0</productcover2format>
+			<productoutputformat>0</productoutputformat>
+			<productheight>12.165354</productheight>
+			<productwidth>16.692913</productwidth>
+			<productdefaultcovercode/>
+			<productdefaultpapercode>FBDEL_FPG</productdefaultpapercode>
+			<productdefaultpagecount>0</productdefaultpagecount>
+			<covercount>0</covercount>
+			<covercode/>
+			<covername/>
+			<papercount>2</papercount>
+			<papercode>FBDEL_FPG</papercode>
+			<papername>Fotopapier glanz</papername>
+			<pagecountpurchased>13</pagecountpurchased>
+			<pagecount>13</pagecount>
+			<productunitcost>0.00</productunitcost>
+			<productunitsell>26.10</productunitsell>
+			<coverunitcost>0.00</coverunitcost>
+			<coverunitsell>0.00</coverunitsell>
+			<paperunitcost>0.00</paperunitcost>
+			<paperunitsell>0.00</paperunitsell>
+			<taxcode>AUTVAT</taxcode>
+			<taxname>Austrian VAT</taxname>
+			<taxrate>20.0000</taxrate>
+			<productunitweight>0.0000</productunitweight>
+			<producttotalweight>0.0000</producttotalweight>
+			<coverunitweight>0.0000</coverunitweight>
+			<covertotalweight>0.0000</covertotalweight>
+			<paperunitweight>0.0000</paperunitweight>
+			<papertotalweight>0.0000</papertotalweight>
+			<qty>5</qty>
+			<producttotalcost>0.00</producttotalcost>
+			<producttotalsell>156.60</producttotalsell>
+			<producttotaltax>26.10</producttotaltax>
+			<covertotalcost>0.00</covertotalcost>
+			<covertotalsell>0.00</covertotalsell>
+			<covertotaltax>0.00</covertotaltax>
+			<papertotalcost>0.00</papertotalcost>
+			<papertotalsell>0.00</papertotalsell>
+			<papertotaltax>0.00</papertotaltax>
+			<subtotal>156.60</subtotal>
+			<discountvalue>0.00</discountvalue>
+			<totalcost>0.00</totalcost>
+			<totalsell>156.60</totalsell>
+			<totaltax>26.10</totaltax>
+			<totalshippingweight>0.0000</totalshippingweight>
+			<uploaddatatype>0</uploaddatatype>
+			<uploadmethod>0</uploadmethod>
+			<uploadappversion>2.5.8</uploadappversion>
+			<uploadappplatform>Win32</uploadappplatform>
+			<uploadappcputype>Intel</uploadappcputype>
+			<uploadapposversion>Windows 7 Service Pack 1 (Build 7601)</uploadapposversion>
+			<filesreceivedtimestamp>2013-11-24 17:13:14</filesreceivedtimestamp>
+			<filesreceiveduserid>0</filesreceiveduserid>
+			<decrypttimestamp>2013-11-24 17:15:12</decrypttimestamp>
+			<decryptuserid>3</decryptuserid>
+			<converttimestamp>2013-11-24 17:15:16</converttimestamp>
+			<convertuserid>3</convertuserid>
+			<convertoutputformatcode/>
+			<jobticketoutputfilename/>
+			<pagesoutputfilename/>
+			<cover1outputfilename/>
+			<cover2outputfilename/>
+			<outputtimestamp>0000-00-00 00:00:00</outputtimestamp>
+			<outputuserid>0</outputuserid>
+			<jobticketoutputdevicecode/>
+			<pagesoutputdevicecode/>
+			<cover1outputdevicecode/>
+			<cover2outputdevicecode/>
+			<finishtimestamp>0000-00-00 00:00:00</finishtimestamp>
+			<finishdate>0000-00-00 00:00:00</finishdate>
+			<finishuserid>0</finishuserid>
+			<shippedtimestamp>0000-00-00 00:00:00</shippedtimestamp>
+			<shippeddate>0000-00-00 00:00:00</shippeddate>
+			<shippeduserid>0</shippeduserid>
+			<shippingtrackingreference/>
+			<invoicedtimestamp>0000-00-00 00:00:00</invoicedtimestamp>
+			<invoiceddate>0000-00-00 00:00:00</invoiceddate>
+			<invoiceduserid>0</invoiceduserid>
+			<onhold>0</onhold>
+			<onholdtimestamp>0000-00-00 00:00:00</onholdtimestamp>
+			<onholduserid>0</onholduserid>
+			<onholdreason/>
+			<previewsonline>1</previewsonline>
+			<canupload>0</canupload>
+			<canuploadpagecountoverride>0</canuploadpagecountoverride>
+			<canreorder>1</canreorder>
+			<status>40</status>
+			<statusdescription/>
+			<statustimestamp>2013-11-24 17:15:16</statustimestamp>
+		</item>
+		<shipping>
+			<id>5476</id>
+			<datecreated>2013-11-24 17:06:02</datecreated>
+			<datelastmodified>2013-11-24 17:06:02</datelastmodified>
+			<orderid>5476</orderid>
+			<orderitemid>5476</orderitemid>
+			<userid>2600</userid>
+			<shippingcustomername/>
+			<shippingcustomeraddress1>KGA Simm.Haide 607</shippingcustomeraddress1>
+			<shippingcustomeraddress2/>
+			<shippingcustomeraddress3/>
+			<shippingcustomeraddress4/>
+			<shippingcustomercity>Wien</shippingcustomercity>
+			<shippingcustomercounty/>
+			<shippingcustomerstate>Österreich</shippingcustomerstate>
+			<shippingcustomerregioncode/>
+			<shippingcustomerregion>STATE</shippingcustomerregion>
+			<shippingcustomerpostcode>1110</shippingcustomerpostcode>
+			<shippingcustomercountrycode>AT</shippingcustomercountrycode>
+			<shippingcustomercountryname>Austria</shippingcustomercountryname>
+			<shippingcustomertelephonenumber>0699/10101462</shippingcustomertelephonenumber>
+			<shippingcustomeremailaddress>ch.urban@aon.at</shippingcustomeremailaddress>
+			<shippingcontactfirstname>Christian</shippingcontactfirstname>
+			<shippingcontactlastname>Urban</shippingcontactlastname>
+			<shippingmethodcode>STANDARDPOST</shippingmethodcode>
+			<shippingmethodname>Austria Mail</shippingmethodname>
+			<shippingratecode>STDMAIL</shippingratecode>
+			<shippingrateinfo>de Regellaufzeit 2-3 Tage in Österreich</shippingrateinfo>
+			<shippingratecost>1.00</shippingratecost>
+			<shippingratesell>3.90</shippingratesell>
+			<shippingdiscountvalue>0.00</shippingdiscountvalue>
+			<shippingtotalsell>3.90</shippingtotalsell>
+			<shippingratetaxcode>AUTVAT</shippingratetaxcode>
+			<shippingratetaxname>Austrian VAT</shippingratetaxname>
+			<shippingratetaxrate>20.0000</shippingratetaxrate>
+			<shippingratecalctax>0</shippingratecalctax>
+			<shippingratetaxtotal>0.65</shippingratetaxtotal>
+			<qty>5</qty>
+		</shipping>
+		<ccilog>
+			<id>931</id>
+			<datecreated>2013-11-24 17:06:02</datecreated>
+			<sessionid>833</sessionid>
+			<orderid>5476</orderid>
+			<userid>2600</userid>
+			<parentlogid>0</parentlogid>
+			<type>PAYPAL</type>
+			<mode>AUTOMATIC</mode>
+			<amount>160.50</amount>
+			<charges>5.81</charges>
+			<authorised>1</authorised>
+			<transactionid>3B441373M3635905D</transactionid>
+			<responsecode/>
+			<responsedescription/>
+			<authorisationid>ABnD3lUm8iWYkpvqwpo7vgwHq7dwA5j03KNM2XvnuJs4FXyvJhZr0tGF</authorisationid>
+			<bankresponsecode/>
+			<cardnumber/>
+			<cvvflag/>
+			<cvvresponsecode/>
+			<paymentcertificate/>
+			<paymentdate>09:05:47 Nov 24, 2013 PST</paymentdate>
+			<paymenttime/>
+			<paymentmeans>instant</paymentmeans>
+			<addressstatus>unconfirmed</addressstatus>
+			<postcodestatus/>
+			<payeremail>ch.urban@aon.at</payeremail>
+			<payerid>HFZ7UAF9LUDPE</payerid>
+			<payerstatus>unverified</payerstatus>
+			<business>paypal@cyberlab.at</business>
+			<receiveremail>paypal@cyberlab.at</receiveremail>
+			<receiverid>XQVYYPTCRSTZY</receiverid>
+			<pendingreason/>
+			<transactiontype>web_accept</transactiontype>
+			<settleamount/>
+			<threedsecurestatus/>
+			<cavvresponsecode/>
+			<charityflag/>
+			<currencycode>EUR</currencycode>
+			<webbrandcode/>
+			<formattedpaymentdate>2013-11-24 17:05:47</formattedpaymentdate>
+			<formattedtransactionid/>
+			<formattedauthorisationid/>
+			<formattedcardnumber/>
+			<formattedamount>160.50</formattedamount>
+			<formattedcharges>5.81</formattedcharges>
+		</ccilog>
+	</order>
+</export>
