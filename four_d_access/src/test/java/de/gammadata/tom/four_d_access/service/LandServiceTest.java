@@ -4,7 +4,6 @@
  */
 package de.gammadata.tom.four_d_access.service;
 
-import com.tom.service.dto.AddressDTO;
 import com.tom.service.dto.LandDTO;
 import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
 import de.gammadata.tom.four_d_access.util.Tom4DSpec;

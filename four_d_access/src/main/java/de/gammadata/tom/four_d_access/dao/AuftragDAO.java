@@ -228,6 +228,24 @@ public class AuftragDAO extends AbstractBelegDAO<Auftraege> implements
     return BelegMapper.mapPosliste(sel);
   }
 
+  public List<BelegPositionDTO> loadPositionsListeById(BelegTyp type, Integer id)
+          throws TomDbException {
+    if (id == null || id == 0) {
+      throw new TomDbException("Illegal Argument by ID");
+    }
+    Xmp searchObj = new AuftragsPos();
+    DataBaseHandler dbHandler = getDbHandler();
+    dbHandler.openQuery();
+    dbHandler.addQueryPart(new QueryPart(new QueryOperant(searchObj,
+            AuftragsPos._067_001__Aufträge_DID_Fn), QueryPart.equal,
+            new QueryOperant(id)));
+    searchObj.setAllLoaded(false);
+    searchObj.setAllFields();
+    getDbHandler().setResultObject(searchObj);
+    XmpSelection sel = getDbHandler().executeQuery();
+    return BelegMapper.mapPosliste(sel);
+  }
+
   @Override
   public BelegDTO storeBelegToTom(BelegDTO beleg) throws TomDbException {
 

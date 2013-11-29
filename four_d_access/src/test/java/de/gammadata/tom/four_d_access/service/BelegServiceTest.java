@@ -66,7 +66,7 @@ public class BelegServiceTest {
     searchReq.setLimit(10);
     searchReq.setMandantenId(2);
     List result = testee.searchBeleg(searchReq);
-    assertNotNull("searchBelege,  Liste hat keine 10 Einträge", result);
+    assertNotNull("searchBelege,  Liste hat keine Einträge", result);
     assertEquals("searchBelege,  Liste hat keine 10 Einträge", 10, result.size());
   }
 
@@ -99,7 +99,7 @@ public class BelegServiceTest {
     searchReq.setLimit(10);
     searchReq.setMandantenId(2);
     List<BelegKopfDTO> beList = testee.searchBeleg(searchReq);
-    assertNotNull("searchBelege,  Liste hat keine 10 Einträge", beList);
+    assertNotNull("searchBelege,  Liste hat keine Einträge", beList);
     assertEquals("searchBelege,  Liste hat keine 10 Einträge", 10, beList.size());
     BaseDTO expResult = (BaseDTO) beList.get(2);
     BelegDTO result = testee.loadBelegById(BelegTyp.AUFTRAG, expResult.getId());

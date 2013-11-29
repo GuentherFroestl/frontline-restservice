@@ -15,11 +15,8 @@ import com.tom.service.dto.BelegKopfDTO;
 import com.tom.service.dto.BelegPositionDTO;
 import com.tom.service.dto.BelegSearchRequest;
 import com.tom.service.dto.BelegTyp;
-import com.tom.service.dto.BestellungDTO;
 import com.tom.service.dto.Status;
-import com.tom.service.facade.BelegFacade;
 import com.tom.service.facade.TomException;
-import de.gammadata.tom.four_d_access.dao.AdressenDAO;
 import de.gammadata.tom.four_d_access.dao.AuftragDAO;
 import de.gammadata.tom.four_d_access.dao.BestellungDAO;
 import de.gammadata.tom.four_d_access.dao.IBelegDAO;
@@ -28,8 +25,6 @@ import de.gammadata.tom.four_d_access.dao.RechnungDAO;
 import de.gammadata.tom.four_d_access.dao.SteuerBetraegeDAO;
 import de.gammadata.tom.four_d_access.dao.TomDbException;
 import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
-import de.gammadata.tom.four_d_access.dbBeans.Adressen;
-import de.gammadata.tom.four_d_access.util.mapper.AddressMapper;
 import de.gammadata.tom.four_d_access.util.mapper.SteuerMapper;
 import de.gammadata.tom.four_d_access.xml.Xmp;
 
@@ -37,10 +32,28 @@ import de.gammadata.tom.four_d_access.xml.Xmp;
  * @author gfr
  *
  */
-public class BelegService extends Abstract4DService implements BelegFacade {
+public class BelegService extends Abstract4DService {
 
+  /**
+   * defines various types of loading one beleg.
+   */
+  public enum LoadByType {
+
+    /**
+     * by primary ID.
+     */
+    BY_ID,
+    /**
+     * by UUID
+     */
+    BY_UUID,
+    /**
+     *
+     */
+    BY_NUMBER
+  }
   private final Logger logger = Logger.getLogger(this.getClass());
-  AdressenDAO adressenDao;
+
   SteuerBetraegeDAO steuerBetraegeDAO;
 
   /**
@@ -50,18 +63,9 @@ public class BelegService extends Abstract4DService implements BelegFacade {
    */
   public BelegService(DataBaseSpec dataBaseSpec) {
     super(dataBaseSpec);
-    adressenDao = new AdressenDAO(dataBaseSpec);
     steuerBetraegeDAO = new SteuerBetraegeDAO(dataBaseSpec);
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.tom.service.facade.BelegFacade#searchBeleg(com.tom.service.dto.SearchDTO
-   * )
-   */
-  @Override
   public List<BelegKopfDTO> searchBeleg(BelegSearchRequest searchReq)
           throws TomException {
     List<BelegKopfDTO> li = new ArrayList<BelegKopfDTO>();
@@ -76,19 +80,36 @@ public class BelegService extends Abstract4DService implements BelegFacade {
     return li;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.tom.service.facade.BelegFacade#loadBelegByUuid(java.lang.String)
+  /**
+   * Loads just the basic beleg, w/o any included nested objects.
+   *
+   * @param type
+   * @param loadTbyType
+   * @param specifier
+   * @return
+   * @throws TomException
    */
-  @Override
+  public BelegDTO loadBasicBeleg(BelegTyp type, LoadByType loadTbyType, Object specifier) throws TomException {
+
+    if (type == null || loadTbyType == null || specifier == null) {
+      throw new TomDbException("Illegal argument supplied");
+    }
+    if (loadTbyType.equals(LoadByType.BY_ID)) {
+      return getBelegDAO(type).loadBelegById((Integer) specifier);
+    } else if (loadTbyType.equals(LoadByType.BY_UUID)) {
+      return getBelegDAO(type).loadBelegByUuid((String) specifier);
+    } else if (loadTbyType.equals(LoadByType.BY_NUMBER)) {
+      return getBelegDAO(type).loadBelegByNumber((Integer) specifier);
+    }
+    throw new TomDbException("Illegal LoadByType supplied");
+  }
+
   public BelegDTO loadBelegByUuid(BelegTyp type, String uuid)
           throws TomException {
     BelegDTO res;
     try {
-      // Objekt laden und mit Relationen anreichern
+      // Objekt laden 
       res = getBelegDAO(type).loadBelegByUuid(uuid);
-      res = addAdditionaProperties(res);
     } catch (TomDbException e) {
       logger.error("loadBelegByUuid() fehler=" + e.getMessage(), e);
       throw new TomException("loadBelegByUuid() fehler=" + e.getMessage());
@@ -96,15 +117,12 @@ public class BelegService extends Abstract4DService implements BelegFacade {
     return res;
   }
 
-  @Override
   public BelegDTO loadBelegById(BelegTyp type, Integer id)
           throws TomException {
     BelegDTO res;
     try {
-      // Objekt laden und mit Relationen anreichern
+      // Objekt laden
       res = getBelegDAO(type).loadBelegById(id);
-      res = addAdditionaProperties(res);
-
     } catch (TomDbException e) {
       logger.error("loadBelegByUuid() fehler=" + e.getMessage(), e);
       throw new TomException("loadBelegByUuid() fehler=" + e.getMessage());
@@ -124,9 +142,8 @@ public class BelegService extends Abstract4DService implements BelegFacade {
           throws TomException {
     BelegDTO res;
     try {
-      // Objekt laden und mit Relationen anreichern
+      // Objekt laden
       res = getBelegDAO(type).loadBelegByNumber(belegNumber);
-      res = addAdditionaProperties(res);
 
     } catch (TomDbException e) {
       logger.error("loadBelegByUuid() fehler=" + e.getMessage(), e);
@@ -162,22 +179,6 @@ public class BelegService extends Abstract4DService implements BelegFacade {
     return res;
   }
 
-  private BelegDTO addAdditionaProperties(BelegDTO beleg) throws TomException {
-    BelegDTO res = addAddressProperties(beleg);
-    res = addSteuerBetraege(res);
-    res = addPositionsListe(res);
-
-    return res;
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.tom.service.facade.BelegFacade#storeBeleg(com.tom.service.dto.BelegDTO
-   * )
-   */
-  @Override
   public BelegDTO createBeleg(BelegDTO beleg) throws TomException {
     if (beleg == null) {
       throw new TomException("Beleg == null");
@@ -189,133 +190,35 @@ public class BelegService extends Abstract4DService implements BelegFacade {
     return result;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.tom.service.facade.BelegFacade#updateBeleg(com.tom.service.dto.BelegDTO
-   * )
-   */
-  @Override
   public BelegDTO updateBeleg(BelegDTO beleg) throws TomException {
     // TODO Auto-generated method stub
     return null;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.tom.service.facade.BelegFacade#deleteBeleg(com.tom.service.dto.BelegDTO
-   * )
-   */
-  @Override
   public void deleteBeleg(BelegDTO beleg) throws TomException {
     getBelegDAO(beleg.getBelegTyp()).deleteBeleg(beleg);
   }
 
   /**
-   * Fügt die Adressen vollständig hinzu
-   *
-   * @param beleg BelegDTO mit gesetzten AdressDTO mit ID
-   * @return angereichertes BelegDTO
-   */
-  private BelegDTO addAddressProperties(BelegDTO beleg) throws TomException {
-    if (beleg == null) {
-      return null;
-    }
-
-    //Check ob die Bestelladress aus dem Lieferanten geholt werden muss
-    if ((beleg.getAdresse() == null || beleg.getAdresse().getId() == 0)
-            && beleg instanceof BestellungDTO && beleg.getLieferAdresse() != null) {
-      BestellungDTO best = (BestellungDTO) beleg;
-      logger.info("Korrektur für bestellung.adresse mit lieferanten.id=" + best.getLieferant());
-    }
-
-
-    //Adressdaten vervollständigen
-    if (beleg.getAdresse() != null && beleg.getAdresse().getId() > 0) {
-      Adressen abObj = adressenDao.loadXmpBean(beleg.getAdresse()
-              .getId());
-      beleg.setAdresse(AddressMapper.mapKopfDaten(abObj));
-    }
-
-    // Lieferadresse
-    if (beleg.getLieferAdresse() != null
-            && beleg.getLieferAdresse().getId() > 0) {
-      if (beleg.getAdresse() != null
-              && beleg.getAdresse().getId().equals(
-              beleg.getLieferAdresse().getId())) {
-        beleg.setLieferAdresse(beleg.getAdresse());
-      } else {
-        try {
-          Adressen abObj = adressenDao.loadXmpBean(beleg.getLieferAdresse()
-                  .getId());
-          beleg.setLieferAdresse(AddressMapper.mapKopfDaten(abObj));
-        } catch (TomDbException e) {
-          logger.error(
-                  "addAddressProperties() fehler=" + e.getMessage(),
-                  e);
-          throw new TomException("addAddressProperties() Fehler="
-                  + e.getMessage());
-        }
-      }
-    } else {
-      beleg.setLieferAdresse(null);
-    }
-
-    // Rechnungsadresse
-    if (beleg.getRechnungsAdresse() != null
-            && beleg.getRechnungsAdresse().getId() > 0) {
-      if (beleg.getAdresse() != null
-              && beleg.getAdresse().equals(
-              beleg.getRechnungsAdresse().getId())) {
-        beleg.setRechnungsAdresse(beleg.getAdresse());
-      } else if (beleg.getLieferAdresse() != null
-              && beleg.getLieferAdresse().getId()
-              .equals(beleg.getRechnungsAdresse().getId())) {
-        beleg.setRechnungsAdresse(beleg.getLieferAdresse());
-      } else {
-        try {
-          Adressen abObj = adressenDao.loadXmpBean(beleg
-                  .getRechnungsAdresse().getId());
-          beleg.setRechnungsAdresse(AddressMapper.mapKopfDaten(abObj));
-        } catch (TomDbException e) {
-          logger.error(
-                  "addAddressProperties() fehler=" + e.getMessage(),
-                  e);
-          throw new TomException("addAddressProperties() Fehler="
-                  + e.getMessage());
-        }
-      }
-    } else {
-      beleg.setRechnungsAdresse(null);
-    }
-    return beleg;
-
-  }
-
-  /**
-   * Fügt die Liste der Steuerbeträge zum Beleg hinzu
+   * Fügt die Liste der Steuerbeträge zum Beleg hinzu.
    *
    * @param beleg BelegDTO
    * @return BelegDTO
    * @throws TomDbException
    */
-  private BelegDTO addSteuerBetraege(BelegDTO beleg) throws TomDbException {
+  public void addSteuerBetraege(BelegDTO beleg) throws TomDbException {
     List<Xmp> sList = steuerBetraegeDAO.getSteuerBetraege(beleg);
     beleg.setSteuerListe(SteuerMapper.map(sList));
-    return beleg;
   }
 
   /**
-   * Fügt die Positionsliste hinzu
+   * Fügt die Positionsliste hinzu.
    *
    * @param beleg BelegDTO
    * @return BelegDTO
    * @throws TomDbException
    */
-  private BelegDTO addPositionsListe(BelegDTO beleg) throws TomDbException {
+  public BelegDTO addPositionsListe(BelegDTO beleg) throws TomDbException {
 
     List<BelegPositionDTO> posList = getBelegDAO(beleg.getBelegTyp())
             .loadPositionsListe(beleg);

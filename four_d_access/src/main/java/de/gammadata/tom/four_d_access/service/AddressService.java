@@ -5,6 +5,7 @@
 package de.gammadata.tom.four_d_access.service;
 
 import com.tom.service.dto.AddressDTO;
+import com.tom.service.dto.AddressKopfDTO;
 import com.tom.service.dto.LandDTO;
 import com.tom.service.dto.SearchByStringRequest;
 import com.tom.service.dto.SearchType;
@@ -74,6 +75,29 @@ public class AddressService extends Abstract4DService implements AddressFacade {
     try {
       Adressen adr = adressenDao.loadXmpBean(Integer.parseInt(id));
       return AddressMapper.map(adr);
+    } catch (NumberFormatException e) {
+      logger.error("Fehler beim parsen id ", e);
+      throw new TomException("Fehler beim parsen id " + e.getMessage());
+    } catch (TomDbObjectNotFoundException e) {
+      logger.info(e.getMessage());
+      throw new TomException(e);
+    } catch (TomDbException e2) {
+      logger.error("Fehler beim Zugriff auf TomDB ", e2);
+      throw new TomException("Fehler beim Zugriff auf TomDB ", e2);
+    }
+  }
+
+  /**
+   * Load the most important data for an address.
+   *
+   * @param id String
+   * @return AddressKopfDTO
+   * @throws TomException
+   */
+  public AddressKopfDTO loadAddressKopfById(String id) throws TomException {
+    try {
+      Adressen adr = adressenDao.loadXmpBean(Integer.parseInt(id));
+      return AddressMapper.mapKopfDaten(adr);
     } catch (NumberFormatException e) {
       logger.error("Fehler beim parsen id ", e);
       throw new TomException("Fehler beim parsen id " + e.getMessage());
