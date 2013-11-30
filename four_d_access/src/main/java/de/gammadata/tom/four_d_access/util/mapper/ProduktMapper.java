@@ -6,9 +6,11 @@ package de.gammadata.tom.four_d_access.util.mapper;
 
 import com.tom.service.dto.ProduktDTO;
 import com.tom.service.dto.ProduktKopfDTO;
+import com.tom.service.dto.SteuerDTO;
 import de.gammadata.tom.four_d_access.dbBeans.Artikel;
 import de.gammadata.tom.four_d_access.xml.Xmp;
 import de.gammadata.tom.four_d_access.xml.XmpSelection;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,13 +44,50 @@ public class ProduktMapper extends AbstractMapper<Artikel, ProduktDTO> {
       return null;
     }
     ProduktDTO prod = new ProduktDTO();
-    mapXmp(prod, artikel);
+    mapXmpBasics(prod, artikel);
 
     prod.setProduktCode(artikel.getArtikelNr());
-    prod.setBeschreibung(artikel.getKurzbeschreibung());
+    prod.setBezeichnung(artikel.getKurzbeschreibung());
     prod.setBeschreibung(artikel.getBeschreibung().toString());
 
     return prod;
+  }
+
+  @Override
+  public Artikel map(ProduktDTO dto) {
+
+    Artikel artikel = new Artikel();
+    mapDTOBasics(artikel, dto);
+    artikel.setArtikelNr(dto.getProduktCode());
+    artikel.setKurzbeschreibung(dto.getBezeichnung());
+    artikel.setBeschreibung(new StringBuilder(dto.getBeschreibung()));
+    if (dto.getPreis() != null) {
+      artikel.setVK1(getNullSaveDoubleValue(dto.getPreis().getNettoPreis()));
+      artikel.setVK2(getNullSaveDoubleValue(dto.getPreis().getBruttoPreis()));
+      
+      if (dto.getPreis().getSteuern()!=null && !dto.getPreis().getSteuern().isEmpty()){
+        //only one tax supported by TOM      
+        SteuerDTO st = dto.getPreis().getSteuern().get(0);
+        if (st.getSteuerArt()!=null){
+        artikel.set_003_001_Steuersätze_DID(st.getSteuerArt().getId());
+        }
+      }
+    }
+    return artikel;
+
+  }
+  
+  /**
+   * Null save conversation to double.
+   * @param value BigDecimal
+   * @return double
+   */
+  private double getNullSaveDoubleValue(BigDecimal value){
+    if (value==null){
+      return 0d;
+    }else{
+      return value.doubleValue();
+    }
   }
 
   /**

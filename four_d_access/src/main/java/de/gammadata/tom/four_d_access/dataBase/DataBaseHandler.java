@@ -107,7 +107,7 @@ public abstract class DataBaseHandler {
 
 				// Query generieren
 				if ((regView.getFilterGruppenListe() == null)
-						|| (regView.getFilterGruppenListe().size() == 0)
+						|| regView.getFilterGruppenListe().isEmpty()
 						|| (regView.getFilterGruppenListe().get(0) == null)) {
 					// keine Filter also AllRecords
 					this.queryList.add(new QueryPart(new QueryOperant(resObj

@@ -375,10 +375,10 @@ public class DB4D68Handler extends DataBaseHandler {
 
 		try {
 			logger.debug("Request-XML-Data:\n " + reqData.toString());
-			StringBuffer response = sendRequest(reqData.toString());
-			this.setResponse(response);
-			logger.debug("TOM-Response:\n " + response.toString());
-			Response4DSaxHandler responseHandler = parseResponse(response);
+			StringBuffer tomresponse = sendRequest(reqData.toString());
+			this.setResponse(tomresponse);
+			logger.debug("TOM-Response:\n " + tomresponse.toString());
+			Response4DSaxHandler responseHandler = parseResponse(tomresponse);
 			if (responseHandler.getXmpSelection() != null) {
 				resultSelection = responseHandler.getXmpSelection();
 				resultSelection.setDisplayedRecs(this.getRecordLimit());

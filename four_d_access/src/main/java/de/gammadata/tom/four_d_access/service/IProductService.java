@@ -27,6 +27,15 @@ public interface IProductService {
   List<ProduktKopfDTO> searchByString(SearchByStringRequest req) throws TomException;
 
   /**
+   * Load a produkt by its code.
+   *
+   * @param prod ProduktKopfDTO the partially defined product
+   * @return ProduktDTO
+   * @throws TomException
+   */
+  ProduktDTO loadByCode(ProduktKopfDTO prod) throws TomException;
+
+  /**
    * Load a produkt by its id.
    *
    * @param id Integer

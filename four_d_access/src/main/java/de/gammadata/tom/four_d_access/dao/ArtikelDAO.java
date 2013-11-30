@@ -40,6 +40,11 @@ public class ArtikelDAO extends AbstractDAO<Artikel> {
               Artikel.artikelNr_Fn),
               QueryPart.equal, new QueryOperant(req
               .getSearchString())));
+      
+      getDbHandler().addQueryPart(
+              new QueryPart(QueryPart.booleanAnd, new QueryOperant(
+              searchObj, Artikel.dMandant_Fn), QueryPart.equal,
+              new QueryOperant(req.getMandantenId())));
     } else if (SearchType.BY_STRING.equals(req.getSearchType())) {
 
       getDbHandler().addQueryPart(

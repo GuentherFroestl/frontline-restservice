@@ -7,6 +7,8 @@ package de.gammadata.tom.four_d_access.service;
 import com.tom.service.dto.ProduktDTO;
 import com.tom.service.dto.ProduktKopfDTO;
 import com.tom.service.dto.SearchByStringRequest;
+import com.tom.service.dto.SearchType;
+import com.tom.service.facade.TomException;
 import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
 import de.gammadata.tom.four_d_access.util.Tom4DSpec;
 import java.util.List;
@@ -16,7 +18,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -26,6 +27,7 @@ public class ProductServiceTest {
 
   private static DataBaseSpec dbSpec;
   private ProductService testee;
+  private ProduktDTO createdObject;
 
   public ProductServiceTest() {
   }
@@ -45,7 +47,10 @@ public class ProductServiceTest {
   }
 
   @After
-  public void tearDown() {
+  public void tearDown() throws TomException {
+    if (createdObject != null) {
+      testee.deleteProdukt(createdObject);
+    }
   }
 
   /**
@@ -64,6 +69,22 @@ public class ProductServiceTest {
   }
 
   /**
+   * Test of searchByString method, of class ProductService.
+   */
+  @Test
+  public void testSearchByCode() throws Exception {
+    System.out.println("searchByString");
+    SearchByStringRequest req = new SearchByStringRequest();
+    req.setSearchType(SearchType.BY_CODE);
+    req.setLimit(1);
+    req.setSearchString("BD10");
+    req.setMandantenId(2);
+    List<ProduktKopfDTO> result = testee.searchByString(req);
+    assertNotNull("searchBelege,  Liste hat keine Einträge", result);
+    assertEquals("searchBelege,  Liste hat keine 1 Einträge", 1, result.size());
+  }
+
+  /**
    * Test of loadById method, of class ProductService.
    */
   @Test
@@ -77,53 +98,41 @@ public class ProductServiceTest {
     assertEquals("searchBelege,  Liste hat keinen Eintrage", 1, result.size());
     Integer id = result.get(0).getId();
     ProduktDTO produkt = testee.loadById(id);
-    assertNotNull("loadById,  ProduktDTO nicht geladen für id="+id, produkt);
+    assertNotNull("loadById,  ProduktDTO nicht geladen für id=" + id, produkt);
 
   }
 
   /**
    * Test of createProdukt method, of class ProductService.
    */
-  @Ignore
   @Test
-  public void testCreateProdukt() throws Exception {
+  public void testCreateAndUpdateProdukt() throws Exception {
     System.out.println("createProdukt");
-    ProduktDTO produkt = null;
-    ProductService instance = null;
-    ProduktDTO expResult = null;
-    ProduktDTO result = instance.createProdukt(produkt);
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
-  }
+    ProduktDTO produkt = new ProduktDTO();
+    produkt.setProduktCode("TEST_TOM_123456789");
+    produkt.setBeschreibung("Das ist die Beschreibung");
+    produkt.setBezeichnung("Das ist die Bezeichnung");
+    produkt.setMandant(2);
+    ProduktDTO result = testee.createProdukt(produkt);
+    createdObject = result;
+    assertNotNull("createProdukt,  null als Ergebnis", result);
+    assertNotNull("createProdukt ID == null", result.getId());
+    ProduktDTO result2 = testee.loadById(result.getId());
+    assertNotNull("createProdukt,  null result beim ernueten Laden", result2);
+    assertEquals("ProductCode stimmt nicht ist=" + result2.getProduktCode(), produkt.getProduktCode(), result2.getProduktCode());
+    assertEquals("Bezeichnung stimmt nicht ist=" + result2.getBezeichnung(), produkt.getBezeichnung(), result2.getBezeichnung());
+    assertEquals("Beschreibung stimmt nicht ist=" + result2.getBeschreibung(), produkt.getBeschreibung(), result2.getBeschreibung());
 
-  /**
-   * Test of updateProdukt method, of class ProductService.
-   */
-  @Ignore
-  @Test
-  public void testUpdateProdukt() throws Exception {
-    System.out.println("updateProdukt");
-    ProduktDTO produkt = null;
-    ProductService instance = null;
-    ProduktDTO expResult = null;
-    ProduktDTO result = instance.updateProdukt(produkt);
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
-  }
-
-  /**
-   * Test of deleteProdukt method, of class ProductService.
-   */
-  @Test
-  @Ignore
-  public void testDeleteProdukt() throws Exception {
-    System.out.println("deleteProdukt");
-    ProduktDTO produkt = null;
-    ProductService instance = null;
-    instance.deleteProdukt(produkt);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+    result2.setProduktCode("TEST_neu_123456789");
+    result2.setBezeichnung("neue Bezeichnung");
+    result2.setBeschreibung("neue Beschreibung");
+    
+    ProduktDTO result3=testee.updateProdukt(result2);
+     assertNotNull("createProdukt,  null result beim Update", result3);
+    result3 = testee.loadById(result3.getId());
+    assertNotNull("createProdukt,  null result beim ernueten Laden", result3);
+    assertEquals("ProductCode stimmt nicht ist=" + result3.getProduktCode(), "TEST_neu_123456789", result3.getProduktCode());
+    assertEquals("Bezeichnung stimmt nicht ist=" + result3.getBezeichnung(), "neue Bezeichnung", result3.getBezeichnung());
+    assertEquals("Beschreibung stimmt nicht ist=" + result3.getBeschreibung(), "neue Beschreibung", result3.getBeschreibung());
   }
 }

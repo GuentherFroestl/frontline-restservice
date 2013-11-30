@@ -22,7 +22,7 @@ public class LandMapper extends AbstractMapper<Laender, LandDTO> {
 		}
 
 		LandDTO res = new LandDTO();
-		mapXmp(res, xmp);
+		mapXmpBasics(res, xmp);
 		res.setiSO3166Code_2(xmp.getISO3166Code_2());
 		res.setiSO3166Code_3(xmp.getISO3166Code_3());
 		res.setLandName(xmp.getLandName());
@@ -33,7 +33,7 @@ public class LandMapper extends AbstractMapper<Laender, LandDTO> {
 	public Laender map(LandDTO dto) {
 
 		Laender xmp = new Laender();
-		mapDTO(xmp, dto);
+		mapDTOBasics(xmp, dto);
 		xmp.setISO3166Code_2(dto.getiSO3166Code_2());
 		xmp.setISO3166Code_3(dto.getiSO3166Code_3());
 		xmp.setLandName(dto.getLandName());

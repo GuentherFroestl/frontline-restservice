@@ -7,6 +7,7 @@ package de.gammadata.tom.four_d_access.service;
 import com.tom.service.dto.ProduktDTO;
 import com.tom.service.dto.ProduktKopfDTO;
 import com.tom.service.dto.SearchByStringRequest;
+import com.tom.service.dto.SearchType;
 import com.tom.service.facade.TomException;
 import de.gammadata.tom.four_d_access.dao.ArtikelDAO;
 import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
@@ -42,6 +43,24 @@ public class ProductService extends Abstract4DService implements IProductService
   }
 
   @Override
+  public ProduktDTO loadByCode(ProduktKopfDTO prod) throws TomException {
+    if (prod == null || prod.getProduktCode() == null || prod.getProduktCode().length() == 0) {
+      throw new TomException("Illegal argument code=" + prod);
+    }
+    SearchByStringRequest req = new SearchByStringRequest();
+    req.setSearchType(SearchType.BY_CODE);
+    req.setLimit(1);
+    req.setSearchString(prod.getProduktCode());
+    req.setMandantenId(prod.getMandant());
+    XmpSelection sel = artikelDao.searchArtikel(req);
+    if (sel == null || sel.getSelection() == null || sel.getSelection().isEmpty()) {
+      throw new TomException("Product not found=" + prod);
+    }
+    Integer id = sel.getSelection().get(0).getDID();
+    return loadById(id);
+  }
+
+  @Override
   public ProduktDTO loadById(Integer id) throws TomException {
     Artikel artikel = artikelDao.loadXmpBean(id);
     return mapper.map(artikel);
@@ -49,18 +68,25 @@ public class ProductService extends Abstract4DService implements IProductService
 
   @Override
   public ProduktDTO createProdukt(ProduktDTO produkt) throws TomException {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Artikel artikel = mapper.map(produkt);
+    Artikel artikelStored = artikelDao.storeXmpBean(artikel);
+    produkt.setId(artikelStored.getDID());
+    return produkt;
   }
 
   @Override
   public ProduktDTO updateProdukt(ProduktDTO produkt) throws TomException {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Artikel artikel = mapper.map(produkt);
+    artikel.setNewObject(false);
+    Artikel artikelStored = artikelDao.storeXmpBean(artikel);
+    produkt.setId(artikelStored.getDID());
+    return produkt;
   }
 
   @Override
   public void deleteProdukt(ProduktDTO produkt) throws TomException {
     Artikel artikel = new Artikel();
-    mapper.mapDTO(artikel, produkt);
+    mapper.mapDTOBasics(artikel, produkt);
     artikelDao.deleteObjectFromDB(artikel);
   }
 }

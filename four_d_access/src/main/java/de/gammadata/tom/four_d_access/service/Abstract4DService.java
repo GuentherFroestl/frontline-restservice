@@ -5,6 +5,7 @@
 package de.gammadata.tom.four_d_access.service;
 
 import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
+import de.gammadata.tom.four_d_access.xml.XmpSelection;
 import java.util.UUID;
 import org.apache.log4j.Logger;
 
@@ -39,6 +40,18 @@ public class Abstract4DService {
 
   public Logger getLogger() {
     return logger;
+  }
+
+  /**
+   * Checks if Selection is not null and not empty.
+   * @param sel XmpSelection
+   * @return true, if not null and not empty.
+   */
+  public boolean isNonEmptySelection(XmpSelection sel) {
+    if (sel != null && sel.getSelection() != null && !sel.getSelection().isEmpty()) {
+      return true;
+    }
+    return false;
   }
 
   /**
