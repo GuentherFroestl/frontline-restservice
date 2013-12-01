@@ -68,6 +68,9 @@ public class ProductService extends Abstract4DService implements IProductService
 
   @Override
   public ProduktDTO createProdukt(ProduktDTO produkt) throws TomException {
+    if (produkt==null||produkt.getMandant()==null||produkt.getProduktCode()==null||produkt.getProduktCode().length()==0){
+      throw new TomException("Missing properties within produkt");
+    }
     Artikel artikel = mapper.map(produkt);
     Artikel artikelStored = artikelDao.storeXmpBean(artikel);
     produkt.setId(artikelStored.getDID());

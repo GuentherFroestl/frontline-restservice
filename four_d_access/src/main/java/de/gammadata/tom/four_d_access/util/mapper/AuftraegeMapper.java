@@ -6,6 +6,7 @@ package de.gammadata.tom.four_d_access.util.mapper;
 
 import com.tom.service.dto.BelegDTO;
 import com.tom.service.dto.BelegTyp;
+import com.tom.service.dto.SteuerFallDTO;
 import de.gammadata.tom.four_d_access.dbBeans.Auftraege;
 
 /**
@@ -52,6 +53,21 @@ public class AuftraegeMapper {
       auftrag.setAng_AuftragTyp(true);
     } else {
       auftrag.setAng_AuftragTyp(false);
+    }
+    if (beleg.getAdresse() != null && beleg.getAdresse().getId() != null) {
+      auftrag.set_009_001_Adressen_DID_AB(beleg.getAdresse().getId());
+    }
+    if (beleg.getLieferAdresse()!= null && beleg.getLieferAdresse().getId() != null) {
+      auftrag.set_009_001_Adressen_DID_LF(beleg.getLieferAdresse().getId());
+    }
+    if (beleg.getRechnungsAdresse() != null && beleg.getRechnungsAdresse().getId() != null) {
+      auftrag.set_009_001_Adressen_DID_RG(beleg.getRechnungsAdresse().getId());
+    }
+    
+    if (SteuerFallDTO.EU.equals(beleg.getSteuerFall())||SteuerFallDTO.STEUERFREI.equals(beleg.getSteuerFall())){
+      auftrag.setMwSt_pflichtig(false);
+    }else{
+      auftrag.setMwSt_pflichtig(true);
     }
 
     return auftrag;

@@ -10,6 +10,7 @@ import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
 import de.gammadata.tom.four_d_access.dataBase.QueryOperant;
 import de.gammadata.tom.four_d_access.dataBase.QueryPart;
 import de.gammadata.tom.four_d_access.dbBeans.Steuersaetze;
+import de.gammadata.tom.four_d_access.dbBeans.Waehrungen;
 import de.gammadata.tom.four_d_access.xml.Xmp;
 import de.gammadata.tom.four_d_access.xml.XmpSelection;
 
@@ -18,46 +19,15 @@ import de.gammadata.tom.four_d_access.xml.XmpSelection;
  *
  * @author gfr
  */
-public class SteuerArtDAO extends AbstractDAO<Steuersaetze> {
+public class WaehrungDAO extends AbstractDAO<Waehrungen> {
 
-  public SteuerArtDAO(DataBaseSpec _dbSpec) {
+  public WaehrungDAO(DataBaseSpec _dbSpec) {
     super(_dbSpec);
   }
 
   @Override
-  public Steuersaetze getXmpInstance() {
-    return new Steuersaetze();
-  }
-
-  /**
-   * Holt die StandartSteuerart für den genannten Mandanten
-   *
-   * @param mandantId
-   * @return
-   */
-  public XmpSelection getStandardSteuerArt(Integer mandantId) throws TomDbException {
-
-    Xmp searchObj = getXmpInstance();
-    DataBaseHandler dbHandler = getDbHandler();
-    dbHandler.openQuery();
-
-    getDbHandler().addQueryPart(
-            new QueryPart(new QueryOperant(searchObj,
-            Steuersaetze.standardsteuersatz_Fn),
-            QueryPart.equal, new QueryOperant(true)));
-    /*
-     getDbHandler().addQueryPart(
-     new QueryPart(QueryPart.booleanAnd, new QueryOperant(searchObj,
-     Steuersaetze.dMandant_Fn), QueryPart.equal,
-     new QueryOperant(mandantId)));
-     */
-
-    searchObj.setFieldList(getCompactFieldSpecs());
-    getDbHandler().setResultObject(searchObj);
-    getDbHandler().setLoadOneObjects(false);
-    XmpSelection res;
-    res = getDbHandler().executeQuery();
-    return res;
+  public Waehrungen getXmpInstance() {
+    return new Waehrungen();
   }
 
   /**
@@ -86,7 +56,7 @@ public class SteuerArtDAO extends AbstractDAO<Steuersaetze> {
       } else {
         getDbHandler().addQueryPart(
                 new QueryPart(new QueryOperant(searchObj,
-                Steuersaetze.steuersatzbez_Fn),
+                Waehrungen.Währungsbezeichnung_Fn),
                 QueryPart.contains, new QueryOperant(req.getSearchString())));
         /*
          getDbHandler().addQueryPart(
@@ -108,10 +78,11 @@ public class SteuerArtDAO extends AbstractDAO<Steuersaetze> {
 
   protected int[] getCompactFieldSpecs() {
     int[] fl = {
-      Steuersaetze.dID_Fn, Steuersaetze.dMandant_Fn,
-      Steuersaetze.gültig_ab_Fn, Steuersaetze.gültig_bis_Fn,
-      Steuersaetze.standardsteuersatz_Fn, Steuersaetze.steuersatzIL_Fn,
-      Steuersaetze.steuersatzbez_Fn};
+      Waehrungen.dID_Fn,
+      Waehrungen.dMandant_Fn,
+      Waehrungen.Währungsbezeichnung_Fn,
+      Waehrungen.Währungszeichen_Fn,
+      Waehrungen.aktueller_Kurs_Fn};
 
     return fl;
   }

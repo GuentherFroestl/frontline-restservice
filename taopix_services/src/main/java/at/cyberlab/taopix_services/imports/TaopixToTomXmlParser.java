@@ -10,6 +10,8 @@ import at.cyberlab.taopix_services.imports.mapper.TaopixOrderMapper;
 import at.cyberlab.taopix_services.inputobjects.TaopixOrder;
 import com.tom.service.dto.AddressDTO;
 import com.tom.service.dto.BelegPositionDTO;
+import com.tom.service.dto.BelegTyp;
+import com.tom.service.dto.SteuerFallDTO;
 import com.tom.service.dto.WrgDTO;
 import java.io.File;
 import java.io.InputStream;
@@ -154,6 +156,8 @@ public class TaopixToTomXmlParser {
     public void endDocument() {
       int posNumber = 0;
       order = new TaopixOrder();
+      order.setBelegTyp(BelegTyp.AUFTRAG);
+      order.setSteuerFall(SteuerFallDTO.INLAND);
       TaopixOrderMapper.mapOrderProperties(order, orderProperties, tomImportConfig);
       //Addresses
       order.setFullOrderAddress(orderAddress);
@@ -169,6 +173,9 @@ public class TaopixToTomXmlParser {
       posNumber++;
       //Transport
       if (transportPosition != null) {
+        if (productPostion.getProdukt().getProduktCode().startsWith(tomImportConfig.getProductCodeStubForReducedTax())) {
+          transportPosition.getProdukt().setProduktCode(tomImportConfig.getProductCodeStubForReducedTax() + "_" + transportPosition.getProdukt().getProduktCode());
+        }
         posListe.add(transportPosition);
         shippingPosNumber = posNumber;
         transportPosition.setPosNummer(posNumber + 1);
@@ -176,6 +183,10 @@ public class TaopixToTomXmlParser {
 
       }
       if (discountPosition != null) {
+        //Look for reduced tax code
+        if (productPostion.getProdukt().getProduktCode().startsWith(tomImportConfig.getProductCodeStubForReducedTax())) {
+          discountPosition.getProdukt().setProduktCode(tomImportConfig.getProductCodeStubForReducedTax() + "_" + discountPosition.getProdukt().getProduktCode());
+        }
         posListe.add(discountPosition);
         discountPosNumber = posNumber;
         discountPosition.setPosNummer(posNumber + 1);

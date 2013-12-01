@@ -34,7 +34,8 @@ public class SteuerService extends Abstract4DService implements ISteuerService {
 
   @Override
   public List<SteuerArtDTO> searchByString(SearchByStringRequest req) throws TomException {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    XmpSelection res = stDao.searchByString(req);
+    return SteuerMapper.mapSteuerArtList(res);
   }
 
   @Override

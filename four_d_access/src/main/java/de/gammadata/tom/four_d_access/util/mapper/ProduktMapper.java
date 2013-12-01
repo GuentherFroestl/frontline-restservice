@@ -4,8 +4,10 @@
  */
 package de.gammadata.tom.four_d_access.util.mapper;
 
+import com.tom.service.dto.PreisDTO;
 import com.tom.service.dto.ProduktDTO;
 import com.tom.service.dto.ProduktKopfDTO;
+import com.tom.service.dto.SteuerArtDTO;
 import com.tom.service.dto.SteuerDTO;
 import de.gammadata.tom.four_d_access.dbBeans.Artikel;
 import de.gammadata.tom.four_d_access.xml.Xmp;
@@ -49,6 +51,21 @@ public class ProduktMapper extends AbstractMapper<Artikel, ProduktDTO> {
     prod.setProduktCode(artikel.getArtikelNr());
     prod.setBezeichnung(artikel.getKurzbeschreibung());
     prod.setBeschreibung(artikel.getBeschreibung().toString());
+    //Preis
+    PreisDTO preis = new PreisDTO();
+    preis.setNettoPreis(new BigDecimal(artikel.getVK1()));
+    preis.setBruttoPreis(new BigDecimal(artikel.getVK3()));
+    //Steuern
+    SteuerArtDTO stArt = new SteuerArtDTO();
+    stArt.setId(artikel.get_003_001_Steuersätze_DID());
+    stArt.setSteuersatz(new BigDecimal(artikel.getM_003_012__034_Steuersatz_IL()));
+    List<SteuerDTO> stList = new ArrayList<SteuerDTO>();
+    SteuerDTO st = new SteuerDTO();
+    st.setSteuerArt(stArt);
+    st.setBetrag(new BigDecimal(artikel.getVK3()-artikel.getVK1()));
+    stList.add(st);
+    preis.setSteuern(stList);
+    prod.setPreis(preis);
 
     return prod;
   }
@@ -60,32 +77,41 @@ public class ProduktMapper extends AbstractMapper<Artikel, ProduktDTO> {
     mapDTOBasics(artikel, dto);
     artikel.setArtikelNr(dto.getProduktCode());
     artikel.setKurzbeschreibung(dto.getBezeichnung());
-    artikel.setBeschreibung(new StringBuilder(dto.getBeschreibung()));
+    if (dto.getBeschreibung() != null) {
+      artikel.setBeschreibung(new StringBuilder(dto.getBeschreibung()));
+    }
+    //set price
     if (dto.getPreis() != null) {
       artikel.setVK1(getNullSaveDoubleValue(dto.getPreis().getNettoPreis()));
       artikel.setVK2(getNullSaveDoubleValue(dto.getPreis().getBruttoPreis()));
-      
-      if (dto.getPreis().getSteuern()!=null && !dto.getPreis().getSteuern().isEmpty()){
+      //set taxes
+      if (dto.getPreis().getSteuern() != null && !dto.getPreis().getSteuern().isEmpty()) {
         //only one tax supported by TOM      
         SteuerDTO st = dto.getPreis().getSteuern().get(0);
-        if (st.getSteuerArt()!=null){
-        artikel.set_003_001_Steuersätze_DID(st.getSteuerArt().getId());
+        if (st.getSteuerArt() != null) {
+          artikel.set_003_001_Steuersätze_DID(st.getSteuerArt().getId());
+          artikel.setM_003_012__034_Steuersatz_IL(getNullSaveDoubleValue(st.getSteuerArt().getSteuersatz()));
         }
       }
+    }
+    //set currency
+    if (dto.getWrg() != null && dto.getWrg().getId() != null) {
+      artikel.set_005_001_Währungen_DID(dto.getWrg().getId());
     }
     return artikel;
 
   }
-  
+
   /**
    * Null save conversation to double.
+   *
    * @param value BigDecimal
    * @return double
    */
-  private double getNullSaveDoubleValue(BigDecimal value){
-    if (value==null){
+  private double getNullSaveDoubleValue(BigDecimal value) {
+    if (value == null) {
       return 0d;
-    }else{
+    } else {
       return value.doubleValue();
     }
   }

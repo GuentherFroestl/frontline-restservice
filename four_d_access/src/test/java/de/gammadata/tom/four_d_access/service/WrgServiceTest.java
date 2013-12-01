@@ -6,7 +6,7 @@ package de.gammadata.tom.four_d_access.service;
 
 import com.tom.service.dto.SearchByStringRequest;
 import com.tom.service.dto.SearchType;
-import com.tom.service.dto.SteuerArtDTO;
+import com.tom.service.dto.WrgDTO;
 import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
 import de.gammadata.tom.four_d_access.util.Tom4DSpec;
 import java.util.List;
@@ -16,18 +16,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
  * @author gfr
  */
-public class SteuerServiceTest {
+public class WrgServiceTest {
 
   private static DataBaseSpec dbSpec;
-  private SteuerService testee;
+  private WrgService testee;
 
-  public SteuerServiceTest() {
+  public WrgServiceTest() {
   }
 
   @BeforeClass
@@ -41,7 +40,7 @@ public class SteuerServiceTest {
 
   @Before
   public void setUp() {
-    testee = new SteuerService(dbSpec);
+    testee = new WrgService(dbSpec);
   }
 
   @After
@@ -49,44 +48,36 @@ public class SteuerServiceTest {
   }
 
   /**
-   * Test of loadStandardSteuerArt method, of class SteuerService.
-   */
-  @Test
-  public void testLoadStandardSteuerArt() throws Exception {
-    System.out.println("loadStandardSteuerArt");
-    SteuerArtDTO result = testee.loadStandardSteuerArt(2);
-    assertNotNull("Result was null", result);
-    System.out.println("StandardSteuerArt="+result);
-  }
-
-  /**
-   * Test of searchByString method, of class SteuerService.
+   * Test of searchByString method, of class WrgService.
    */
   @Test
   public void testSearchByString() throws Exception {
     System.out.println("searchByString");
     SearchByStringRequest req = new SearchByStringRequest();
-    req.setMandantenId(1);
     req.setSearchType(SearchType.ALL_RECORDS);
-    List<SteuerArtDTO> result = testee.searchByString(req);
+    req.setMandantenId(2);
+    List<WrgDTO> result = testee.searchByString(req);
     assertNotNull("Result was null", result);
-    assertTrue("Result was empty", result.size()>0);
-    System.out.println("StandardSteuerArt Liste="+result);;
+    assertTrue("Result was empty", result.size() > 0);
+    System.out.println("Waehrungsliste=" + result);
   }
 
   /**
-   * Test of loadById method, of class SteuerService.
+   * Test of loadById method, of class WrgService.
    */
-  @Ignore
   @Test
   public void testLoadById() throws Exception {
     System.out.println("loadById");
-    Integer id = null;
-    SteuerService instance = null;
-    SteuerArtDTO expResult = null;
-    SteuerArtDTO result = instance.loadById(id);
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+    SearchByStringRequest req = new SearchByStringRequest();
+    req.setSearchString("EUR");
+    req.setMandantenId(2);
+    List<WrgDTO> result = testee.searchByString(req);
+    assertNotNull("Result was null", result);
+    assertTrue("Result was empty", result.size() > 0);
+    System.out.println("Waehrungsliste=" + result);
+    Integer id= result.get(0).getId();
+    WrgDTO eur = testee.loadById(id);
+    assertNotNull("EUR object was null", eur);
+    System.out.println("EUR=" + eur);
   }
 }

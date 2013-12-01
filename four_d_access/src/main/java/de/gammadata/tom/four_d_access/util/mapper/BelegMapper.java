@@ -32,6 +32,7 @@ import com.tom.service.dto.WrgDTO;
 import de.gammadata.tom.four_d_access.xml.Xmp;
 import de.gammadata.tom.four_d_access.xml.XmpSelection;
 import java.math.BigDecimal;
+import java.sql.Date;
 
 /**
  * Mappt verschiedene Objekte rund ums BelegDTO
@@ -208,7 +209,7 @@ public class BelegMapper {
       adr.setId(best.get_009_001_Adressen_DID_RG());
       beleg.setRechnungsAdresse(adr);
     }
-    
+
     if (best.get_060_001__Lieferanten_DID() > 0) {
       LieferantenKopfDTO lief = new LieferantenKopfDTO();
       lief.setId(best.get_060_001__Lieferanten_DID());
@@ -400,6 +401,57 @@ public class BelegMapper {
     pos.setProdukt(mapProdukt(aufPos.get_032_001_Artikel_DID(), aufPos.getM_032_011__012_ArtikelNr()));
 
     return pos;
+
+  }
+
+  /**
+   * mapped eine BelegPositionDTO aud ein Aufpos
+   *
+   * @param pos
+   * @return
+   */
+  public static AuftragsPos mapAuftragsPos(BelegPositionDTO pos, int auftragId) {
+    if (pos == null) {
+      return null;
+    }
+    AuftragsPos aufPos = new AuftragsPos();
+    aufPos.set_067_001__Aufträge_DID(auftragId);
+    if (pos.getId() != null&&pos.getId()>0) {
+      aufPos.setDID(pos.getId());
+    }
+    aufPos.setDMandant(pos.getMandant());
+    aufPos.setArtikelBez(pos.getBezeichnung());
+    aufPos.setArtikelBeschr(new StringBuilder(pos.getBeschreibung()));
+    aufPos.setPosNr(pos.getPosNummer());
+    if (pos.getLeistungsDatum() != null) {
+      aufPos.setAE_Datum(new Date(pos.getLeistungsDatum().getTime()));
+    } else {
+      aufPos.setAE_Datum(new Date(System.currentTimeMillis()));
+      aufPos.setLiefertermin(aufPos.getAE_Datum());
+    }
+    aufPos.setMenge(pos.getMenge().doubleValue());
+
+    if (pos.getGesamtPreis() != null) {
+      aufPos.setVK_Gesamt_Brutto(pos.getGesamtPreis().getBruttoPreis().doubleValue());
+      aufPos.setVK_Gesamt_netto(pos.getGesamtPreis().getNettoPreis().doubleValue());
+
+    }
+
+    if (pos.getEinzelPreis() != null) {
+      aufPos.setVK_Preis(pos.getEinzelPreis().getNettoPreis().doubleValue());
+      if (pos.getEinzelPreis().getSteuern() != null && !pos.getEinzelPreis().getSteuern().isEmpty()) {
+        aufPos.set_003_001_Steuersätze_DID(pos.getEinzelPreis().getSteuern().get(0).getSteuerArt().getId());
+        aufPos.setMwST_Satz(pos.getEinzelPreis().getSteuern().get(0).getSteuerArt().getSteuersatz().doubleValue());
+      }
+    }
+
+    if (pos.getProdukt() != null) {
+      aufPos.set_032_001_Artikel_DID(pos.getProdukt().getId());
+      aufPos.setLast_Artikel_DID(pos.getProdukt().getId());
+      aufPos.setM_032_011__012_ArtikelNr(pos.getProdukt().getProduktCode());
+    }
+
+    return aufPos;
 
   }
 

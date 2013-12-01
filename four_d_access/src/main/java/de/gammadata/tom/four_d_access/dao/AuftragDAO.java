@@ -252,7 +252,25 @@ public class AuftragDAO extends AbstractBelegDAO<Auftraege> implements
     Auftraege auftrag = AuftraegeMapper.map(beleg);
     Auftraege savedAuftrag = storeXmpBean(auftrag);
     beleg.setId(savedAuftrag.getDID());
+    storeAuftragsPositionen(beleg, savedAuftrag.getDID());
     return beleg;
+  }
+
+  /**
+   * saves the positions to the Tom-DB.
+   *
+   * @param beleg BelegDTO
+   * @param auftragId in Foreign Key
+   * @throws TomDbException
+   */
+  private void storeAuftragsPositionen(BelegDTO beleg, int auftragId) throws TomDbException {
+    if (beleg.getPositionsListe() != null && !beleg.getPositionsListe().isEmpty()) {
+      for (BelegPositionDTO pos : beleg.getPositionsListe()) {
+        AuftragsPos aPos = BelegMapper.mapAuftragsPos(pos, auftragId);
+        aPos = (AuftragsPos) getDbHandler().storeObjectInDB(aPos);
+        pos.setId(aPos.getDID());
+      }
+    }
   }
 
   @Override
@@ -263,6 +281,9 @@ public class AuftragDAO extends AbstractBelegDAO<Auftraege> implements
   @Override
   public void deleteBelegInTom(BelegDTO beleg) throws TomDbException {
     Auftraege auftrag = AuftraegeMapper.map(beleg);
+    if (beleg.getPositionsListe() != null && !beleg.getPositionsListe().isEmpty()) {
+      throw new UnsupportedOperationException("Delete of Poslists not supported so far");
+    }
     int res = deleteObjectFromDB(auftrag);
   }
 }
