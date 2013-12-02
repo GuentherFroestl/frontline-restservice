@@ -5,6 +5,7 @@
 package at.cyberlab.taopix_services.config;
 
 import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
+import de.gammadata.tom.four_d_access.util.Tom4DSpec;
 import java.math.BigDecimal;
 
 /**
@@ -21,6 +22,10 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
   private String productCodeStubForReducedTax = "FB";
   private BigDecimal reducedTaxRate = new BigDecimal("10.00");
   private String wrg="EUR";
+  
+  public TaopixTomImportConfigImpl(){
+    dataBaseSpec = new Tom4DSpec().getDataBaseSpec();
+  }
 
   @Override
   public Integer getOrderNumberOffset() {

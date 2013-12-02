@@ -16,17 +16,16 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * Test for ImportProcessingChain.
  *
  * @author gfr
  */
-public class OrderSyncProcessorTest {
+public class ImportProcessingChainTest {
 
   private TaopixTomImportConfig config = new TaopixTomImportConfigImpl();
-  private AddressSyncProcessor adrSyncPrcessor;
-  private ProductSyncProcessor productSyncProcessor;
-  private OrderSyncProcessor orderSyncProcessor;
+  private ImportProcessingChain testee;
 
-  public OrderSyncProcessorTest() {
+  public ImportProcessingChainTest() {
   }
 
   @BeforeClass
@@ -39,9 +38,7 @@ public class OrderSyncProcessorTest {
 
   @Before
   public void setUp() {
-    adrSyncPrcessor = new AddressSyncProcessor(config);
-    productSyncProcessor = new ProductSyncProcessor(config);
-    orderSyncProcessor = new OrderSyncProcessor(config);
+    testee = new ImportProcessingChain(config);
   }
 
   @After
@@ -49,7 +46,7 @@ public class OrderSyncProcessorTest {
   }
 
   /**
-   * Test of processOrder method, of class AddressSyncProcessor.
+   * Test of processOrder method, of class ImportProcessingChain.
    */
   @Test
   public void testProcessOrder() throws Exception {
@@ -62,25 +59,15 @@ public class OrderSyncProcessorTest {
     assertNotNull("TaopixOrder == null", instance.getOrder());
     assertNotNull("Positionsliste == null", instance.getOrder().getPositionsListe());
     assertFalse("Positionsliste leer", instance.getOrder().getPositionsListe().isEmpty());
+
     TaopixImportProcessingObject pobj = new TaopixImportProcessingObject();
-
     pobj.setTaopixOrder(instance.getOrder());
-    //Addresses
-    System.out.println("syncAdresses");
-    adrSyncPrcessor.processOrder(pobj);
-    System.out.println("OrderAdr=" + instance.getOrder().getAdresse());
-    System.out.println("LieferAdr=" + instance.getOrder().getLieferAdresse());
-    System.out.println("RechAdr=" + instance.getOrder().getRechnungsAdresse());
-
-
-    //Product
-    System.out.println("syncProducts");
-    productSyncProcessor.processOrder(pobj);
 
     //Order
-    System.out.println("syncOrder Nummer=" + instance.getOrder().getNummer());
-    orderSyncProcessor.processOrder(pobj);
+    System.out.println("Start processOrder Nummer=" + instance.getOrder().getNummer());
+    testee.processOrder(pobj);
+    System.out.println("End process Order\n " + pobj.getMessages());
 
-    System.out.println("End processOrder\n " + pobj.getMessages());
+
   }
 }
