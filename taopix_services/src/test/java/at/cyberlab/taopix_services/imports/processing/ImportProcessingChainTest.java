@@ -51,7 +51,7 @@ public class ImportProcessingChainTest {
   @Test
   public void testProcessOrder() throws Exception {
     System.out.println("processOrder");
-    InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005273.xml");
+    InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005476.xml");
     TaopixToTomXmlParser instance = new TaopixToTomXmlParser(new TaopixTomImportConfigImpl());
     instance.parse(xmlStream);
     xmlStream.close();

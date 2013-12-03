@@ -2,7 +2,7 @@
 <export>
 	<order>
 		<header>
-			<id>5476</id>
+			<id>9999</id>
 			<datecreated>2013-11-24 17:06:02</datecreated>
 			<datelastmodified>2013-11-24 17:15:16</datelastmodified>
 			<ownercode>CYLBDGTLE</ownercode>
@@ -10,7 +10,7 @@
 			<shoppingcarttype>0</shoppingcarttype>
 			<userid>2600</userid>
 			<orderdate>2013-11-24 17:06:02</orderdate>
-			<ordernumber>0005476</ordernumber>
+			<ordernumber>0009999</ordernumber>
 			<origorderid>0</origorderid>
 			<origordernumber/>
 			<temporderid>0</temporderid>
@@ -83,7 +83,7 @@
 			<statustimestamp>2013-11-24 17:15:16</statustimestamp>
 			<statususerid>0</statususerid>
 			<statusdescription/>
-			<orderid>5476</orderid>
+			<orderid>9999</orderid>
 			<uploadref>DEMO241120131648000832</uploadref>
 			<origorderitemid>0</origorderitemid>
 			<origuploadref/>
@@ -179,10 +179,10 @@
 			<canuploadpagecountoverride>0</canuploadpagecountoverride>
 		</header>
 		<item>
-			<id>5476</id>
+			<id>9999</id>
 			<datecreated>2013-11-24 17:06:02</datecreated>
 			<datelastmodified>2013-11-24 17:15:16</datelastmodified>
-			<orderid>5476</orderid>
+			<orderid>9999</orderid>
 			<userid>2600</userid>
 			<uploadref>DEMO241120131648000832</uploadref>
 			<origorderid>0</origorderid>
@@ -287,11 +287,11 @@
 			<statustimestamp>2013-11-24 17:15:16</statustimestamp>
 		</item>
 		<shipping>
-			<id>5476</id>
+			<id>9999</id>
 			<datecreated>2013-11-24 17:06:02</datecreated>
 			<datelastmodified>2013-11-24 17:06:02</datelastmodified>
-			<orderid>5476</orderid>
-			<orderitemid>5476</orderitemid>
+			<orderid>9999</orderid>
+			<orderitemid>9999</orderitemid>
 			<userid>2600</userid>
 			<shippingcustomername/>
 			<shippingcustomeraddress1>KGA Simm.Haide 607</shippingcustomeraddress1>
@@ -329,7 +329,7 @@
 			<id>931</id>
 			<datecreated>2013-11-24 17:06:02</datecreated>
 			<sessionid>833</sessionid>
-			<orderid>5476</orderid>
+			<orderid>9999</orderid>
 			<userid>2600</userid>
 			<parentlogid>0</parentlogid>
 			<type>PAYPAL</type>

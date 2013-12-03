@@ -14,7 +14,7 @@ import java.math.BigDecimal;
  */
 public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
 
-  private Integer orderNumberOffset = 12500000;
+  private Integer orderNumberOffset = 112500000;
   private Integer mandatorId = 2;
   private String userUuidPrefix = "TAOPIX_USER_";
   private String orderUuidPrefix = "TAOPIX_ORDER_";

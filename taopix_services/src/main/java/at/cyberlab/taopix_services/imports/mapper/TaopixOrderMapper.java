@@ -176,6 +176,13 @@ public class TaopixOrderMapper {
   public static void mapOrderProperties(TaopixOrder order, HashMap<String, String> orderProperties, TaopixTomImportConfig tomImportConfig) {
     order.setNummer(tomImportConfig.getOrderNumberOffset() + Integer.parseInt(orderProperties.get("orderid")));
     order.setUuid("TAOPIX_" + orderProperties.get("orderid"));
+    String payment;
+    if ("1".equals(orderProperties.get("paymentreceived"))){
+      payment= "bezahlt "+orderProperties.get("paymentmethodcode");
+    }else{
+      payment="";
+    }
+    order.setBetreff("TAOPIX " + orderProperties.get("orderid")+ " "+orderProperties.get("productcode")+ " "+payment);
     order.setMandant(tomImportConfig.getMandatorId());
 
     order.setWrg(mapWrg(orderProperties, tomImportConfig));
@@ -191,48 +198,7 @@ public class TaopixOrderMapper {
     }
   }
 
-  /**
-   * sum up postions and build totals
-   *
-   * @param beleg BelegDTO
-   */
-  public static void calculateTotals(BelegDTO beleg) {
 
-    BigDecimal netTotal = BigDecimal.ZERO;
-    BigDecimal grossTotal = BigDecimal.ZERO;
-    BigDecimal taxTotal = BigDecimal.ZERO;
-    List<SteuerDTO> gTaxList = null;
-    Map<String, SteuerDTO> taxMap = new HashMap<String, SteuerDTO>();
-
-    if (beleg.getPositionsListe() != null && !beleg.getPositionsListe().isEmpty()) {
-
-      for (BelegPositionDTO pos : beleg.getPositionsListe()) {
-        grossTotal = grossTotal.add(pos.getGesamtPreis().getBruttoPreis());
-        netTotal = netTotal.add(pos.getGesamtPreis().getNettoPreis());
-        taxTotal = taxTotal.add(pos.getGesamtPreis().getSteuerBetrag());
-        //Taxes
-        if (pos.getGesamtPreis().getSteuern() != null) {
-          for (SteuerDTO steuer : pos.getGesamtPreis().getSteuern()) {
-            if (!taxMap.containsKey(steuer.getSteuerArt().getBezeichnung())) {
-              SteuerDTO posSteuer = new SteuerDTO(steuer);
-              taxMap.put(steuer.getSteuerArt().getBezeichnung(), posSteuer);
-            } else {
-              SteuerDTO steuerArtSumme = taxMap.get(steuer.getSteuerArt().getBezeichnung());
-              steuerArtSumme.setBetrag(steuerArtSumme.getBetrag().add(steuer.getBetrag()));
-            }
-          }
-        }
-      }
-    }
-    gTaxList = new ArrayList<SteuerDTO>(taxMap.values());
-    PreisDTO gPreis = new PreisDTO();
-    beleg.setPreis(gPreis);
-    gPreis.setBruttoPreis(grossTotal);
-    gPreis.setNettoPreis(netTotal);
-    gPreis.setSteuerBetrag(taxTotal);
-    gPreis.setSteuern(gTaxList);
-
-  }
 
   /**
    * Convienence methode for setting pricing.

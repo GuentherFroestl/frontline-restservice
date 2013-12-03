@@ -6,6 +6,8 @@ package at.cyberlab.taopix_services.imports.processing;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
 import at.cyberlab.taopix_services.imports.ImportException;
+import at.cyberlab.taopix_services.imports.calculation.BelegCalculator;
+import at.cyberlab.taopix_services.imports.calculation.BelegPositionCalculator;
 import com.tom.service.dto.BelegPositionDTO;
 import com.tom.service.dto.Einheit;
 import com.tom.service.dto.PreisDTO;
@@ -24,7 +26,6 @@ import de.gammadata.tom.four_d_access.service.WrgService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -101,7 +102,7 @@ public class ProductSyncProcessor implements ITaopixOrderImportProcessor {
         st.setBetrag(BigDecimal.ZERO);
         preis.getSteuern().add(st);
         newProd.setPreis(preis);
-        calculateTaxes(pos, newProd);
+        
         newProd.setWrg(getStandardWrg());
         try {
           tProd = prodService.createProdukt(newProd);
@@ -121,14 +122,12 @@ public class ProductSyncProcessor implements ITaopixOrderImportProcessor {
       }
       //Product now known
       pos.setProdukt(new ProduktKopfDTO(tProd));
-      calculateTaxes(pos, tProd);
+      BelegPositionCalculator.calculateFromTotalGross(pos,tProd.getPreis().getSteuern().get(0).getSteuerArt());
     }
+    BelegCalculator.calculateTotals(processingObject.getTaopixOrder());
   }
   
-  private void calculateTaxes(BelegPositionDTO pos, ProduktDTO prod){
-    pos.getEinzelPreis().setSteuern(prod.getPreis().getSteuern());
-    pos.getGesamtPreis().setSteuern(prod.getPreis().getSteuern());  
-  }
+
 
   private SteuerArtDTO getStandardSteuer() throws ImportException {
     if (standardSteuer != null) {

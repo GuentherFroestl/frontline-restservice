@@ -62,7 +62,7 @@ public class TaopixToTomXmlParserTest {
     assertNotNull("order == null", instance.getOrder());
     assertEquals("Mandator ID stimmt nicht ", taopixTomConfig.getMandatorId(), instance.getOrder().getMandant());
     Integer tomOrderNr = taopixTomConfig.getOrderNumberOffset()+Integer.parseInt(instance.getOrderId());
-    assertEquals("TomOrderNr stimmt nicht ", new Integer(12505272), tomOrderNr);
+    assertEquals("TomOrderNr stimmt nicht ", new Integer(112505272), tomOrderNr);
     
     
     AddressDTO address = instance.getOrderAddress();
@@ -107,11 +107,6 @@ public class TaopixToTomXmlParserTest {
 
     BelegPositionDTO discount = instance.getDiscount();
     System.out.println("Discount=" + discount);
-
-
-
-
-
 
 
   }
@@ -243,5 +238,28 @@ public class TaopixToTomXmlParserTest {
     assertTrue("size of list of taxes  in gesamtPreis is not 1", preis.getSteuern().size() == 1);
     assertTrue("tax betrag doesn't match 0.00", preis.getSteuern().get(0).getBetrag().compareTo(new BigDecimal("0.00")) == 0);
     assertTrue("tax bezeichnung doesn't match MwSt.", preis.getSteuern().get(0).getSteuerArt().getBezeichnung().equalsIgnoreCase("MwSt."));
+  }
+  
+    /**
+   * Test of parse method, of class TaopixToTomXmlParser. Test if shipping position ist correct.
+   */
+  @Test
+  public void testBelegBetreff() throws Exception {
+
+    //Test total
+    InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005476.xml");
+    TaopixToTomXmlParser instance = new TaopixToTomXmlParser(taopixTomConfig);
+    instance.parse(xmlStream);
+    xmlStream.close();
+
+    System.out.println("Order=" + instance.getOrder());
+    assertNotNull("TaopixOrder == null", instance.getOrder());
+    assertNotNull("TaopixOrder.betreff == null", instance.getOrder().getBetreff());
+
+
+    assertTrue("Betreff doesn't contain ordernumer ", instance.getOrder().getBetreff().contains("5476"));
+    assertTrue("Betreff doesn't contain bezahlt ", instance.getOrder().getBetreff().contains("bezahlt"));
+    assertTrue("Betreff doesn't contain ordernumer ", instance.getOrder().getBetreff().contains("PAYPAL"));
+
   }
 }

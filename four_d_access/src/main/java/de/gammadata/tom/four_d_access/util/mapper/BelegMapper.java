@@ -416,7 +416,7 @@ public class BelegMapper {
     }
     AuftragsPos aufPos = new AuftragsPos();
     aufPos.set_067_001__Aufträge_DID(auftragId);
-    if (pos.getId() != null&&pos.getId()>0) {
+    if (pos.getId() != null && pos.getId() > 0) {
       aufPos.setDID(pos.getId());
     }
     aufPos.setDMandant(pos.getMandant());
@@ -434,15 +434,16 @@ public class BelegMapper {
     if (pos.getGesamtPreis() != null) {
       aufPos.setVK_Gesamt_Brutto(pos.getGesamtPreis().getBruttoPreis().doubleValue());
       aufPos.setVK_Gesamt_netto(pos.getGesamtPreis().getNettoPreis().doubleValue());
+      if (pos.getGesamtPreis().getSteuern() != null && !pos.getGesamtPreis().getSteuern().isEmpty()) {
+        aufPos.set_003_001_Steuersätze_DID(pos.getGesamtPreis().getSteuern().get(0).getSteuerArt().getId());
+        aufPos.setMwST_Satz(pos.getGesamtPreis().getSteuern().get(0).getSteuerArt().getSteuersatz().doubleValue());
+      }
 
     }
 
     if (pos.getEinzelPreis() != null) {
       aufPos.setVK_Preis(pos.getEinzelPreis().getNettoPreis().doubleValue());
-      if (pos.getEinzelPreis().getSteuern() != null && !pos.getEinzelPreis().getSteuern().isEmpty()) {
-        aufPos.set_003_001_Steuersätze_DID(pos.getEinzelPreis().getSteuern().get(0).getSteuerArt().getId());
-        aufPos.setMwST_Satz(pos.getEinzelPreis().getSteuern().get(0).getSteuerArt().getSteuersatz().doubleValue());
-      }
+
     }
 
     if (pos.getProdukt() != null) {

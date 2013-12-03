@@ -55,19 +55,20 @@ public class ProductSyncProcessorTest {
    */
   @Test
   public void testProcessOrder() throws Exception {
-    
+
     System.out.println("Start processOrder");
-    InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005343.xml");
+    InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005476.xml");
     TaopixToTomXmlParser instance = new TaopixToTomXmlParser(new TaopixTomImportConfigImpl());
     instance.parse(xmlStream);
     xmlStream.close();
 
     assertNotNull("TaopixOrder == null", instance.getOrder());
     assertNotNull("Positionsliste == null", instance.getOrder().getPositionsListe());
-    assertEquals("Positionsliste != 3", 3, instance.getOrder().getPositionsListe().size());
+    assertEquals("Positionsliste != 2", 2, instance.getOrder().getPositionsListe().size());
     TaopixImportProcessingObject pobj = new TaopixImportProcessingObject();
     pobj.setTaopixOrder(instance.getOrder());
     testee.processOrder(pobj);
-    System.out.println("End processOrder\n "+pobj.getMessages());
+    System.out.println("Order " + instance.getOrder());
+    System.out.println("End processOrder\n " + pobj.getMessages());
   }
 }

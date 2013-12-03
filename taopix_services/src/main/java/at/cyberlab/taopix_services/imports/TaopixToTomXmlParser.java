@@ -5,6 +5,7 @@
 package at.cyberlab.taopix_services.imports;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
+import at.cyberlab.taopix_services.imports.calculation.BelegCalculator;
 import at.cyberlab.taopix_services.imports.mapper.TaopixAddressMapper;
 import at.cyberlab.taopix_services.imports.mapper.TaopixOrderMapper;
 import at.cyberlab.taopix_services.inputobjects.TaopixOrder;
@@ -193,7 +194,7 @@ public class TaopixToTomXmlParser {
         posNumber++;
       }
       //TODO set Gesamtpreis
-      TaopixOrderMapper.calculateTotals(order);
+      BelegCalculator.calculateTotals(order);
     }
 
     @Override

@@ -65,6 +65,7 @@ public class OrderSyncProcessorTest {
     TaopixImportProcessingObject pobj = new TaopixImportProcessingObject();
 
     pobj.setTaopixOrder(instance.getOrder());
+    System.out.println("Order Number="+instance.getOrder().getNummer());
     //Addresses
     System.out.println("syncAdresses");
     adrSyncPrcessor.processOrder(pobj);
