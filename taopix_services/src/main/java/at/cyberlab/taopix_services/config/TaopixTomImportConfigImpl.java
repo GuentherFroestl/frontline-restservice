@@ -14,6 +14,9 @@ import java.math.BigDecimal;
  */
 public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
 
+  public static final String CONFIG_FILE_PATH="/Users/Shared/config/taopix/";
+  public static final String CONFIG_FILE_NAME="config.xml";
+  
   private Integer orderNumberOffset = 112500000;
   private Integer mandatorId = 2;
   private String userUuidPrefix = "TAOPIX_USER_";
@@ -22,6 +25,8 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
   private String productCodeStubForReducedTax = "FB";
   private BigDecimal reducedTaxRate = new BigDecimal("10.00");
   private String wrg="EUR";
+  private String configFolderPath = CONFIG_FILE_PATH;
+  private String xslFileName = "cyberlab_beleg.xsl";
   
   public TaopixTomImportConfigImpl(){
     dataBaseSpec = new Tom4DSpec().getDataBaseSpec();
@@ -104,4 +109,26 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
   public void setDataBaseSpec(DataBaseSpec dataBaseSpec) {
     this.dataBaseSpec = dataBaseSpec;
   }
+
+  @Override
+  public String getXslFileName() {
+    return xslFileName;
+  }
+
+  @Override
+  public void setXslFileName(String xslFileName) {
+    this.xslFileName = xslFileName;
+  }
+
+  @Override
+  public String getConfigFolderPath() {
+    return configFolderPath;
+  }
+
+  @Override
+  public void setConfigFolderPath(String configFolderPath) {
+    this.configFolderPath = configFolderPath;
+  }
+  
+  
 }

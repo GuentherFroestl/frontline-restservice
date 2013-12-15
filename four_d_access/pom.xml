@@ -8,6 +8,14 @@
   <packaging>jar</packaging>
 
   <name>four_d_access</name>
+  
+    <repositories>
+    <repository>
+      <id>forFop</id>
+      <name>needed for FOP</name>
+      <url>http://mvnrepository.com/</url>
+    </repository>
+  </repositories>
   <url>http://maven.apache.org</url>
     <build>
         <plugins>
@@ -31,6 +39,16 @@
       <groupId>de.gammadata.tomagency</groupId>
       <artifactId>tom-restservice-client-api</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>fop</artifactId>
+      <version>1.0</version>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>

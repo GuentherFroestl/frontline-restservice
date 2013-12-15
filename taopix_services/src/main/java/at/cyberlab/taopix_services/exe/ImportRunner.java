@@ -10,11 +10,18 @@ import at.cyberlab.taopix_services.imports.TaopixToTomXmlParser;
 import at.cyberlab.taopix_services.imports.processing.ITaopixOrderImportProcessor;
 import at.cyberlab.taopix_services.imports.processing.ImportProcessingChain;
 import at.cyberlab.taopix_services.imports.processing.TaopixImportProcessingObject;
+import de.gammadata.tom.util.xml.ISerializer;
+import de.gammadata.tom.util.xml.XstreamSerializer;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.io.IOUtils;
 
 /**
  * Runs the import for taopix xml files to tom 4D DB
@@ -73,4 +80,6 @@ public class ImportRunner {
       Logger.getLogger(ImportRunner.class.getName()).log(Level.SEVERE, "Ein Fehler ist bei der Verarbeitung aufgetreten:" + ex.getMessage(), ex);
     }
   }
+  
+
 }

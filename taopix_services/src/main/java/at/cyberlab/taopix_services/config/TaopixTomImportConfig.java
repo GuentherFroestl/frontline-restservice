@@ -89,4 +89,29 @@ public interface TaopixTomImportConfig {
    * @param dataBaseSpec DataBaseSpec
    */
   public void setDataBaseSpec(DataBaseSpec dataBaseSpec);
+  
+  /**
+   * Path to the config folder.
+   * @return String with path
+   */
+  public String getConfigFolderPath();
+  
+  /**
+   * Path to the config folder.
+   * @param configFolderPath String with path
+   */
+  public void setConfigFolderPath(String configFolderPath);
+  
+  
+  /**
+   * 
+   * @return String with xsl file path
+   */
+  public String getXslFileName();
+
+  /**
+   * 
+   * @param xslFileName 
+   */
+  public void setXslFileName(String xslFileName);
 }
