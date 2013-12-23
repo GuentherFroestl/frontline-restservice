@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
    <xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" exclude-result-prefixes="fo">
-    <xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes"/>
+    <xsl:output method="xml" encoding="UTF-8" version="1.0" omit-xml-declaration="no" indent="yes"/>
     <xsl:param name="versionParam" select="'1.0'"/> 
 
        <xsl:variable name="imagepfad" select="'file:///Z:/Toby/Frontline/cyberlab_Logos_05/'"></xsl:variable>
        <xsl:variable name="logo" select="'cyberlabprintlogotest.tif'" />
        <xsl:variable name="logoklein" select="'cyberlabprintlogo.tif'" />
        <xsl:variable name="footer" select="'cyberlab-footer.tif'" />
-       <xsl:variable name="Dokname">Auftragsbestätigung</xsl:variable>
-       <xsl:variable name="vermerk">Wir danken für den erhaltenen Auftrag, den wir hiermit bestätigen</xsl:variable>
-       <xsl:variable name="space"> <xsl:text xml:space="preserve"> </xsl:text></xsl:variable>
-       <xsl:variable name="quadspace"> <xsl:text xml:space="preserve">    </xsl:text></xsl:variable>
+       <xsl:variable name="Dokname">AuftragsbestÃ¤tigung</xsl:variable>
+       <xsl:variable name="vermerk">Wir danken fÃ¼r den erhaltenen Auftrag, den wir hiermit bestÃ¤tigen</xsl:variable>
+       <xsl:variable name="space"> <xsl:text xml:space="preserve">&#160;</xsl:text></xsl:variable>
+       <xsl:variable name="quadspace"> <xsl:text xml:space="preserve">&#160;&#160;&#160;&#160;</xsl:text></xsl:variable>
        <xsl:decimal-format name="feuro" decimal-separator="," grouping-separator="."/>
        <xsl:variable name="bc_auftrag">$ab$</xsl:variable>
        <xsl:variable name="bc_lieferschein">$ls$</xsl:variable>
@@ -130,7 +130,6 @@
                          <fo:page-sequence master-reference="simpleA4">
                              <fo:static-content flow-name="kopfzeileerst">
                                  <xsl:apply-templates select="." mode="internerAbHeader"/>
-                                 <!-- <fo:block><xsl:call-template name="rowtable"></xsl:call-template></fo:block>  --> 
                              </fo:static-content>
 
                              <fo:static-content flow-name="footer">
@@ -138,37 +137,12 @@
                              </fo:static-content>
                              <fo:flow flow-name="body">
                                  
-                                 <xsl:apply-templates select="controllergencontent/pageform/pageobjects" mode="auftragsdaten"/>
-                                 <xsl:if test="string-length(controllergencontent/pageform/pageobjects/Pagevars/object_felder/vVermerk4_xml)&gt;0">
-                                     <fo:block linefeed-treatment="preserve" >
-                                         <xsl:text>
-                                         </xsl:text>
-                                         </fo:block>
-                                     <fo:block linefeed-treatment="preserve"  xsl:use-attribute-sets="bodytextgrey">
-                                         <xsl:text>Zu diesem Auftrag wurde folgende Nachricht hinterlegt:</xsl:text> </fo:block>
-                                     <fo:block linefeed-treatment="preserve" xsl:use-attribute-sets="bodytext">
-                                         <xsl:apply-templates select="controllergencontent/pageform/pageobjects/Pagevars/object_felder/vVermerk4_xml/descendant-or-self::*"/>
-                                     </fo:block>
-                                 </xsl:if>
-
+                                 <xsl:apply-templates select="." mode="auftragsdaten"/>
+<!-- 
                                 <fo:block><xsl:call-template name="rowtable"></xsl:call-template></fo:block>
-                                
-                                 <xsl:choose>
-                                     <xsl:when test="controllergencontent/pageform/pageobjects/Aufträge">
-                                         <xsl:apply-templates select="controllergencontent/pageform/pageobjects/verdposliste/selection" mode="orderrow"/>
-                                     </xsl:when>
-                                     <xsl:otherwise>
-                                         <xsl:apply-templates select="controllergencontent/pageform/pageobjects/verdposliste/selection" mode="noimport"/>
-                                     </xsl:otherwise>
-                                 </xsl:choose>
-   <!--                              <xsl:choose>
-                                     <xsl:when test="controllergencontent/pageform/pageobjects/aufposliste/selection">
-                                         <xsl:apply-templates select="controllergencontent/pageform/pageobjects/aufposliste/selection" mode="aufposliste"/>
-                                     </xsl:when>
-                                     <xsl:otherwise>
-                                         <xsl:apply-templates select="controllergencontent/pageform/pageobjects/verdposliste/selection" mode="orderrow"/>
-                                     </xsl:otherwise>
-                                 </xsl:choose>-->
+-->
+                                 <xsl:apply-templates select="positionsListe"/>
+
                                  
                 </fo:flow>    
             </fo:page-sequence>
@@ -193,6 +167,18 @@
                                    <xsl:value-of select="$space"/><xsl:value-of select="$space"/>Versand!
                                </xsl:if>     
                            </fo:block>
+                               <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader"> 
+                                   <xsl:value-of select="betreff"/>
+                               </fo:block>
+                               <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader"  white-space-treatment="preserve" >Auftragsdatum:  <xsl:value-of select="datum"/>
+                                   <xsl:value-of select="$quadspace"/>Zahlbetrag:  <xsl:value-of select="$space"/>
+                                   <xsl:value-of select="preis/bruttoPreis"/><xsl:value-of select="$space"/> 
+                                   <xsl:value-of select="wrg/bezeichnung"/>
+                               </fo:block>
+                               <fo:block >
+                                   <xsl:value-of select="$space"/>
+                               </fo:block>
+                                   
                                <fo:block  white-space-treatment="preserve">
                                    AB:
                                    <fo:instream-foreign-object>
@@ -303,106 +289,76 @@
                                    </fo:instream-foreign-object>
                                    </fo:block>
                                
-                               <fo:block space-before="5mm" text-align="left" xsl:use-attribute-sets="mittlererheader"  white-space-treatment="preserve">
-                                   <xsl:value-of select="substring(orders/object_felder/orderdate,1,16)"/>
-                                  ,  Abzüge:  <xsl:value-of select="$space"/>
-                                   <xsl:value-of select="orders/object_felder/totalcopies"/>
-                                   <xsl:value-of select="$space"/> <xsl:value-of select="$space"/>
-                                   <xsl:value-of select="$space"/> <xsl:value-of select="$space"/>
-                                   , Zahlbetrag:  <xsl:value-of select="$space"/>
-                                   <xsl:value-of select="Pagevars/object_felder/vZahlBetrag"/>
-                                   <xsl:value-of select="$space"/><xsl:value-of select="$space"/><xsl:value-of select="Pagevars/object_felder/vWRG"/>
-                                   <xsl:value-of select="$space"/> <xsl:value-of select="$space"/>
-                                   <xsl:choose>
-                                       <xsl:when test="Kunden">
-                                         ,  <xsl:value-of select="Kunden/object_felder/m_012_011_Zahlungsbed_KBZ"/>
-                                       </xsl:when>
-                                       <xsl:otherwise>
-                                           , <xsl:value-of select="Pagevars/object_felder/vZahlbed"/>
-                                       </xsl:otherwise>
-                                   </xsl:choose>
-                                   
-                               </fo:block>
+
                            </fo:table-cell>
 
                        </fo:table-row>
-                       <fo:table-row>
-                           <fo:table-cell><fo:block> </fo:block></fo:table-cell>
-                           <fo:table-cell>
-                              
-                               <xsl:if test="Aufträge">
-                                   <fo:block white-space-treatment="preserve"> &#160;</fo:block>
-                                   <fo:block  xsl:use-attribute-sets="mittlererheader" >Tom-Auftrags-Nr:  <xsl:value-of select="Aufträge/object_felder/lfd_Nr"/>
-                                       <xsl:if test="orders/object_felder/deliveryoption!='123'"> 
-                                           <fo:block  xsl:use-attribute-sets="mittlererheader" >
-                                               Versandart: 
-                                          <xsl:call-template name="lieferart_mit_code">
-                                              <xsl:with-param name="lieferart" select="/tompage/controllergencontent/pageform/pageobjects/orders/object_felder/deliveryoption"></xsl:with-param>
-                                          </xsl:call-template>
-                                               </fo:block>
-                                       </xsl:if>  
-                                   </fo:block> 
-
-                                       <xsl:if test="Lieferscheine">
-                                           <fo:block xsl:use-attribute-sets="bodytext">
-                                           LieferscheinNr: <xsl:value-of select="Lieferscheine/object_felder/lfdNr"/>
-                                               </fo:block>
-                                       </xsl:if>
-                                       <xsl:if test="AusRech">
-                                           <fo:block xsl:use-attribute-sets="bodytext">
-                                              Rechnungs-Nr: <xsl:value-of select="AusRech/object_felder/rechnungsnummer"/>
-                                               <xsl:choose>
-                                                   <xsl:when test="AusRech/object_felder/bezahlt">
-                                                       bezahlt 
-                                                       <xsl:if test="Geldtransfer">, 
-                                                           <xsl:value-of select="Geldtransfer/object_felder/m_005_011__015_Währungszeichen"/>
-                                                           <xsl:value-of select="Geldtransfer/object_felder/betrag"/> 
-                                                           mittels <xsl:value-of select="Geldtransfer/object_felder/m_083_011_GeldkontoBezeichnung"/>
-                                                           am <xsl:value-of select="Geldtransfer/object_felder/datum"/>
-                                                       </xsl:if>
-                                                   </xsl:when>
-                                                   <xsl:otherwise>
-                                                       , <xsl:value-of select="Zahlungsbedingungen/object_felder/zahlungsbed_Text"/>
-                                                   </xsl:otherwise>
-                                               </xsl:choose>
-                                              
-                                           </fo:block>
-                                       </xsl:if>
-                                   <xsl:choose>
-                                       <xsl:when test="Kunden">
-                                           <fo:block xsl:use-attribute-sets="bodytextfett">
-                                               Kunden-Nr: 
-                                               <xsl:value-of select="Kunden/object_felder/kundenNr"/>,  <xsl:value-of select="Zahlungsbedingungen/object_felder/zahlungsbed_Text"/>
-                                           </fo:block>
-                                       </xsl:when>
-                                       <xsl:otherwise>
-                                           <xsl:if test="not(AusRech)">
-                                               <fo:block xsl:use-attribute-sets="bodytext">
-                                                   Zahlungsbedingung: 
-                                                   <xsl:value-of select="Zahlungsbedingungen/object_felder/zahlungsbed_Text"/>
-                                               </fo:block>
-                                           </xsl:if>
-                                        
-                                       </xsl:otherwise>
-                                   </xsl:choose>
-                                  
-                               </xsl:if>
-                               <fo:block>
-                                   </fo:block>
-                           </fo:table-cell>
-                           </fo:table-row>
                    </fo:table-body>
                </fo:table>
                
-
            </fo:block>
        </xsl:template>
 
-       <xsl:template match="vLabelAdr1_xml">
-           <xsl:apply-templates/>
-       </xsl:template>     
+       <xsl:template match="fullOrderAddress">
+           
+           <xsl:call-template name="adresse">
+               <xsl:with-param name="vorname"><xsl:value-of select="vorname"/></xsl:with-param>
+               <xsl:with-param name="nachname"><xsl:value-of select="name"/></xsl:with-param>
+               <xsl:with-param name="firma"><xsl:value-of select="firma"/></xsl:with-param>
+               <xsl:with-param name="plz"><xsl:value-of select="plz"/></xsl:with-param>
+               <xsl:with-param name="stadt"><xsl:value-of select="stadt"/></xsl:with-param>
+               <xsl:with-param name="land"><xsl:value-of select="land/landName"/></xsl:with-param>
+               <xsl:with-param name="email"><xsl:value-of select="email"/></xsl:with-param>
+               <xsl:with-param name="mobilTelefon"><xsl:value-of select="mobilTelefon"/></xsl:with-param>
+           </xsl:call-template>
+       </xsl:template>
        
-       <xsl:template match="pageobjects" mode="auftragsdaten">
+       <xsl:template match="fullShippingAddress">
+           <xsl:call-template name="adresse">
+               <xsl:with-param name="vorname"><xsl:value-of select="vorname"/></xsl:with-param>
+               <xsl:with-param name="nachname"><xsl:value-of select="name"/></xsl:with-param>
+               <xsl:with-param name="firma"><xsl:value-of select="firma"/></xsl:with-param>
+               <xsl:with-param name="plz"><xsl:value-of select="plz"/></xsl:with-param>
+               <xsl:with-param name="stadt"><xsl:value-of select="stadt"/></xsl:with-param>
+               <xsl:with-param name="land"><xsl:value-of select="land/landName"/></xsl:with-param>
+               <xsl:with-param name="email"><xsl:value-of select="email"/></xsl:with-param>
+               <xsl:with-param name="mobilTelefon"><xsl:value-of select="mobilTelefon"/></xsl:with-param>
+           </xsl:call-template>
+       </xsl:template>
+       
+       <xsl:template name="adresse">
+           <xsl:param name="vorname"></xsl:param>
+           <xsl:param name="nachname"></xsl:param>
+           <xsl:param name="firma"></xsl:param>
+           <xsl:param name="plz"></xsl:param>
+           <xsl:param name="stadt"></xsl:param>
+           <xsl:param name="land"></xsl:param>
+           <xsl:param name="email"></xsl:param>
+           <xsl:param name="mobilTelefon"></xsl:param>
+           <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader">
+               <xsl:value-of select="$vorname"/>&#160;<xsl:value-of select="$nachname"/>
+           </fo:block>
+           <xsl:if test="string-length($firma)&gt;0">
+               <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader">
+               <xsl:value-of select="$firma"/>
+               </fo:block>
+           </xsl:if>
+           <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader">
+               <xsl:value-of select="$plz"/>&#160;&#160;<xsl:value-of select="$stadt"/>
+           </fo:block>
+           <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader">
+               <xsl:value-of select="$land"/>
+           </fo:block>
+           <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader">
+               <xsl:value-of select="$email"/>
+           </fo:block>
+           <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader">
+               <xsl:value-of select="$mobilTelefon"/>
+           </fo:block>
+           
+       </xsl:template>
+       
+       <xsl:template match="at.cyberlab.taopix__services.inputobjects.TaopixOrder" mode="auftragsdaten">
            <fo:block xsl:use-attribute-sets="bodytext" >
                <fo:table width="193.1mm" table-layout="fixed">
                    <fo:table-column column-width="75mm"/>
@@ -410,43 +366,16 @@
                    <fo:table-column column-width="80mm"/>
                    <fo:table-body>
                        <fo:table-row>
-                           
                            <fo:table-cell>
                                <fo:block text-align="left" xsl:use-attribute-sets="sehrkleinertext"> Besteller:</fo:block>
-                               <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader"   >
-                                   <fo:block linefeed-treatment="preserve"><xsl:apply-templates select="Pagevars/object_felder/vLabelAdr1_xml"/></fo:block > 
-                               </fo:block>        
-                               <fo:block text-align="left" xsl:use-attribute-sets="kleinertext" linefeed-treatment="preserve">
-                                   Tel:   <xsl:value-of select="Adressen/object_felder/telefon"/>
-                                   <fo:block text-align="left" xsl:use-attribute-sets="kleinertext">
-                                       <xsl:value-of select="Adressen/object_felder/eMail"/></fo:block > 
-                               </fo:block>
+                               <xsl:apply-templates select="fullOrderAddress"/>                            
                            </fo:table-cell>
                            <fo:table-cell>
-                               
                                <fo:block></fo:block>
-
                            </fo:table-cell>
                            <fo:table-cell>
-                              
-                                   <xsl:if test="orders/object_felder/deliveryoption!='123'"> 
-                                   <fo:block text-align="left" xsl:use-attribute-sets="sehrkleinertext">
-                                   Empfänger:
-                               </fo:block>
-                                       <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader" linefeed-treatment="preserve">
-                                           <!--      <xsl:apply-templates select="Pagevars/object_felder/vLabelAdr2_xml/descendant-or-self::*"/>  -->    
-                                           <xsl:apply-templates select="Pagevars/object_felder/vLabelAdr2_xml"/></fo:block >
-                                       <xsl:if test="(orders/object_felder/deliveryoption='125') or (orders/object_felder/deliveryoption='127')">
-                                           
-                                           <fo:block text-align="left" xsl:use-attribute-sets="kleinertext"  linefeed-treatment="preserve"><xsl:text></xsl:text>
-                                               Tel: <xsl:value-of select="Adressen/object_felder/telefon"/><xsl:if test="string-length(Adressen/object_felder/handy)>0">
-                                           Mobil: <xsl:value-of select="Adressen/object_felder/handy"/></xsl:if> </fo:block>
-                                           </xsl:if>
-                                   </xsl:if>
-                               <xsl:if test="orders/object_felder/deliveryoption='123'"> 
-                                   <fo:block text-align="left" xsl:use-attribute-sets="mittlererheader" linefeed-treatment="preserve">ABHOLUNG</fo:block>
-                                   </xsl:if>
-                              
+                               <fo:block text-align="left" xsl:use-attribute-sets="sehrkleinertext"> Lieferadresse:</fo:block>                                
+                               <xsl:apply-templates select="fullShippingAddress"/>
                            </fo:table-cell>
                        </fo:table-row>
                    </fo:table-body>
@@ -455,246 +384,16 @@
        </xsl:template>
        
        
-       <xsl:template match="Pagevars" mode="headerrest">
-           <fo:block xsl:use-attribute-sets="bodytext" >
-               <fo:table width="193.1mm" table-layout="fixed">
-                   <fo:table-column column-width="143.1mm"/>
-                   <fo:table-column column-width="50mm"/>
-                   <fo:table-body>
-                       <fo:table-row>
-                           <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell><fo:block> 
-                               <fo:inline font-family="Trebuchet" font-size="17pt" font-weight="bold" color="#3B5F80" letter-spacing="-0.5mm">cyber</fo:inline>
-                               <fo:inline font-family="Trebuchet" font-size="17pt" font-weight="bold" color="#F0A62C" letter-spacing="-0.5mm">lab</fo:inline>
-                               <fo:inline font-family="Trebuchet" font-size="17pt" font-weight="bold" color="#3B5F80" letter-spacing="-0.5mm">.at</fo:inline>
-                               <!-- <fo:external-graphic src="url({$imagepfad}{$logo})"/> -->
-                           </fo:block>
-                               <fo:block font-family="Trebuchet" font-size="8.25pt" font-weight="normal" color="#000000" letter-spacing="0.1mm">Das Hi-Tech Fotolabor</fo:block>
-                           </fo:table-cell>
-                       </fo:table-row>
-                       <fo:table-row>
-                           <fo:table-cell height="5mm"><fo:block> </fo:block></fo:table-cell>
-                           <fo:table-cell height="5mm"><fo:block></fo:block></fo:table-cell>
-                       </fo:table-row>
-                       <fo:table-row>
-                           <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell><fo:block>
-                               <fo:table width="70mm" table-layout="fixed">
-                                   <fo:table-column column-width="30mm"/>
-                                   <fo:table-column column-width="40mm"/>
-                                   <fo:table-body>
-                                       <fo:table-row>
-                                           <fo:table-cell><fo:block>FL-UserNr.:  <xsl:text>  </xsl:text></fo:block></fo:table-cell>
-                                           <fo:table-cell><fo:block> <xsl:value-of select="object_feldervKundenNr"/>
-                                           </fo:block></fo:table-cell>
-                                       </fo:table-row>
-                                       <fo:table-row>
-                                           <fo:table-cell><fo:block>Bearbeiter:<xsl:text>  </xsl:text></fo:block></fo:table-cell>
-                                           <fo:table-cell><fo:block><xsl:value-of select="object_felder/vMASBSIG"/></fo:block></fo:table-cell>
-                                       </fo:table-row>
-                                       <fo:table-row>
-                                           <fo:table-cell><fo:block>Seite: <xsl:text>  </xsl:text></fo:block></fo:table-cell>
-                                           <fo:table-cell><fo:block><fo:page-number></fo:page-number></fo:block></fo:table-cell>
-                                       </fo:table-row>
-                                   </fo:table-body>
-                               </fo:table>
-                           </fo:block></fo:table-cell>
-                       </fo:table-row>
-                   </fo:table-body>
-               </fo:table>
-           </fo:block>
-       </xsl:template>
-       
-       
-       <xsl:template name="rowtable">
-           <fo:block xsl:use-attribute-sets="titletext">
-               <fo:table width="170mm" border-width="5pt" table-layout="fixed">
-                   <fo:table-column column-width="40mm"/>
-                   <fo:table-column column-width="70mm"/>
-                   <fo:table-column column-width="20mm"/>
-                   <fo:table-column column-width="20mm"/>
-                   <fo:table-column column-width="20mm"/>
-                   <fo:table-body>
-                       <fo:table-row>
-                           <fo:table-cell height="5mm"><fo:block> </fo:block></fo:table-cell>
-                           <fo:table-cell height="5mm"><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell height="5mm"><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell height="5mm"><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell height="5mm"><fo:block></fo:block></fo:table-cell>
-                       </fo:table-row>
-                   </fo:table-body>
-               </fo:table>
-           </fo:block>
-       </xsl:template>
        
        
        
-       
-       <xsl:template match="Pagevars">
-           <fo:block xsl:use-attribute-sets="bodytext" >
-               <fo:table width="193.1mm" table-layout="fixed">
-                   <fo:table-column column-width="123.1mm"/>
-                   <fo:table-column column-width="70mm"/>
-                   <fo:table-body>
-                       <fo:table-row>
-                           <fo:table-cell><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell><fo:block> 
-                               <fo:inline font-family="Trebuchet" font-size="34pt" font-weight="bold" color="#3B5F80" letter-spacing="-0.5mm">cyber</fo:inline>
-                               <fo:inline font-family="Trebuchet" font-size="34pt" font-weight="bold" color="#F0A62C" letter-spacing="-0.5mm">lab</fo:inline>
-                               <fo:inline font-family="Trebuchet" font-size="34pt" font-weight="bold" color="#3B5F80" letter-spacing="-0.5mm">.at</fo:inline>
-                               <!-- <fo:external-graphic src="url({$imagepfad}{$logo})"/> -->
-                           </fo:block>
-                               <fo:block font-family="Trebuchet" font-size="16.5pt" font-weight="normal" color="#000000" letter-spacing="0.1mm">Das Hi-Tech Fotolabor</fo:block>
-                           </fo:table-cell>
-                       </fo:table-row>
-                   </fo:table-body>
-               </fo:table>
-           </fo:block>
-       </xsl:template>
-       
-
-       
-       <xsl:template match="Pagevars" mode="betreff">
+       <xsl:template match="positionsListe"> 
            <fo:block xsl:use-attribute-sets="bodytext">
-               <fo:table width="170mm" table-layout="fixed">
-                   <fo:table-column column-width="100mm"/>
-                   <fo:table-column column-width="70mm"/>
-                   <fo:table-body>
-                       <fo:table-row>
-                           <fo:table-cell><fo:block font-family="Arial" font-style="normal" font-weight="100" font-size="6pt">
-                               <xsl:value-of select="object_felder/vTextFenster"/>
-                           </fo:block > 
-                               <fo:block>
-                                   <fo:table table-layout="fixed" width="60mm">
-                                       <fo:table-column column-width="60mm"/>
-                                       <fo:table-body>
-                                           <fo:table-row>
-                                               <fo:table-cell> 
-                                                   <fo:block linefeed-treatment="preserve"><xsl:apply-templates select="object_felder/vLabelAdr1_xml/descendant-or-self::*"/></fo:block > </fo:table-cell> 
-                                           </fo:table-row> 
-                                       </fo:table-body>
-                                   </fo:table>
-                               </fo:block>
-                           </fo:table-cell>
-                           <fo:table-cell><fo:block  xsl:use-attribute-sets="kleinertext">              
-                               <fo:table width="70mm" border-width="5pt" table-layout="fixed">
-                                   <fo:table-column column-width="30mm"/>
-                                   <fo:table-column column-width="40mm"/>
-                                   <fo:table-body>
-                                       <fo:table-row>
-                                           <fo:table-cell>   <fo:block> FL-UserNr.:  <xsl:text>  </xsl:text>  </fo:block></fo:table-cell>
-                                           <fo:table-cell><fo:block><xsl:value-of select="object_felder/vKundenNr"/> </fo:block>
-                                           </fo:table-cell>
-                                       </fo:table-row>
-                                       <fo:table-row>
-                                           <fo:table-cell ><fo:block> <xsl:value-of select="object_felder/vDocBezuNr"/>:
-                                               <xsl:text>  </xsl:text> </fo:block></fo:table-cell>
-                                           <fo:table-cell ><fo:block>   <xsl:value-of select="object_felder/vDokNr"/></fo:block></fo:table-cell>
-                                       </fo:table-row>
-                                       <fo:table-row>
-                                           <fo:table-cell>   <fo:block>
-                                               Datum:
-                                           </fo:block></fo:table-cell>
-                                           <fo:table-cell><fo:block> <xsl:value-of select="object_felder/vDokdatum"/></fo:block></fo:table-cell>
-                                       </fo:table-row>
-                                       <fo:table-row>   
-                                           <fo:table-cell ><fo:block> Kontakt:<xsl:text>  </xsl:text>
-                                           </fo:block>     
-                                           </fo:table-cell>
-                                           <fo:table-cell ><fo:block>   <xsl:value-of select="object_felder/vMASBSIG"/></fo:block>
-                                               <fo:block linefeed-treatment="preserve">
-                                                   <xsl:apply-templates select="object_felder/vMASBTXT_xml/descendant-or-self::*"/>
-                                               </fo:block>
-                                           </fo:table-cell>
-                                       </fo:table-row>
-                                       <fo:table-row>   
-                                           <fo:table-cell ><fo:block> Seite: <xsl:text>  </xsl:text></fo:block></fo:table-cell>
-                                           <fo:table-cell><fo:block><fo:page-number></fo:page-number></fo:block></fo:table-cell>
-                                       </fo:table-row>
-                                   </fo:table-body>
-                               </fo:table>
-                           </fo:block>
-                           </fo:table-cell>
-                       </fo:table-row>
-                   </fo:table-body>
-               </fo:table>
-               <fo:table width="170mm"  table-layout="fixed">
-                   <fo:table-column column-width="130mm"/>
-                   <fo:table-column column-width="20mm"/>
-                   <fo:table-column column-width="20mm"/>
-                   <fo:table-body>
-                       <xsl:if test="string-length(object_felder/vJobNr)&gt;0">
-                           <fo:table-row>
-                               <fo:table-cell ><fo:block>     
-                                   Projekt:  <xsl:text>  </xsl:text>
-                                   <xsl:value-of select="object_felder/vJobKBZ"/>
-                               </fo:block></fo:table-cell>
-                               <fo:table-cell ><fo:block></fo:block></fo:table-cell>
-                               <fo:table-cell ><fo:block> 
-                               </fo:block></fo:table-cell>
-                           </fo:table-row>
-                           <fo:table-row>
-                               <fo:table-cell ><fo:block>   
-                                   Projektnr.:  <xsl:text>  </xsl:text>
-                                   <xsl:value-of select="object_felder/vJobNr"/>
-                               </fo:block></fo:table-cell>
-                               <fo:table-cell ><fo:block></fo:block></fo:table-cell>
-                               <fo:table-cell ><fo:block> 
-                               </fo:block></fo:table-cell>
-                           </fo:table-row>
-                       </xsl:if>
-                       <fo:table-row>
-                           <fo:table-cell  height="5mm"><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell  height="5mm"><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell  height="5mm"><fo:block></fo:block></fo:table-cell>
-                           
-                       </fo:table-row>
-                       <fo:table-row>
-                           <fo:table-cell ><fo:block font-weight="bold">  
-                               <xsl:value-of select="$Dokname"/></fo:block>
-                               <fo:block>
-                                   zu <xsl:value-of select="object_felder/vBetreff"/>
-                               </fo:block>
-                               
-                           </fo:table-cell>
-                           <fo:table-cell ><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell ><fo:block> 
-                           </fo:block></fo:table-cell>
-                       </fo:table-row>
-                       <fo:table-row>
-                           
-                           <fo:table-cell  height="5mm"><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell  height="5mm"><fo:block> </fo:block></fo:table-cell>
-                           <fo:table-cell  height="5mm"><fo:block> </fo:block></fo:table-cell>
-                           
-                       </fo:table-row>
-                       <fo:table-row>
-                           <fo:table-cell >
-                               <fo:block >
-                                   <xsl:value-of select="$vermerk"/>
-                               </fo:block>
-
-                                   <xsl:if test="string-length(object_felder/vVermerk4_xml)&gt;0">
-                                   <fo:block linefeed-treatment="preserve" color="grey">
-                                   <xsl:text>
-                                   Zu diesem Auftrag haben Sie diese Nachricht hinterlegt:
-                                   </xsl:text> </fo:block>
-                                   <fo:block linefeed-treatment="preserve">
-                                   <xsl:apply-templates select="object_felder/vVermerk4_xml/descendant-or-self::*"/>
-                                   </fo:block>
-                                   </xsl:if>
-
-                           </fo:table-cell>
-                           <fo:table-cell ><fo:block></fo:block></fo:table-cell>
-                           <fo:table-cell ><fo:block> 
-                           </fo:block></fo:table-cell>
-                       </fo:table-row>
-                   </fo:table-body>
-               </fo:table>
+               <xsl:value-of select="$space"/>
            </fo:block>
-       </xsl:template>
-       
-       <xsl:template match="selection" mode="aufposliste"> 
+           <fo:block xsl:use-attribute-sets="bodytext">
+               <xsl:value-of select="$space"/>
+           </fo:block>
            <fo:block xsl:use-attribute-sets="bodytext">
                <fo:table width="170mm" border-width="5pt" table-layout="fixed">
                    <fo:table-column column-width="10mm"/>
@@ -712,7 +411,7 @@
                    </fo:table-header>
                    <fo:table-body>
                        
-                       <xsl:for-each select="AuftragsPos">
+                       <xsl:for-each select="com.tom.service.dto.BelegPositionDTO">
                            <fo:table-row>
                                <fo:table-cell  height="2mm"><fo:block></fo:block></fo:table-cell>
                                <fo:table-cell  height="2mm"><fo:block></fo:block></fo:table-cell>
@@ -721,20 +420,20 @@
                            </fo:table-row>
                            <fo:table-row>
                                
-                               <fo:table-cell >   <fo:block>  <xsl:value-of select="position()"/><xsl:text>  </xsl:text></fo:block></fo:table-cell>
+                               <fo:table-cell >   <fo:block>  <xsl:value-of select="posNummer"/><xsl:text>  </xsl:text></fo:block></fo:table-cell>
                                <fo:table-cell>
                                   <fo:block>
-                                      <xsl:value-of select="object_felder/artikelBez"/>
+                                      <xsl:value-of select="bezeichnung"/>
                                   </fo:block>
                                    <fo:block xsl:use-attribute-sets="kleinertext">
-                                       <xsl:value-of select="object_felder/artikelBeschr"/>
+                                       <xsl:value-of select="beschreibung"/>
                                    </fo:block>
                                    
                                    
                                </fo:table-cell>
                                <fo:table-cell >   <fo:block text-align="right"> 
-                                   <xsl:value-of select="object_felder/menge"/><xsl:text>  </xsl:text></fo:block></fo:table-cell>
-                               <fo:table-cell >  <fo:block text-align="right">  <xsl:value-of select="object_felder/vK_Gesamt_Brutto"/> <xsl:text>  </xsl:text>        </fo:block></fo:table-cell>
+                                   <xsl:value-of select="menge"/><xsl:text>  </xsl:text></fo:block></fo:table-cell>
+                               <fo:table-cell >  <fo:block text-align="right"> <xsl:value-of select="gesamtPreis/bruttoPreis"/><xsl:text>  </xsl:text>        </fo:block></fo:table-cell>
                                
                            </fo:table-row>
                            
@@ -763,55 +462,9 @@
                        <fo:table-row>
                            <fo:table-cell> 
                                
-                               <fo:table table-layout="fixed" width="80mm">
-                                   <fo:table-column column-width="20mm"/>
-                                   <fo:table-column column-width="60mm"/>
-                                   <fo:table-body>
-                                       <fo:table-row>
-                                           <fo:table-cell >
-                                               <fo:block xsl:use-attribute-sets="kleinertext">
-                                                   Lieferart:
-                                               </fo:block>
-                                           </fo:table-cell>
-                                           <fo:table-cell>
-                                               <fo:block  xsl:use-attribute-sets="kleinertext">
-                                                   <!--
-                                                       <xsl:apply-templates select="/tompage/controllergencontent/pageform/pageobjects/Pagevars/object_felder/vVermerk3_xml/descendant-or-self::*"/>
-                                                   -->
-                                                   <xsl:call-template name="lieferart">
-                                                       <xsl:with-param name="lieferart" select="/tompage/controllergencontent/pageform/pageobjects/orders/object_felder/deliveryoption"></xsl:with-param>
-                                                   </xsl:call-template></fo:block>
-                                           </fo:table-cell>
-                                       </fo:table-row>
-                                       <fo:table-row>
-                                           <fo:table-cell >
-                                               <fo:block  xsl:use-attribute-sets="kleinertext">
-                                                   Zahlungsart:
-                                               </fo:block>
-                                           </fo:table-cell>
-                                           <fo:table-cell>
-                                               <fo:block linefeed-treatment="preserve" xsl:use-attribute-sets="kleinertext" >
-                                                   <xsl:choose>
-                                                       <xsl:when test="/tompage/controllergencontent/pageform/pageobjects/Kunden">
-                                                           <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Kunden/object_felder/m_012_011_Zahlungsbed_KBZ"/>
-                                                       </xsl:when>
-                                                       <xsl:otherwise>
-                                                           
-                                                           <xsl:apply-templates select="/tompage/controllergencontent/pageform/pageobjects/Pagevars/object_felder/vZahlbed_xml/descendant-or-self::*"/>
-                                                           
-                                                       </xsl:otherwise>
-                                                   </xsl:choose>
-                                                   
-                                               </fo:block>
-                                               
-                                               <fo:block linefeed-treatment="preserve" xsl:use-attribute-sets="kleinertext" ><xsl:apply-templates select="/tompage/controllergencontent/pageform/pageobjects/Pagevars/object_felder/vVermerk2_xml/descendant-or-self::*"/></fo:block>
-                                               
-                                           </fo:table-cell>
-                                           
-                                       </fo:table-row>
-                                       
-                                   </fo:table-body>
-                               </fo:table>
+                              <fo:block>
+                                  
+                              </fo:block>
                                
                            </fo:table-cell> 
                            <fo:table-cell > 
@@ -823,14 +476,22 @@
                                        
                                        
                                        <fo:table-row>
-                                           <fo:table-cell  number-columns-spanned="3">
-                                               <fo:block xsl:use-attribute-sets="sehrkleinertext">20% MwSt. enthalten 
+                                           <fo:table-cell  number-columns-spanned="2">
+                                               <fo:block xsl:use-attribute-sets="sehrkleinertext"> 
+                                                   Steuern:  
                                                    [
-                                                   <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Aufträge/object_felder/betrag_MwSt"/>
-                                                   &#160;<xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Aufträge/object_felder/m_005_011__022_WährZeichen"/>
+                                                   <xsl:for-each select="../preis/steuern">
+                                                       <xsl:if test="position()&gt;1"> | </xsl:if>
+                                                       <xsl:value-of select="com.tom.service.dto.SteuerDTO/steuerArt/steuersatz"/>% 
+                                                       <xsl:value-of select="com.tom.service.dto.SteuerDTO/betrag"/>
+                                                   </xsl:for-each>
                                                    ]</fo:block>  
                                            </fo:table-cell>
-
+                                           <fo:table-cell>
+                                               <fo:block font-weight="bold"  text-align="right" > 
+                                                   <xsl:value-of select="../preis/steuerBetrag"/> 
+                                                   </fo:block>
+                                               </fo:table-cell>
                                        </fo:table-row>
                                        
                                        <fo:table-row>
@@ -839,30 +500,14 @@
                                            </fo:table-cell>
                                            <fo:table-cell>
                                                <fo:block font-weight="bold">
-                                                   <!-- <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Pagevars/object_felder/vWRG"/>  -->  
-                                                   <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Aufträge/object_felder/m_005_011__022_WährZeichen"/>
+                                                   <xsl:value-of select="../wrg/bezeichnung"/>
                                                </fo:block>
                                            </fo:table-cell>
                                            <fo:table-cell>
                                                <fo:block font-weight="bold" text-align="right" >
-                                                   <!--  <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Pagevars/object_felder/vGesamt_brutto"/>  -->  
-                                                   <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Aufträge/object_felder/betrag_Brutto"/>
+                                                   <xsl:value-of select="../preis/bruttoPreis"/>
                                                </fo:block> 
                                            </fo:table-cell>
-                                       </fo:table-row>
-                                       
-                                       
-                                       <fo:table-row>
-                                           
-                                           <fo:table-cell number-columns-spanned="3"><fo:block text-align="right" border-before-style="solid" border-before-width="0.2mm"></fo:block></fo:table-cell>
-                                           
-                                       </fo:table-row>
-                                       
-                                       <fo:table-row>
-                                           <fo:table-cell number-columns-spanned="3">
-                                               <fo:block xsl:use-attribute-sets="grosserheader" ><xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Pagevars/object_felder/vZahlbed"/></fo:block>  
-                                           </fo:table-cell>
-                                           
                                        </fo:table-row>
                                        
                                    </fo:table-body>
@@ -1078,8 +723,8 @@
                                            <fo:table-cell  number-columns-spanned="3">
                                                <fo:block xsl:use-attribute-sets="sehrkleinertext">20% MwSt. enthalten 
                                                    [
-                                                   <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Aufträge/object_felder/betrag_MwSt"/>
-                                                   &#160;<xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Aufträge/object_felder/m_005_011__022_WährZeichen"/>
+                                                   <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/AuftrÃ¤ge/object_felder/betrag_MwSt"/>
+                                                   &#160;<xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/AuftrÃ¤ge/object_felder/m_005_011__022_WÃ¤hrZeichen"/>
                                                    ]</fo:block>  
                                            </fo:table-cell>
                                            
@@ -1092,13 +737,13 @@
                                            <fo:table-cell>
                                                <fo:block font-weight="bold">
                                                    <!-- <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Pagevars/object_felder/vWRG"/>  -->  
-                                                   <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Aufträge/object_felder/m_005_011__022_WährZeichen"/>
+                                                   <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/AuftrÃ¤ge/object_felder/m_005_011__022_WÃ¤hrZeichen"/>
                                                </fo:block>
                                            </fo:table-cell>
                                            <fo:table-cell>
                                                <fo:block font-weight="bold" text-align="right" >
                                                    <!--  <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Pagevars/object_felder/vGesamt_brutto"/>  -->  
-                                                   <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/Aufträge/object_felder/betrag_Brutto"/>
+                                                   <xsl:value-of select="/tompage/controllergencontent/pageform/pageobjects/AuftrÃ¤ge/object_felder/betrag_Brutto"/>
                                                </fo:block> 
                                            </fo:table-cell>
                                        </fo:table-row>
@@ -1465,13 +1110,13 @@
                 Postversand an alternative Adresse
             </xsl:when>
                     <xsl:when test="$lieferart='125'">
-                        GLS (nächster Arbeitstag) 
+                        GLS (nÃ¤chster Arbeitstag) 
             </xsl:when>
             <xsl:when test="$lieferart='127'">
                 GLS-Versand an alternative Adresse
             </xsl:when>
             <xsl:when test="$lieferart='128'">
-                Wien, per Bote, Empfänger zahlt
+                Wien, per Bote, EmpfÃ¤nger zahlt
             </xsl:when>
             <xsl:otherwise>
                 Vesandcode: 
@@ -1499,13 +1144,13 @@
                    Postversand an alternative Adresse [<xsl:value-of select="$lieferart"/>]
                </xsl:when>
                <xsl:when test="$lieferart='125'">
-                   GLS (nächster Arbeitstag) [<xsl:value-of select="$lieferart"/>]
+                   GLS (nÃ¤chster Arbeitstag) [<xsl:value-of select="$lieferart"/>]
                </xsl:when>
                <xsl:when test="$lieferart='127'">
                    GLS-Versand an alternative Adresse [<xsl:value-of select="$lieferart"/>]
                </xsl:when>
                <xsl:when test="$lieferart='128'">
-                   Wien, per Bote, Empfänger zahlt [<xsl:value-of select="$lieferart"/>]
+                   Wien, per Bote, EmpfÃ¤nger zahlt [<xsl:value-of select="$lieferart"/>]
                </xsl:when>
                <xsl:otherwise>
                    Vesandcode: 

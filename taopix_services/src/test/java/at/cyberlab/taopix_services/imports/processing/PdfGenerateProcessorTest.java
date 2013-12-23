@@ -75,5 +75,11 @@ public class PdfGenerateProcessorTest {
     TaopixImportProcessingObject pobj = new TaopixImportProcessingObject();
     pobj.setTaopixOrder(instance.getOrder());
     testee.processOrder(pobj);
+    File pdfFile = pobj.getPdfOrderFile();
+    assertNotNull("PDFFile == null", pdfFile);
+    assertTrue("PdfFile kann nicht gelesen werden "+pdfFile.getAbsolutePath(), pdfFile.exists()&&pdfFile.canRead());
+    assertTrue("PdfFile hat nicht die richtige Größe "+pdfFile.getAbsolutePath(),pdfFile.length()>1000L);
+    System.out.println("End processOrder, tests successful");
+    System.out.println(pobj.getMessages());
   }
 }

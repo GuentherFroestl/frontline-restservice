@@ -39,8 +39,7 @@ public class PdfGenerateProcessor implements ITaopixOrderImportProcessor {
 
   private static Logger LOG = Logger.getLogger(PdfGenerateProcessor.class);
   private final TaopixTomImportConfig config;
-  private IPrintingUtil printUtil = new PrintingUtil();
-  private PrintService printService;
+
   private IxsltUtil xsltUtil = new XsltUtil();
   private ISerializer serializer = new XstreamSerializer();
   /**
@@ -66,16 +65,18 @@ public class PdfGenerateProcessor implements ITaopixOrderImportProcessor {
       File xml = File.createTempFile("taopix_order_" + processingObject.getTaopixOrder().getNummer()+"_", ".xml");
       OutputStream xmlFile = new FileOutputStream(xml);
       String xmlString = serializer.serializeToXmlWithUTF8Header(processingObject.getTaopixOrder());
-      IOUtils.write(xmlString, xmlFile);
+      IOUtils.write(xmlString, xmlFile,"UTF-8");
       xmlFile.close();
       processingObject.getMessages().append("\nOrder in Xml-Datei geschrieben Pfad=" + xml.getAbsolutePath());
       LOG.info("Order in Xml-Datei geschrieben Pfad=" + xml.getAbsolutePath());
-      File pdf = File.createTempFile("taopix_order_" + processingObject.getTaopixOrder().getNummer(), ".pdf");
-      OutputStream pdfFile = new FileOutputStream(pdf);
-      xsltUtil.transformWithFOP(processingObject.getTaopixOrder(), xslStream, pdfFile);
-      pdfFile.close();
-      LOG.info("Order in PDF-Datei geschrieben Pfad=" + pdf.getAbsolutePath());
-      processingObject.getMessages().append("\nOrder in PDF-Datei geschrieben Pfad=" + pdf.getAbsolutePath());
+      File pdfFile = File.createTempFile("taopix_order_" + processingObject.getTaopixOrder().getNummer(), ".pdf");
+      OutputStream pdfStream = new FileOutputStream(pdfFile);
+      xsltUtil.transformWithFOP(processingObject.getTaopixOrder(), xslStream, pdfStream);
+      pdfStream.close();
+      LOG.info("Order in PDF-Datei geschrieben Pfad=" + pdfFile.getAbsolutePath());
+      processingObject.getMessages().append("\nOrder in PDF-Datei geschrieben Pfad=" + pdfFile.getAbsolutePath());
+      processingObject.setPdfOrderFile(pdfFile);
+      
 
 
     } catch (FileNotFoundException ex) {
@@ -93,20 +94,6 @@ public class PdfGenerateProcessor implements ITaopixOrderImportProcessor {
     }
   }
 
-  private PrintService getPrintService() throws PrintException {
-    if (printService != null) {
-      return printService;
-    }
-    PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
-    aset.add(MediaSizeName.ISO_A4);
-    PrintService[] result = printUtil.getAvailablePsPrintServices(aset);
-
-    if (result == null || result.length == 0) {
-      return null;
-    }
-    printService = result[0];
-    return printService;
-  }
 
   public File getXsl() {
     return xsl;

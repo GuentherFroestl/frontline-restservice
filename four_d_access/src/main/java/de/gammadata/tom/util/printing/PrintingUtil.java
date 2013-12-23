@@ -22,12 +22,11 @@ public class PrintingUtil implements IPrintingUtil {
 
   PrintService[] pservices;
   PrintService service;
-  DocFlavor flavor;
+  public static final DocFlavor flavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
   PrintRequestAttributeSet printerSettings;
 
   @Override
   public PrintService[] getAvailablePsPrintServices(PrintRequestAttributeSet aset) throws PrintException {
-    flavor = DocFlavor.INPUT_STREAM.POSTSCRIPT;
     printerSettings = aset;
     pservices = PrintServiceLookup.lookupPrintServices(flavor, aset);
     return pservices;

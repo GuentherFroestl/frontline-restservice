@@ -83,7 +83,7 @@ public class PrintingUtilTest {
     assertFalse("Fehler PD Drucker 0  nicht vorhanden", result.length == 0);
     instance.selectPrintService(0);
     assertNotNull("Fehler Printservice selected", instance.getselectedPrintService());
-    Doc document = new SimpleDoc(psStream, IPrintingUtil.flavorPs, null);
+    Doc document = new SimpleDoc(psStream, PrintingUtil.flavor, null);
     PrintJobListener listener = new PrintJobListener() {
       @Override
       public void printDataTransferCompleted(PrintJobEvent pje) {
