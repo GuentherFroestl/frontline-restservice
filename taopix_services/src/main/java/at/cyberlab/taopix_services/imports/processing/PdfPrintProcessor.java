@@ -9,8 +9,6 @@ import at.cyberlab.taopix_services.imports.ImportException;
 import de.gammadata.tom.util.printing.IPrintingUtil;
 import de.gammadata.tom.util.printing.PrintingUtil;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
 import javax.print.Doc;
 import javax.print.PrintException;
 import javax.print.PrintService;

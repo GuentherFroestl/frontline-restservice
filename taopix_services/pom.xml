@@ -62,6 +62,11 @@
       <artifactId>commons-net</artifactId>
       <version>2.0</version>
     </dependency>
+    <dependency>
+      <groupId>net.sf.barcode4j</groupId>
+      <artifactId>barcode4j-fop-ext-complete</artifactId>
+      <version>2.0</version>
+    </dependency>
   </dependencies>
 
   <build>

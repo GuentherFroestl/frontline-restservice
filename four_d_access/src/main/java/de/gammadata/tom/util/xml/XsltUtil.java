@@ -22,7 +22,8 @@ import javax.xml.transform.stream.StreamSource;
 import org.apache.fop.apps.FOPException;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
-import org.apache.xmlgraphics.util.MimeConstants;
+import org.apache.fop.apps.MimeConstants;
+
 
 /**
  *
