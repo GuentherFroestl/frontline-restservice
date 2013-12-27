@@ -52,21 +52,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>6.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>commons-net</groupId>
       <artifactId>commons-net</artifactId>
       <version>2.0</version>
     </dependency>
-    <dependency>
-      <groupId>net.sf.barcode4j</groupId>
-      <artifactId>barcode4j-fop-ext-complete</artifactId>
-      <version>2.0</version>
-    </dependency>
+
   </dependencies>
 
   <build>
@@ -83,14 +73,20 @@
           </compilerArguments>
         </configuration>
       </plugin>
+
 <plugin>
   <artifactId>maven-assembly-plugin</artifactId>
   <configuration>
+    <archive>
+      <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+    </archive>
+    <!--
     <archive>
       <manifest>
         <mainClass>at.cyberlab.taopix_services.exe.ImportRunner</mainClass>
       </manifest>
     </archive>
+    -->
     <descriptorRefs>
       <descriptorRef>jar-with-dependencies</descriptorRef>
     </descriptorRefs>

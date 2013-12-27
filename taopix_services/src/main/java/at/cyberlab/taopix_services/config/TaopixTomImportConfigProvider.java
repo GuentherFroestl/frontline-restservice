@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -20,46 +20,42 @@ import org.apache.commons.io.IOUtils;
  * @author gfr
  */
 public class TaopixTomImportConfigProvider {
-
+  
   /**
    * Die config wird geholt / erzeugt.
    *
-   * @param filePath String mit Pfad, wenn null wird default Wert verwendet
-   * @return TaopixTomImportConfig.
+   * @return TaopixTomImportConfig or nul if it does not exist on the classpath
    */
-  public static TaopixTomImportConfig getTaopixTomImportConfig(String filePath) throws FileNotFoundException, IOException {
-    TaopixTomImportConfig config;
+  public static TaopixTomImportConfig getTaopixTomImportConfig(String fileName) throws FileNotFoundException, IOException, URISyntaxException {
+    TaopixTomImportConfig config=null;
     ISerializer serializer = new XstreamSerializer();
     boolean wasRead = false;
-    String path = filePath;
-    if (path == null) {
-      path = TaopixTomImportConfigImpl.CONFIG_FILE_PATH + TaopixTomImportConfigImpl.CONFIG_FILE_NAME;
-    }
-
-    File configFile = new File(path);
+    java.net.URL url = Thread.currentThread().getContextClassLoader().getResource(fileName);
+    File configFile = new File(url.toURI());
     if (configFile.canRead()) {
       FileInputStream fi = new FileInputStream(configFile);
-      String xml = IOUtils.toString(fi);
-
+      String xml = IOUtils.toString(fi,"UTF-8");
       config = (TaopixTomImportConfig) serializer.deserializeFromXml(xml);
-      wasRead = true;
-    } else {
-      config = new TaopixTomImportConfigImpl();
+      config.setConfigFilePath(configFile.getAbsolutePath());
     }
+    return config;
+  }
+  
+  /**
+   * Creates a default configuration file and returns the config object.
+   * @return File
+   * @throws IOException 
+   */
+  public static TaopixTomImportConfig createDefaultTaopixTomImportConfig(String filePreFix, String fileSuffix) throws IOException {
 
-    
-
-    //Write out
-    if (!wasRead) {
-      File dir = new File(TaopixTomImportConfigImpl.CONFIG_FILE_PATH);
-      if (dir.canWrite()) {
-        FileOutputStream out = new FileOutputStream(TaopixTomImportConfigImpl.CONFIG_FILE_PATH + TaopixTomImportConfigImpl.CONFIG_FILE_NAME);
+        File configFile = File.createTempFile(filePreFix, fileSuffix);
+        FileOutputStream out = new FileOutputStream(configFile);
+        TaopixTomImportConfig config = new TaopixTomImportConfigImpl();
+        ISerializer serializer = new XstreamSerializer();
         String xmlOut = serializer.serializeToXml(config);
-        IOUtils.write(xmlOut, out);
-        out.close();
-      }
-    }
-
+        IOUtils.write(xmlOut, out,"UTF-8");
+        out.close(); 
+        config.setConfigFilePath(configFile.getAbsolutePath());
     return config;
   }
 }

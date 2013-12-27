@@ -14,9 +14,6 @@ import java.math.BigDecimal;
  */
 public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
 
-  public static final String CONFIG_FILE_PATH="/Users/Shared/config/taopix/";
-  public static final String CONFIG_FILE_NAME="config.xml";
-  
   private Integer orderNumberOffset = 112500000;
   private Integer mandatorId = 2;
   private String userUuidPrefix = "TAOPIX_USER_";
@@ -25,8 +22,12 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
   private String productCodeStubForReducedTax = "FB";
   private BigDecimal reducedTaxRate = new BigDecimal("10.00");
   private String wrg="EUR";
-  private String configFolderPath = CONFIG_FILE_PATH;
   private String xslFileName = "cyberlab_beleg.xsl";
+  public String xslFilePath;
+  private String configFilePath;
+  private String psPrinterName="myPsPrinter";
+  private String fopConfigFile="fopconfig.xml";
+  private String fopConfigFilePath;
   
   public TaopixTomImportConfigImpl(){
     dataBaseSpec = new Tom4DSpec().getDataBaseSpec();
@@ -118,17 +119,57 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
   @Override
   public void setXslFileName(String xslFileName) {
     this.xslFileName = xslFileName;
+  }  
+
+  @Override
+  public String getXslFilePath() {
+    return xslFilePath;
   }
 
   @Override
-  public String getConfigFolderPath() {
-    return configFolderPath;
+  public void setXslFilePath(String xslFilePath) {
+    this.xslFilePath = xslFilePath;
   }
 
-  @Override
-  public void setConfigFolderPath(String configFolderPath) {
-    this.configFolderPath = configFolderPath;
-  }
   
+  @Override
+  public String getConfigFilePath() {
+    return configFilePath;
+  }
+
+  @Override
+  public void setConfigFilePath(String path) {
+    this.configFilePath = path;
+  }
+
+  @Override
+  public String getPsPrinterName() {
+    return psPrinterName;
+  }
+
+  @Override
+  public void setPsPrinterName(String psPrinterName) {
+    this.psPrinterName = psPrinterName;
+  }
+
+  @Override
+  public String getFopConfigFile() {
+    return fopConfigFile;
+  }
+
+  @Override
+  public void setFopConfigFile(String fopConfigFile) {
+    this.fopConfigFile = fopConfigFile;
+  }
+
+  @Override
+  public String getFopConfigFilePath() {
+    return fopConfigFilePath;
+  }
+
+  @Override
+  public void setFopConfigFilePath(String fopConfigFilePath) {
+    this.fopConfigFilePath = fopConfigFilePath;
+  }
   
 }

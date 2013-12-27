@@ -1,2 +1,5 @@
 Manifest-Version: 1.0
-
+Built-By: gfr
+Build-Jdk: 1.7.0_17
+Main-Class: at.cyberlab.taopix_services.exe.ImportRunner
+Class-Path: ./config/  ./lib/barcode4j-fop-ext-complete.jar

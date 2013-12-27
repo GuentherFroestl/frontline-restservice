@@ -11,8 +11,6 @@ import com.tom.service.facade.TomException;
 import de.gammadata.tom.four_d_access.service.BelegService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * forms a chain of ImportProcessors for importing taopix orders to Tom 4D DB.
@@ -22,9 +20,10 @@ import java.util.logging.Logger;
 public class ImportProcessingChain implements ITaopixOrderImportProcessor {
 
   private static org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(ImportProcessingChain.class);
-  private TaopixTomImportConfig config;
   private List<ITaopixOrderImportProcessor> processingChain;
   private BelegService belegService;
+  private PdfGenerateProcessor pdfProcessor;
+  private PdfPrintProcessor printProcessor;
 
   /**
    * Constructor with injection.
@@ -32,12 +31,16 @@ public class ImportProcessingChain implements ITaopixOrderImportProcessor {
    * @param config TaopixTomImportConfig
    */
   public ImportProcessingChain(TaopixTomImportConfig config) {
-    this.config = config;
     belegService = new BelegService(config.getDataBaseSpec());
     processingChain = new ArrayList<ITaopixOrderImportProcessor>();
     processingChain.add(new AddressSyncProcessor(config));
     processingChain.add(new ProductSyncProcessor(config));
     processingChain.add(new OrderSyncProcessor(config));
+    pdfProcessor = new PdfGenerateProcessor(config);
+    processingChain.add(pdfProcessor);
+    printProcessor = new PdfPrintProcessor(config);
+    processingChain.add(printProcessor);
+
   }
 
   @Override
@@ -49,7 +52,9 @@ public class ImportProcessingChain implements ITaopixOrderImportProcessor {
           processor.processOrder(processingObject);
         }
       } else {
-        LOG.info("Beleg " + processingObject.getTaopixOrder().getNummer() + " bereits vorhanden");
+        LOG.info("Beleg " + processingObject.getTaopixOrder().getNummer() + " bereits vorhanden, drucke Order");
+        pdfProcessor.processOrder(processingObject);
+        printProcessor.processOrder(processingObject);
       }
 
     } catch (TomException ex) {

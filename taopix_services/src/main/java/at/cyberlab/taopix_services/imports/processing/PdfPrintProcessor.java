@@ -28,6 +28,7 @@ public class PdfPrintProcessor implements ITaopixOrderImportProcessor {
   private static Logger LOG = Logger.getLogger(PdfPrintProcessor.class);
   private final TaopixTomImportConfig config;
   private IPrintingUtil printUtil;
+  private String selectedPrinterName;
 
   /**
    * Constructor with config.
@@ -69,14 +70,35 @@ public class PdfPrintProcessor implements ITaopixOrderImportProcessor {
       return printUtil;
     }
     printUtil = new PrintingUtil();
-    PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
-    aset.add(MediaSizeName.ISO_A4);
-    PrintService[] result = printUtil.getAvailablePsPrintServices(aset);
+    PrintService[] psServices = printUtil.getAvailablePsA4PrintServices();
 
-    if (result == null || result.length == 0) {
+    if (psServices == null || psServices.length == 0) {
       return null;
     }
-    printUtil.selectPrintService(0);
+    int i = 0;
+    int psNr = 0;
+    if (config!=null&&config.getPsPrinterName()!=null){
+      
+      for(PrintService ps : psServices){
+        if (ps.getName().equalsIgnoreCase(config.getPsPrinterName())){
+          psNr = i;
+          break;
+        }
+        i++;
+      }
+    }
+    printUtil.selectPrintService(psNr);
+    setSelectedPrinterName(printUtil.getselectedPrintService().getName());
     return printUtil;
   }
+
+  public String getSelectedPrinterName() {
+    return selectedPrinterName;
+  }
+
+  public void setSelectedPrinterName(String selectedPrinterName) {
+    this.selectedPrinterName = selectedPrinterName;
+  }
+  
+  
 }

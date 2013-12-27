@@ -22,11 +22,19 @@ public interface IPrintingUtil {
   /**
    * Lookup for available PostScript PrinterServices.
    *
-   * @param aset
-   * @return
+   * @param aset PrintRequestAttributeSet
+   * @return PrintService[]
    * @throws PrintException
    */
   PrintService[] getAvailablePsPrintServices(PrintRequestAttributeSet aset) throws PrintException;
+  
+  
+  /**
+   * Get available POstScript A4 Printers.
+   * @return PrintService[]
+   * @throws PrintException 
+   */
+  PrintService[] getAvailablePsA4PrintServices() throws PrintException;
 
   /**
    * select a printservice out of previously retrieved via getAvailablePsPrintServices.

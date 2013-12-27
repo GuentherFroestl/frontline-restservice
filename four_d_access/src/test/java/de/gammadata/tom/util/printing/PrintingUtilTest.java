@@ -57,9 +57,26 @@ public class PrintingUtilTest {
     PrintingUtil instance = new PrintingUtil();
 
     PrintService[] result = instance.getAvailablePsPrintServices(aset);
-    assertNotNull("Fehler keine PD Drucker gefunden", result);
+    assertNotNull("Fehler keine PS Drucker gefunden", result);
     for (PrintService ps : result) {
       System.out.println("PrintService = " + ps.getName());
+      for (DocFlavor df : ps.getSupportedDocFlavors()) {
+        System.out.println("   DocFlavor = " + df);
+      }
+    }
+  }
+  
+    /**
+   * Test of getAvailablePsPrintServices method, of class PrintingUtil.
+   */
+  @Test
+  public void testGetAvailablePsA4PrintServices() throws Exception {
+    System.out.println("getAvailablePsPrintServices");
+    PrintingUtil instance = new PrintingUtil();
+    PrintService[] result = instance.getAvailablePsA4PrintServices();
+    assertNotNull("Fehler keine PS Drucker gefunden", result);
+    for (PrintService ps : result) {
+      System.out.println("PrintService A4= " + ps.getName());
       for (DocFlavor df : ps.getSupportedDocFlavors()) {
         System.out.println("   DocFlavor = " + df);
       }

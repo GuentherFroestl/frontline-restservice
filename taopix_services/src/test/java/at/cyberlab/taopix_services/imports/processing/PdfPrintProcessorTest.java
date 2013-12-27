@@ -53,6 +53,8 @@ public class PdfPrintProcessorTest {
     processingObject.setPdfOrderFile(pdfFile);
     PdfPrintProcessor instance = new PdfPrintProcessor(new TaopixTomImportConfigImpl());
     instance.processOrder(processingObject);
+    assertNotNull("SelectedPrinterName == null", instance.getSelectedPrinterName());
+    System.out.println("using Printer Name="+instance.getSelectedPrinterName());
     System.out.println("processOrder end ----------");
   }
 }

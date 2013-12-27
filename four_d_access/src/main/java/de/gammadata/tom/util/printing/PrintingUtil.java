@@ -10,7 +10,9 @@ import javax.print.DocPrintJob;
 import javax.print.PrintException;
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
+import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.MediaSizeName;
 import javax.print.event.PrintJobListener;
 
 /**
@@ -30,6 +32,13 @@ public class PrintingUtil implements IPrintingUtil {
     printerSettings = aset;
     pservices = PrintServiceLookup.lookupPrintServices(flavor, aset);
     return pservices;
+  }
+
+  @Override
+  public PrintService[] getAvailablePsA4PrintServices() throws PrintException {
+    PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
+    aset.add(MediaSizeName.ISO_A4);
+    return getAvailablePsPrintServices(aset);
   }
 
   @Override

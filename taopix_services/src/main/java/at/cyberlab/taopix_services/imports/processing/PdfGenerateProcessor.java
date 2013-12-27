@@ -40,7 +40,7 @@ public class PdfGenerateProcessor implements ITaopixOrderImportProcessor {
   private static Logger LOG = Logger.getLogger(PdfGenerateProcessor.class);
   private final TaopixTomImportConfig config;
 
-  private IxsltUtil xsltUtil = new XsltUtil();
+  private IxsltUtil xsltUtil;
   private ISerializer serializer = new XstreamSerializer();
   /**
    * for unit test prurposes
@@ -49,12 +49,17 @@ public class PdfGenerateProcessor implements ITaopixOrderImportProcessor {
 
   public PdfGenerateProcessor(TaopixTomImportConfig config) {
     this.config = config;
+    if (config.getFopConfigFilePath()!=null){
+      xsltUtil = new XsltUtil(new File(config.getFopConfigFilePath()));
+    }else{
+      xsltUtil = new XsltUtil();
+    }
   }
 
   @Override
   public void processOrder(TaopixImportProcessingObject processingObject) throws ImportException {
     if (xsl == null) {
-      xsl = new File(config.getXslFileName());
+      xsl = new File(config.getXslFilePath());
     }
     if (!xsl.canRead()) {
       LOG.error("xsl file nicht gefunden/lesbar pfad=" + config.getXslFileName());

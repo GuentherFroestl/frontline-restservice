@@ -77,8 +77,43 @@ public class PdfGenerateProcessorTest {
     testee.processOrder(pobj);
     File pdfFile = pobj.getPdfOrderFile();
     assertNotNull("PDFFile == null", pdfFile);
-    assertTrue("PdfFile kann nicht gelesen werden "+pdfFile.getAbsolutePath(), pdfFile.exists()&&pdfFile.canRead());
-    assertTrue("PdfFile hat nicht die richtige Größe "+pdfFile.getAbsolutePath(),pdfFile.length()>1000L);
+    assertTrue("PdfFile kann nicht gelesen werden " + pdfFile.getAbsolutePath(), pdfFile.exists() && pdfFile.canRead());
+    assertTrue("PdfFile hat nicht die richtige Größe " + pdfFile.getAbsolutePath(), pdfFile.length() > 1000L);
+    System.out.println("End processOrder, tests successful");
+
+    System.out.println(pobj.getMessages());
+  }
+
+  /**
+   * Test of processOrder method, of class PdfGenerateProcessor.
+   */
+  @Test
+  public void testProcessOrderWithConfig() throws Exception {
+    System.out.println("Start processOrder");
+    java.net.URL fopurl = Thread.currentThread().getContextClassLoader().getResource("config/fopconfig.xml");
+    System.out.println("Using fopconfigFile=" + fopurl);
+    File fopconfigFile = new File(fopurl.toURI());
+    config.setFopConfigFilePath(fopconfigFile.getAbsolutePath());
+    PdfGenerateProcessor testeeWithConfig = new PdfGenerateProcessor(config);
+    java.net.URL url = Thread.currentThread().getContextClassLoader().getResource("xsl/cyberlab_taopix_AB_pdf.xsl");
+    System.out.println("Using xsl-file=" + url);
+    File xslFile = new File(url.toURI());
+    testeeWithConfig.setXsl(xslFile);
+    InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005476.xml");
+    TaopixToTomXmlParser instance = new TaopixToTomXmlParser(new TaopixTomImportConfigImpl());
+    instance.parse(xmlStream);
+    xmlStream.close();
+
+    assertNotNull("TaopixOrder == null", instance.getOrder());
+    assertNotNull("Positionsliste == null", instance.getOrder().getPositionsListe());
+    assertEquals("Positionsliste != 2", 2, instance.getOrder().getPositionsListe().size());
+    TaopixImportProcessingObject pobj = new TaopixImportProcessingObject();
+    pobj.setTaopixOrder(instance.getOrder());
+    testeeWithConfig.processOrder(pobj);
+    File pdfFile = pobj.getPdfOrderFile();
+    assertNotNull("PDFFile == null", pdfFile);
+    assertTrue("PdfFile kann nicht gelesen werden " + pdfFile.getAbsolutePath(), pdfFile.exists() && pdfFile.canRead());
+    assertTrue("PdfFile hat nicht die richtige Größe " + pdfFile.getAbsolutePath(), pdfFile.length() > 1000L);
     System.out.println("End processOrder, tests successful");
     System.out.println(pobj.getMessages());
   }

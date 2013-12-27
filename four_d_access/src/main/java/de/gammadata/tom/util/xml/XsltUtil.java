@@ -23,6 +23,7 @@ import org.apache.fop.apps.FOPException;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -30,9 +31,32 @@ import org.apache.fop.apps.MimeConstants;
  * @author gfr
  */
 public class XsltUtil implements IxsltUtil {
+  
+  private static final Logger LOG = Logger.getLogger(XsltUtil.class);
 
   TransformerFactory transFact = TransformerFactory.newInstance();
-  FopFactory fopFactory = FopFactory.newInstance();
+  FopFactory fopFactory;
+  
+  /**
+   * public constructor.
+   */
+  public XsltUtil(){
+  fopFactory = FopFactory.newInstance();
+  }
+  
+  /**
+   * Constructor with configFile.
+   * @param configFile 
+   */
+  public XsltUtil(File configFile){
+    fopFactory = FopFactory.newInstance();
+    try {
+      fopFactory.setUserConfig(configFile);
+    } catch (Exception ex) {
+      LOG.error("Error setting fop userconfig", ex);
+    } 
+    
+  }
 
   @Override
   public void transform(final Source xml, final StreamSource xsl, final StreamResult result)
