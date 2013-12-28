@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -84,6 +85,30 @@ public class FtpFilesFetcherImplTest {
     ftpInstance.setProcessor(new TestFileFetchPostProcessor());
     List ftpresult = ftpInstance.fetchFtpFiles(ftpConfig, getTestDirectoryPath(), IFtpFilesFetcher.FetchMode.FETCH_NEW_FILES);
     //no exception should be thrown
+  }
+
+  /**
+   * Test of fetchFtpFiles method, of class FtpFilesFetcherImpl.
+   */
+  @Test
+  public void testFetchSingleFtpFile() throws Exception {
+    System.out.println("testFetchSingleFtpFile");
+    CyberlabConfigProviderImpl instance = new CyberlabConfigProviderImpl();
+    TaopixConfig config = instance.getTaopixConfig();
+    assertNotNull("Result == null ", config);
+    FtpServerConfig ftpConfig = config.getFtpServerConfig();
+    assertNotNull("ftpConfig == null ", ftpConfig);
+    String testDirPath = getTestDirectoryPath();
+    File testDir = new File(testDirPath);
+    Assert.assertTrue("Testverzeichnis kann nicht geschrieben werden " + testDirPath, testDir.canWrite());
+    String fileName = "0006001.xml";
+    File outputFile = new File(testDir.getAbsolutePath() + "/" + fileName);
+    outputFile.createNewFile();
+
+    FtpFilesFetcherImpl ftpInstance = new FtpFilesFetcherImpl();
+    boolean result = ftpInstance.fetchFtpFile(ftpConfig, fileName, outputFile);
+    Assert.assertTrue("Fehler FTP-Result nickt ok für File="+fileName, result);
+    System.out.println("testFetchSingleFtpFile File geholt="+outputFile.getAbsolutePath());
   }
 
   /**

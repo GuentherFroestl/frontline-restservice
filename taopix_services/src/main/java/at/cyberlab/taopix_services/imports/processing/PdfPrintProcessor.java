@@ -13,8 +13,8 @@ import javax.print.Doc;
 import javax.print.PrintException;
 import javax.print.PrintService;
 import javax.print.SimpleDoc;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.DocAttributeSet;
+import javax.print.attribute.HashDocAttributeSet;
 import javax.print.attribute.standard.MediaSizeName;
 import org.apache.log4j.Logger;
 
@@ -46,7 +46,8 @@ public class PdfPrintProcessor implements ITaopixOrderImportProcessor {
       try {
         IPrintingUtil pUtil = initPrintService();
         FileInputStream psStream = new FileInputStream(processingObject.getPdfOrderFile());
-        Doc document = new SimpleDoc(psStream, PrintingUtil.flavor, null);
+        DocAttributeSet dSet = new HashDocAttributeSet(MediaSizeName.ISO_A4);
+        Doc document = new SimpleDoc(psStream, PrintingUtil.flavor, dSet);
         pUtil.printPsDoc(document, null);
         processingObject.getMessages().append("\nOrder printed to ").append(pUtil.getselectedPrintService().getName());
       } catch (Exception ex) {

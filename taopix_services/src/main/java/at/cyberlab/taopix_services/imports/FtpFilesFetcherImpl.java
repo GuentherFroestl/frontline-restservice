@@ -6,12 +6,15 @@ package at.cyberlab.taopix_services.imports;
 
 import at.cyberlab.taopix_services.config.FtpServerConfig;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPListParseEngine;
@@ -25,7 +28,7 @@ import org.apache.commons.net.ftp.FTPReply;
  */
 public class FtpFilesFetcherImpl implements IFtpFilesFetcher {
 
-  private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FtpFilesFetcherImpl.class.getSimpleName());
+  private static final org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(FtpFilesFetcherImpl.class);
   private IFileFetchPostProcessor processor;
   private Integer numerOfFilesPerBatch;
 
@@ -65,6 +68,23 @@ public class FtpFilesFetcherImpl implements IFtpFilesFetcher {
   }
 
   @Override
+  public boolean fetchFtpFile(FtpServerConfig config, String remoteFilename, File targetFile) throws ImportException {
+    if (config==null||remoteFilename==null||targetFile==null){
+      throw new ImportException("Eines der übergebenen Argumente ist null");
+    }
+    boolean ok = false;
+    FTPClient ftp = getFtpConnection(config);
+    try {
+      OutputStream out = new FileOutputStream(targetFile);
+      ok =ftp.retrieveFile(remoteFilename, out);
+      disconnect(ftp);
+    } catch (Exception ex) {
+      LOG.error("Fehler beim Holen des Files vom FTP Server "+remoteFilename+" >> "+targetFile.getAbsolutePath(), ex);
+    }
+    return ok;
+  }
+
+  @Override
   public List<String> fetchFtpFiles(FtpServerConfig config, String targetDirectory, FetchMode mode) throws ImportException {
 
     //validate
@@ -78,7 +98,7 @@ public class FtpFilesFetcherImpl implements IFtpFilesFetcher {
     try {
       result = fetchFtpFiles(ftp, dir);
     } catch (IOException ex) {
-      logger.log(Level.SEVERE, "Exception occured while importing files", ex);
+      LOG.error("Exception occured while importing files", ex);
       throw new ImportException(ex);
     }
     //tear down
@@ -99,7 +119,7 @@ public class FtpFilesFetcherImpl implements IFtpFilesFetcher {
   private List<String> fetchFtpFiles(FTPClient ftp, File dir) throws ImportException, IOException {
 
     if (dir == null || !dir.canWrite()) {
-      logger.log(Level.SEVERE, "Kann nicht in Verzeichnis schreiben: {0}", new Object[]{dir});
+      LOG.error("Kann nicht in Verzeichnis schreiben: " + new Object[]{dir});
       throw new ImportException("Kann nicht in Verzeichnis schreiben:" + dir);
     }
 
@@ -132,14 +152,14 @@ public class FtpFilesFetcherImpl implements IFtpFilesFetcher {
                 processor.process(tempDatei);
               }
             } else {
-              logger.log(Level.SEVERE, "Fehler beim speichern: {0} to {1}", new String[]{file.getName(), tempDatei.getAbsolutePath()});
+              LOG.error("Fehler beim speichern: " + file.getName() + " > " + tempDatei.getAbsolutePath());
               throw new ImportException("Fehler beim speichern: " + file.getName() + " to " + tempDatei.getAbsolutePath());
             }
           } else {
-            logger.log(Level.FINE, "Datei in Zielverzeichnis bereits vorhanden: {0}", tempDatei.getAbsolutePath());
+            LOG.error("Datei in Zielverzeichnis bereits vorhanden: " + tempDatei.getAbsolutePath());
           }
         } else {
-          logger.info("subdir: " + file.getName() + " will not be handled");
+          LOG.error("subdir: " + file.getName() + " will not be handled");
         }
       }
     }
@@ -169,7 +189,7 @@ public class FtpFilesFetcherImpl implements IFtpFilesFetcher {
   private File getTargetDirectoryHandle(String targetDirectoryPath) {
     File dir = new File(targetDirectoryPath);
     if (!dir.exists() || !dir.canWrite() || !dir.isDirectory()) {
-      logger.info("init(): Fehler kann Directory nicht schreiben: "
+      LOG.info("init(): Fehler kann Directory nicht schreiben: "
               + dir.getAbsolutePath()
               + ", canWrite: " + dir.canWrite()
               + ", isDirectory: " + dir.isDirectory());
@@ -193,11 +213,11 @@ public class FtpFilesFetcherImpl implements IFtpFilesFetcher {
       int reply = ftp.getReplyCode();
 
       if (!FTPReply.isPositiveCompletion(reply)) {
-        logger.info("init(): Fehler  kann nicht mit Ftp-Server verbinden: " + config.getFtpServerName());
+        LOG.info("init(): Fehler  kann nicht mit Ftp-Server verbinden: " + config.getFtpServerName());
         disconnect(ftp);
         throw new ImportException("kann nicht mit Ftp-Server verbinden: " + config.getFtpServerName());
       } else {
-        logger.info("init() Verbindung mit Ftp-Server ok " + config.getFtpServerName());
+        LOG.info("init() Verbindung mit Ftp-Server ok " + config.getFtpServerName());
 
       }
 
@@ -205,13 +225,13 @@ public class FtpFilesFetcherImpl implements IFtpFilesFetcher {
               config.getFtpPassword())) {
         ftp.logout();
         ftp.disconnect();
-        logger.info("Fehler  kann nicht mit Ftp-Server verbinden, Login fehlgeschlagen: " + config.getFtpServerName() + " user=" + config.getFtpUserName());
+        LOG.info("Fehler  kann nicht mit Ftp-Server verbinden, Login fehlgeschlagen: " + config.getFtpServerName() + " user=" + config.getFtpUserName());
         throw new IllegalArgumentException();
       }
 
       return ftp;
     } catch (Exception ex) {
-      logger.log(Level.SEVERE, null, ex);
+      LOG.error("Ein Fehler ist aufgetreten", ex);
       disconnect(ftp);
       throw new ImportException(ex);
     }
@@ -228,7 +248,7 @@ public class FtpFilesFetcherImpl implements IFtpFilesFetcher {
         ftp.logout();
         ftp.disconnect();
       } catch (IOException ex) {
-        logger.log(Level.SEVERE, "Error disconnecting from FTP server", ex);
+        LOG.error("Error disconnecting from FTP server", ex);
       }
     }
   }

@@ -36,9 +36,9 @@ public class PrintingUtil implements IPrintingUtil {
 
   @Override
   public PrintService[] getAvailablePsA4PrintServices() throws PrintException {
-    PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
-    aset.add(MediaSizeName.ISO_A4);
-    return getAvailablePsPrintServices(aset);
+    printerSettings = new HashPrintRequestAttributeSet();
+    printerSettings.add(MediaSizeName.ISO_A4);
+    return getAvailablePsPrintServices(printerSettings);
   }
 
   @Override

@@ -1,6 +1,7 @@
 package at.cyberlab.taopix_services.imports;
 
 import at.cyberlab.taopix_services.config.FtpServerConfig;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -30,6 +31,15 @@ public interface IFtpFilesFetcher {
    * @return List of Strings with absolute pathes of fetched files.
    */
   public List<String> fetchFtpFiles(FtpServerConfig config, String targetDirectory, FetchMode mode) throws ImportException;
+  
+  /**
+   * Fetch one file from the FTP Server.
+   * @param config FtpServerConfig
+   * @param remoteFilename String name of the remote ftpfile
+   * @param outputFile File the output file
+   * @return boolean true, if OK
+   */
+  public boolean fetchFtpFile(FtpServerConfig config, String remoteFilename,File outputFile)  throws ImportException ;
   
   /**
    * Set the Postprocessor, which will be called after a file was successful fetched.

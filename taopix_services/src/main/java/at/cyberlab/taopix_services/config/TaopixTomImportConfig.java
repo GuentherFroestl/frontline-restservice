@@ -8,7 +8,7 @@ import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
 import java.math.BigDecimal;
 
 /**
- * Some configs for the order Import Taopix to Tom
+ * Some configs for the order import from Taopix to Tom/4D.
  *
  * @author gfr
  */
@@ -134,6 +134,16 @@ public interface TaopixTomImportConfig {
    */
   public void setConfigFilePath(String path);
   
+  /**
+   * 
+   * @return String, the sub path to the ftp-files directory
+   */
+  public String getFilesDirectoryName();
+  /**
+   * 
+   * @param filesDirectoryName  String, the sub path to the ftp-files directory
+   */
+  public void setFilesDirectoryName(String filesDirectoryName);
     /**
    *
    * @return String, the PostScriptPrinter Name
@@ -146,12 +156,36 @@ public interface TaopixTomImportConfig {
    */
   public void setPsPrinterName(String psPrinterName);
   
+  /**
+   * 
+   * @return String Name of FOP config file.
+   */
   public String getFopConfigFile();
-  
+  /**
+   * 
+   * @param fopConfigFile String Name of FOP config file.
+   */
   public void setFopConfigFile(String fopConfigFile);
   
+  /**
+   * 
+   * @return String generated Path to FOP config file.
+   */
   public String getFopConfigFilePath();
-  
+  /**
+   * 
+   * @param fopConfigFilePath String generated Path to FOP config file.
+   */
   public void setFopConfigFilePath(String fopConfigFilePath);
+  /**
+   * 
+   * @return FtpServerConfig the Config for the FTP Server
+   */
+  public FtpServerConfig getFtpServerConfig();
+  /**
+   * 
+   * @param ftpServerConfig  FtpServerConfig the Config for the FTP Server
+   */
+  public void setFtpServerConfig(FtpServerConfig ftpServerConfig);
   
 }

@@ -44,7 +44,7 @@ public class PdfPrintProcessorTest {
   @Test
   public void testProcessOrder() throws Exception {
     System.out.println("processOrder with PdfPrintProcessor");
-    java.net.URL url = Thread.currentThread().getContextClassLoader().getResource("pdf/test.pdf");
+    java.net.URL url = Thread.currentThread().getContextClassLoader().getResource("pdf/taopix_order_112506000.pdf");
     System.out.println("Using pdf-file=" + url);
     File pdfFile = new File(url.toURI());
     assertNotNull("PDFFile == null", pdfFile);

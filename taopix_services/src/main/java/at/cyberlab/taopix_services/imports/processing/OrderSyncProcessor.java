@@ -45,7 +45,7 @@ public class OrderSyncProcessor implements ITaopixOrderImportProcessor {
         return; //NOP
       }
       BelegDTO createdBeleg = belegService.createBeleg(processingObject.getTaopixOrder());
-      LOG.info("Created Beleg=" + createdBeleg);
+      LOG.info("Created Beleg=" + createdBeleg.getNummer()+ " "+createdBeleg.getBetreff());
     } catch (TomException ex) {
       LOG.error("Fehler beim Ordersync", ex);
       throw new ImportException(ex);

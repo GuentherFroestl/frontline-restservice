@@ -5,12 +5,15 @@
 package at.cyberlab.taopix_services.exe;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
-import at.cyberlab.taopix_services.config.TaopixTomImportConfigImpl;
 import at.cyberlab.taopix_services.config.TaopixTomImportConfigProvider;
+import at.cyberlab.taopix_services.imports.FtpFilesFetcherImpl;
+import at.cyberlab.taopix_services.imports.IFtpFilesFetcher;
+import at.cyberlab.taopix_services.imports.ImportException;
 import at.cyberlab.taopix_services.imports.TaopixToTomXmlParser;
 import at.cyberlab.taopix_services.imports.processing.ITaopixOrderImportProcessor;
 import at.cyberlab.taopix_services.imports.processing.ImportProcessingChain;
 import at.cyberlab.taopix_services.imports.processing.TaopixImportProcessingObject;
+import at.cyberlab.taopix_services.util.TaopixFileNameBuilder;
 import de.gammadata.tom.util.printing.IPrintingUtil;
 import de.gammadata.tom.util.printing.PrintingUtil;
 import java.io.File;
@@ -39,20 +42,23 @@ public class ImportRunner {
    */
   public static void main(String[] args) {
     if (args.length == 0) {
-      System.out.println("Bitte Filepfad als Argument angegeben");
+      System.out.println("Bitte Auftragsnummer als Argument angegeben");
       System.exit(1);
     }
     String configFileName = CONFIG_FILE_NAME;
-    String xmlFileName = null;
+    String orderNumberString = null;
     if (args[0].equalsIgnoreCase("-c")) {
       configFileName = args[1];
-      xmlFileName = args[2];
+      orderNumberString = args[2];
 
     } else if (args[0].equalsIgnoreCase("-p")) {
       listPrintServices();
       System.exit(0);
+    } else if (args[0].equalsIgnoreCase("-f")) {
+      checkFileDirectory(configFileName);
+      System.exit(0);
     } else {
-      xmlFileName = args[0];
+      orderNumberString = args[0];
     }
 
     checkConfigFile(configFileName);
@@ -70,15 +76,50 @@ public class ImportRunner {
       System.exit(1);
     }
 
-    if (xmlFileName == null) {
-      System.out.println("Bitte Filepfad als Argument angegeben");
+    if (orderNumberString == null) {
+      System.out.println("Bitte Auftragsnummer als Argument angegeben");
       System.exit(1);
     }
-    File xmlFile = new File(xmlFileName);
-    if (!xmlFile.canRead()) {
-      System.out.println("Kann das File unter dem angegeben Pfad nicht lesen=" + args[1]);
+
+    //Xml File Namen generieren
+    String xmlFileName = null;
+    try {
+
+      xmlFileName = TaopixFileNameBuilder.build(orderNumberString);
+      if (xmlFileName == null) {
+        System.out.println("Bitte Auftragsnummer richtig als Argument angegeben " + orderNumberString);
+      }
+    } catch (Exception ex) {
+      System.out.println("Bitte Auftragsnummer richtig als Argument angegeben, Fehler " + ex.getMessage());
+      System.exit(1);
     }
 
+    String dirPath = checkFileDirectory(configFileName);
+    File xmlFile = new File(dirPath + "/" + xmlFileName);
+    boolean exists = false;
+    try {
+      exists = !xmlFile.createNewFile();
+      if (exists && xmlFile.length() < 100) {
+        exists = false;
+      }
+    } catch (IOException ex) {
+      System.out.println("Fehler beim File Check " + ex.getMessage() + ", Pfad=" + xmlFile.getAbsolutePath());
+
+    }
+    //File erst vom FTP holen
+    if (!exists) {
+      IFtpFilesFetcher ftpInstance = new FtpFilesFetcherImpl();
+      try {
+        System.out.println("Hole file vom FTP-Server " + xmlFileName);
+        boolean result = ftpInstance.fetchFtpFile(importConfig.getFtpServerConfig(), xmlFileName, xmlFile);
+        if (!result) {
+          System.out.println("Fehler beim Holen des FTP Files " + xmlFileName + ", nach Pfad=" + xmlFile.getAbsolutePath());
+          System.exit(1);
+        }
+      } catch (ImportException ex) {
+        System.out.println("Fehler " + ex.getMessage() + " beim Holen des FTP Files " + xmlFileName + ", nach Pfad=" + xmlFile.getAbsolutePath());
+      }
+    }
     //Set file pathes, exit may occur in methodes, if pathes are not correct
     setXslFilePath(importConfig);
     setFopConfigFilePath(importConfig);
@@ -126,8 +167,8 @@ public class ImportRunner {
         System.exit(1);
       }
       System.out.println("Verwende Konfig-Datei =" + url);
-      File pdfFile = new File(url.toURI());
-      if (pdfFile.canRead()) {
+      File configFile = new File(url.toURI());
+      if (configFile.canRead()) {
         System.out.println("Konfig-Datei ist lesbar " + path);
         return;
       } else {
@@ -186,6 +227,29 @@ public class ImportRunner {
     }
     System.out.println("Fehler fop configfile  nicht gefunden " + importConfig.getFopConfigFile());
     System.exit(1);
+  }
+
+  private static String checkFileDirectory(String configFileName) {
+    checkConfigFile(configFileName);
+
+    TaopixTomImportConfig importConfig = null;
+    try {
+      importConfig = TaopixTomImportConfigProvider.getTaopixTomImportConfig(configFileName);
+      String dirPath = importConfig.getFilesDirectoryName();
+      File dir = new File(dirPath);
+      if (dir.canWrite()) {
+        System.out.println("Files-Dir kann geschrieben werden path=" + dir.getAbsolutePath());
+        return dir.getAbsolutePath();
+      } else {
+        System.out.println("Fehler: Files-Dir kann nicht geschrieben werden path=" + dir.getAbsolutePath());
+        System.exit(1);
+      }
+
+    } catch (Exception ex) {
+      System.out.println("Fehler beim Lesen der Konfiguration " + configFileName + " " + ex.getMessage());
+      System.exit(1);
+    }
+    return null;
   }
 
   private static void listPrintServices() {

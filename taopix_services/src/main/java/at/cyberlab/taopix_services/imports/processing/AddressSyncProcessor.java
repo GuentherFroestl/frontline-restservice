@@ -11,7 +11,6 @@ import com.tom.service.dto.AddressKopfDTO;
 import com.tom.service.facade.TomException;
 import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
 import de.gammadata.tom.four_d_access.service.AddressService;
-import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -73,11 +72,8 @@ public class AddressSyncProcessor implements ITaopixOrderImportProcessor {
       }
 
       processingObject.getTaopixOrder().setAdresse(new AddressKopfDTO(synOrderAdr));
-      processingObject.getMessages().append("\nOrderadresse= ").append(synOrderAdr);
       processingObject.getTaopixOrder().setLieferAdresse(new AddressKopfDTO(synShippingAdr));
-      processingObject.getMessages().append("\nLiferadresse= ").append(synShippingAdr);
       processingObject.getTaopixOrder().setRechnungsAdresse(new AddressKopfDTO(synRechAdr));
-      processingObject.getMessages().append("\nRechnungsadresse= ").append(synRechAdr);
 
     } catch (TomException ex) {
       LOG.error("Fehler beim Adressen Sync " + ex.getMessage(), ex);

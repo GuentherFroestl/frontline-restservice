@@ -14,6 +14,9 @@ import java.math.BigDecimal;
  */
 public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
 
+  public static final String TAOPIX_DEFAULT_FTP_SERVER = "fotobuch.cyberlab.at";
+  public static final String TAOPIX_USER = "xml";
+  public static final String TAOPIX_PW = "vacr2+2T";
   private Integer orderNumberOffset = 112500000;
   private Integer mandatorId = 2;
   private String userUuidPrefix = "TAOPIX_USER_";
@@ -21,16 +24,22 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
   private DataBaseSpec dataBaseSpec;
   private String productCodeStubForReducedTax = "FB";
   private BigDecimal reducedTaxRate = new BigDecimal("10.00");
-  private String wrg="EUR";
+  private String wrg = "EUR";
   private String xslFileName = "cyberlab_beleg.xsl";
   public String xslFilePath;
   private String configFilePath;
-  private String psPrinterName="myPsPrinter";
-  private String fopConfigFile="fopconfig.xml";
+  private String filesDirectoryName="files/";
+  private String psPrinterName = "myPsPrinter";
+  private String fopConfigFile = "fopconfig.xml";
   private String fopConfigFilePath;
-  
-  public TaopixTomImportConfigImpl(){
+  private FtpServerConfig ftpServerConfig;
+
+  public TaopixTomImportConfigImpl() {
     dataBaseSpec = new Tom4DSpec().getDataBaseSpec();
+    ftpServerConfig = new FtpServerConfigImpl();
+    ftpServerConfig.setFtpServerName(TAOPIX_DEFAULT_FTP_SERVER);
+    ftpServerConfig.setFtpUserName(TAOPIX_USER);
+    ftpServerConfig.setFtpPassword(TAOPIX_PW);
   }
 
   @Override
@@ -78,8 +87,6 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
   public void setWrg(String wrg) {
     this.wrg = wrg;
   }
-  
-  
 
   @Override
   public DataBaseSpec getDataBaseSpec() {
@@ -119,7 +126,7 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
   @Override
   public void setXslFileName(String xslFileName) {
     this.xslFileName = xslFileName;
-  }  
+  }
 
   @Override
   public String getXslFilePath() {
@@ -131,7 +138,6 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
     this.xslFilePath = xslFilePath;
   }
 
-  
   @Override
   public String getConfigFilePath() {
     return configFilePath;
@@ -140,6 +146,16 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
   @Override
   public void setConfigFilePath(String path) {
     this.configFilePath = path;
+  }
+
+  @Override
+  public String getFilesDirectoryName() {
+    return filesDirectoryName;
+  }
+
+  @Override
+  public void setFilesDirectoryName(String filesDirectoryName) {
+    this.filesDirectoryName = filesDirectoryName;
   }
 
   @Override
@@ -171,5 +187,14 @@ public class TaopixTomImportConfigImpl implements TaopixTomImportConfig {
   public void setFopConfigFilePath(String fopConfigFilePath) {
     this.fopConfigFilePath = fopConfigFilePath;
   }
-  
+
+  @Override
+  public FtpServerConfig getFtpServerConfig() {
+    return ftpServerConfig;
+  }
+
+  @Override
+  public void setFtpServerConfig(FtpServerConfig ftpServerConfig) {
+    this.ftpServerConfig = ftpServerConfig;
+  }
 }
