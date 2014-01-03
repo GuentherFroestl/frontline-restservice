@@ -6,8 +6,6 @@ package at.cyberlab.taopix_services.imports.processing;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
 import at.cyberlab.taopix_services.imports.ImportException;
-import de.gammadata.tom.util.printing.IPrintingUtil;
-import de.gammadata.tom.util.printing.PrintingUtil;
 import de.gammadata.tom.util.xml.ISerializer;
 import de.gammadata.tom.util.xml.IxsltUtil;
 import de.gammadata.tom.util.xml.XsltUtil;
@@ -20,11 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import javax.print.PrintException;
-import javax.print.PrintService;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
-import javax.print.attribute.standard.MediaSizeName;
 import javax.xml.transform.TransformerException;
 import org.apache.commons.io.IOUtils;
 import org.apache.fop.apps.FOPException;
@@ -74,7 +67,7 @@ public class PdfGenerateProcessor implements ITaopixOrderImportProcessor {
       xmlFile.close();
       processingObject.getMessages().append("\nOrder in Xml-Datei geschrieben Pfad=" + xml.getAbsolutePath());
       LOG.info("Order in Xml-Datei geschrieben Pfad=" + xml.getAbsolutePath());
-      File pdfFile = File.createTempFile("taopix_order_" + processingObject.getTaopixOrder().getNummer(), ".pdf");
+      File pdfFile = File.createTempFile("taopix_order_" + processingObject.getTaopixOrder().getNummer()+"_", ".pdf");
       OutputStream pdfStream = new FileOutputStream(pdfFile);
       xsltUtil.transformWithFOP(processingObject.getTaopixOrder(), xslStream, pdfStream);
       pdfStream.close();

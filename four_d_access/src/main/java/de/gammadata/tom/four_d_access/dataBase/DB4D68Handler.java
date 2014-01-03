@@ -385,8 +385,9 @@ public class DB4D68Handler extends DataBaseHandler {
 				resultSelection.setDisplaySize(this.getRecordLimit());
 			}
 		} catch (Exception e) {
-			this.setMessage("[DB4D68Handler]sendRequest Fehler:  " + e);
-			throw new TomDbException("sendRequest Fehler:  " + e);
+      String errorMsg="sendRequest failed to "+getDataBaseSpec().getServerAddress()+":"+getDataBaseSpec().getServerPort()+" Error="+e.getLocalizedMessage();
+			this.setMessage("[DB4D68Handler]"+errorMsg);
+			throw new TomDbException(errorMsg);
 		}
 		return resultSelection;
 	}
@@ -400,8 +401,8 @@ public class DB4D68Handler extends DataBaseHandler {
 				useObject.getDID())));
 		this.setResultObject(useObject);
 		this.setRecordLimit(1);
-		XmpSelection resultSelection = this.executeQuery();
-		return resultSelection;
+		XmpSelection result = this.executeQuery();
+		return result;
 
 	}
 
