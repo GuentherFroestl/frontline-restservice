@@ -2,14 +2,19 @@
 <export>
 	<order>
 		<header>
+      <!--Auftragsnummer -->
 			<id>5476</id>
+      <!-- Auftragsdatum-->
 			<datecreated>2013-11-24 17:06:02</datecreated>
 			<datelastmodified>2013-11-24 17:15:16</datelastmodified>
 			<ownercode>CYLBDGTLE</ownercode>
 			<groupcode>DEMO</groupcode>
 			<shoppingcarttype>0</shoppingcarttype>
+      <!-- User/Kundennummer-->
 			<userid>2600</userid>
+      <!-- Auftragsdatum-->
 			<orderdate>2013-11-24 17:06:02</orderdate>
+      <!-- Auftragsnummer -->
 			<ordernumber>0005476</ordernumber>
 			<origorderid>0</origorderid>
 			<origordernumber/>
@@ -18,6 +23,7 @@
 			<languagecode>de_at</languagecode>
 			<billingcustomeraccountcode/>
 			<billingcustomername/>
+      <!-- Rechnungsadresse -->
 			<billingcustomeraddress1>KGA Simm.Haide 607</billingcustomeraddress1>
 			<billingcustomeraddress2/>
 			<billingcustomeraddress3/>
@@ -35,6 +41,7 @@
 			<billingcontactfirstname>Christian</billingcontactfirstname>
 			<billingcontactlastname>Urban</billingcontactlastname>
 			<useremaildestination>0</useremaildestination>
+      <!-- Währung kann so übernommen werden -->
 			<currencycode>EUR</currencycode>
 			<currencyname>Euro</currencyname>
 			<currencyisonumber>978</currencyisonumber>
@@ -49,22 +56,35 @@
 			<vouchername/>
 			<voucherdiscountsection/>
 			<voucherdiscounttype/>
+      <!-- Gutscheinrabatt -->
 			<voucherdiscountvalue>0.00</voucherdiscountvalue>
+      <!--  -->
 			<itemtotalcost>0.00</itemtotalcost>
+      <!--  Auftragssumme -->
 			<itemtotalsell>156.60</itemtotalsell>
+      <!-- Waren MwST -->
 			<itemtotaltax>26.10</itemtotaltax>
-			<shippingtotalcost>1.00</shippingtotalcost>
+      <!-- Versandkosten -->
 			<shippingtotalsell>3.25</shippingtotalsell>
+      <!-- MwST Versand -->
 			<shippingtotaltax>0.65</shippingtotaltax>
 			<shippingtotalweight>0.0000</shippingtotalweight>
 			<totalcost>0.00</totalcost>
+      <!--  Rabatt -->
 			<totalsellbeforediscount>133.75</totalsellbeforediscount>
+      <!-- MwSt vor Rabatt -->
 			<totaltaxbeforediscount>26.75</totaltaxbeforediscount>
+      <!--  Summe ohne Rabatt-->
 			<totalbeforediscount>133.75</totalbeforediscount>
+      <!-- Gesamtrabatt -->
 			<totaldiscount>0.00</totaldiscount>
+      <!-- Gesamtpreis -->
 			<totalsell>156.60</totalsell>
+      <!--  Gesamt MwSt -->
 			<totaltax>26.10</totaltax>
+      <!-- Gesamtsumme -->
 			<total>160.50</total>
+      <!--  Zahlungsinformationen -->
 			<paymentmethodcode>PAYPAL</paymentmethodcode>
 			<paymentmethodname>PayPal (inc. Credit Card Payments)</paymentmethodname>
 			<paymentgatewaycode/>
@@ -84,6 +104,7 @@
 			<statususerid>0</statususerid>
 			<statusdescription/>
 			<orderid>5476</orderid>
+      <!--  Fotobuch spezifisch, nicht notwendig: Anfang -->
 			<uploadref>DEMO241120131648000832</uploadref>
 			<origorderitemid>0</origorderitemid>
 			<origuploadref/>
@@ -177,8 +198,11 @@
 			<previewsonline>1</previewsonline>
 			<canupload>0</canupload>
 			<canuploadpagecountoverride>0</canuploadpagecountoverride>
+      <!--  Fotobuch spezifisch, nicht notwendig: Ende -->
 		</header>
+    <!-- Auftragspositionen, für jede Position ein solcher item-Datensatz -->
 		<item>
+      <!--  Order ID siehe oben -->
 			<id>5476</id>
 			<datecreated>2013-11-24 17:06:02</datecreated>
 			<datelastmodified>2013-11-24 17:15:16</datelastmodified>
@@ -188,8 +212,11 @@
 			<origorderid>0</origorderid>
 			<origorderitemid>0</origorderitemid>
 			<origuploadref/>
+      <!-- Kundenbemerkung -->
 			<projectname>Namibia 2014</projectname>
+      <!--  Artikelnummer -->
 			<productcode>KF_A3Q_W</productcode>
+      <!--  Artikelbezeichnung -->
 			<productname>Kalender Fotopapier A3 quer weiß</productname>
 			<producttype>0</producttype>
 			<productpageformat>0</productpageformat>
@@ -211,6 +238,7 @@
 			<pagecountpurchased>13</pagecountpurchased>
 			<pagecount>13</pagecount>
 			<productunitcost>0.00</productunitcost>
+      <!--  Artikelpreis -->
 			<productunitsell>26.10</productunitsell>
 			<coverunitcost>0.00</coverunitcost>
 			<coverunitsell>0.00</coverunitsell>
@@ -218,6 +246,7 @@
 			<paperunitsell>0.00</paperunitsell>
 			<taxcode>AUTVAT</taxcode>
 			<taxname>Austrian VAT</taxname>
+      <!--  MwSt Satz -->
 			<taxrate>20.0000</taxrate>
 			<productunitweight>0.0000</productunitweight>
 			<producttotalweight>0.0000</producttotalweight>
@@ -225,8 +254,10 @@
 			<covertotalweight>0.0000</covertotalweight>
 			<paperunitweight>0.0000</paperunitweight>
 			<papertotalweight>0.0000</papertotalweight>
+      <!--  Stückzahl -->
 			<qty>5</qty>
 			<producttotalcost>0.00</producttotalcost>
+      <!--  Positionsgesamtpreis -->
 			<producttotalsell>156.60</producttotalsell>
 			<producttotaltax>26.10</producttotaltax>
 			<covertotalcost>0.00</covertotalcost>
@@ -286,6 +317,7 @@
 			<statusdescription/>
 			<statustimestamp>2013-11-24 17:15:16</statustimestamp>
 		</item>
+    <!--  Versand -->
 		<shipping>
 			<id>5476</id>
 			<datecreated>2013-11-24 17:06:02</datecreated>
@@ -293,6 +325,7 @@
 			<orderid>5476</orderid>
 			<orderitemid>5476</orderitemid>
 			<userid>2600</userid>
+      <!--  Versandadresse -->
 			<shippingcustomername/>
 			<shippingcustomeraddress1>KGA Simm.Haide 607</shippingcustomeraddress1>
 			<shippingcustomeraddress2/>
@@ -315,16 +348,20 @@
 			<shippingratecode>STDMAIL</shippingratecode>
 			<shippingrateinfo>de Regellaufzeit 2-3 Tage in Österreich</shippingrateinfo>
 			<shippingratecost>1.00</shippingratecost>
+      <!--  Versandpreis -->
 			<shippingratesell>3.90</shippingratesell>
 			<shippingdiscountvalue>0.00</shippingdiscountvalue>
 			<shippingtotalsell>3.90</shippingtotalsell>
 			<shippingratetaxcode>AUTVAT</shippingratetaxcode>
 			<shippingratetaxname>Austrian VAT</shippingratetaxname>
+      <!--  Versand MwSt Satz-->
 			<shippingratetaxrate>20.0000</shippingratetaxrate>
 			<shippingratecalctax>0</shippingratecalctax>
+      <!--  Versand MwSt-->
 			<shippingratetaxtotal>0.65</shippingratetaxtotal>
 			<qty>5</qty>
 		</shipping>
+    <!-- Zahlungsinformationen -->
 		<ccilog>
 			<id>931</id>
 			<datecreated>2013-11-24 17:06:02</datecreated>
@@ -332,20 +369,26 @@
 			<orderid>5476</orderid>
 			<userid>2600</userid>
 			<parentlogid>0</parentlogid>
+      <!--  Zahlungsart -->
 			<type>PAYPAL</type>
 			<mode>AUTOMATIC</mode>
+      <!--  Betrag -->
 			<amount>160.50</amount>
+      <!--  Gebühren -->
 			<charges>5.81</charges>
 			<authorised>1</authorised>
+      <!--  Transaktionsnummer -->
 			<transactionid>3B441373M3635905D</transactionid>
 			<responsecode/>
 			<responsedescription/>
+      <!--  Authorisierungscode -->
 			<authorisationid>ABnD3lUm8iWYkpvqwpo7vgwHq7dwA5j03KNM2XvnuJs4FXyvJhZr0tGF</authorisationid>
 			<bankresponsecode/>
 			<cardnumber/>
 			<cvvflag/>
 			<cvvresponsecode/>
 			<paymentcertificate/>
+      <!--  Zahlungsdatum -->
 			<paymentdate>09:05:47 Nov 24, 2013 PST</paymentdate>
 			<paymenttime/>
 			<paymentmeans>instant</paymentmeans>
@@ -363,6 +406,7 @@
 			<threedsecurestatus/>
 			<cavvresponsecode/>
 			<charityflag/>
+      <!--  Zlg-Währung -->
 			<currencycode>EUR</currencycode>
 			<webbrandcode/>
 			<formattedpaymentdate>2013-11-24 17:05:47</formattedpaymentdate>
