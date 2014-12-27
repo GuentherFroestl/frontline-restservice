@@ -8,7 +8,6 @@ import at.cyberlab.taopix_services.config.CyberlabConfigProviderImpl;
 import at.cyberlab.taopix_services.config.FtpServerConfig;
 import at.cyberlab.taopix_services.config.TaopixConfig;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,11 +16,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
  * @author gfr
  */
+@Ignore
 public class FtpFilesFetcherImplTest {
 
   public FtpFilesFetcherImplTest() {

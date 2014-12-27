@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export>
+	<order>
+		<header>
+			<id>6921</id>
+			<datecreated>2014-11-08 17:44:12</datecreated>
+			<datelastmodified>2014-11-08 17:54:41</datelastmodified>
+			<ownercode>CYLBDGTLE</ownercode>
+			<groupcode>DEMO</groupcode>
+			<shoppingcarttype>0</shoppingcarttype>
+			<userid>2150</userid>
+			<orderdate>2014-11-08 17:44:12</orderdate>
+			<ordernumber>0006921</ordernumber>
+			<origorderid>0</origorderid>
+			<origordernumber/>
+			<temporderid>0</temporderid>
+			<webbrandcode/>
+			<languagecode>de_de</languagecode>
+			<billingcustomeraccountcode/>
+			<billingcustomername/>
+			<billingcustomeraddress1>Grosssteinbach 133</billingcustomeraddress1>
+			<billingcustomeraddress2/>
+			<billingcustomeraddress3/>
+			<billingcustomeraddress4/>
+			<billingcustomercity>Grosssteinbach</billingcustomercity>
+			<billingcustomercounty/>
+			<billingcustomerstate/>
+			<billingcustomerregioncode/>
+			<billingcustomerregion>STATE</billingcustomerregion>
+			<billingcustomerpostcode>8265</billingcustomerpostcode>
+			<billingcustomercountrycode>AT</billingcustomercountrycode>
+			<billingcustomercountryname>Austria</billingcustomercountryname>
+			<billingcustomertelephonenumber>0664 8570756</billingcustomertelephonenumber>
+			<billingcustomeremailaddress>h.wachmann@grosssteinbach.at</billingcustomeremailaddress>
+			<billingcontactfirstname>Gerhard</billingcontactfirstname>
+			<billingcontactlastname>Wachmann</billingcontactlastname>
+			<useremaildestination>0</useremaildestination>
+			<currencycode>EUR</currencycode>
+			<currencyname>Euro</currencyname>
+			<currencyisonumber>978</currencyisonumber>
+			<currencysymbol>€</currencysymbol>
+			<currencysymbolatfront>1</currencysymbolatfront>
+			<currencydecimalplaces>2</currencydecimalplaces>
+			<currencyexchangerate>1.0000</currencyexchangerate>
+			<basecurrencycode>EUR</basecurrencycode>
+			<voucherpromotioncode/>
+			<voucherpromotionname/>
+			<vouchercode>H61GPTS2RDFT</vouchercode>
+			<vouchername>€ 50,- Gutschein</vouchername>
+			<voucherdiscountsection>TOTAL</voucherdiscountsection>
+			<voucherdiscounttype>VALUE</voucherdiscounttype>
+			<voucherdiscountvalue>50.00</voucherdiscountvalue>
+			<itemtotalcost>0.00</itemtotalcost>
+			<itemtotalsell>90.00</itemtotalsell>
+			<itemtotaltax>15.00</itemtotaltax>
+			<shippingtotalcost>1.00</shippingtotalcost>
+			<shippingtotalsell>3.25</shippingtotalsell>
+			<shippingtotaltax>0.65</shippingtotaltax>
+			<shippingtotalweight>0.0000</shippingtotalweight>
+			<totalcost>0.00</totalcost>
+			<totalsellbeforediscount>78.25</totalsellbeforediscount>
+			<totaltaxbeforediscount>15.65</totaltaxbeforediscount>
+			<totalbeforediscount>86.58</totalbeforediscount>
+			<totaldiscount>50.00</totaldiscount>
+			<totalsell>90.00</totalsell>
+			<totaltax>15.00</totaltax>
+			<total>43.90</total>
+			<paymentmethodcode>PAYPAL</paymentmethodcode>
+			<paymentmethodname>PayPal (inc. Credit Card Payments)</paymentmethodname>
+			<paymentgatewaycode/>
+			<pricesincludetax>1</pricesincludetax>
+			<requiresdelivery>1</requiresdelivery>
+			<ccilogid>1236</ccilogid>
+			<metadatacodelist/>
+			<paymentreceived>1</paymentreceived>
+			<paymentreceivedtimestamp>2014-11-08 17:43:11</paymentreceivedtimestamp>
+			<paymentreceiveddate>2014-11-08 17:44:12</paymentreceiveddate>
+			<paymentreceiveduserid>-1</paymentreceiveduserid>
+			<canreorder>1</canreorder>
+			<archived>0</archived>
+			<archivedate>0000-00-00 00:00:00</archivedate>
+			<status>40</status>
+			<statustimestamp>2014-11-08 17:54:41</statustimestamp>
+			<statususerid>0</statususerid>
+			<statusdescription/>
+			<orderid>6921</orderid>
+			<uploadref>DEMO081120141734003140</uploadref>
+			<origorderitemid>0</origorderitemid>
+			<origuploadref/>
+			<projectname>Frieda + Hilde 60</projectname>
+			<productcode>FB_20X27_H</productcode>
+			<productname>de Fotobuch 20,5x27cm, hoch</productname>
+			<producttype>0</producttype>
+			<productpageformat>1</productpageformat>
+			<productspreadpageformat>1</productspreadpageformat>
+			<productcover1format>2</productcover1format>
+			<productcover2format>1</productcover2format>
+			<productoutputformat>0</productoutputformat>
+			<productheight>10.000000</productheight>
+			<productwidth>8.000000</productwidth>
+			<productdefaultcovercode/>
+			<productdefaultpapercode>FBDD_KDPM</productdefaultpapercode>
+			<productdefaultpagecount>24</productdefaultpagecount>
+			<covercount>0</covercount>
+			<covercode/>
+			<covername/>
+			<papercount>1</papercount>
+			<papercode>FBDD_KDPM</papercode>
+			<papername>de Kunstdruckpapier matt</papername>
+			<pagecountpurchased>48</pagecountpurchased>
+			<pagecount>48</pagecount>
+			<productunitcost>0.00</productunitcost>
+			<productunitsell>20.75</productunitsell>
+			<coverunitcost>0.00</coverunitcost>
+			<coverunitsell>0.00</coverunitsell>
+			<paperunitcost>0.00</paperunitcost>
+			<paperunitsell>16.75</paperunitsell>
+			<taxcode>AUTVAT</taxcode>
+			<taxname>en Austrian VAT&lt;p&gt;de USt.</taxname>
+			<taxrate>20.0000</taxrate>
+			<productunitweight>0.0000</productunitweight>
+			<producttotalweight>0.0000</producttotalweight>
+			<coverunitweight>0.0000</coverunitweight>
+			<covertotalweight>0.0000</covertotalweight>
+			<paperunitweight>0.0000</paperunitweight>
+			<papertotalweight>0.0000</papertotalweight>
+			<qty>2</qty>
+			<producttotalcost>0.00</producttotalcost>
+			<producttotalsell>49.80</producttotalsell>
+			<producttotaltax>8.30</producttotaltax>
+			<covertotalcost>0.00</covertotalcost>
+			<covertotalsell>0.00</covertotalsell>
+			<covertotaltax>0.00</covertotaltax>
+			<papertotalcost>0.00</papertotalcost>
+			<papertotalsell>40.20</papertotalsell>
+			<papertotaltax>6.70</papertotaltax>
+			<subtotal>90.00</subtotal>
+			<discountvalue>50.00</discountvalue>
+			<totalshippingweight>0.0000</totalshippingweight>
+			<uploaddatatype>0</uploaddatatype>
+			<uploadmethod>0</uploadmethod>
+			<uploadappversion>2.5.6</uploadappversion>
+			<uploadappplatform>Win32</uploadappplatform>
+			<uploadappcputype>Intel</uploadappcputype>
+			<uploadapposversion>Windows XP Service Pack 2 (Build 2600)</uploadapposversion>
+			<filesreceivedtimestamp>2014-11-08 17:52:56</filesreceivedtimestamp>
+			<filesreceiveduserid>0</filesreceiveduserid>
+			<decrypttimestamp>2014-11-08 17:54:18</decrypttimestamp>
+			<decryptuserid>3</decryptuserid>
+			<converttimestamp>2014-11-08 17:54:41</converttimestamp>
+			<convertuserid>3</convertuserid>
+			<convertoutputformatcode>DEMOOUTPUT</convertoutputformatcode>
+			<jobticketoutputfilename>JOBTICKET-0006921-qty2-page000.pdf</jobticketoutputfilename>
+			<pagesoutputfilename>PAGES-0006921-qty2-page1.pdf</pagesoutputfilename>
+			<cover1outputfilename>COVER-0006921-qty2-pagec.pdf</cover1outputfilename>
+			<cover2outputfilename/>
+			<outputtimestamp>0000-00-00 00:00:00</outputtimestamp>
+			<outputuserid>0</outputuserid>
+			<jobticketoutputdevicecode>TESTAUSGABE</jobticketoutputdevicecode>
+			<pagesoutputdevicecode>TESTAUSGABE</pagesoutputdevicecode>
+			<cover1outputdevicecode>TESTAUSGABE</cover1outputdevicecode>
+			<cover2outputdevicecode/>
+			<finishtimestamp>0000-00-00 00:00:00</finishtimestamp>
+			<finishdate>0000-00-00 00:00:00</finishdate>
+			<finishuserid>0</finishuserid>
+			<shippedtimestamp>0000-00-00 00:00:00</shippedtimestamp>
+			<shippeddate>0000-00-00 00:00:00</shippeddate>
+			<shippeduserid>0</shippeduserid>
+			<shippingtrackingreference/>
+			<invoicedtimestamp>0000-00-00 00:00:00</invoicedtimestamp>
+			<invoiceddate>0000-00-00 00:00:00</invoiceddate>
+			<invoiceduserid>0</invoiceduserid>
+			<onhold>0</onhold>
+			<onholdtimestamp>0000-00-00 00:00:00</onholdtimestamp>
+			<onholduserid>0</onholduserid>
+			<onholdreason/>
+			<previewsonline>1</previewsonline>
+			<canupload>0</canupload>
+			<canuploadpagecountoverride>0</canuploadpagecountoverride>
+		</header>
+		<item>
+			<id>6921</id>
+			<datecreated>2014-11-08 17:44:12</datecreated>
+			<datelastmodified>2014-11-08 17:54:41</datelastmodified>
+			<orderid>6921</orderid>
+			<userid>2150</userid>
+			<uploadref>DEMO081120141734003140</uploadref>
+			<origorderid>0</origorderid>
+			<origorderitemid>0</origorderitemid>
+			<origuploadref/>
+			<projectname>Frieda + Hilde 60</projectname>
+			<productcode>FB_20X27_H</productcode>
+			<productname>Fotobuch 20,5x27cm, hoch</productname>
+			<producttype>0</producttype>
+			<productpageformat>1</productpageformat>
+			<productspreadpageformat>1</productspreadpageformat>
+			<productcover1format>2</productcover1format>
+			<productcover2format>1</productcover2format>
+			<productoutputformat>0</productoutputformat>
+			<productheight>10.000000</productheight>
+			<productwidth>8.000000</productwidth>
+			<productdefaultcovercode/>
+			<productdefaultpapercode>FBDD_KDPM</productdefaultpapercode>
+			<productdefaultpagecount>24</productdefaultpagecount>
+			<covercount>0</covercount>
+			<covercode/>
+			<covername/>
+			<papercount>1</papercount>
+			<papercode>FBDD_KDPM</papercode>
+			<papername>Kunstdruckpapier matt</papername>
+			<pagecountpurchased>48</pagecountpurchased>
+			<pagecount>48</pagecount>
+			<productunitcost>0.00</productunitcost>
+			<productunitsell>20.75</productunitsell>
+			<coverunitcost>0.00</coverunitcost>
+			<coverunitsell>0.00</coverunitsell>
+			<paperunitcost>0.00</paperunitcost>
+			<paperunitsell>16.75</paperunitsell>
+			<taxcode>AUTVAT</taxcode>
+			<taxname>Austrian VAT</taxname>
+			<taxrate>20.0000</taxrate>
+			<productunitweight>0.0000</productunitweight>
+			<producttotalweight>0.0000</producttotalweight>
+			<coverunitweight>0.0000</coverunitweight>
+			<covertotalweight>0.0000</covertotalweight>
+			<paperunitweight>0.0000</paperunitweight>
+			<papertotalweight>0.0000</papertotalweight>
+			<qty>2</qty>
+			<producttotalcost>0.00</producttotalcost>
+			<producttotalsell>49.80</producttotalsell>
+			<producttotaltax>8.30</producttotaltax>
+			<covertotalcost>0.00</covertotalcost>
+			<covertotalsell>0.00</covertotalsell>
+			<covertotaltax>0.00</covertotaltax>
+			<papertotalcost>0.00</papertotalcost>
+			<papertotalsell>40.20</papertotalsell>
+			<papertotaltax>6.70</papertotaltax>
+			<subtotal>90.00</subtotal>
+			<discountvalue>50.00</discountvalue>
+			<totalcost>0.00</totalcost>
+			<totalsell>90.00</totalsell>
+			<totaltax>15.00</totaltax>
+			<totalshippingweight>0.0000</totalshippingweight>
+			<uploaddatatype>0</uploaddatatype>
+			<uploadmethod>0</uploadmethod>
+			<uploadappversion>2.5.6</uploadappversion>
+			<uploadappplatform>Win32</uploadappplatform>
+			<uploadappcputype>Intel</uploadappcputype>
+			<uploadapposversion>Windows XP Service Pack 2 (Build 2600)</uploadapposversion>
+			<filesreceivedtimestamp>2014-11-08 17:52:56</filesreceivedtimestamp>
+			<filesreceiveduserid>0</filesreceiveduserid>
+			<decrypttimestamp>2014-11-08 17:54:18</decrypttimestamp>
+			<decryptuserid>3</decryptuserid>
+			<converttimestamp>2014-11-08 17:54:41</converttimestamp>
+			<convertuserid>3</convertuserid>
+			<convertoutputformatcode>DEMOOUTPUT</convertoutputformatcode>
+			<jobticketoutputfilename>JOBTICKET-0006921-qty2-page000.pdf</jobticketoutputfilename>
+			<pagesoutputfilename>PAGES-0006921-qty2-page1.pdf</pagesoutputfilename>
+			<cover1outputfilename>COVER-0006921-qty2-pagec.pdf</cover1outputfilename>
+			<cover2outputfilename/>
+			<outputtimestamp>0000-00-00 00:00:00</outputtimestamp>
+			<outputuserid>0</outputuserid>
+			<jobticketoutputdevicecode>TESTAUSGABE</jobticketoutputdevicecode>
+			<pagesoutputdevicecode>TESTAUSGABE</pagesoutputdevicecode>
+			<cover1outputdevicecode>TESTAUSGABE</cover1outputdevicecode>
+			<cover2outputdevicecode/>
+			<finishtimestamp>0000-00-00 00:00:00</finishtimestamp>
+			<finishdate>0000-00-00 00:00:00</finishdate>
+			<finishuserid>0</finishuserid>
+			<shippedtimestamp>0000-00-00 00:00:00</shippedtimestamp>
+			<shippeddate>0000-00-00 00:00:00</shippeddate>
+			<shippeduserid>0</shippeduserid>
+			<shippingtrackingreference/>
+			<invoicedtimestamp>0000-00-00 00:00:00</invoicedtimestamp>
+			<invoiceddate>0000-00-00 00:00:00</invoiceddate>
+			<invoiceduserid>0</invoiceduserid>
+			<onhold>0</onhold>
+			<onholdtimestamp>0000-00-00 00:00:00</onholdtimestamp>
+			<onholduserid>0</onholduserid>
+			<onholdreason/>
+			<previewsonline>1</previewsonline>
+			<canupload>0</canupload>
+			<canuploadpagecountoverride>0</canuploadpagecountoverride>
+			<canreorder>1</canreorder>
+			<status>40</status>
+			<statusdescription/>
+			<statustimestamp>2014-11-08 17:54:41</statustimestamp>
+		</item>
+		<shipping>
+			<id>6921</id>
+			<datecreated>2014-11-08 17:44:12</datecreated>
+			<datelastmodified>2014-11-08 17:44:12</datelastmodified>
+			<orderid>6921</orderid>
+			<orderitemid>6921</orderitemid>
+			<userid>2150</userid>
+			<shippingcustomername/>
+			<shippingcustomeraddress1>Grosssteinbach 133</shippingcustomeraddress1>
+			<shippingcustomeraddress2/>
+			<shippingcustomeraddress3/>
+			<shippingcustomeraddress4/>
+			<shippingcustomercity>Grosssteinbach</shippingcustomercity>
+			<shippingcustomercounty/>
+			<shippingcustomerstate/>
+			<shippingcustomerregioncode/>
+			<shippingcustomerregion>STATE</shippingcustomerregion>
+			<shippingcustomerpostcode>8265</shippingcustomerpostcode>
+			<shippingcustomercountrycode>AT</shippingcustomercountrycode>
+			<shippingcustomercountryname>Austria</shippingcustomercountryname>
+			<shippingcustomertelephonenumber>0664 8570756</shippingcustomertelephonenumber>
+			<shippingcustomeremailaddress>h.wachmann@grosssteinbach.at</shippingcustomeremailaddress>
+			<shippingcontactfirstname>Gerhard</shippingcontactfirstname>
+			<shippingcontactlastname>Wachmann</shippingcontactlastname>
+			<shippingmethodcode>STANDARDPOST</shippingmethodcode>
+			<shippingmethodname>Austria Mail</shippingmethodname>
+			<shippingratecode>STDMAIL</shippingratecode>
+			<shippingrateinfo>de Regellaufzeit 2-3 Tage in Österreich</shippingrateinfo>
+			<shippingratecost>1.00</shippingratecost>
+			<shippingratesell>3.90</shippingratesell>
+			<shippingdiscountvalue>0.00</shippingdiscountvalue>
+			<shippingtotalsell>3.90</shippingtotalsell>
+			<shippingratetaxcode>AUTVAT</shippingratetaxcode>
+			<shippingratetaxname>Austrian VAT</shippingratetaxname>
+			<shippingratetaxrate>20.0000</shippingratetaxrate>
+			<shippingratecalctax>0</shippingratecalctax>
+			<shippingratetaxtotal>0.65</shippingratetaxtotal>
+			<qty>2</qty>
+		</shipping>
+		<ccilog>
+			<id>1236</id>
+			<datecreated>2014-11-08 17:44:12</datecreated>
+			<sessionid>3140</sessionid>
+			<orderid>6921</orderid>
+			<userid>2150</userid>
+			<parentlogid>0</parentlogid>
+			<type>PAYPAL</type>
+			<mode>AUTOMATIC</mode>
+			<amount>43.90</amount>
+			<charges>1.84</charges>
+			<authorised>1</authorised>
+			<transactionid>95X2608642975911D</transactionid>
+			<responsecode/>
+			<responsedescription/>
+			<authorisationid>ATOwmFugiV5w7zYaJ0M7DizFlZzMA7HgDcbk3v1O9.Cijgs4hx2VNQqn</authorisationid>
+			<bankresponsecode/>
+			<cardnumber/>
+			<cvvflag/>
+			<cvvresponsecode/>
+			<paymentcertificate/>
+			<paymentdate>09:43:11 Nov 08, 2014 PST</paymentdate>
+			<paymenttime/>
+			<paymentmeans>instant</paymentmeans>
+			<addressstatus>unconfirmed</addressstatus>
+			<postcodestatus/>
+			<payeremail>wachmann133@icloud.com</payeremail>
+			<payerid>NLB68SQVZTKVE</payerid>
+			<payerstatus>unverified</payerstatus>
+			<business>paypal@cyberlab.at</business>
+			<receiveremail>paypal@cyberlab.at</receiveremail>
+			<receiverid>XQVYYPTCRSTZY</receiverid>
+			<pendingreason/>
+			<transactiontype>web_accept</transactiontype>
+			<settleamount/>
+			<threedsecurestatus/>
+			<cavvresponsecode/>
+			<charityflag/>
+			<currencycode>EUR</currencycode>
+			<webbrandcode/>
+			<formattedpaymentdate>2014-11-08 17:43:11</formattedpaymentdate>
+			<formattedtransactionid/>
+			<formattedauthorisationid/>
+			<formattedcardnumber/>
+			<formattedamount>43.90</formattedamount>
+			<formattedcharges>1.84</formattedcharges>
+		</ccilog>
+	</order>
+</export>

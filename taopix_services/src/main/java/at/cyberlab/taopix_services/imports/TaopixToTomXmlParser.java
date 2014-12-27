@@ -15,6 +15,7 @@ import com.tom.service.dto.BelegTyp;
 import com.tom.service.dto.SteuerFallDTO;
 import com.tom.service.dto.WrgDTO;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ import java.util.logging.Logger;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
@@ -115,7 +117,7 @@ public class TaopixToTomXmlParser {
         saxParser.parse(xmlFile, handler);
       } catch (Exception ex) {
         logger.log(Level.SEVERE, "Fehler beim Erzeugen des SaxParsers", ex);
-        throw new ImportException("Fehler beim pasren des xml file " + ex.getLocalizedMessage());
+        throw new ImportException("Fehler beim pasren des xml file " + ex);
       }
     } else {
       throw new IllegalArgumentException("Wrong SaxParser configuration or xmlFile==null");
@@ -128,15 +130,12 @@ public class TaopixToTomXmlParser {
    * @param xmlFile
    * @throws ImportException
    */
-  public void parse(InputStream xmlStream) throws ImportException {
+  public void parse(InputStream xmlStream) throws ImportException, SAXException, IOException {
     if ((saxParser != null) && (handler != null) && (xmlStream != null)) {
-      try {
+ 
         clearProperties();
         saxParser.parse(xmlStream, handler);
-      } catch (Exception ex) {
-        logger.log(Level.SEVERE, "Fehler beim Erzeugen des SaxParsers", ex);
-        throw new ImportException("Fehler beim pasren des xml file " + ex.getLocalizedMessage());
-      }
+  
     } else {
       throw new IllegalArgumentException("Wrong SaxParser configuration or xmlStream==null");
     }

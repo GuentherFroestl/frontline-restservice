@@ -145,7 +145,7 @@ public class TaopixOrderMapper {
     //Use taxrate of product to calculate discount
     BigDecimal steuersatz = new BigDecimal(itemProperties.get("taxrate")).setScale(2, RoundingMode.HALF_UP);
     BigDecimal taxDivisor = new BigDecimal("100.00").add(steuersatz);
-    BigDecimal gesamtNetto = gesamtBrutto.multiply(new BigDecimal("100.00")).divide(taxDivisor);
+    BigDecimal gesamtNetto = gesamtBrutto.multiply(new BigDecimal("100.00")).divide(taxDivisor,RoundingMode.HALF_UP);
     BigDecimal steuerGesamt = gesamtBrutto.subtract(gesamtNetto);
     //Discount has to be negative
     setPreis(pos, qty, BigDecimal.ZERO.subtract(gesamtBrutto), BigDecimal.ZERO.subtract(steuerGesamt), steuersatz);

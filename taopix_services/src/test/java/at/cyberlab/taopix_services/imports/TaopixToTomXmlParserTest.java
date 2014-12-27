@@ -262,4 +262,20 @@ public class TaopixToTomXmlParserTest {
     assertTrue("Betreff doesn't contain ordernumer ", instance.getOrder().getBetreff().contains("PAYPAL"));
 
   }
+  
+    @Test
+  public void testVoucher() throws Exception {
+
+    //Test total
+    InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0006921.xml");
+    TaopixToTomXmlParser instance = new TaopixToTomXmlParser(taopixTomConfig);
+    instance.parse(xmlStream);
+    xmlStream.close();
+
+    System.out.println("Order=" + instance.getOrder());
+    assertNotNull("TaopixOrder == null", instance.getOrder());
+    assertNotNull("TaopixOrder.betreff == null", instance.getOrder().getBetreff());
+
+
+  }
 }
