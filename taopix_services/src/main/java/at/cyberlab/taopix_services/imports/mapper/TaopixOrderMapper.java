@@ -174,15 +174,15 @@ public class TaopixOrderMapper {
    * @param order
    */
   public static void mapOrderProperties(TaopixOrder order, HashMap<String, String> orderProperties, TaopixTomImportConfig tomImportConfig) {
-    order.setNummer(tomImportConfig.getOrderNumberOffset() + Integer.parseInt(orderProperties.get("orderid")));
-    order.setUuid("TAOPIX_" + orderProperties.get("orderid"));
+    order.setNummer(tomImportConfig.getOrderNumberOffset() + Integer.parseInt(orderProperties.get("id")));
+    order.setUuid("TAOPIX_" + orderProperties.get("id"));
     String payment;
     if ("1".equals(orderProperties.get("paymentreceived"))){
       payment= "bezahlt "+orderProperties.get("paymentmethodcode");
     }else{
       payment="";
     }
-    order.setBetreff("TAOPIX " + orderProperties.get("orderid")+ " "+orderProperties.get("productcode")+ " "+payment);
+    order.setBetreff("TAOPIX " + orderProperties.get("id")+ " "+orderProperties.get("productcode")+ " "+payment);
     order.setMandant(tomImportConfig.getMandatorId());
 
     order.setWrg(mapWrg(orderProperties, tomImportConfig));

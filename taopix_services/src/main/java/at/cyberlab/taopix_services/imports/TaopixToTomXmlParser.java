@@ -261,7 +261,7 @@ public class TaopixToTomXmlParser {
       /*
        * Tag abfragen und entsprechende Verarbeitunsschritte
        */
-      if (qName.equalsIgnoreCase("orderid") & isInHeader) {
+      if (qName.equalsIgnoreCase("id") & isInHeader) {
         orderId = charSeq.toString();
       } else if (qName.equalsIgnoreCase("userid")) {
 
