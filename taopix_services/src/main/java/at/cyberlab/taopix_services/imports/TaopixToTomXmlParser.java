@@ -35,7 +35,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class TaopixToTomXmlParser {
 
-  static final Logger logger = Logger.getLogger(TaopixToTomXmlParser.class.getSimpleName());
+  static final Logger LOGGER = Logger.getLogger(TaopixToTomXmlParser.class.getSimpleName());
   private int orderPosNumber = 0;
   private int shippingPosNumber;
   private int discountPosNumber;
@@ -65,9 +65,8 @@ public class TaopixToTomXmlParser {
   private TaopixTomImportConfig tomImportConfig;
 
   /**
-   * Constructor with injection.
    *
-   * @param tomObjectMapper ITaopixToTomObjectMapper
+   * @param tomImportConfig TaopixTomImportConfig
    */
   public TaopixToTomXmlParser(TaopixTomImportConfig tomImportConfig) {
 
@@ -77,7 +76,7 @@ public class TaopixToTomXmlParser {
       saxParser = factory.newSAXParser();
       handler = new TaopixToTomSaxHandler();
     } catch (Exception ex) {
-      logger.log(Level.SEVERE, "Fehler beim Erzeugen des SaxParsers", ex);
+      LOGGER.log(Level.SEVERE, "Fehler beim Erzeugen des SaxParsers", ex);
       throw new RuntimeException("Fehler beim Erzeugen des SaxParsers", ex);
     }
   }
@@ -116,7 +115,7 @@ public class TaopixToTomXmlParser {
         clearProperties();
         saxParser.parse(xmlFile, handler);
       } catch (Exception ex) {
-        logger.log(Level.SEVERE, "Fehler beim Erzeugen des SaxParsers", ex);
+        LOGGER.log(Level.SEVERE, "Fehler beim Erzeugen des SaxParsers", ex);
         throw new ImportException("Fehler beim pasren des xml file " + ex);
       }
     } else {
@@ -132,10 +131,10 @@ public class TaopixToTomXmlParser {
    */
   public void parse(InputStream xmlStream) throws ImportException, SAXException, IOException {
     if ((saxParser != null) && (handler != null) && (xmlStream != null)) {
- 
-        clearProperties();
-        saxParser.parse(xmlStream, handler);
-  
+
+      clearProperties();
+      saxParser.parse(xmlStream, handler);
+
     } else {
       throw new IllegalArgumentException("Wrong SaxParser configuration or xmlStream==null");
     }

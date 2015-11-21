@@ -40,7 +40,7 @@ public class ImportRunner {
   /**
    * @param args the command line arguments
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     if (args.length == 0) {
       System.out.println("Bitte Auftragsnummer als Argument angegeben");
       System.exit(1);
@@ -125,9 +125,10 @@ public class ImportRunner {
     setFopConfigFilePath(importConfig);
 
     // Now we start off
+    InputStream xmlStream = null;
     try {
 
-      InputStream xmlStream = new FileInputStream(xmlFile);
+      xmlStream = new FileInputStream(xmlFile);
       TaopixToTomXmlParser instance = new TaopixToTomXmlParser(importConfig);
       instance.parse(xmlStream);
       xmlStream.close();
@@ -154,6 +155,10 @@ public class ImportRunner {
 
     } catch (Exception ex) {
       Logger.getLogger(ImportRunner.class.getName()).log(Level.SEVERE, "Ein Fehler ist bei der Verarbeitung aufgetreten:" + ex.getMessage(), ex);
+    } finally {
+      if (xmlStream != null) {
+        xmlStream.close();
+      }
     }
   }
 
