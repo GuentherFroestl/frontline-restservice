@@ -145,7 +145,7 @@ public class TaopixOrderMapper {
     //Use taxrate of product to calculate discount
     BigDecimal steuersatz = new BigDecimal(itemProperties.get("taxrate")).setScale(2, RoundingMode.HALF_UP);
     BigDecimal taxDivisor = new BigDecimal("100.00").add(steuersatz);
-    BigDecimal gesamtNetto = gesamtBrutto.multiply(new BigDecimal("100.00")).divide(taxDivisor,RoundingMode.HALF_UP);
+    BigDecimal gesamtNetto = gesamtBrutto.multiply(new BigDecimal("100.00")).divide(taxDivisor,2,RoundingMode.HALF_UP);
     BigDecimal steuerGesamt = gesamtBrutto.subtract(gesamtNetto);
     //Discount has to be negative
     setPreis(pos, qty, BigDecimal.ZERO.subtract(gesamtBrutto), BigDecimal.ZERO.subtract(steuerGesamt), steuersatz);
@@ -250,16 +250,16 @@ public class TaopixOrderMapper {
     } else {
       res = new PreisDTO();
       //einzelpreis = gesamt/qty
-      res.setBruttoPreis(gesamtPreis.getBruttoPreis().divide(menge).setScale(scale, RoundingMode.HALF_UP));
-      res.setNettoPreis(gesamtPreis.getNettoPreis().divide(menge).setScale(scale, RoundingMode.HALF_UP));
-      res.setSteuerBetrag(gesamtPreis.getSteuerBetrag().divide(menge).setScale(scale, RoundingMode.HALF_UP));
+      res.setBruttoPreis(gesamtPreis.getBruttoPreis().divide(menge,scale,RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
+      res.setNettoPreis(gesamtPreis.getNettoPreis().divide(menge,scale,RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
+      res.setSteuerBetrag(gesamtPreis.getSteuerBetrag().divide(menge,scale,RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
 
 
       List<SteuerDTO> stList = new ArrayList<SteuerDTO>();
       res.setSteuern(stList);
       for (SteuerDTO gsteuer : gesamtPreis.getSteuern()) {
         SteuerDTO steuer = new SteuerDTO();
-        steuer.setBetrag(gsteuer.getBetrag().divide(menge).setScale(scale, RoundingMode.HALF_UP));
+        steuer.setBetrag(gsteuer.getBetrag().divide(menge,scale,RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
         steuer.setSteuerArt(gsteuer.getSteuerArt());
         stList.add(steuer);
       }
