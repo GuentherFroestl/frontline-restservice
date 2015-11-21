@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export>
+	<ORDER>
+		<header>
+			<id>1093390</id>
+			<datecreated>2015-11-08 20:58:55</datecreated>
+			<datelastmodified>2015-11-08 20:58:55</datelastmodified>
+			<ownercode>PRIINTCENTRELAMPRECH</ownercode>
+			<groupcode>1028CYBERLAB</groupcode>
+			<groupdata/>
+			<shoppingcarttype>0</shoppingcarttype>
+			<designeruuid>3130323843594245524C41422E3731423430343432443443373246343738464633333939444141443939334343</designeruuid>
+			<userid>44178</userid>
+			<useripaddress>91.115.168.136</useripaddress>
+			<userbrowser>Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko</userbrowser>
+			<sessionid>247145</sessionid>
+			<orderdate>2015-11-08 20:58:55</orderdate>
+			<ordernumber>1093390</ordernumber>
+			<origorderid>0</origorderid>
+			<origordernumber>0</origordernumber>
+			<temporder>0</temporder>
+			<temporderid>0</temporderid>
+			<temporderexpirydate>0000-00-00 00:00:00</temporderexpirydate>
+			<offlineorder>0</offlineorder>
+			<offlineordercompletedbycustomer>0</offlineordercompletedbycustomer>
+			<webbrandcode>CYBERLAB</webbrandcode>
+			<languagecode>de_at</languagecode>
+			<billingcustomeraccountcode/>
+			<billingcustomername>Institut für Astrophysik</billingcustomername>
+			<billingcustomeraddress1>Türkenschanzstr. 17</billingcustomeraddress1>
+			<billingcustomeraddress2/>
+			<billingcustomeraddress3/>
+			<billingcustomeraddress4/>
+			<billingcustomercity>Wien</billingcustomercity>
+			<billingcustomercounty/>
+			<billingcustomerstate/>
+			<billingcustomerregioncode/>
+			<billingcustomerregion>STATE</billingcustomerregion>
+			<billingcustomerpostcode>1180</billingcustomerpostcode>
+			<billingcustomercountrycode>AT</billingcustomercountrycode>
+			<billingcustomercountryname>Österreich</billingcustomercountryname>
+			<billingcustomertelephonenumber>06646027751856</billingcustomertelephonenumber>
+			<billingcustomeremailaddress>franz.kerschbaum@univie.ac.at</billingcustomeremailaddress>
+			<billingcontactfirstname>Franz</billingcontactfirstname>
+			<billingcontactlastname>Kerschbaum</billingcontactlastname>
+			<billingcustomerregisteredtaxnumbertype>0</billingcustomerregisteredtaxnumbertype>
+			<billingcustomerregisteredtaxnumber/>
+			<useremaildestination>0</useremaildestination>
+			<currencycode>EUR</currencycode>
+			<currencyname>Euro</currencyname>
+			<currencyisonumber>978</currencyisonumber>
+			<currencysymbol>€ </currencysymbol>
+			<currencysymbolatfront>1</currencysymbolatfront>
+			<currencydecimalplaces>2</currencydecimalplaces>
+			<currencyexchangerate>1.0000</currencyexchangerate>
+			<basecurrencycode>EUR</basecurrencycode>
+			<voucherpromotioncode/>
+			<voucherpromotionname/>
+			<vouchercode>KALENDER2015</vouchercode>
+			<vouchertype>2</vouchertype>
+			<vouchername/>
+			<voucherdiscountsection>PRODUCT</voucherdiscountsection>
+			<voucherdiscounttype>VALUE</voucherdiscounttype>
+			<voucherdiscountvalue>0.00</voucherdiscountvalue>
+			<voucherapplicationmethod>0</voucherapplicationmethod>
+			<vouchermaxqtytoapplydiscountto>9999</vouchermaxqtytoapplydiscountto>
+			<vouchersellprice>0.00</vouchersellprice>
+			<voucheragentfee>0.00</voucheragentfee>
+			<itemcount>1</itemcount>
+			<itemtotalcost>0.00</itemtotalcost>
+			<itemtotalsell>391.69</itemtotalsell>
+			<itemtotaltax>0.00</itemtotaltax>
+			<shippingtotalcost>0.00</shippingtotalcost>
+			<shippingtotalsellbeforediscount>0.00</shippingtotalsellbeforediscount>
+			<shippingtotalsell>0.00</shippingtotalsell>
+			<shippingtotaltax>0.00</shippingtotaltax>
+			<shippingtotalweight>0.0000</shippingtotalweight>
+			<totalcost>0.00</totalcost>
+			<totalsellbeforediscount>391.69</totalsellbeforediscount>
+			<showzerotax>0</showzerotax>
+			<showtaxbreakdown>0</showtaxbreakdown>
+			<orderalltaxratesequal>1</orderalltaxratesequal>
+			<showalwaystaxtotal>0</showalwaystaxtotal>
+			<totaltaxbeforediscount>0.00</totaltaxbeforediscount>
+			<totalbeforediscount>601.69</totalbeforediscount>
+			<totaldiscount>0.00</totaldiscount>
+			<totalsell>391.69</totalsell>
+			<ordertotalitemsellwithtax>391.69</ordertotalitemsellwithtax>
+			<orderfootertotalwithtax>0.00</orderfootertotalwithtax>
+			<orderfootertotalnotax>0.00</orderfootertotalnotax>
+			<orderfootertotalnotaxnodiscount>0.00</orderfootertotalnotaxnodiscount>
+			<orderfootertaxratesequal>0</orderfootertaxratesequal>
+			<totaltax>0.00</totaltax>
+			<total>391.69</total>
+			<orderfootersubtotal>0.00</orderfootersubtotal>
+			<orderfootertotal>0.00</orderfootertotal>
+			<orderfootertotaltax>0.00</orderfootertotaltax>
+			<orderfooterdiscountvalue>0.00</orderfooterdiscountvalue>
+			<giftcardamount>0.00</giftcardamount>
+			<usergiftcardbalance>0.00</usergiftcardbalance>
+			<totaltopay>391.69</totaltopay>
+			<paymentmethodcode>PAYINSTORE</paymentmethodcode>
+			<paymentmethodname>Zahlung bei Abholung</paymentmethodname>
+			<paymentgatewaycode/>
+			<paymentgatewaysubcode/>
+			<pricesincludetax>1</pricesincludetax>
+			<requiresdelivery>0</requiresdelivery>
+			<ccilogid>0</ccilogid>
+			<metadatacodelist/>
+			<paymentreceived>0</paymentreceived>
+			<paymentreceivedtimestamp>0000-00-00 00:00:00</paymentreceivedtimestamp>
+			<paymentreceiveddate>0000-00-00 00:00:00</paymentreceiveddate>
+			<paymentreceiveduserid>0</paymentreceiveduserid>
+			<archived>0</archived>
+			<archivedate>0000-00-00 00:00:00</archivedate>
+			<orderready>1</orderready>
+		</header>
+		<items>
+			<item>
+				<id>95427</id>
+				<datecreated>2015-11-08 20:58:55</datecreated>
+				<datelastmodified>2015-11-08 21:15:33</datelastmodified>
+				<origcompanycode/>
+				<origowner/>
+				<origownertype>0</origownertype>
+				<currentcompanycode/>
+				<currentowner/>
+				<currentownertype>0</currentownertype>
+				<ownerorderkey/>
+				<orderid>1093390</orderid>
+				<itemnumber>1</itemnumber>
+				<userid>44178</userid>
+				<source>0</source>
+				<uploadgroupcode>1028CYBERLAB</uploadgroupcode>
+				<uploadorderid>1093390</uploadorderid>
+				<uploadordernumber>1093390</uploadordernumber>
+				<uploadorderitemid>95427</uploadorderitemid>
+				<uploadbatchref>1028CYBERLAB081120152050247145</uploadbatchref>
+				<uploadref>1028CYBERLAB081120152050247145</uploadref>
+				<origorderid>0</origorderid>
+				<origorderitemid>0</origorderitemid>
+				<shareid>0</shareid>
+				<isalternativeproduct>0</isalternativeproduct>
+				<parentorderitemid>0</parentorderitemid>
+				<projectref>WANDKALENDERQUER_3130323843594245524C41422E3731423430343432443443373246343738464633333939444141443939334343_3529858191_299124851020_12749828</projectref>
+				<projectreforig>WANDKALENDERQUER_3130323843594245524C41422E3731423430343432443443373246343738464633333939444141443939334343_3527427816_18666112993_416394</projectreforig>
+				<projectname>Svalbard_final</projectname>
+				<projectbuildstartdate>2015-10-11 15:03:33</projectbuildstartdate>
+				<projectbuildduration>139</projectbuildduration>
+				<productcollectioncode>WANDKALENDERQUER</productcollectioncode>
+				<productcollectionorigownercode>PRIINTCENTRELAMPRECH</productcollectionorigownercode>
+				<productcollectionname>Wandkalender Querformat</productcollectionname>
+				<productcode>KAL_WA4Q_S</productcode>
+				<productcodepurchased>KAL_WA4Q_S</productcodepurchased>
+				<skucode/>
+				<productname>Wandkalender A4 quer schwarz</productname>
+				<productinfo/>
+				<producttype>3</producttype>
+				<productpageformat>0</productpageformat>
+				<productspreadpageformat>0</productspreadpageformat>
+				<productcover1format>1</productcover1format>
+				<productcover2format>0</productcover2format>
+				<productoutputformat>0</productoutputformat>
+				<productheight>8.503937</productheight>
+				<productwidth>11.929133</productwidth>
+				<assetid>267</assetid>
+				<productdefaultpagecount>12</productdefaultpagecount>
+				<pagecountpurchased>12</pagecountpurchased>
+				<pagecount>12</pagecount>
+				<productunitcost>0.00</productunitcost>
+				<productunitsell>14.99</productunitsell>
+				<taxcode>ZERO</taxcode>
+				<taxname>Sonstiges</taxname>
+				<taxrate>0.0000</taxrate>
+				<productunitweight>0.0000</productunitweight>
+				<producttotalweight>0.0000</producttotalweight>
+				<qty>30</qty>
+				<producttotalcost>0.00</producttotalcost>
+				<producttotalsell>449.70</producttotalsell>
+				<producttotaltax>0.00</producttotaltax>
+				<subtotal>601.69</subtotal>
+				<voucherapplied>1</voucherapplied>
+				<discountvalue>210.00</discountvalue>
+				<discountname>de Kalenderaktion</discountname>
+				<totalcost>0.00</totalcost>
+				<totalsell>391.69</totalsell>
+				<totaltax>0.00</totaltax>
+				<totalshippingweight>0.0000</totalshippingweight>
+				<uploaddatatype>0</uploaddatatype>
+				<uploadmethod>0</uploadmethod>
+				<orderwebversion>2015.2.1</orderwebversion>
+				<uploadappversion>4.3.0</uploadappversion>
+				<uploadappplatform>Win32</uploadappplatform>
+				<uploadappcputype>Intel</uploadappcputype>
+				<uploadapposversion>Windows 8 (Build 9200)</uploadapposversion>
+				<uploaddatasize>31113</uploaddatasize>
+				<uploadduration>12</uploadduration>
+				<filesreceivedtimestamp>2015-11-08 21:15:33</filesreceivedtimestamp>
+				<filesreceiveduserid>0</filesreceiveduserid>
+				<decrypttimestamp>0000-00-00 00:00:00</decrypttimestamp>
+				<decryptfilesreceivedtimestamp>0000-00-00 00:00:00</decryptfilesreceivedtimestamp>
+				<decryptuserid>0</decryptuserid>
+				<converttimestamp>0000-00-00 00:00:00</converttimestamp>
+				<convertuserid>0</convertuserid>
+				<convertoutputformatcode/>
+				<jobticketoutputsubfoldername/>
+				<pagesoutputsubfoldername/>
+				<cover1outputsubfoldername/>
+				<cover2outputsubfoldername/>
+				<xmloutputsubfoldername/>
+				<jobticketoutputfilename/>
+				<pagesoutputfilename/>
+				<cover1outputfilename/>
+				<cover2outputfilename/>
+				<xmloutputfilename/>
+				<outputtimestamp>0000-00-00 00:00:00</outputtimestamp>
+				<outputcount>0</outputcount>
+				<outputuserid>0</outputuserid>
+				<jobticketoutputdevicecode/>
+				<pagesoutputdevicecode/>
+				<cover1outputdevicecode/>
+				<cover2outputdevicecode/>
+				<xmloutputdevicecode/>
+				<jobticketjdfjobticketid/>
+				<pagesjdfjobticketid/>
+				<cover1jdfjobticketid/>
+				<cover2jdfjobticketid/>
+				<jobticketjdfqueueid/>
+				<pagesjdfqueueid/>
+				<cover1jdfqueueid/>
+				<cover2jdfqueueid/>
+				<jobticketjdfcompletionstatus>0</jobticketjdfcompletionstatus>
+				<pagesjdfcompletionstatus>0</pagesjdfcompletionstatus>
+				<cover1jdfcompletionstatus>0</cover1jdfcompletionstatus>
+				<cover2jdfcompletionstatus>0</cover2jdfcompletionstatus>
+				<jobticketjdfstatus>0</jobticketjdfstatus>
+				<pagesjdfstatus>0</pagesjdfstatus>
+				<cover1jdfstatus>0</cover1jdfstatus>
+				<cover2jdfstatus>0</cover2jdfstatus>
+				<finishtimestamp>0000-00-00 00:00:00</finishtimestamp>
+				<finishdate>0000-00-00 00:00:00</finishdate>
+				<finishuserid>0</finishuserid>
+				<shippedtimestamp>0000-00-00 00:00:00</shippedtimestamp>
+				<shippeddate>0000-00-00 00:00:00</shippeddate>
+				<shippeduserid>0</shippeduserid>
+				<shippingtrackingreference/>
+				<shippeddistributioncentrereceivedtimestamp>0000-00-00 00:00:00</shippeddistributioncentrereceivedtimestamp>
+				<shippeddistributioncentrereceiveddate>0000-00-00 00:00:00</shippeddistributioncentrereceiveddate>
+				<shippeddistributioncentrereceiveduserid>0</shippeddistributioncentrereceiveduserid>
+				<shippeddistributioncentreshippedtimestamp>0000-00-00 00:00:00</shippeddistributioncentreshippedtimestamp>
+				<shippeddistributioncentreshippeddate>0000-00-00 00:00:00</shippeddistributioncentreshippeddate>
+				<shippeddistributioncentreshippeduserid>0</shippeddistributioncentreshippeduserid>
+				<shippedstorereceivedtimestamp>0000-00-00 00:00:00</shippedstorereceivedtimestamp>
+				<shippedstorereceiveddate>0000-00-00 00:00:00</shippedstorereceiveddate>
+				<shippedstorereceiveduserid>0</shippedstorereceiveduserid>
+				<shippedcustomercollectedtimestamp>0000-00-00 00:00:00</shippedcustomercollectedtimestamp>
+				<shippedcustomercollecteddate>0000-00-00 00:00:00</shippedcustomercollecteddate>
+				<shippedcustomercollecteduserid>0</shippedcustomercollecteduserid>
+				<invoicedtimestamp>0000-00-00 00:00:00</invoicedtimestamp>
+				<invoiceddate>0000-00-00 00:00:00</invoiceddate>
+				<invoiceduserid>0</invoiceduserid>
+				<onhold>0</onhold>
+				<onholdtimestamp>0000-00-00 00:00:00</onholdtimestamp>
+				<onholduserid>0</onholduserid>
+				<onholdreason/>
+				<previewsonline>1</previewsonline>
+				<canmodify>0</canmodify>
+				<canupload>0</canupload>
+				<canuploadproductcodeoverride>0</canuploadproductcodeoverride>
+				<canuploadpagecountoverride>0</canuploadpagecountoverride>
+				<canuploadenablesaveoverride>0</canuploadenablesaveoverride>
+				<canreorder>1</canreorder>
+				<status>5</status>
+				<statusdescription/>
+				<statustimestamp>2015-11-08 21:15:33</statustimestamp>
+				<active>0</active>
+				<activetimestamp>2015-11-08 20:58:55</activetimestamp>
+				<activeuserid>0</activeuserid>
+				<components>
+					<component>
+						<id>302148</id>
+						<datecreated>2015-11-08 20:58:55</datecreated>
+						<datemodified>0000-00-00 00:00:00</datemodified>
+						<orderid>1093390</orderid>
+						<orderitemid>95427</orderitemid>
+						<userid>44178</userid>
+						<parentcomponentid>0</parentcomponentid>
+						<externalassetservicecode/>
+						<externalassetservicename/>
+						<externalassetpricetype>0</externalassetpricetype>
+						<componentcode>AUFTRAGSPAUSCHALE.APKALENDER</componentcode>
+						<componentlocalcode>APKALENDER</componentlocalcode>
+						<skucode>APKALENDER</skucode>
+						<componentdefaultcode>AUFTRAGSPAUSCHALE.APKALENDER</componentdefaultcode>
+						<componentname>Bearbeitungspauschale pro Datei</componentname>
+						<componentpath>$AUFTRAGSPAUSCHALE\\</componentpath>
+						<componentcategorycode>AUFTRAGSPAUSCHALE</componentcategorycode>
+						<componentcategoryname>Zusatz</componentcategoryname>
+						<componentdescription>Zusatz</componentdescription>
+						<componentinfo/>
+						<componentpriceinfo/>
+						<sortorder>1</sortorder>
+						<pricingmodel>3</pricingmodel>
+						<islist>1</islist>
+						<checkboxselected>0</checkboxselected>
+						<sectionid>0</sectionid>
+						<componentselectioncount>1</componentselectioncount>
+						<quantity>1</quantity>
+						<componentunitcost>0.0000</componentunitcost>
+						<componentunitsell>0.07</componentunitsell>
+						<componenttaxrate>0.0000</componenttaxrate>
+						<componenttaxname>Sonstiges</componenttaxname>
+						<externalassetunitcost>0.00</externalassetunitcost>
+						<externalassetunitsell>0.00</externalassetunitsell>
+						<componentunitweight>0.00</componentunitweight>
+						<componenttotalcost>0.00</componenttotalcost>
+						<subtotal>1.99</subtotal>
+						<componenttotalsell>1.99</componenttotalsell>
+						<componenttotalweight>0.00</componenttotalweight>
+						<componenttotaltax>0.00</componenttotaltax>
+						<discountvalue>0.00</discountvalue>
+						<componentdiscountedtax>0.00</componentdiscountedtax>
+						<branchunitcost>0.00</branchunitcost>
+						<branchunitsell>0.07</branchunitsell>
+						<branchunitweight>0.00</branchunitweight>
+						<branchtotalcost>0.00</branchtotalcost>
+						<branchtotalsell>1.99</branchtotalsell>
+						<branchtotalweight>0.00</branchtotalweight>
+						<branchtotaltax>0.00</branchtotaltax>
+						<externalassetexpirydate>0000-00-00 00:00:00</externalassetexpirydate>
+						<externalassetpageref>0</externalassetpageref>
+						<externalassetpagenumber>0</externalassetpagenumber>
+						<externalassetpagename/>
+						<externalassetboxref>0</externalassetboxref>
+						<metadatacodelist/>
+						<setid>0</setid>
+						<setname/>
+					</component>
+					<component>
+						<id>302149</id>
+						<datecreated>2015-11-08 20:58:55</datecreated>
+						<datemodified>0000-00-00 00:00:00</datemodified>
+						<orderid>1093390</orderid>
+						<orderitemid>95427</orderitemid>
+						<userid>44178</userid>
+						<parentcomponentid>0</parentcomponentid>
+						<externalassetservicecode/>
+						<externalassetservicename/>
+						<externalassetpricetype>0</externalassetpricetype>
+						<componentcode>KALENDERPREMIUM.KALPREMIUMA4</componentcode>
+						<componentlocalcode>KALPREMIUMA4</componentlocalcode>
+						<skucode>KALPREMIUMA4</skucode>
+						<componentdefaultcode/>
+						<componentname>Fotopapier mit Hochglanzveredelung</componentname>
+						<componentpath/>
+						<componentcategorycode>KALENDERPREMIUM</componentcategorycode>
+						<componentcategoryname>Zusatzoptionen</componentcategoryname>
+						<componentdescription/>
+						<componentinfo/>
+						<componentpriceinfo/>
+						<sortorder>2</sortorder>
+						<pricingmodel>3</pricingmodel>
+						<islist>0</islist>
+						<checkboxselected>1</checkboxselected>
+						<sectionid>0</sectionid>
+						<componentselectioncount>1</componentselectioncount>
+						<quantity>1</quantity>
+						<componentunitcost>0.0000</componentunitcost>
+						<componentunitsell>5.00</componentunitsell>
+						<componenttaxrate>0.0000</componenttaxrate>
+						<componenttaxname>Sonstiges</componenttaxname>
+						<externalassetunitcost>0.00</externalassetunitcost>
+						<externalassetunitsell>0.00</externalassetunitsell>
+						<componentunitweight>0.00</componentunitweight>
+						<componenttotalcost>0.00</componenttotalcost>
+						<subtotal>150.00</subtotal>
+						<componenttotalsell>150.00</componenttotalsell>
+						<componenttotalweight>0.00</componenttotalweight>
+						<componenttotaltax>0.00</componenttotaltax>
+						<discountvalue>0.00</discountvalue>
+						<componentdiscountedtax>0.00</componentdiscountedtax>
+						<branchunitcost>0.00</branchunitcost>
+						<branchunitsell>5.00</branchunitsell>
+						<branchunitweight>0.00</branchunitweight>
+						<branchtotalcost>0.00</branchtotalcost>
+						<branchtotalsell>150.00</branchtotalsell>
+						<branchtotalweight>0.00</branchtotalweight>
+						<branchtotaltax>0.00</branchtotaltax>
+						<externalassetexpirydate>0000-00-00 00:00:00</externalassetexpirydate>
+						<externalassetpageref>0</externalassetpageref>
+						<externalassetpagenumber>0</externalassetpagenumber>
+						<externalassetpagename/>
+						<externalassetboxref>0</externalassetboxref>
+						<metadatacodelist/>
+						<setid>0</setid>
+						<setname/>
+					</component>
+					<component>
+						<id>302150</id>
+						<datecreated>2015-11-08 20:58:55</datecreated>
+						<datemodified>0000-00-00 00:00:00</datemodified>
+						<orderid>1093390</orderid>
+						<orderitemid>95427</orderitemid>
+						<userid>44178</userid>
+						<parentcomponentid>0</parentcomponentid>
+						<externalassetservicecode/>
+						<externalassetservicename/>
+						<externalassetpricetype>0</externalassetpricetype>
+						<componentcode>EXPRESSVERARBEITUNG.EXFOTOBUCH</componentcode>
+						<componentlocalcode>EXFOTOBUCH</componentlocalcode>
+						<skucode>EXFOTOBUCH</skucode>
+						<componentdefaultcode/>
+						<componentname>EXPRESS Produktion in 1-2 Arbeitstagen (Mo-Fr)</componentname>
+						<componentpath/>
+						<componentcategorycode>EXPRESSVERARBEITUNG</componentcategorycode>
+						<componentcategoryname>Expressverarbeitung</componentcategoryname>
+						<componentdescription/>
+						<componentinfo>zzgl. Versand 1-2 Arbeitstagen (Mo-Fr)</componentinfo>
+						<componentpriceinfo/>
+						<sortorder>3</sortorder>
+						<pricingmodel>3</pricingmodel>
+						<islist>0</islist>
+						<checkboxselected>0</checkboxselected>
+						<sectionid>0</sectionid>
+						<componentselectioncount>1</componentselectioncount>
+						<quantity>1</quantity>
+						<componentunitcost>0.0000</componentunitcost>
+						<componentunitsell>0.32</componentunitsell>
+						<componenttaxrate>0.0000</componenttaxrate>
+						<componenttaxname>Sonstiges</componenttaxname>
+						<externalassetunitcost>0.00</externalassetunitcost>
+						<externalassetunitsell>0.00</externalassetunitsell>
+						<componentunitweight>0.00</componentunitweight>
+						<componenttotalcost>0.00</componenttotalcost>
+						<subtotal>9.50</subtotal>
+						<componenttotalsell>9.50</componenttotalsell>
+						<componenttotalweight>0.00</componenttotalweight>
+						<componenttotaltax>0.00</componenttotaltax>
+						<discountvalue>0.00</discountvalue>
+						<componentdiscountedtax>0.00</componentdiscountedtax>
+						<branchunitcost>0.00</branchunitcost>
+						<branchunitsell>0.32</branchunitsell>
+						<branchunitweight>0.00</branchunitweight>
+						<branchtotalcost>0.00</branchtotalcost>
+						<branchtotalsell>9.50</branchtotalsell>
+						<branchtotalweight>0.00</branchtotalweight>
+						<branchtotaltax>0.00</branchtotaltax>
+						<externalassetexpirydate>0000-00-00 00:00:00</externalassetexpirydate>
+						<externalassetpageref>0</externalassetpageref>
+						<externalassetpagenumber>0</externalassetpagenumber>
+						<externalassetpagename/>
+						<externalassetboxref>0</externalassetboxref>
+						<metadatacodelist/>
+						<setid>0</setid>
+						<setname/>
+					</component>
+				</components>
+			</item>
+		</items>
+		<shipping>
+			<id>83288</id>
+			<datecreated>2015-11-08 20:58:55</datecreated>
+			<datelastmodified>2015-11-08 20:58:55</datelastmodified>
+			<orderid>1093390</orderid>
+			<userid>44178</userid>
+			<shippingcustomername>cyberlab GmbH</shippingcustomername>
+			<shippingcustomeraddress1>Schottenfeldgasse 51</shippingcustomeraddress1>
+			<shippingcustomeraddress2/>
+			<shippingcustomeraddress3/>
+			<shippingcustomeraddress4/>
+			<shippingcustomercity>Wien</shippingcustomercity>
+			<shippingcustomercounty/>
+			<shippingcustomerstate>Wien</shippingcustomerstate>
+			<shippingcustomerregioncode/>
+			<shippingcustomerregion>STATE</shippingcustomerregion>
+			<shippingcustomerpostcode>1070</shippingcustomerpostcode>
+			<shippingcustomercountrycode>AT</shippingcustomercountrycode>
+			<shippingcustomercountryname>Austria</shippingcustomercountryname>
+			<shippingcustomertelephonenumber/>
+			<shippingcustomeremailaddress/>
+			<shippingcontactfirstname/>
+			<shippingcontactlastname/>
+			<shippingmethodcode>ABHOLUNG</shippingmethodcode>
+			<shippingmethodname>Abholung (Lieferung an Händler)</shippingmethodname>
+			<shippingratecode>1028ABHOLUNG</shippingratecode>
+			<shippingrateinfo/>
+			<shippingratecost>0.00</shippingratecost>
+			<shippingratesell>0.00</shippingratesell>
+			<shippingdiscountvalue>0.00</shippingdiscountvalue>
+			<shippingtotalsell>0.00</shippingtotalsell>
+			<shippingratetaxcode>ZERO</shippingratetaxcode>
+			<shippingratetaxname>Sonstiges</shippingratetaxname>
+			<shippingratetaxrate>0.0000</shippingratetaxrate>
+			<shippingratecalctax>0</shippingratecalctax>
+			<shippingratetaxtotal>0.00</shippingratetaxtotal>
+			<qty>30</qty>
+			<distributioncentrecode/>
+			<storecode>1028</storecode>
+			<storename>cyberlab GmbH</storename>
+		</shipping>
+		<orderfooter/>
+	</ORDER>
+</export>
