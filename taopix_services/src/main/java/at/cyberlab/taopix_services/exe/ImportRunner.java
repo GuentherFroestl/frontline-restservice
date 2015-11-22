@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package at.cyberlab.taopix_services.exe;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
@@ -13,7 +9,6 @@ import at.cyberlab.taopix_services.imports.TaopixToTomXmlParser;
 import at.cyberlab.taopix_services.imports.processing.ITaopixOrderImportProcessor;
 import at.cyberlab.taopix_services.imports.processing.ImportProcessingChain;
 import at.cyberlab.taopix_services.imports.processing.TaopixImportProcessingObject;
-import at.cyberlab.taopix_services.util.TaopixFileNameBuilder;
 import de.gammadata.tom.util.printing.IPrintingUtil;
 import de.gammadata.tom.util.printing.PrintingUtil;
 import java.io.File;
@@ -39,6 +34,7 @@ public class ImportRunner {
 
   /**
    * @param args the command line arguments
+   * @throws java.io.IOException
    */
   public static void main(String[] args) throws IOException {
     if (args.length == 0) {
@@ -46,10 +42,10 @@ public class ImportRunner {
       System.exit(1);
     }
     String configFileName = CONFIG_FILE_NAME;
-    String orderNumberString = null;
+    String orderFileName = null;
     if (args[0].equalsIgnoreCase("-c")) {
       configFileName = args[1];
-      orderNumberString = args[2];
+      orderFileName = args[2];
 
     } else if (args[0].equalsIgnoreCase("-p")) {
       listPrintServices();
@@ -58,7 +54,7 @@ public class ImportRunner {
       checkFileDirectory(configFileName);
       System.exit(0);
     } else {
-      orderNumberString = args[0];
+      orderFileName = args[0];
     }
 
     checkConfigFile(configFileName);
@@ -76,24 +72,17 @@ public class ImportRunner {
       System.exit(1);
     }
 
-    if (orderNumberString == null) {
+    if (orderFileName == null) {
       System.out.println("Bitte Auftragsnummer als Argument angegeben");
       System.exit(1);
     }
 
     //Xml File Namen generieren
-    String xmlFileName = null;
-    try {
+    String xmlFileName = orderFileName;
 
-      xmlFileName = TaopixFileNameBuilder.build(orderNumberString);
-      if (xmlFileName == null) {
-        System.out.println("Bitte Auftragsnummer richtig als Argument angegeben " + orderNumberString);
-      }
-    } catch (Exception ex) {
-      System.out.println("Bitte Auftragsnummer richtig als Argument angegeben, Fehler " + ex.getMessage());
-      System.exit(1);
-    }
-
+    //Set file pathes, exit may occur in methodes, if pathes are not correct
+    setXslFilePath(importConfig);
+    setFopConfigFilePath(importConfig);
     String dirPath = checkFileDirectory(configFileName);
     File xmlFile = new File(dirPath + "/" + xmlFileName);
     boolean exists = false;
@@ -108,27 +97,26 @@ public class ImportRunner {
     }
     //File erst vom FTP holen
     if (!exists) {
-      IFtpFilesFetcher ftpInstance = new FtpFilesFetcherImpl();
+      System.out.println("File existiert nicht " + dirPath + "/" + xmlFileName);
+      System.exit(1);
       try {
-        System.out.println("Hole file vom FTP-Server " + xmlFileName);
-        boolean result = ftpInstance.fetchFtpFile(importConfig.getFtpServerConfig(), xmlFileName, xmlFile);
-        if (!result) {
-          System.out.println("Fehler beim Holen des FTP Files " + xmlFileName + ", nach Pfad=" + xmlFile.getAbsolutePath());
-          System.exit(1);
-        }
+        fetchFileFromFTP(xmlFileName, xmlFile, importConfig);
       } catch (ImportException ex) {
         System.out.println("Fehler " + ex.getMessage() + " beim Holen des FTP Files " + xmlFileName + ", nach Pfad=" + xmlFile.getAbsolutePath());
+        System.exit(1);
       }
     }
-    //Set file pathes, exit may occur in methodes, if pathes are not correct
-    setXslFilePath(importConfig);
-    setFopConfigFilePath(importConfig);
 
     // Now we start off
     InputStream xmlStream = null;
     try {
-
+      xmlFile = new File(dirPath + "/" + xmlFileName);
+      if (!xmlFile.exists()) {
+        System.out.println("File existiert nicht " + dirPath + "/" + xmlFileName);
+        System.exit(1);
+      }
       xmlStream = new FileInputStream(xmlFile);
+
       TaopixToTomXmlParser instance = new TaopixToTomXmlParser(importConfig);
       instance.parse(xmlStream);
       xmlStream.close();
@@ -159,6 +147,18 @@ public class ImportRunner {
       if (xmlStream != null) {
         xmlStream.close();
       }
+    }
+  }
+
+  private static void fetchFileFromFTP(String xmlFileName, File xmlFile, TaopixTomImportConfig importConfig) throws ImportException {
+    IFtpFilesFetcher ftpInstance = new FtpFilesFetcherImpl();
+
+    System.out.println("Hole file vom FTP-Server " + xmlFileName);
+    boolean result = ftpInstance.fetchFtpFile(importConfig.getFtpServerConfig(), xmlFileName, xmlFile);
+    if (!result) {
+      System.out.println("Fehler beim Holen des FTP Files " + xmlFileName + ", nach Pfad=" + xmlFile.getAbsolutePath());
+      System.exit(1);
+
     }
   }
 
@@ -203,7 +203,9 @@ public class ImportRunner {
   private static void setXslFilePath(TaopixTomImportConfig importConfig) {
     try {
       java.net.URL url = Thread.currentThread().getContextClassLoader().getResource(importConfig.getXslFileName());
-
+      if (url==null){
+        throw new RuntimeException("xsl File nicht vorhanden: "+importConfig.getXslFileName());
+      }
       File xslFile = new File(url.toURI());
       if (xslFile.canRead()) {
         importConfig.setXslFilePath(xslFile.getAbsolutePath());
@@ -220,7 +222,9 @@ public class ImportRunner {
   private static void setFopConfigFilePath(TaopixTomImportConfig importConfig) {
     try {
       java.net.URL url = Thread.currentThread().getContextClassLoader().getResource(importConfig.getFopConfigFile());
-
+      if (url==null){
+        throw new RuntimeException("fop config File nicht vorhanden: "+importConfig.getXslFileName());
+      }
       File fopConfigFile = new File(url.toURI());
       if (fopConfigFile.canRead()) {
         importConfig.setFopConfigFilePath(fopConfigFile.getAbsolutePath());

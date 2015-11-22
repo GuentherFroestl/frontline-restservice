@@ -1,0 +1,30 @@
+<at.cyberlab.taopix__services.config.TaopixTomImportConfigImpl>
+  <orderNumberOffset>112500000</orderNumberOffset>
+  <mandatorId>2</mandatorId>
+  <userUuidPrefix>TAOPIX_USER_</userUuidPrefix>
+  <orderUuidPrefix>TAOPIX_ORDER_</orderUuidPrefix>
+  <dataBaseSpec>
+    <serverAddress>192.168.9.84</serverAddress>
+    <serverPort>8888</serverPort>
+    <serverProtokoll>TCP</serverProtokoll>
+    <dataBaseType>4D</dataBaseType>
+    <dataBaseMajorVersion>6</dataBaseMajorVersion>
+    <dataBaseMinorVersion>8</dataBaseMinorVersion>
+    <dataBaseName>Tom</dataBaseName>
+    <dataBaseHandlerClass>com.tom.dataBase.DB4D68Handler</dataBaseHandlerClass>
+    <userName>tom</userName>
+    <pw>dbase</pw>
+  </dataBaseSpec>
+  <productCodeStubForReducedTax>FB</productCodeStubForReducedTax>
+  <reducedTaxRate>10.00</reducedTaxRate>
+  <wrg>EUR</wrg>
+  <xslFileName>cyberlab_taopix_AB_pdf.xsl</xslFileName>
+  <filesDirectoryName>/Users/gfr/projekte/cyberlab/lamprechter/</filesDirectoryName>
+  <psPrinterName>EPSON AL-C2900</psPrinterName>
+  <fopConfigFile>fopconfig.xml</fopConfigFile>
+  <ftpServerConfig class="at.cyberlab.taopix_services.config.FtpServerConfigImpl">
+    <ftpPassword>vacr2+2T</ftpPassword>
+    <ftpServerName>fotobuch.cyberlab.at</ftpServerName>
+    <ftpUserName>xml</ftpUserName>
+  </ftpServerConfig>
+</at.cyberlab.taopix__services.config.TaopixTomImportConfigImpl>
