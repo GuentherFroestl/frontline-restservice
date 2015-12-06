@@ -18,6 +18,7 @@ import de.gammadata.business.modelle.ZahlungsBedingungDO;
  * @author gfr
  *
  */
+@Deprecated
 public class TaopixConfigImpl implements TaopixConfig {
 
   private String taopixKatalogName = "Taopix Fotobücher";

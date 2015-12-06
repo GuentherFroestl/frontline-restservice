@@ -15,6 +15,7 @@ import de.gammadata.business.modelle.ZahlungsBedingungDO;
  * @author gfr
  *
  */
+@Deprecated
 public interface TaopixConfig {
 	
 	public static final String TAOPIX_ORDER = "taopix_order";
