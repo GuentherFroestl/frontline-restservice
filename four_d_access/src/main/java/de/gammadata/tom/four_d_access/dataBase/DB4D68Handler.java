@@ -518,6 +518,8 @@ public class DB4D68Handler extends DataBaseHandler {
 		}
 		return 0;
 	}
+  
+
 
 	@Override
 	public StringBuffer executeProcedure(String xmlProcedure) {

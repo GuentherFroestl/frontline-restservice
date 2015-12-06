@@ -79,9 +79,8 @@ public class BelegServiceTest {
     System.out.println("loadBelegByUuid");
     BelegTyp type = null;
     String uuid = "";
-    BelegService instance = null;
     BelegDTO expResult = null;
-    BelegDTO result = instance.loadBelegByUuid(type, uuid);
+    BelegDTO result = testee.loadBelegByUuid(type, uuid);
     assertEquals(expResult, result);
     // TODO review the generated test code and remove the default call to fail.
     fail("The test case is a prototype.");
@@ -176,7 +175,7 @@ public class BelegServiceTest {
    */
   @Test
   public void testCreateBeleg() throws Exception {
-    System.out.println("createBeleg");
+    System.out.println("testCreateBeleg");
     BelegDTO expResult = createTestBeleg();
     BelegDTO result = testee.createBeleg(expResult);
     assertNotNull("Beleg.ID ==null", result.getId());
@@ -190,7 +189,15 @@ public class BelegServiceTest {
       //Excpected
     }
     assertNull("Error deleting Beleg "+delBeleg, delBeleg);
-
+  }
+  
+  @Test
+  public void testNextBelegNumber() throws Exception {
+    System.out.println("testNextBelegNumber");
+    int res1 = testee.getNextBelegNumber(BelegTyp.ANGEBOT);
+    assertTrue("Belegnummer > 0", res1 > 0);
+    int res2 = testee.getNextBelegNumber(BelegTyp.ANGEBOT);
+    assertEquals("Belegnummer nicht erhöht", res1 + 1, res2);
   }
 
   /**
@@ -217,7 +224,7 @@ public class BelegServiceTest {
   private BelegDTO createTestBeleg() {
 
     BelegDTO beleg = new BelegDTO();
-    beleg.setNummer(123456789);
+//    beleg.setNummer(123456789);
     beleg.setUuid("TEST_123456789");
     beleg.setBelegTyp(BelegTyp.AUFTRAG);
     beleg.setBetreff("Das ist der Betreff");

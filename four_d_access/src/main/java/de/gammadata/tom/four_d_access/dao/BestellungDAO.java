@@ -264,4 +264,9 @@ public class BestellungDAO extends AbstractBelegDAO<Bestellungen> implements
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
   
+    @Override
+  public int getNextBelegNumber() throws TomDbException {
+    return getNextBelegNumber(DataBaseHandler.bestellungTyp);
+  }
+  
 }

@@ -2,9 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.cyberlab.taopix_services.util;
-
-import at.cyberlab.taopix_services.imports.ImportException;
+package at.cyberlab.taopix_services.imports.processing;
 
 /**
  * Builds a filename out of a numberstring. "6000" to "0006000.xml"

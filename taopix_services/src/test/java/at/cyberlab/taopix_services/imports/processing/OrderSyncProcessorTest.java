@@ -6,7 +6,6 @@ package at.cyberlab.taopix_services.imports.processing;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
 import at.cyberlab.taopix_services.config.TaopixTomImportConfigImpl;
-import at.cyberlab.taopix_services.imports.TaopixToTomXmlParser;
 import java.io.InputStream;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -54,7 +53,7 @@ public class OrderSyncProcessorTest {
   @Test
   public void testProcessOrder() throws Exception {
     System.out.println("processOrder");
-    InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("taopix/0005273.xml");
+    InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("lamprechter/1090649.xml");
     TaopixToTomXmlParser instance = new TaopixToTomXmlParser(new TaopixTomImportConfigImpl());
     instance.parse(xmlStream);
     xmlStream.close();
@@ -79,7 +78,7 @@ public class OrderSyncProcessorTest {
     productSyncProcessor.processOrder(pobj);
 
     //Order
-    System.out.println("syncOrder Nummer=" + instance.getOrder().getNummer());
+    System.out.println("syncOrder UUID=" + instance.getOrder().getUuid());
     orderSyncProcessor.processOrder(pobj);
 
     System.out.println("End processOrder\n " + pobj.getMessages());

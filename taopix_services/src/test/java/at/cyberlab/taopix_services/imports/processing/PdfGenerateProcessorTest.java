@@ -7,7 +7,6 @@ package at.cyberlab.taopix_services.imports.processing;
 import at.cyberlab.taopix_services.config.CyberlabConfigProviderImpl;
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
 import at.cyberlab.taopix_services.config.TaopixTomImportConfigImpl;
-import at.cyberlab.taopix_services.imports.TaopixToTomXmlParser;
 import de.gammadata.tom.four_d_access.dataBase.DataBaseSpec;
 import java.io.File;
 import java.io.InputStream;

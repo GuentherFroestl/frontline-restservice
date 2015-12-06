@@ -286,4 +286,10 @@ public class AuftragDAO extends AbstractBelegDAO<Auftraege> implements
     }
     int res = deleteObjectFromDB(auftrag);
   }
+
+  @Override
+  public int getNextBelegNumber() throws TomDbException {
+    return getNextBelegNumber(DataBaseHandler.auftragsTyp);
+  }
+
 }

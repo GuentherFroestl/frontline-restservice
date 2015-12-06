@@ -1,8 +1,7 @@
-package at.cyberlab.taopix_services.imports.mapper;
+package at.cyberlab.taopix_services.imports.processing;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
-import at.cyberlab.taopix_services.inputobjects.TaopixOrder;
-import com.tom.service.dto.BelegDTO;
+import at.cyberlab.taopix_services.imports.entity.TaopixOrder;
 import com.tom.service.dto.BelegPositionDTO;
 import com.tom.service.dto.PreisDTO;
 import com.tom.service.dto.ProduktKopfDTO;
@@ -18,7 +17,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,9 +33,10 @@ public class TaopixOrderMapper {
    * creates the order position with the product.
    *
    * @param itemProperties HashMap of String, String
+   * @param tomImportConfig TaopixTomImportConfig
    * @return BelegPositionDTO
    */
-  public static BelegPositionDTO mapPosition(HashMap<String, String> itemProperties, TaopixTomImportConfig tomImportConfig) {
+  public static BelegPositionDTO mapPosition(HashMap<String, String> orderProperties, HashMap<String, String> itemProperties, TaopixTomImportConfig tomImportConfig) {
 
     BelegPositionDTO pos = new BelegPositionDTO();
     pos.setMandant(tomImportConfig.getMandatorId());
@@ -49,27 +48,24 @@ public class TaopixOrderMapper {
     pos.setBezeichnung(itemProperties.get("productname"));
     pos.setBeschreibung(String.format(
             "Projekt: %1$s"
-            + "\nSeiten: %2$s"
-            + "\nCover PDF-Datei: %3$s"
-            + "\nInhalt PDF-Datei: %4$s"
-            + "\nInhaltpapier: %5$s %6$s",
+            + "\nSeiten: %2$s",
             itemProperties.get("projectname"),
-            itemProperties.get("pagecount"),
-            itemProperties.get("cover1outputfilename"),
-            itemProperties.get("pagesoutputfilename"),
-            itemProperties.get("papercode"),
-            itemProperties.get("papername")));
-    if (itemProperties.get("covercode") != null) {
+            itemProperties.get("pagecount")
+    ));
+    if ("1".equalsIgnoreCase(itemProperties.get("voucherapplied"))) {
+      //discount applied
       pos.setBeschreibung(String.format(
-              "%1$s"
-              + "\nCoverpapier: %2$s %3$s",
+              "%1$s\n"
+              + "Vouchercode: %2$s"
+              + "\nDiscount: %3$s EUR",
               pos.getBeschreibung(),
-              itemProperties.get("covercode"),
-              itemProperties.get("covername")));
+              orderProperties.get("vouchercode"),
+              itemProperties.get("discountvalue")));
+
     }
     //Pricing
     BigDecimal qty = new BigDecimal(itemProperties.get("qty"));
-    BigDecimal gesamtBrutto = new BigDecimal(itemProperties.get("totalsell"));
+    BigDecimal gesamtBrutto = new BigDecimal(itemProperties.get("subtotal"));
     BigDecimal steuerGesamt = new BigDecimal(itemProperties.get("totaltax"));
     BigDecimal steuersatz = new BigDecimal(itemProperties.get("taxrate")).setScale(2, RoundingMode.HALF_UP);
     setPreis(pos, qty, gesamtBrutto, steuerGesamt, steuersatz);
@@ -95,10 +91,8 @@ public class TaopixOrderMapper {
     produkt.setProduktCode(shipingProperties.get("shippingmethodcode"));
     pos.setBezeichnung(shipingProperties.get("shippingmethodcode"));
     pos.setBeschreibung(String.format(
-            "Lieferung: %1$s"
-            + "\n%2$s",
-            shipingProperties.get("shippingmethodname"),
-            shipingProperties.get("shippingrateinfo")));
+            "Lieferung: %1$s",
+            shipingProperties.get("shippingmethodcode")));
     //Pricing
     BigDecimal qty = BigDecimal.ONE;
     BigDecimal gesamtBrutto = new BigDecimal(shipingProperties.get("shippingtotalsell"));
@@ -114,6 +108,7 @@ public class TaopixOrderMapper {
    *
    * @param orderProperties HashMap of String, String
    * @param itemProperties HashMap of String, String , needed for taxation
+   * @param tomImportConfig
    * @return BelegPositionDTO or null
    */
   public static BelegPositionDTO mapDiscountPosition(HashMap<String, String> orderProperties, HashMap<String, String> itemProperties, TaopixTomImportConfig tomImportConfig) {
@@ -145,7 +140,7 @@ public class TaopixOrderMapper {
     //Use taxrate of product to calculate discount
     BigDecimal steuersatz = new BigDecimal(itemProperties.get("taxrate")).setScale(2, RoundingMode.HALF_UP);
     BigDecimal taxDivisor = new BigDecimal("100.00").add(steuersatz);
-    BigDecimal gesamtNetto = gesamtBrutto.multiply(new BigDecimal("100.00")).divide(taxDivisor,2,RoundingMode.HALF_UP);
+    BigDecimal gesamtNetto = gesamtBrutto.multiply(new BigDecimal("100.00")).divide(taxDivisor, 2, RoundingMode.HALF_UP);
     BigDecimal steuerGesamt = gesamtBrutto.subtract(gesamtNetto);
     //Discount has to be negative
     setPreis(pos, qty, BigDecimal.ZERO.subtract(gesamtBrutto), BigDecimal.ZERO.subtract(steuerGesamt), steuersatz);
@@ -158,6 +153,7 @@ public class TaopixOrderMapper {
    * maps the Wrg.
    *
    * @param orderProperties HashMap of String, String
+   * @param tomImportConfig
    * @return WrgDTO
    */
   public static WrgDTO mapWrg(HashMap<String, String> orderProperties, TaopixTomImportConfig tomImportConfig) {
@@ -171,18 +167,22 @@ public class TaopixOrderMapper {
   /**
    * Sets a bunch of additional properties into the order.
    *
-   * @param order
+   * @param order TaopixOrder
+   * @param orderProperties
+   * @param itemProperties
+   * @param tomImportConfig
    */
-  public static void mapOrderProperties(TaopixOrder order, HashMap<String, String> orderProperties, TaopixTomImportConfig tomImportConfig) {
+  public static void mapOrderProperties(TaopixOrder order, HashMap<String, String> orderProperties,
+          HashMap<String, String> itemProperties, TaopixTomImportConfig tomImportConfig) {
     order.setNummer(tomImportConfig.getOrderNumberOffset() + Integer.parseInt(orderProperties.get("id")));
     order.setUuid("TAOPIX_" + orderProperties.get("id"));
     String payment;
-    if ("1".equals(orderProperties.get("paymentreceived"))){
-      payment= "bezahlt "+orderProperties.get("paymentmethodcode");
-    }else{
-      payment="";
+    if ("1".equals(orderProperties.get("paymentreceived"))) {
+      payment = "bezahlt mit" + orderProperties.get("paymentmethodname");
+    } else {
+      payment = orderProperties.get("paymentmethodname");
     }
-    order.setBetreff("TAOPIX " + orderProperties.get("id")+ " "+orderProperties.get("productcode")+ " "+payment);
+    order.setBetreff(order.getUuid() + ", Projekt " + itemProperties.get("projectname") + ", " + payment);
     order.setMandant(tomImportConfig.getMandatorId());
 
     order.setWrg(mapWrg(orderProperties, tomImportConfig));
@@ -197,8 +197,6 @@ public class TaopixOrderMapper {
       order.setVermerk2("Aktionscode: " + orderProperties.get("vouchercode"));
     }
   }
-
-
 
   /**
    * Convienence methode for setting pricing.
@@ -243,23 +241,21 @@ public class TaopixOrderMapper {
 
     int scale = 4;
 
-
     PreisDTO res;
     if (menge.compareTo(BigDecimal.ONE) == 0) {
       res = new PreisDTO(gesamtPreis);
     } else {
       res = new PreisDTO();
       //einzelpreis = gesamt/qty
-      res.setBruttoPreis(gesamtPreis.getBruttoPreis().divide(menge,scale,RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
-      res.setNettoPreis(gesamtPreis.getNettoPreis().divide(menge,scale,RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
-      res.setSteuerBetrag(gesamtPreis.getSteuerBetrag().divide(menge,scale,RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
-
+      res.setBruttoPreis(gesamtPreis.getBruttoPreis().divide(menge, scale, RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
+      res.setNettoPreis(gesamtPreis.getNettoPreis().divide(menge, scale, RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
+      res.setSteuerBetrag(gesamtPreis.getSteuerBetrag().divide(menge, scale, RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
 
       List<SteuerDTO> stList = new ArrayList<SteuerDTO>();
       res.setSteuern(stList);
       for (SteuerDTO gsteuer : gesamtPreis.getSteuern()) {
         SteuerDTO steuer = new SteuerDTO();
-        steuer.setBetrag(gsteuer.getBetrag().divide(menge,scale,RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
+        steuer.setBetrag(gsteuer.getBetrag().divide(menge, scale, RoundingMode.HALF_UP).setScale(scale, RoundingMode.HALF_UP));
         steuer.setSteuerArt(gsteuer.getSteuerArt());
         stList.add(steuer);
       }

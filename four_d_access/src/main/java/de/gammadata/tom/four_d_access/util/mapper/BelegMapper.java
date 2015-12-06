@@ -578,6 +578,7 @@ public class BelegMapper {
     bk.setNummer(auftrag.getLfd_Nr());
     bk.setDatum(auftrag.getEingangsdatum());
     bk.setId(auftrag.getDID());
+    bk.setUuid(auftrag.getUuid());
     bk.setMandant(auftrag.getDMandant());
     bk.setBetreff(auftrag.getBetreff());
     if (auftrag.getAng_AuftragTyp()) {

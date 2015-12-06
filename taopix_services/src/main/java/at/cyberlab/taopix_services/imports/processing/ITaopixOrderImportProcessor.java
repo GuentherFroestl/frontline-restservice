@@ -4,8 +4,6 @@
  */
 package at.cyberlab.taopix_services.imports.processing;
 
-import at.cyberlab.taopix_services.imports.ImportException;
-
 /**
  *
  * @author gfr

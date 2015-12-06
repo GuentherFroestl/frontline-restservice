@@ -5,7 +5,6 @@
 package at.cyberlab.taopix_services.imports.processing;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
-import at.cyberlab.taopix_services.imports.ImportException;
 import com.tom.service.dto.BelegTyp;
 import com.tom.service.facade.TomException;
 import de.gammadata.tom.four_d_access.service.BelegService;
@@ -46,13 +45,14 @@ public class ImportProcessingChain implements ITaopixOrderImportProcessor {
   @Override
   public void processOrder(TaopixImportProcessingObject processingObject) throws ImportException {
     try {
-      boolean belegExists = belegService.checkBelegByNumber(BelegTyp.AUFTRAG, processingObject.getTaopixOrder().getNummer());
+      String uuid = processingObject.getTaopixOrder().getUuid();
+      boolean belegExists = belegService.checkBelegByUUID(BelegTyp.AUFTRAG, uuid);
       if (!belegExists) {
         for (ITaopixOrderImportProcessor processor : processingChain) {
           processor.processOrder(processingObject);
         }
       } else {
-        LOG.info("Beleg " + processingObject.getTaopixOrder().getNummer() + " bereits vorhanden, drucke Order");
+        LOG.info("Beleg Nummer= " + processingObject.getTaopixOrder().getNummer() +" UUID= "+uuid+ " bereits vorhanden, drucke Order");
         pdfProcessor.processOrder(processingObject);
         printProcessor.processOrder(processingObject);
       }

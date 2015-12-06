@@ -22,12 +22,6 @@
       <type>jar</type>
     </dependency>
     <dependency>
-      <groupId>de.gammadata.tomagency</groupId>
-      <artifactId>tom-restservice-client-api</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
       <groupId>de.gammadata.tom</groupId>
       <artifactId>four_d_access</artifactId>
       <version>1.0-SNAPSHOT</version>
@@ -58,7 +52,6 @@
     </dependency>
 
   </dependencies>
-
   <build>
     <plugins>
       <plugin>

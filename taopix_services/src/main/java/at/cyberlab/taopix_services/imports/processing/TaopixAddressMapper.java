@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.cyberlab.taopix_services.imports.mapper;
+package at.cyberlab.taopix_services.imports.processing;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
 import com.tom.service.dto.AddressDTO;

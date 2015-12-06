@@ -1,4 +1,4 @@
-package at.cyberlab.taopix_services.imports;
+package at.cyberlab.taopix_services.imports.ftpsync;
 
 import at.cyberlab.taopix_services.config.TaopixConfig;
 import de.gammadata.basics.modelle.AdresseDO.Nutzung;

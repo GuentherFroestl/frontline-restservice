@@ -1,7 +1,7 @@
 /**
  * 
  */
-package at.cyberlab.taopix_services.imports;
+package at.cyberlab.taopix_services.imports.ftpsync;
 
 import de.gammadata.business.modelle.BelegDO;
 import java.util.HashMap;

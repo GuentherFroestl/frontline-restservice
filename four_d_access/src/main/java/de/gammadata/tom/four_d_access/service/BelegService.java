@@ -173,6 +173,44 @@ public class BelegService extends Abstract4DService {
     }
     return res;
   }
+  
+    /**
+   * Checks if a Beleg exsits by its number.
+   *
+   * @param type BelegTyp
+   * @param uuid String
+   * @return BelegDTO
+   * @throws TomException
+   */
+  public boolean checkBelegByUUID(BelegTyp type, String uuid)
+          throws TomException {
+    boolean res = false;
+    try {
+      // Objekt laden und mit Relationen anreichern
+      res = getBelegDAO(type).checkBelegByUUID(uuid);
+
+    } catch (TomDbException e) {
+      logger.error("loadBelegByUuid() fehler=" + e.getMessage(), e);
+      throw new TomException("loadBelegByUuid() fehler=" + e.getMessage());
+    }
+    return res;
+  }
+  /**
+   * Get next Beleg Number.
+   * @param type BelegTyp
+   * @return int next number
+   * @throws TomException 
+   */
+  public int getNextBelegNumber(BelegTyp type) throws TomException{
+    if (type==null){
+      throw new TomDbException("BelegType darf nicht null sein");
+    }
+    int res = getBelegDAO(type).getNextBelegNumber();
+    if (res ==0){
+      throw new TomDbException("Keine naechste Belgnummer für "+type.toString()+" von TOM 4D Service erhalten");
+    }
+    return res;
+  }
 
   public List<BelegDTO> loadPositionenByProjektId(BelegTyp type, Integer pId, Status status) throws TomDbException {
     List<BelegDTO> res = getBelegDAO(type).loadPositionenByProjektId(pId, status);

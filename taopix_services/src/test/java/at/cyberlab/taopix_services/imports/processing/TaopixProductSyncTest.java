@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.cyberlab.taopix_services.imports;
+package at.cyberlab.taopix_services.imports.processing;
 
+import at.cyberlab.taopix_services.imports.processing.TaopixToTomXmlParser;
 import at.cyberlab.taopix_services.config.CyberlabConfigProviderImpl;
 import at.cyberlab.taopix_services.config.TaopixTomImportConfigImpl;
 import com.tom.service.dto.BelegPositionDTO;

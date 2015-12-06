@@ -104,6 +104,7 @@ public abstract class AbstractBelegDAO<T extends BasicBean> extends AbstractDAO<
    */
   public abstract void deleteBelegInTom(BelegDTO beleg) throws TomDbException;
 
+
   /**
    * Liefer die belegspezifischen felder für den BelegKopfDTO
    *
@@ -203,6 +204,8 @@ public abstract class AbstractBelegDAO<T extends BasicBean> extends AbstractDAO<
     return true;
 
   }
+  
+
 
   @Override
   public BelegDTO loadBelegByUuid(String uuid) throws TomDbException {
@@ -232,5 +235,16 @@ public abstract class AbstractBelegDAO<T extends BasicBean> extends AbstractDAO<
       throw new TomDbException("Beleg == null or beleg.getId()==0");
     }
     deleteBelegInTom(beleg);
+  }
+  
+     /**
+   * Schaut mit der UUID ob ein Beleg da ist.
+   *
+   * @param uuid String
+   * @return boolean true, if the Beleg with this number exists
+   * @throws TomDbException
+   */
+  public boolean checkBelegByUUID(String uuid) throws TomDbException{
+    return checkXmpBeanByUuid(uuid);
   }
 }

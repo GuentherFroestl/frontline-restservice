@@ -30,6 +30,7 @@ public class AuftraegeMapper {
       auftrag.setDID(beleg.getId());
     }
     auftrag.setLfd_Nr(beleg.getNummer());
+    auftrag.setUuid(beleg.getUuid());
     auftrag.setBetreff(beleg.getBetreff());
     if (beleg.getVermerk1() != null) {
       auftrag.setVermerk1(new StringBuilder(beleg.getVermerk1()));

@@ -47,7 +47,7 @@ public interface IBelegDAO {
   /**
    * Holt einen Beleg durch BelegNummer
    *
-   * @param Integer belegNumber
+   * @param  belegNumber Integer
    * @return BelegDTO
    * @throws TomDbException
    */
@@ -56,12 +56,26 @@ public interface IBelegDAO {
   /**
    * Schaut mit der BelegNummer ob ein Beleg da ist.
    *
-   * @param Integer belegNumber
+   * @param belegNumber
    * @return boolean true, if the Beleg with this number exists
    * @throws TomDbException
    */
   public boolean checkBelegByNumber(Integer belegNumber) throws TomDbException;
 
+/**
+ * checkBelegByUUID.
+ * @param uuid String
+ * @return boolean true if beleg was founf by UUID
+ * @throws TomDbException 
+ */
+  public boolean checkBelegByUUID(String uuid) throws TomDbException;
+  
+    /**
+   * Get the nest Numver for the Beleg Type.
+   * @return int
+   * @throws TomDbException 
+   */
+  public abstract int getNextBelegNumber() throws TomDbException;
   /**
    * Lädt die Positionsliste zu einem Beleg
    *

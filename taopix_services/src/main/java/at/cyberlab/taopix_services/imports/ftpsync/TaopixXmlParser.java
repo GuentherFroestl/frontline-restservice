@@ -1,4 +1,5 @@
-package at.cyberlab.taopix_services.imports;
+package at.cyberlab.taopix_services.imports.ftpsync;
+import at.cyberlab.taopix_services.imports.ftpsync.TaopixBelegImporter;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.logging.Logger;
  * @author gfr
  *Handler zum Parsen des vom Taopix erzeugten xml-Files für Fotobücher
  */
+@Deprecated
 public class TaopixXmlParser{
 	
 	SAXParserFactory factory;
@@ -159,6 +161,12 @@ public class TaopixXmlParser{
 			    isInCcilog = false;	
 			    itemProperties = new HashMap<String,String>();
 			}
+        else if (qName.equalsIgnoreCase("components")) {
+          isInHeader = false;
+          isInItem = false;
+          isInShipping = false;
+          isInCcilog = false;
+        }
 			else if (qName.equalsIgnoreCase("shipping")){
 				isInHeader = false;
 			    isInItem = false;

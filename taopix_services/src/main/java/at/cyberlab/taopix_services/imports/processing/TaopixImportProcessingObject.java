@@ -4,7 +4,8 @@
  */
 package at.cyberlab.taopix_services.imports.processing;
 
-import at.cyberlab.taopix_services.inputobjects.TaopixOrder;
+import at.cyberlab.taopix_services.imports.entity.TaopixOrder;
+import com.tom.service.dto.BelegDTO;
 import java.io.File;
 
 /**
@@ -15,6 +16,7 @@ import java.io.File;
 public class TaopixImportProcessingObject {
 
   private TaopixOrder taopixOrder;
+  private BelegDTO createdBeleg;
   private StringBuilder messages = new StringBuilder();
   private File pdfOrderFile;
 
@@ -25,6 +27,15 @@ public class TaopixImportProcessingObject {
   public void setTaopixOrder(TaopixOrder taopixOrder) {
     this.taopixOrder = taopixOrder;
   }
+
+  public BelegDTO getCreatedBeleg() {
+    return createdBeleg;
+  }
+
+  public void setCreatedBeleg(BelegDTO createdBeleg) {
+    this.createdBeleg = createdBeleg;
+  }
+  
 
   /**
    * to collect messages.

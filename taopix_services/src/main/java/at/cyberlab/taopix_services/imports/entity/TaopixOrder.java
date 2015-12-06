@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.cyberlab.taopix_services.inputobjects;
+package at.cyberlab.taopix_services.imports.entity;
 
 import com.tom.service.dto.AddressDTO;
 import com.tom.service.dto.BelegDTO;

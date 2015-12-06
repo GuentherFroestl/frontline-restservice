@@ -80,7 +80,7 @@ public abstract class AbstractDAO<T extends BasicBean> {
   /**
    * Lädt ein XMP-Objekt aus der datenbank, alle Felder werden geladen
    *
-   * @param inp XMP Obj mit DID gesetzt
+   * @param did XMP Obj mit DID gesetzt
    * @return T extends BasicBean
    * @throws TomDbException
    */
@@ -147,7 +147,45 @@ public abstract class AbstractDAO<T extends BasicBean> {
       throw new TomDbObjectNotFoundException(
               "Fehler= kein Objekt gefunden mit uuid=" + uuid);
     }
+  }
+  
+   /**
+   * Findet einen datensatz durch die uuid
+   *
+   * @param uuid String
+   * @return T
+   * @throws TomDbException
+   */
+  @SuppressWarnings("unchecked")
+  public boolean checkXmpBeanByUuid(String uuid) throws TomDbException {
 
+    T searchObj = getXmpInstance();
+    if (searchObj.getUuid_fn() == 0) {
+      throw new TomDbException(
+              "Fehler= uuid wird vom XmpBean nicht unterstützt");
+    }
+
+    XmpSelection resultSelection = null;
+
+    getDbHandler().openQuery(); // Query erzeugen
+    // nach Suchwert suchen
+    getDbHandler()
+            .addQueryPart(
+            new QueryPart(new QueryOperant(searchObj, searchObj
+            .getUuid_fn()), QueryPart.equal,
+            new QueryOperant(uuid)));
+    int[] fl = {1, 6};
+    searchObj.setFieldList(fl);
+    getDbHandler().setResultObject(searchObj);
+    getDbHandler().setRecordLimit(1);
+    getDbHandler().setStartRecord(0);
+
+    resultSelection = getDbHandler().executeQuery();
+    if (resultSelection != null && resultSelection.getListSize() > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -192,6 +230,14 @@ public abstract class AbstractDAO<T extends BasicBean> {
     XmpSelection resultSelection = getDbHandler().executeQuery();
 
     return resultSelection;
+  }
+  /**
+   * Get the next Beleg Type
+   * @param belegType String
+   * @return int
+   */
+  public int getNextBelegNumber(String belegType){
+    return getDbHandler().getNextNumber(belegType);
   }
 
   /**

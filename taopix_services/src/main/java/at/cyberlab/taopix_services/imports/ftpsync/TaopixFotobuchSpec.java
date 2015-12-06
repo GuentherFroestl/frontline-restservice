@@ -1,4 +1,4 @@
-package at.cyberlab.taopix_services.imports;
+package at.cyberlab.taopix_services.imports.ftpsync;
 
 /**
  * Beschreibt die Properties eines Taopix Fotobuchs

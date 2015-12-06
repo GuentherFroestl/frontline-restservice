@@ -706,7 +706,10 @@ public class Auftraege extends BasicBean {
   public void setUuid(String uuid) {
     this.uuid = uuid;
   }
-  
+  @Override
+  public int getUuid_fn() {
+    return uuid_Fn;
+  }
   
 
   // generierte getter/setter - Ende

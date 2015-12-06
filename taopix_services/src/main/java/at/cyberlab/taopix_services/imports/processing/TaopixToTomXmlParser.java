@@ -2,13 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.cyberlab.taopix_services.imports;
+package at.cyberlab.taopix_services.imports.processing;
 
+import at.cyberlab.taopix_services.imports.processing.ImportException;
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
-import at.cyberlab.taopix_services.imports.calculation.BelegCalculator;
-import at.cyberlab.taopix_services.imports.mapper.TaopixAddressMapper;
-import at.cyberlab.taopix_services.imports.mapper.TaopixOrderMapper;
-import at.cyberlab.taopix_services.inputobjects.TaopixOrder;
+import at.cyberlab.taopix_services.imports.entity.TaopixOrder;
 import com.tom.service.dto.AddressDTO;
 import com.tom.service.dto.BelegPositionDTO;
 import com.tom.service.dto.BelegTyp;
@@ -157,7 +155,7 @@ public class TaopixToTomXmlParser {
       order = new TaopixOrder();
       order.setBelegTyp(BelegTyp.AUFTRAG);
       order.setSteuerFall(SteuerFallDTO.INLAND);
-      TaopixOrderMapper.mapOrderProperties(order, orderProperties, tomImportConfig);
+      TaopixOrderMapper.mapOrderProperties(order, orderProperties, itemProperties,tomImportConfig);
       //Addresses
       order.setFullOrderAddress(orderAddress);
       order.setFullShippingAddress(shippingAddress);
@@ -226,7 +224,13 @@ public class TaopixToTomXmlParser {
         isInShipping = false;
         isInCcilog = false;
         itemProperties = new HashMap<String, String>();
-      } else if (qName.equalsIgnoreCase("shipping")) {
+      } else if (qName.equalsIgnoreCase("components")) {
+        isInHeader = false;
+        isInItem = false;
+        isInShipping = false;
+        isInCcilog = false;
+      }
+      else if (qName.equalsIgnoreCase("shipping")) {
         isInHeader = false;
         isInItem = false;
         isInShipping = true;
@@ -300,7 +304,7 @@ public class TaopixToTomXmlParser {
 
       } else if (qName.equalsIgnoreCase("order")) {
 
-        productPostion = TaopixOrderMapper.mapPosition(itemProperties, tomImportConfig);
+        productPostion = TaopixOrderMapper.mapPosition(orderProperties,itemProperties, tomImportConfig);
         discountPosition = TaopixOrderMapper.mapDiscountPosition(orderProperties, itemProperties, tomImportConfig);
       }
     }

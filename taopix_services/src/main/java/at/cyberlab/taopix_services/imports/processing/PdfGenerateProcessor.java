@@ -5,7 +5,6 @@
 package at.cyberlab.taopix_services.imports.processing;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
-import at.cyberlab.taopix_services.imports.ImportException;
 import de.gammadata.tom.util.xml.ISerializer;
 import de.gammadata.tom.util.xml.IxsltUtil;
 import de.gammadata.tom.util.xml.XsltUtil;

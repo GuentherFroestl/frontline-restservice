@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.cyberlab.taopix_services.imports.calculation;
+package at.cyberlab.taopix_services.imports.processing;
 
+import at.cyberlab.taopix_services.imports.processing.BelegPositionCalculator;
 import com.tom.service.dto.BelegPositionDTO;
 import com.tom.service.dto.PreisDTO;
 import com.tom.service.dto.SteuerArtDTO;

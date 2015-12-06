@@ -1,4 +1,4 @@
-package at.cyberlab.taopix_services.inputobjects;
+package at.cyberlab.taopix_services.imports.entity;
 
 import java.io.Serializable;
 

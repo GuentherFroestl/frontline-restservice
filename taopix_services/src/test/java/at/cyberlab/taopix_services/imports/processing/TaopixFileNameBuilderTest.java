@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.cyberlab.taopix_services.util;
+package at.cyberlab.taopix_services.imports.processing;
 
-import at.cyberlab.taopix_services.imports.ImportException;
+import at.cyberlab.taopix_services.imports.processing.TaopixFileNameBuilder;
+import at.cyberlab.taopix_services.imports.processing.ImportException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

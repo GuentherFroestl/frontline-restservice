@@ -2,10 +2,10 @@ package at.cyberlab.taopix_services.exe;
 
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
 import at.cyberlab.taopix_services.config.TaopixTomImportConfigProvider;
-import at.cyberlab.taopix_services.imports.FtpFilesFetcherImpl;
-import at.cyberlab.taopix_services.imports.IFtpFilesFetcher;
-import at.cyberlab.taopix_services.imports.ImportException;
-import at.cyberlab.taopix_services.imports.TaopixToTomXmlParser;
+import at.cyberlab.taopix_services.imports.processing.FtpFilesFetcherImpl;
+import at.cyberlab.taopix_services.imports.processing.IFtpFilesFetcher;
+import at.cyberlab.taopix_services.imports.processing.ImportException;
+import at.cyberlab.taopix_services.imports.processing.TaopixToTomXmlParser;
 import at.cyberlab.taopix_services.imports.processing.ITaopixOrderImportProcessor;
 import at.cyberlab.taopix_services.imports.processing.ImportProcessingChain;
 import at.cyberlab.taopix_services.imports.processing.TaopixImportProcessingObject;

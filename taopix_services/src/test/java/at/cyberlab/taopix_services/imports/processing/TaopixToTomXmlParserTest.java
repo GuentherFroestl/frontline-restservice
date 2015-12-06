@@ -2,11 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.cyberlab.taopix_services.imports;
+package at.cyberlab.taopix_services.imports.processing;
 
+import at.cyberlab.taopix_services.imports.processing.TaopixToTomXmlParser;
 import at.cyberlab.taopix_services.config.TaopixTomImportConfig;
 import at.cyberlab.taopix_services.config.TaopixTomImportConfigImpl;
-import at.cyberlab.taopix_services.imports.mapper.TaopixAddressMapper;
+import at.cyberlab.taopix_services.imports.processing.TaopixAddressMapper;
 import com.tom.service.dto.AddressDTO;
 import com.tom.service.dto.BelegPositionDTO;
 import com.tom.service.dto.PreisDTO;
