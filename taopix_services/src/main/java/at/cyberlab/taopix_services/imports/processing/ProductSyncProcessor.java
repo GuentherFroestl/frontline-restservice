@@ -64,6 +64,9 @@ public class ProductSyncProcessor implements ITaopixOrderImportProcessor {
     if (processingObject == null || processingObject.getTaopixOrder() == null || processingObject.getTaopixOrder().getPositionsListe() == null) {
       return; //NOP
     }
+    standardWrg=getStandardWrg();
+    processingObject.getTaopixOrder().setWrg(standardWrg);
+    LOG.info(">>>>>>>>>> Währung=" + standardWrg);
     for (BelegPositionDTO pos : processingObject.getTaopixOrder().getPositionsListe()) {
       ProduktKopfDTO prod = pos.getProdukt();
       ProduktDTO tProd = null;

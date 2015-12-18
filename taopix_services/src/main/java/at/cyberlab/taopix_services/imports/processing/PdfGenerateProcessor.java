@@ -56,6 +56,8 @@ public class PdfGenerateProcessor implements ITaopixOrderImportProcessor {
     if (!xsl.canRead()) {
       LOG.error("xsl file nicht gefunden/lesbar pfad=" + config.getXslFileName());
       throw new ImportException("xsl file nicht gefunden/lesbar pfad=" + config.getXslFileName());
+    }else{
+      LOG.info("verwende xsl file="+ xsl.getAbsolutePath());
     }
     try {
       InputStream xslStream = new FileInputStream(xsl);

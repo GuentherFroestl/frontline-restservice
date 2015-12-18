@@ -4,6 +4,7 @@
  */
 package at.cyberlab.taopix_services.config;
 
+import com.tom.service.facade.TomException;
 import de.gammadata.tom.util.xml.ISerializer;
 import de.gammadata.tom.util.xml.XstreamSerializer;
 import java.io.File;
@@ -26,17 +27,17 @@ public class TaopixTomImportConfigProvider {
    *
    * @return TaopixTomImportConfig or nul if it does not exist on the classpath
    */
-  public static TaopixTomImportConfig getTaopixTomImportConfig(String fileName) throws FileNotFoundException, IOException, URISyntaxException {
+  public static TaopixTomImportConfig getTaopixTomImportConfig(String fileName) throws FileNotFoundException, IOException, URISyntaxException, TomException {
     TaopixTomImportConfig config=null;
     ISerializer serializer = new XstreamSerializer();
-    boolean wasRead = false;
-    java.net.URL url = Thread.currentThread().getContextClassLoader().getResource(fileName);
-    File configFile = new File(url.toURI());
-    if (configFile.canRead()) {
+    File configFile = new File(fileName);
+    if (configFile.exists()&&configFile.canRead()) {
       FileInputStream fi = new FileInputStream(configFile);
       String xml = IOUtils.toString(fi,"UTF-8");
       config = (TaopixTomImportConfig) serializer.deserializeFromXml(xml);
       config.setConfigFilePath(configFile.getAbsolutePath());
+    }else{
+      throw new TomException("config file nicht gefunden "+configFile.getAbsolutePath());
     }
     return config;
   }

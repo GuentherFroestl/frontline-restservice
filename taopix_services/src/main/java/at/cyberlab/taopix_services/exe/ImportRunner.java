@@ -73,64 +73,37 @@ public class ImportRunner {
     }
 
     if (orderFileName == null) {
-      System.out.println("Bitte Auftragsnummer als Argument angegeben");
+      System.out.println("Bitte richtigen Pfad zum xml File angeben");
       System.exit(1);
     }
-
-    //Xml File Namen generieren
-    String xmlFileName = orderFileName;
 
     //Set file pathes, exit may occur in methodes, if pathes are not correct
     setXslFilePath(importConfig);
     setFopConfigFilePath(importConfig);
-    String dirPath = checkFileDirectory(configFileName);
-    File xmlFile = new File(dirPath + "/" + xmlFileName);
-    boolean exists = false;
-    try {
-      exists = !xmlFile.createNewFile();
-      if (exists && xmlFile.length() < 100) {
-        exists = false;
-      }
-    } catch (IOException ex) {
-      System.out.println("Fehler beim File Check " + ex.getMessage() + ", Pfad=" + xmlFile.getAbsolutePath());
-
-    }
-    //File erst vom FTP holen
-    if (!exists) {
-      System.out.println("File existiert nicht " + dirPath + "/" + xmlFileName);
-      System.exit(1);
-      try {
-        fetchFileFromFTP(xmlFileName, xmlFile, importConfig);
-      } catch (ImportException ex) {
-        System.out.println("Fehler " + ex.getMessage() + " beim Holen des FTP Files " + xmlFileName + ", nach Pfad=" + xmlFile.getAbsolutePath());
-        System.exit(1);
-      }
-    }
 
     // Now we start off
     InputStream xmlStream = null;
     try {
-      xmlFile = new File(dirPath + "/" + xmlFileName);
+      File xmlFile = new File(orderFileName);
       if (!xmlFile.exists()) {
-        System.out.println("File existiert nicht " + dirPath + "/" + xmlFileName);
+        System.out.println("File existiert nicht " + orderFileName + " Pfad=" + xmlFile.getAbsolutePath());
         System.exit(1);
       }
       xmlStream = new FileInputStream(xmlFile);
 
       TaopixToTomXmlParser instance = new TaopixToTomXmlParser(importConfig);
       instance.parse(xmlStream);
-      xmlStream.close();
 
       if (instance.getOrder() == null) {
-        System.out.println("Der Auftrag ist leer " + xmlFileName);
+        System.out.println("Der Auftrag ist leer " + orderFileName);
         System.exit(1);
       }
       if (instance.getOrder().getPositionsListe() == null || instance.getOrder().getPositionsListe().isEmpty()) {
-        System.out.println("Der Auftrag hat keine Positionen " + xmlFileName);
+        System.out.println("Der Auftrag hat keine Positionen " + orderFileName);
         System.exit(1);
       }
 
-      System.out.println("Auftrag erkannt " + xmlFileName);
+      System.out.println("Auftrag erkannt " + orderFileName);
       ITaopixOrderImportProcessor processor = new ImportProcessingChain(importConfig);
 
       TaopixImportProcessingObject pobj = new TaopixImportProcessingObject();
@@ -165,23 +138,17 @@ public class ImportRunner {
   private static void checkConfigFile(String path) {
 
     try {
-      java.net.URL url = Thread.currentThread().getContextClassLoader().getResource(path);
-      if (url == null) {
-        System.out.println("Konfig-Datei nicht gefunden =" + path);
-        createDefaultConfigFile();
-        System.exit(1);
-      }
-      System.out.println("Verwende Konfig-Datei =" + url);
-      File configFile = new File(url.toURI());
-      if (configFile.canRead()) {
-        System.out.println("Konfig-Datei ist lesbar " + path);
+      System.out.println("Verwende Konfig-Datei =" + path);
+      File configFile = new File(path);
+      if (configFile.exists() && configFile.canRead()) {
+        System.out.println("Konfig-Datei ist lesbar " + configFile.getAbsolutePath());
         return;
       } else {
-        System.out.println("Konfig-Datei ist nicht lesbar " + path);
+        System.out.println("Konfig-Datei ist nicht lesbar " + configFile.getAbsolutePath());
         createDefaultConfigFile();
         System.exit(1);
       }
-    } catch (URISyntaxException ex) {
+    } catch (Exception ex) {
       System.out.println("Konfig-Datei kann nicht gelesen werden " + path + ", Fehler=" + ex.getMessage());
       System.exit(1);
     }
@@ -202,17 +169,14 @@ public class ImportRunner {
 
   private static void setXslFilePath(TaopixTomImportConfig importConfig) {
     try {
-      java.net.URL url = Thread.currentThread().getContextClassLoader().getResource(importConfig.getXslFileName());
-      if (url==null){
-        throw new RuntimeException("xsl File nicht vorhanden: "+importConfig.getXslFileName());
-      }
-      File xslFile = new File(url.toURI());
-      if (xslFile.canRead()) {
+
+      File xslFile = new File(importConfig.getXslFileName());
+      if (xslFile.exists() && xslFile.canRead()) {
         importConfig.setXslFilePath(xslFile.getAbsolutePath());
         System.out.println("Using xsl-file=" + xslFile.getAbsolutePath());
         return;
       }
-    } catch (URISyntaxException ex) {
+    } catch (Exception ex) {
       System.out.println("Fehler xsl-file nicht gefunden " + importConfig.getXslFileName() + " Fehler=" + ex.getMessage());
     }
     System.out.println("Fehler xsl-file nicht gefunden " + importConfig.getXslFileName());
@@ -222,16 +186,16 @@ public class ImportRunner {
   private static void setFopConfigFilePath(TaopixTomImportConfig importConfig) {
     try {
       java.net.URL url = Thread.currentThread().getContextClassLoader().getResource(importConfig.getFopConfigFile());
-      if (url==null){
-        throw new RuntimeException("fop config File nicht vorhanden: "+importConfig.getXslFileName());
+      if (url == null) {
+        throw new RuntimeException("fop config File nicht vorhanden: " + importConfig.getXslFileName());
       }
-      File fopConfigFile = new File(url.toURI());
-      if (fopConfigFile.canRead()) {
+      File fopConfigFile = new File(importConfig.getFopConfigFile());
+      if (fopConfigFile.exists() && fopConfigFile.canRead()) {
         importConfig.setFopConfigFilePath(fopConfigFile.getAbsolutePath());
         System.out.println("Using fop configfile=" + fopConfigFile.getAbsolutePath());
         return;
       }
-    } catch (URISyntaxException ex) {
+    } catch (Exception ex) {
       System.out.println("Fehler fop configfile nicht gefunden " + importConfig.getFopConfigFile() + " Fehler=" + ex.getMessage());
     }
     System.out.println("Fehler fop configfile  nicht gefunden " + importConfig.getFopConfigFile());

@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export>
+	<ORDER>
+		<header>
+			<id>1092947</id>
+			<datecreated>2015-11-03 19:47:14</datecreated>
+			<datelastmodified>2015-11-03 19:47:14</datelastmodified>
+			<ownercode>PRIINTCENTRELAMPRECH</ownercode>
+			<groupcode>1028CYBERLAB</groupcode>
+			<groupdata/>
+			<shoppingcarttype>0</shoppingcarttype>
+			<designeruuid>3130323843594245524C41422E4644454441383242393344313443314239423034443844424538454134383231</designeruuid>
+			<userid>43732</userid>
+			<useripaddress>77.119.130.168</useripaddress>
+			<userbrowser>Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:41.0) Gecko/20100101 Firefox/41.0</userbrowser>
+			<sessionid>245954</sessionid>
+			<orderdate>2015-11-03 19:47:14</orderdate>
+			<ordernumber>1092947</ordernumber>
+			<origorderid>0</origorderid>
+			<origordernumber>0</origordernumber>
+			<temporder>0</temporder>
+			<temporderid>0</temporderid>
+			<temporderexpirydate>0000-00-00 00:00:00</temporderexpirydate>
+			<offlineorder>0</offlineorder>
+			<offlineordercompletedbycustomer>0</offlineordercompletedbycustomer>
+			<webbrandcode>CYBERLAB</webbrandcode>
+			<languagecode>de</languagecode>
+			<billingcustomeraccountcode/>
+			<billingcustomername>DieFotoFrau</billingcustomername>
+			<billingcustomeraddress1>Suttnerstrasse 7</billingcustomeraddress1>
+			<billingcustomeraddress2/>
+			<billingcustomeraddress3/>
+			<billingcustomeraddress4/>
+			<billingcustomercity>Linz</billingcustomercity>
+			<billingcustomercounty/>
+			<billingcustomerstate/>
+			<billingcustomerregioncode/>
+			<billingcustomerregion>STATE</billingcustomerregion>
+			<billingcustomerpostcode>4030</billingcustomerpostcode>
+			<billingcustomercountrycode>AT</billingcustomercountrycode>
+			<billingcustomercountryname>Österreich</billingcustomercountryname>
+			<billingcustomertelephonenumber>0660/5099054</billingcustomertelephonenumber>
+			<billingcustomeremailaddress>foto@diefotofrau.at</billingcustomeremailaddress>
+			<billingcontactfirstname>Andrea</billingcontactfirstname>
+			<billingcontactlastname>Hoeglinger-Mager</billingcontactlastname>
+			<billingcustomerregisteredtaxnumbertype>0</billingcustomerregisteredtaxnumbertype>
+			<billingcustomerregisteredtaxnumber/>
+			<useremaildestination>0</useremaildestination>
+			<currencycode>EUR</currencycode>
+			<currencyname>Euro</currencyname>
+			<currencyisonumber>978</currencyisonumber>
+			<currencysymbol>€ </currencysymbol>
+			<currencysymbolatfront>1</currencysymbolatfront>
+			<currencydecimalplaces>2</currencydecimalplaces>
+			<currencyexchangerate>1.0000</currencyexchangerate>
+			<basecurrencycode>EUR</basecurrencycode>
+			<voucherpromotioncode/>
+			<voucherpromotionname/>
+			<vouchercode/>
+			<vouchertype>0</vouchertype>
+			<vouchername/>
+			<voucherdiscountsection/>
+			<voucherdiscounttype/>
+			<voucherdiscountvalue>0.00</voucherdiscountvalue>
+			<voucherapplicationmethod>0</voucherapplicationmethod>
+			<vouchermaxqtytoapplydiscountto>9999</vouchermaxqtytoapplydiscountto>
+			<vouchersellprice>0.00</vouchersellprice>
+			<voucheragentfee>0.00</voucheragentfee>
+			<itemcount>1</itemcount>
+			<itemtotalcost>0.00</itemtotalcost>
+			<itemtotalsell>67.89</itemtotalsell>
+			<itemtotaltax>0.00</itemtotaltax>
+			<shippingtotalcost>3.99</shippingtotalcost>
+			<shippingtotalsellbeforediscount>3.99</shippingtotalsellbeforediscount>
+			<shippingtotalsell>3.99</shippingtotalsell>
+			<shippingtotaltax>0.00</shippingtotaltax>
+			<shippingtotalweight>0.0000</shippingtotalweight>
+			<totalcost>3.99</totalcost>
+			<totalsellbeforediscount>71.88</totalsellbeforediscount>
+			<showzerotax>0</showzerotax>
+			<showtaxbreakdown>0</showtaxbreakdown>
+			<orderalltaxratesequal>1</orderalltaxratesequal>
+			<showalwaystaxtotal>0</showalwaystaxtotal>
+			<totaltaxbeforediscount>0.00</totaltaxbeforediscount>
+			<totalbeforediscount>71.88</totalbeforediscount>
+			<totaldiscount>0.00</totaldiscount>
+			<totalsell>71.88</totalsell>
+			<ordertotalitemsellwithtax>67.89</ordertotalitemsellwithtax>
+			<orderfootertotalwithtax>0.00</orderfootertotalwithtax>
+			<orderfootertotalnotax>0.00</orderfootertotalnotax>
+			<orderfootertotalnotaxnodiscount>0.00</orderfootertotalnotaxnodiscount>
+			<orderfootertaxratesequal>0</orderfootertaxratesequal>
+			<totaltax>0.00</totaltax>
+			<total>71.88</total>
+			<orderfootersubtotal>0.00</orderfootersubtotal>
+			<orderfootertotal>0.00</orderfootertotal>
+			<orderfootertotaltax>0.00</orderfootertotaltax>
+			<orderfooterdiscountvalue>0.00</orderfooterdiscountvalue>
+			<giftcardamount>0.00</giftcardamount>
+			<usergiftcardbalance>0.00</usergiftcardbalance>
+			<totaltopay>71.88</totaltopay>
+			<paymentmethodcode>ACCOUNT</paymentmethodcode>
+			<paymentmethodname>auf Rechnung (diese erhalten Sie mit der Lieferung)</paymentmethodname>
+			<paymentgatewaycode/>
+			<paymentgatewaysubcode/>
+			<pricesincludetax>1</pricesincludetax>
+			<requiresdelivery>1</requiresdelivery>
+			<ccilogid>0</ccilogid>
+			<metadatacodelist/>
+			<paymentreceived>1</paymentreceived>
+			<paymentreceivedtimestamp>2015-11-03 19:47:14</paymentreceivedtimestamp>
+			<paymentreceiveddate>2015-11-03 19:47:14</paymentreceiveddate>
+			<paymentreceiveduserid>-1</paymentreceiveduserid>
+			<archived>0</archived>
+			<archivedate>0000-00-00 00:00:00</archivedate>
+			<orderready>1</orderready>
+		</header>
+		<items>
+			<item>
+				<id>94893</id>
+				<datecreated>2015-11-03 19:47:14</datecreated>
+				<datelastmodified>2015-11-03 19:58:31</datelastmodified>
+				<origcompanycode/>
+				<origowner/>
+				<origownertype>0</origownertype>
+				<currentcompanycode/>
+				<currentowner/>
+				<currentownertype>0</currentownertype>
+				<ownerorderkey/>
+				<orderid>1092947</orderid>
+				<itemnumber>1</itemnumber>
+				<userid>43732</userid>
+				<source>0</source>
+				<uploadgroupcode>1028CYBERLAB</uploadgroupcode>
+				<uploadorderid>1092947</uploadorderid>
+				<uploadordernumber>1092947</uploadordernumber>
+				<uploadorderitemid>94893</uploadorderitemid>
+				<uploadbatchref>1028CYBERLAB031120151944245954</uploadbatchref>
+				<uploadref>1028CYBERLAB031120151944245954</uploadref>
+				<origorderid>0</origorderid>
+				<origorderitemid>0</origorderitemid>
+				<shareid>0</shareid>
+				<isalternativeproduct>0</isalternativeproduct>
+				<parentorderitemid>0</parentorderitemid>
+				<projectref>FOTOBUCHHOCH_3130323843594245524C41422E4644454441383242393344313443314239423034443844424538454134383231_3529414085_26608583443_1187527</projectref>
+				<projectreforig>FOTOBUCHHOCH_3130323843594245524C41422E4644454441383242393344313443314239423034443844424538454134383231_3529414085_26608583443_1187527</projectreforig>
+				<projectname>Müllers</projectname>
+				<projectbuildstartdate>2015-11-03 15:48:03</projectbuildstartdate>
+				<projectbuildduration>164</projectbuildduration>
+				<productcollectioncode>FOTOBUCHHOCH</productcollectioncode>
+				<productcollectionorigownercode>PRIINTCENTRELAMPRECH</productcollectionorigownercode>
+				<productcollectionname>Fotobuch Hochformat</productcollectionname>
+				<productcode>HARDCOVERA4HOCH</productcode>
+				<productcodepurchased>HARDCOVERA4HOCH</productcodepurchased>
+				<skucode/>
+				<productname>Fotobuch Hardcover A4 hoch</productname>
+				<productinfo/>
+				<producttype>0</producttype>
+				<productpageformat>1</productpageformat>
+				<productspreadpageformat>1</productspreadpageformat>
+				<productcover1format>2</productcover1format>
+				<productcover2format>1</productcover2format>
+				<productoutputformat>0</productoutputformat>
+				<productheight>11.929120</productheight>
+				<productwidth>8.385826</productwidth>
+				<assetid>97</assetid>
+				<productdefaultpagecount>24</productdefaultpagecount>
+				<pagecountpurchased>36</pagecountpurchased>
+				<pagecount>36</pagecount>
+				<productunitcost>0.00</productunitcost>
+				<productunitsell>26.95</productunitsell>
+				<taxcode>ZERO</taxcode>
+				<taxname>Sonstiges</taxname>
+				<taxrate>0.0000</taxrate>
+				<productunitweight>0.0000</productunitweight>
+				<producttotalweight>0.0000</producttotalweight>
+				<qty>2</qty>
+				<producttotalcost>0.00</producttotalcost>
+				<producttotalsell>53.90</producttotalsell>
+				<producttotaltax>0.00</producttotaltax>
+				<subtotal>67.89</subtotal>
+				<voucherapplied>0</voucherapplied>
+				<discountvalue>0.00</discountvalue>
+				<discountname/>
+				<totalcost>0.00</totalcost>
+				<totalsell>67.89</totalsell>
+				<totaltax>0.00</totaltax>
+				<totalshippingweight>0.0000</totalshippingweight>
+				<uploaddatatype>0</uploaddatatype>
+				<uploadmethod>0</uploadmethod>
+				<orderwebversion>2015.2.1</orderwebversion>
+				<uploadappversion>4.3.0</uploadappversion>
+				<uploadappplatform>Mac</uploadappplatform>
+				<uploadappcputype>Intel</uploadappcputype>
+				<uploadapposversion>Mac OS X 10.9.5</uploadapposversion>
+				<uploaddatasize>82234</uploaddatasize>
+				<uploadduration>8</uploadduration>
+				<filesreceivedtimestamp>2015-11-03 19:58:31</filesreceivedtimestamp>
+				<filesreceiveduserid>0</filesreceiveduserid>
+				<decrypttimestamp>0000-00-00 00:00:00</decrypttimestamp>
+				<decryptfilesreceivedtimestamp>0000-00-00 00:00:00</decryptfilesreceivedtimestamp>
+				<decryptuserid>0</decryptuserid>
+				<converttimestamp>0000-00-00 00:00:00</converttimestamp>
+				<convertuserid>0</convertuserid>
+				<convertoutputformatcode/>
+				<jobticketoutputsubfoldername/>
+				<pagesoutputsubfoldername/>
+				<cover1outputsubfoldername/>
+				<cover2outputsubfoldername/>
+				<xmloutputsubfoldername/>
+				<jobticketoutputfilename/>
+				<pagesoutputfilename/>
+				<cover1outputfilename/>
+				<cover2outputfilename/>
+				<xmloutputfilename/>
+				<outputtimestamp>0000-00-00 00:00:00</outputtimestamp>
+				<outputcount>0</outputcount>
+				<outputuserid>0</outputuserid>
+				<jobticketoutputdevicecode/>
+				<pagesoutputdevicecode/>
+				<cover1outputdevicecode/>
+				<cover2outputdevicecode/>
+				<xmloutputdevicecode/>
+				<jobticketjdfjobticketid/>
+				<pagesjdfjobticketid/>
+				<cover1jdfjobticketid/>
+				<cover2jdfjobticketid/>
+				<jobticketjdfqueueid/>
+				<pagesjdfqueueid/>
+				<cover1jdfqueueid/>
+				<cover2jdfqueueid/>
+				<jobticketjdfcompletionstatus>0</jobticketjdfcompletionstatus>
+				<pagesjdfcompletionstatus>0</pagesjdfcompletionstatus>
+				<cover1jdfcompletionstatus>0</cover1jdfcompletionstatus>
+				<cover2jdfcompletionstatus>0</cover2jdfcompletionstatus>
+				<jobticketjdfstatus>0</jobticketjdfstatus>
+				<pagesjdfstatus>0</pagesjdfstatus>
+				<cover1jdfstatus>0</cover1jdfstatus>
+				<cover2jdfstatus>0</cover2jdfstatus>
+				<finishtimestamp>0000-00-00 00:00:00</finishtimestamp>
+				<finishdate>0000-00-00 00:00:00</finishdate>
+				<finishuserid>0</finishuserid>
+				<shippedtimestamp>0000-00-00 00:00:00</shippedtimestamp>
+				<shippeddate>0000-00-00 00:00:00</shippeddate>
+				<shippeduserid>0</shippeduserid>
+				<shippingtrackingreference/>
+				<shippeddistributioncentrereceivedtimestamp>0000-00-00 00:00:00</shippeddistributioncentrereceivedtimestamp>
+				<shippeddistributioncentrereceiveddate>0000-00-00 00:00:00</shippeddistributioncentrereceiveddate>
+				<shippeddistributioncentrereceiveduserid>0</shippeddistributioncentrereceiveduserid>
+				<shippeddistributioncentreshippedtimestamp>0000-00-00 00:00:00</shippeddistributioncentreshippedtimestamp>
+				<shippeddistributioncentreshippeddate>0000-00-00 00:00:00</shippeddistributioncentreshippeddate>
+				<shippeddistributioncentreshippeduserid>0</shippeddistributioncentreshippeduserid>
+				<shippedstorereceivedtimestamp>0000-00-00 00:00:00</shippedstorereceivedtimestamp>
+				<shippedstorereceiveddate>0000-00-00 00:00:00</shippedstorereceiveddate>
+				<shippedstorereceiveduserid>0</shippedstorereceiveduserid>
+				<shippedcustomercollectedtimestamp>0000-00-00 00:00:00</shippedcustomercollectedtimestamp>
+				<shippedcustomercollecteddate>0000-00-00 00:00:00</shippedcustomercollecteddate>
+				<shippedcustomercollecteduserid>0</shippedcustomercollecteduserid>
+				<invoicedtimestamp>0000-00-00 00:00:00</invoicedtimestamp>
+				<invoiceddate>0000-00-00 00:00:00</invoiceddate>
+				<invoiceduserid>0</invoiceduserid>
+				<onhold>0</onhold>
+				<onholdtimestamp>0000-00-00 00:00:00</onholdtimestamp>
+				<onholduserid>0</onholduserid>
+				<onholdreason/>
+				<previewsonline>1</previewsonline>
+				<canmodify>0</canmodify>
+				<canupload>0</canupload>
+				<canuploadproductcodeoverride>0</canuploadproductcodeoverride>
+				<canuploadpagecountoverride>0</canuploadpagecountoverride>
+				<canuploadenablesaveoverride>0</canuploadenablesaveoverride>
+				<canreorder>1</canreorder>
+				<status>5</status>
+				<statusdescription/>
+				<statustimestamp>2015-11-03 19:58:31</statustimestamp>
+				<active>0</active>
+				<activetimestamp>2015-11-03 19:47:14</activetimestamp>
+				<activeuserid>0</activeuserid>
+				<components>
+					<component>
+						<id>300450</id>
+						<datecreated>2015-11-03 19:47:14</datecreated>
+						<datemodified>0000-00-00 00:00:00</datemodified>
+						<orderid>1092947</orderid>
+						<orderitemid>94893</orderitemid>
+						<userid>43732</userid>
+						<parentcomponentid>0</parentcomponentid>
+						<externalassetservicecode/>
+						<externalassetservicename/>
+						<externalassetpricetype>0</externalassetpricetype>
+						<componentcode>SEITEN.HARDCOVERA4HOCH</componentcode>
+						<componentlocalcode>HARDCOVERA4HOCH</componentlocalcode>
+						<skucode>HARDCOVERA4HOCH</skucode>
+						<componentdefaultcode>SEITEN.HARDCOVERA4HOCH</componentdefaultcode>
+						<componentname>je weitere 4 Seiten</componentname>
+						<componentpath>$SEITEN\\</componentpath>
+						<componentcategorycode>SEITEN</componentcategorycode>
+						<componentcategoryname>zusätzliche Seiten</componentcategoryname>
+						<componentdescription>zusätzliche Seiten</componentdescription>
+						<componentinfo/>
+						<componentpriceinfo>€ 2,- abzüglich etwaiger Mengenrabatte</componentpriceinfo>
+						<sortorder>1</sortorder>
+						<pricingmodel>5</pricingmodel>
+						<islist>1</islist>
+						<checkboxselected>0</checkboxselected>
+						<sectionid>0</sectionid>
+						<componentselectioncount>1</componentselectioncount>
+						<quantity>1</quantity>
+						<componentunitcost>0.0000</componentunitcost>
+						<componentunitsell>6.00</componentunitsell>
+						<componenttaxrate>0.0000</componenttaxrate>
+						<componenttaxname>Sonstiges</componenttaxname>
+						<externalassetunitcost>0.00</externalassetunitcost>
+						<externalassetunitsell>0.00</externalassetunitsell>
+						<componentunitweight>0.00</componentunitweight>
+						<componenttotalcost>0.00</componenttotalcost>
+						<subtotal>12.00</subtotal>
+						<componenttotalsell>12.00</componenttotalsell>
+						<componenttotalweight>0.00</componenttotalweight>
+						<componenttotaltax>0.00</componenttotaltax>
+						<discountvalue>0.00</discountvalue>
+						<componentdiscountedtax>0.00</componentdiscountedtax>
+						<branchunitcost>0.00</branchunitcost>
+						<branchunitsell>6.00</branchunitsell>
+						<branchunitweight>0.00</branchunitweight>
+						<branchtotalcost>0.00</branchtotalcost>
+						<branchtotalsell>12.00</branchtotalsell>
+						<branchtotalweight>0.00</branchtotalweight>
+						<branchtotaltax>0.00</branchtotaltax>
+						<externalassetexpirydate>0000-00-00 00:00:00</externalassetexpirydate>
+						<externalassetpageref>0</externalassetpageref>
+						<externalassetpagenumber>0</externalassetpagenumber>
+						<externalassetpagename/>
+						<externalassetboxref>0</externalassetboxref>
+						<metadatacodelist/>
+						<setid>0</setid>
+						<setname/>
+					</component>
+					<component>
+						<id>300451</id>
+						<datecreated>2015-11-03 19:47:14</datecreated>
+						<datemodified>0000-00-00 00:00:00</datemodified>
+						<orderid>1092947</orderid>
+						<orderitemid>94893</orderitemid>
+						<userid>43732</userid>
+						<parentcomponentid>0</parentcomponentid>
+						<externalassetservicecode/>
+						<externalassetservicename/>
+						<externalassetpricetype>0</externalassetpricetype>
+						<componentcode>HGV.OHNEHGV100</componentcode>
+						<componentlocalcode>OHNEHGV100</componentlocalcode>
+						<skucode>OHNEHGV100</skucode>
+						<componentdefaultcode>HGV.OHNEHGV100</componentdefaultcode>
+						<componentname>ohne Veredelung + Schutz</componentname>
+						<componentpath>$HGV\\</componentpath>
+						<componentcategorycode>HGV</componentcategorycode>
+						<componentcategoryname>Hochglanzveredelung - längere Haltbarkeit (UV-Schutz, wasserabweisend und reißfest)</componentcategoryname>
+						<componentdescription>Hochglanzveredelung - längere Haltbarkeit (UV-Schutz, wasserabweisend und reißfest)</componentdescription>
+						<componentinfo>Hochglanzveredelung ist bei diesem Produkt nur bis max. 100 Seiten möglich</componentinfo>
+						<componentpriceinfo/>
+						<sortorder>2</sortorder>
+						<pricingmodel>5</pricingmodel>
+						<islist>1</islist>
+						<checkboxselected>0</checkboxselected>
+						<sectionid>0</sectionid>
+						<componentselectioncount>2</componentselectioncount>
+						<quantity>1</quantity>
+						<componentunitcost>0.0000</componentunitcost>
+						<componentunitsell>0.00</componentunitsell>
+						<componenttaxrate>0.0000</componenttaxrate>
+						<componenttaxname>Sonstiges</componenttaxname>
+						<externalassetunitcost>0.00</externalassetunitcost>
+						<externalassetunitsell>0.00</externalassetunitsell>
+						<componentunitweight>0.00</componentunitweight>
+						<componenttotalcost>0.00</componenttotalcost>
+						<subtotal>0.00</subtotal>
+						<componenttotalsell>0.00</componenttotalsell>
+						<componenttotalweight>0.00</componenttotalweight>
+						<componenttotaltax>0.00</componenttotaltax>
+						<discountvalue>0.00</discountvalue>
+						<componentdiscountedtax>0.00</componentdiscountedtax>
+						<branchunitcost>0.00</branchunitcost>
+						<branchunitsell>0.00</branchunitsell>
+						<branchunitweight>0.00</branchunitweight>
+						<branchtotalcost>0.00</branchtotalcost>
+						<branchtotalsell>0.00</branchtotalsell>
+						<branchtotalweight>0.00</branchtotalweight>
+						<branchtotaltax>0.00</branchtotaltax>
+						<externalassetexpirydate>0000-00-00 00:00:00</externalassetexpirydate>
+						<externalassetpageref>0</externalassetpageref>
+						<externalassetpagenumber>0</externalassetpagenumber>
+						<externalassetpagename/>
+						<externalassetboxref>0</externalassetboxref>
+						<metadatacodelist/>
+						<setid>0</setid>
+						<setname/>
+					</component>
+					<component>
+						<id>300452</id>
+						<datecreated>2015-11-03 19:47:14</datecreated>
+						<datemodified>0000-00-00 00:00:00</datemodified>
+						<orderid>1092947</orderid>
+						<orderitemid>94893</orderitemid>
+						<userid>43732</userid>
+						<parentcomponentid>0</parentcomponentid>
+						<externalassetservicecode/>
+						<externalassetservicename/>
+						<externalassetpricetype>0</externalassetpricetype>
+						<componentcode>AUFTRAGSPAUSCHALE.APFOTOBUCH</componentcode>
+						<componentlocalcode>APFOTOBUCH</componentlocalcode>
+						<skucode>AP199</skucode>
+						<componentdefaultcode>AUFTRAGSPAUSCHALE.APFOTOBUCH</componentdefaultcode>
+						<componentname>Bearbeitungspauschale pro Datei</componentname>
+						<componentpath>$AUFTRAGSPAUSCHALE\\</componentpath>
+						<componentcategorycode>AUFTRAGSPAUSCHALE</componentcategorycode>
+						<componentcategoryname>Zusatz</componentcategoryname>
+						<componentdescription>Zusatz</componentdescription>
+						<componentinfo/>
+						<componentpriceinfo/>
+						<sortorder>3</sortorder>
+						<pricingmodel>3</pricingmodel>
+						<islist>1</islist>
+						<checkboxselected>0</checkboxselected>
+						<sectionid>0</sectionid>
+						<componentselectioncount>1</componentselectioncount>
+						<quantity>1</quantity>
+						<componentunitcost>0.0000</componentunitcost>
+						<componentunitsell>1.00</componentunitsell>
+						<componenttaxrate>0.0000</componenttaxrate>
+						<componenttaxname>Sonstiges</componenttaxname>
+						<externalassetunitcost>0.00</externalassetunitcost>
+						<externalassetunitsell>0.00</externalassetunitsell>
+						<componentunitweight>0.00</componentunitweight>
+						<componenttotalcost>0.00</componenttotalcost>
+						<subtotal>1.99</subtotal>
+						<componenttotalsell>1.99</componenttotalsell>
+						<componenttotalweight>0.00</componenttotalweight>
+						<componenttotaltax>0.00</componenttotaltax>
+						<discountvalue>0.00</discountvalue>
+						<componentdiscountedtax>0.00</componentdiscountedtax>
+						<branchunitcost>0.00</branchunitcost>
+						<branchunitsell>1.00</branchunitsell>
+						<branchunitweight>0.00</branchunitweight>
+						<branchtotalcost>0.00</branchtotalcost>
+						<branchtotalsell>1.99</branchtotalsell>
+						<branchtotalweight>0.00</branchtotalweight>
+						<branchtotaltax>0.00</branchtotaltax>
+						<externalassetexpirydate>0000-00-00 00:00:00</externalassetexpirydate>
+						<externalassetpageref>0</externalassetpageref>
+						<externalassetpagenumber>0</externalassetpagenumber>
+						<externalassetpagename/>
+						<externalassetboxref>0</externalassetboxref>
+						<metadatacodelist/>
+						<setid>0</setid>
+						<setname/>
+					</component>
+					<component>
+						<id>300453</id>
+						<datecreated>2015-11-03 19:47:14</datecreated>
+						<datemodified>0000-00-00 00:00:00</datemodified>
+						<orderid>1092947</orderid>
+						<orderitemid>94893</orderitemid>
+						<userid>43732</userid>
+						<parentcomponentid>0</parentcomponentid>
+						<externalassetservicecode/>
+						<externalassetservicename/>
+						<externalassetpricetype>0</externalassetpricetype>
+						<componentcode>EXPRESSVERARBEITUNG.EXFOTOBUCH</componentcode>
+						<componentlocalcode>EXFOTOBUCH</componentlocalcode>
+						<skucode>EXFOTOBUCH</skucode>
+						<componentdefaultcode/>
+						<componentname>EXPRESS Produktion in 1-2 Arbeitstagen (Mo-Fr)</componentname>
+						<componentpath/>
+						<componentcategorycode>EXPRESSVERARBEITUNG</componentcategorycode>
+						<componentcategoryname>Expressverarbeitung</componentcategoryname>
+						<componentdescription/>
+						<componentinfo>zzgl. Versand 1-2 Arbeitstagen (Mo-Fr)</componentinfo>
+						<componentpriceinfo/>
+						<sortorder>4</sortorder>
+						<pricingmodel>3</pricingmodel>
+						<islist>0</islist>
+						<checkboxselected>0</checkboxselected>
+						<sectionid>0</sectionid>
+						<componentselectioncount>1</componentselectioncount>
+						<quantity>1</quantity>
+						<componentunitcost>0.0000</componentunitcost>
+						<componentunitsell>4.75</componentunitsell>
+						<componenttaxrate>0.0000</componenttaxrate>
+						<componenttaxname>Sonstiges</componenttaxname>
+						<externalassetunitcost>0.00</externalassetunitcost>
+						<externalassetunitsell>0.00</externalassetunitsell>
+						<componentunitweight>0.00</componentunitweight>
+						<componenttotalcost>0.00</componenttotalcost>
+						<subtotal>9.50</subtotal>
+						<componenttotalsell>9.50</componenttotalsell>
+						<componenttotalweight>0.00</componenttotalweight>
+						<componenttotaltax>0.00</componenttotaltax>
+						<discountvalue>0.00</discountvalue>
+						<componentdiscountedtax>0.00</componentdiscountedtax>
+						<branchunitcost>0.00</branchunitcost>
+						<branchunitsell>4.75</branchunitsell>
+						<branchunitweight>0.00</branchunitweight>
+						<branchtotalcost>0.00</branchtotalcost>
+						<branchtotalsell>9.50</branchtotalsell>
+						<branchtotalweight>0.00</branchtotalweight>
+						<branchtotaltax>0.00</branchtotaltax>
+						<externalassetexpirydate>0000-00-00 00:00:00</externalassetexpirydate>
+						<externalassetpageref>0</externalassetpageref>
+						<externalassetpagenumber>0</externalassetpagenumber>
+						<externalassetpagename/>
+						<externalassetboxref>0</externalassetboxref>
+						<metadatacodelist/>
+						<setid>0</setid>
+						<setname/>
+					</component>
+				</components>
+			</item>
+		</items>
+		<shipping>
+			<id>82845</id>
+			<datecreated>2015-11-03 19:47:14</datecreated>
+			<datelastmodified>2015-11-03 19:47:14</datelastmodified>
+			<orderid>1092947</orderid>
+			<userid>43732</userid>
+			<shippingcustomername>DieFotoFrau</shippingcustomername>
+			<shippingcustomeraddress1>Suttnerstrasse 7</shippingcustomeraddress1>
+			<shippingcustomeraddress2/>
+			<shippingcustomeraddress3/>
+			<shippingcustomeraddress4/>
+			<shippingcustomercity>Linz</shippingcustomercity>
+			<shippingcustomercounty/>
+			<shippingcustomerstate/>
+			<shippingcustomerregioncode/>
+			<shippingcustomerregion>STATE</shippingcustomerregion>
+			<shippingcustomerpostcode>4030</shippingcustomerpostcode>
+			<shippingcustomercountrycode>AT</shippingcustomercountrycode>
+			<shippingcustomercountryname>Österreich</shippingcustomercountryname>
+			<shippingcustomertelephonenumber>0660/5099054</shippingcustomertelephonenumber>
+			<shippingcustomeremailaddress>foto@diefotofrau.at</shippingcustomeremailaddress>
+			<shippingcontactfirstname>Andrea</shippingcontactfirstname>
+			<shippingcontactlastname>Hoeglinger-Mager</shippingcontactlastname>
+			<shippingmethodcode>VERSAND</shippingmethodcode>
+			<shippingmethodname>Lieferung nach Hause</shippingmethodname>
+			<shippingratecode>VERSANDZONE1</shippingratecode>
+			<shippingrateinfo/>
+			<shippingratecost>3.99</shippingratecost>
+			<shippingratesell>3.99</shippingratesell>
+			<shippingdiscountvalue>0.00</shippingdiscountvalue>
+			<shippingtotalsell>3.99</shippingtotalsell>
+			<shippingratetaxcode>ZERO</shippingratetaxcode>
+			<shippingratetaxname>Sonstiges</shippingratetaxname>
+			<shippingratetaxrate>0.0000</shippingratetaxrate>
+			<shippingratecalctax>0</shippingratecalctax>
+			<shippingratetaxtotal>0.00</shippingratetaxtotal>
+			<qty>2</qty>
+			<distributioncentrecode/>
+			<storecode/>
+			<storename/>
+		</shipping>
+		<orderfooter/>
+	</ORDER>
+</export>

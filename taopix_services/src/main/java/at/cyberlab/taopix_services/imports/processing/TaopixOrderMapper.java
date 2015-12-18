@@ -55,8 +55,8 @@ public class TaopixOrderMapper {
     if ("1".equalsIgnoreCase(itemProperties.get("voucherapplied"))) {
       //discount applied
       pos.setBeschreibung(String.format(
-              "%1$s\n"
-              + "Vouchercode: %2$s"
+              "%1$s"
+              + "\nVouchercode: %2$s"
               + "\nDiscount: %3$s EUR",
               pos.getBeschreibung(),
               orderProperties.get("vouchercode"),
@@ -185,7 +185,8 @@ public class TaopixOrderMapper {
     order.setBetreff(order.getUuid() + ", Projekt " + itemProperties.get("projectname") + ", " + payment);
     order.setMandant(tomImportConfig.getMandatorId());
 
-    order.setWrg(mapWrg(orderProperties, tomImportConfig));
+//    order.setWrg(mapWrg(orderProperties, tomImportConfig));
+    order.setWrg(new WrgDTO()); //Standardwährung EUR
     try {
       order.setDatum(dateFormat.parse(orderProperties.get("datelastmodified")));
     } catch (ParseException ex) {

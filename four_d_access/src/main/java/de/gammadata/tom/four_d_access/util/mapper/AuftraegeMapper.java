@@ -58,19 +58,30 @@ public class AuftraegeMapper {
     if (beleg.getAdresse() != null && beleg.getAdresse().getId() != null) {
       auftrag.set_009_001_Adressen_DID_AB(beleg.getAdresse().getId());
     }
-    if (beleg.getLieferAdresse()!= null && beleg.getLieferAdresse().getId() != null) {
+    if (beleg.getLieferAdresse() != null && beleg.getLieferAdresse().getId() != null) {
       auftrag.set_009_001_Adressen_DID_LF(beleg.getLieferAdresse().getId());
     }
     if (beleg.getRechnungsAdresse() != null && beleg.getRechnungsAdresse().getId() != null) {
       auftrag.set_009_001_Adressen_DID_RG(beleg.getRechnungsAdresse().getId());
     }
-    
-    if (SteuerFallDTO.EU.equals(beleg.getSteuerFall())||SteuerFallDTO.STEUERFREI.equals(beleg.getSteuerFall())){
+
+    if (SteuerFallDTO.EU.equals(beleg.getSteuerFall()) || SteuerFallDTO.STEUERFREI.equals(beleg.getSteuerFall())) {
       auftrag.setMwSt_pflichtig(false);
-    }else{
+    } else {
       auftrag.setMwSt_pflichtig(true);
     }
 
+    if (beleg.getWrg() != null && beleg.getWrg().getId() != null) {
+      auftrag.set_005_001_Währungen_DID(beleg.getWrg().getId());
+      auftrag.set_005_001_BezugsWährung_DID(beleg.getWrg().getId());
+      auftrag.setM_005_011__022_WährZeichen(beleg.getWrg().getBezeichnung());
+      auftrag.setKurs(beleg.getWrg().getKursInEuro().floatValue());
+    }
+    
+    auftrag.setBetrag_Brutto(beleg.getPreis().getBruttoPreis().floatValue());
+    auftrag.setBetrag_Euro(beleg.getPreis().getBruttoPreis().floatValue()); //Nur Euro keine Umrechnung
+    auftrag.setBetrag_MwSt(beleg.getPreis().getSteuerBetrag().floatValue());
+    auftrag.setBetrag_Netto(beleg.getPreis().getNettoPreis().floatValue());
     return auftrag;
 
   }

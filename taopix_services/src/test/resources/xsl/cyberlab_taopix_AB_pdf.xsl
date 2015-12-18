@@ -124,7 +124,7 @@
 <!-- Content Element Ende: fo-a4-pagemaster -->
 
 <!-- Content Element Anfang: korrespondenz-fo-tompage  -->
-       <xsl:template match="at.cyberlab.taopix__services.inputobjects.TaopixOrder">   
+       <xsl:template match="at.cyberlab.taopix__services.imports.entity.TaopixOrder">   
                     <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
             <xsl:call-template name="pagemaster-A4"/>
                          <fo:page-sequence master-reference="simpleA4">
@@ -148,7 +148,7 @@
             </fo:page-sequence>
                     </fo:root>  
        </xsl:template>
-       <xsl:template match="at.cyberlab.taopix__services.inputobjects.TaopixOrder"  mode="internerAbHeader">>
+       <xsl:template match="at.cyberlab.taopix__services.imports.entity.TaopixOrder"  mode="internerAbHeader">>
 
            <fo:block xsl:use-attribute-sets="bodytext" >
                <fo:table width="193.1mm" table-layout="fixed">
@@ -358,7 +358,7 @@
            
        </xsl:template>
        
-       <xsl:template match="at.cyberlab.taopix__services.inputobjects.TaopixOrder" mode="auftragsdaten">
+       <xsl:template match="at.cyberlab.taopix__services.imports.entity.TaopixOrder" mode="auftragsdaten">
            <fo:block xsl:use-attribute-sets="bodytext" >
                <fo:table width="193.1mm" table-layout="fixed">
                    <fo:table-column column-width="75mm"/>

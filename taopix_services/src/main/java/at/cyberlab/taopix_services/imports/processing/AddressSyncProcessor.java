@@ -43,18 +43,21 @@ public class AddressSyncProcessor implements ITaopixOrderImportProcessor {
 
       AddressDTO orderAdr = processingObject.getTaopixOrder().getFullOrderAddress();
       synOrderAdr = adrService.syncAddress(orderAdr);
+      synShippingAdr = synOrderAdr;
 
       AddressDTO shipAdr = processingObject.getTaopixOrder().getFullShippingAddress();
-      if (orderAdr.getUuid().equals(shipAdr.getUuid())) {
-        synShippingAdr = synOrderAdr;
-      } else {
-        synShippingAdr = adrService.syncAddress(shipAdr);
+      if (shipAdr != null) {
+        if (orderAdr.getUuid().equals(shipAdr.getUuid())) {
+          synShippingAdr = synOrderAdr;
+        } else {
+          synShippingAdr = adrService.syncAddress(shipAdr);
+        }
       }
 
       AddressDTO rechAdr = processingObject.getTaopixOrder().getFullBillingAddress();
       if (orderAdr.getUuid().equals(rechAdr.getUuid())) {
         synRechAdr = synOrderAdr;
-      } else if (shipAdr.getUuid().equals(rechAdr.getUuid())) {
+      } else if (shipAdr != null && shipAdr.getUuid().equals(rechAdr.getUuid())) {
         synRechAdr = synShippingAdr;
       } else {
         synRechAdr = adrService.syncAddress(rechAdr);

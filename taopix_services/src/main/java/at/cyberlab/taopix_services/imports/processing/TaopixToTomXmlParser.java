@@ -155,7 +155,7 @@ public class TaopixToTomXmlParser {
       order = new TaopixOrder();
       order.setBelegTyp(BelegTyp.AUFTRAG);
       order.setSteuerFall(SteuerFallDTO.INLAND);
-      TaopixOrderMapper.mapOrderProperties(order, orderProperties, itemProperties,tomImportConfig);
+      TaopixOrderMapper.mapOrderProperties(order, orderProperties, itemProperties, tomImportConfig);
       //Addresses
       order.setFullOrderAddress(orderAddress);
       order.setFullShippingAddress(shippingAddress);
@@ -229,8 +229,7 @@ public class TaopixToTomXmlParser {
         isInItem = false;
         isInShipping = false;
         isInCcilog = false;
-      }
-      else if (qName.equalsIgnoreCase("shipping")) {
+      } else if (qName.equalsIgnoreCase("shipping")) {
         isInHeader = false;
         isInItem = false;
         isInShipping = true;
@@ -291,20 +290,21 @@ public class TaopixToTomXmlParser {
        */ else if (qName.equalsIgnoreCase("header")) {
 
         if (currentUserId != null) {
-          orderAddress = TaopixAddressMapper.map(userProperties, currentUserId, tomImportConfig);
+          orderAddress = TaopixAddressMapper.map(orderProperties, currentUserId, tomImportConfig);
         }
 
       } else if (qName.equalsIgnoreCase("shipping")) {
+        boolean abholung = "abholung".equalsIgnoreCase(shippingProperties.get("shippingmethodcode"));
 
-        if (currentUserId != null) {
-          shippingAddress = TaopixAddressMapper.map(userProperties, currentUserId, tomImportConfig);
+        if (!abholung && currentUserId != null) {
+          shippingAddress = TaopixAddressMapper.map(orderProperties, currentUserId, tomImportConfig);
           transportPosition = TaopixOrderMapper.mapShippingPosition(shippingProperties, tomImportConfig);
 
         }
 
       } else if (qName.equalsIgnoreCase("order")) {
 
-        productPostion = TaopixOrderMapper.mapPosition(orderProperties,itemProperties, tomImportConfig);
+        productPostion = TaopixOrderMapper.mapPosition(orderProperties, itemProperties, tomImportConfig);
         discountPosition = TaopixOrderMapper.mapDiscountPosition(orderProperties, itemProperties, tomImportConfig);
       }
     }
