@@ -173,9 +173,12 @@ public class TaopixOrderMapper {
    * @param tomImportConfig
    */
   public static void mapOrderProperties(TaopixOrder order, HashMap<String, String> orderProperties,
-          HashMap<String, String> itemProperties, TaopixTomImportConfig tomImportConfig) {
-    order.setNummer(tomImportConfig.getOrderNumberOffset() + Integer.parseInt(orderProperties.get("id")));
-    order.setUuid("TAOPIX_" + orderProperties.get("id"));
+          HashMap<String, String> itemProperties, TaopixTomImportConfig tomImportConfig){
+    if (itemProperties.get("id")==null || itemProperties.get("id").isEmpty()){
+      throw new RuntimeException("item hat keine ID");
+    }
+    order.setNummer(tomImportConfig.getOrderNumberOffset() + Integer.parseInt(itemProperties.get("id")));
+    order.setUuid("TAOPIX_" + itemProperties.get("id"));
     String payment;
     if ("1".equals(orderProperties.get("paymentreceived"))) {
       payment = "bezahlt mit" + orderProperties.get("paymentmethodname");
